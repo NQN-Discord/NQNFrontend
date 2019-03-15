@@ -10,6 +10,10 @@ import connect from "react-redux/es/connect/connect";
 
 import {readStorageState} from "./actions/auth";
 
+import Header from "./header";
+import LoginPage from "./pages/login";
+import LogoutPage from "./pages/logout";
+
 class App extends Component {
     componentDidMount() {
         this.props.readStorageState();
@@ -19,22 +23,22 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props);
-        return <div>
-            <h1>BetterE6</h1>
-            { this.props.loggedIn &&
-                <h2>You are logged in with refresh token: <code>{this.props.refreshToken}</code></h2>
-            }
-            { !this.props.loggedIn &&
-                <h2>You are not logged in</h2>
-            }
-        </div>;
+        return (
+            <Router>
+                <div>
+                    <Header/>
+                    <Switch>
+                        <Route exact path="/login" component={LoginPage}/>
+                        <Route exact path="/logout" component={LogoutPage}/>
+                    </Switch>
+                </div>
+            </Router>
+        );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        refreshToken: state.auth.refreshToken,
         loggedIn: state.auth.loggedIn
     }
 };

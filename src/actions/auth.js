@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {api_url, redirect_uri} from '../config.js';
+import {api_url} from '../config.js';
 
 export const RECEIVE_REFRESH = "RECEIVE_REFRESH";
 
@@ -26,8 +26,14 @@ export function receiveRefresh(refreshToken) {
 
 export function exchangeCode(code) {
     return function(dispatch) {
-        axios.put(`${api_url}/login`, {code, redirect_uri}).then(response => {
-            dispatch(setRefreshToken(response.data.data.refresh_token));
+        axios.get(`${api_url}/login`, {params: {code}}).then(response => {
+            dispatch(setRefreshToken(response.data.refresh_token));
         });
     };
+}
+
+export function logout() {
+    return function(dispatch) {
+        dispatch(setRefreshToken(""));
+    }
 }

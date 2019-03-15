@@ -9,6 +9,7 @@ function auth(state = {
 }, action) {
     switch (action.type) {
         case RECEIVE_REFRESH:
+            console.log("Refresh token" + action.refreshToken);
             return update(state,
                 {$merge: {
                         refreshToken: action.refreshToken,
