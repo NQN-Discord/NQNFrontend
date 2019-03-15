@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {api_url} from '../config.js';
+import {api_url, page_size} from '../config.js';
 
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 
@@ -13,7 +13,7 @@ export function receiveSearch(term, page, results) {
     }
 }
 
-export function search(term, page, page_size) {
+export function search(term, page) {
     return function(dispatch) {
         axios.get(`${api_url}/search`, {params: {
                 term,

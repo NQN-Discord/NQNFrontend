@@ -27,7 +27,7 @@ class Search extends Component {
 
     onKeyPress(event) {
         if (event.key === "Enter") {
-            this.props.search(event.target.value, 0, 20);
+            this.props.search(event.target.value, 0);
         }
     }
 
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        search: (term, page, per_page) => dispatch(search(term, page, per_page))
+        search: (term, page) => dispatch(search(term, page))
     };
 };
 

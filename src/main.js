@@ -10,6 +10,7 @@ import {readStorageState} from "./actions/auth";
 
 import Header from "./header";
 import HomePage from "./pages/home";
+import SearchResultsPage from "./pages/search_results";
 import LoginPage from "./pages/login";
 import LogoutPage from "./pages/logout";
 
@@ -18,16 +19,18 @@ class App extends Component {
         this.props.readStorageState();
     }
 
-    componentDidUpdate() {
-    }
-
     render() {
         return (
             <Router>
                 <div>
                     <Header/>
                     <Switch>
-                        <Route exact path="/" component={HomePage}/>
+                        { this.props.search.shownResults.length === 0 &&
+                            <Route exact path="/" component={HomePage}/>
+                        }
+                        { this.props.search.shownResults.length !== 0 &&
+                            <Route exact path="/" component={SearchResultsPage}/>
+                        }
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/logout" component={LogoutPage}/>
                     </Switch>
@@ -39,7 +42,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.auth.loggedIn
+        loggedIn: state.auth.loggedIn,
+        search: state.search
     }
 };
 
