@@ -4,10 +4,12 @@ import {api_url} from '../config.js';
 export const RECEIVE_SEARCH = "RECEIVE_SEARCH";
 
 
-export function receiveSearch(refreshToken) {
+export function receiveSearch(term, page, results) {
     return {
         type: RECEIVE_SEARCH,
-        refreshToken
+        term,
+        page,
+        results
     }
 }
 
@@ -18,7 +20,7 @@ export function search(term, page, page_size) {
                 page,
                 page_size
         }}).then(response => {
-            dispatch(receiveSearch(response.data));
+            dispatch(receiveSearch(term, page, response.data));
         });
     };
 }
