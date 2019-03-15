@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-
 import connect from "react-redux/es/connect/connect";
+
+import Search from '../components/search'
 
 class HomePage extends Component {
     render() {
         return (
-            <h4>Home page</h4>
+            <div>
+                <h4>Home page</h4>
+                <Search/>
+            </div>
         );
     }
 }
