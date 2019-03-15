@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {Navbar, Nav, NavItem} from "react-bootstrap";
-import {Switch, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
