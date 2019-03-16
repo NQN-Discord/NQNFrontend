@@ -11,12 +11,27 @@ export default function SearchResultLarge(props) {
     const e6page = `https://e621.net/post/show/${post.id}`
     return (
         <div className="page_result_large">
-            <a href={postSrc} target="_blank" rel="noopener noreferrer">
-                <img
+            {post.ext === "webm" &&
+                <video controls={true}>
+                    <source src={postSrc} type="video/webm"/>
+                    Your browser cannot view webm video content.
+                </video>
+            }
+            {post.ext === "swf" &&
+                <embed
+                    type="application/x-shockwave-flash"
                     src={postSrc}
-                    alt=""
+                    allowscriptaccess="never"
                 />
-            </a>
+            }
+            { !["webm", "swf"].includes(post.ext) &&
+                <a href={postSrc} target="_blank" rel="noopener noreferrer">
+                    <img
+                        src={postSrc}
+                        alt=""
+                    />
+                </a>
+            }
             <p>
                 <a href={e6page} target="_blank" rel="noopener noreferrer">View on e621</a><br/>
                 Artist: {post.artist}<br/>

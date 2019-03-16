@@ -5,9 +5,12 @@ import "./search_result.css";
 export default class SearchResult extends Component {
     constructor(props) {
         super(props);
+        const previewSrc = `https://static1.e621.net/data/preview/${this.getURL()}.jpg`;
+        const swfPreview = "https://static1.e621.net/images/download-preview.png";
+
         this.state = {
             previewType: "preview",
-            src: `https://static1.e621.net/data/preview/${this.getURL()}.jpg`
+            src: props.post.ext === "swf"? swfPreview: previewSrc
         };
     }
 
@@ -19,6 +22,8 @@ export default class SearchResult extends Component {
 
     render() {
         const onClick = this.props.onClick;
+        const sampleURL = `https://static1.e621.net/data/sample/${this.getURL()}.${this.props.post.ext}`;
+        const fullURL = `https://static1.e621.net/data/${this.getURL()}.${this.props.post.ext}`;
         return (
             <div className="page_result">
                 <img
@@ -28,8 +33,6 @@ export default class SearchResult extends Component {
                         onClick(this.props.post)
                     }}
                     onLoad={() => {
-                        const sampleURL = `https://static1.e621.net/data/sample/${this.getURL()}.${this.props.post.ext}`;
-                        const fullURL = `https://static1.e621.net/data/${this.getURL()}.${this.props.post.ext}`;
                         if (this.state.previewType === "preview") {
                             var replacement = new Image();
                             replacement.onload = () => {

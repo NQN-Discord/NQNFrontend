@@ -15,6 +15,17 @@
     display: block;
 }
 
+.page_result_large > embed {
+    max-height: 70vh;
+    max-width: 80vw;
+    width: 1200px;
+    height: 1104px;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .page_result_large a {
     color: #b4d8ff;
 }
