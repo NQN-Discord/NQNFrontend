@@ -14,3 +14,7 @@
     margin-right: auto;
     display: block;
 }
+
+.page_result_large > p {
+    color: #e6e6e6;
+}
