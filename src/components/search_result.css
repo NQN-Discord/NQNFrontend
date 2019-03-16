@@ -1,0 +1,12 @@
+.page_result {
+    max-width: 30%;
+    height: 30vh;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.page_result > img {
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+}

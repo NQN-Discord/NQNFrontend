@@ -3,6 +3,7 @@ import connect from "react-redux/es/connect/connect";
 import {stringify} from "query-string";
 
 import SearchResult from "../components/search_result";
+import "./search_results.css"
 
 
 class SearchResultsPage extends Component {
@@ -24,9 +25,9 @@ class SearchResultsPage extends Component {
                     Total results: {this.props.search.totalResults}<br/>
                     Page: {this.props.search.page}<br/>
                 </p>
-                <div>
+                <div className="results_container">
                     {this.props.search.shownResults.map(post => {
-                        return <SearchResult post={post}/>;
+                        return <SearchResult key={post.id} post={post}/>;
                     })}
                 </div>
             </div>
