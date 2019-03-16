@@ -19,3 +19,10 @@
     display: table;
     margin: 10vh auto;
 }
+
+.results_search_bar {
+    z-index: 1;
+    top: 15px;
+    left: 15px;
+    position: fixed;
+}

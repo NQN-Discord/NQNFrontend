@@ -34,6 +34,7 @@ class SearchResultsPage extends Component {
     }
 
     onUpdate = () => {
+        document.title = `BetterE6 - ${this.props.results.totalResults} results`;
         document.addEventListener("scroll", this.trackScroll);
         this.props.history.push({
             pathname: "/",
@@ -66,7 +67,7 @@ class SearchResultsPage extends Component {
     render() {
         return (
             <div>
-                <div className="container-fluid">
+                <div className="results_search_bar">
                     <Search initial={this.props.results.term}/>
                 </div>
                 <div className="results_container">
