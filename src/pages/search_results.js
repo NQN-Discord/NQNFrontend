@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
-import {stringify} from "query-string";
+import {parse, stringify} from "query-string";
 
 import SearchResult from "../components/search_result";
 import SearchResultLarge from "../components/search_result_large";
 import "./search_results.css"
+import {search} from "../actions/search";
 
 
 class SearchResultsPage extends Component {
@@ -16,29 +17,59 @@ class SearchResultsPage extends Component {
     }
 
     componentDidMount() {
+        this.onUpdate();
+    }
+
+    componentDidUpdate() {
+        const query = parse(this.props.location.search);
+        if (Object.keys(query).filter(q => ["page", "term"].includes(q)).length === 2) {
+            const page = parseInt(query.page, 10);
+            if (page !== this.props.results.page) {
+                this.onUpdate();
+            }
+        }
+    }
+
+    onUpdate = () => {
+        document.addEventListener("scroll", this.trackScroll);
         this.props.history.push({
             pathname: "/",
             search: stringify({
-                term: this.props.search.term,
-                page: this.props.search.page
+                term: this.props.results.term,
+                page: this.props.results.page
             })
         });
+    };
+
+    componentWillUnmount() {
+        document.removeEventListener("scroll", this.trackScroll);
     }
+
+    trackScroll = () => {
+        const pageHeight=document.documentElement.offsetHeight;
+        const windowHeight=window.innerHeight;
+        const scrollPosition=window.scrollY || window.pageYOffset || document.body.scrollTop + ((document.documentElement && document.documentElement.scrollTop) || 0);
+        if (pageHeight - windowHeight <= scrollPosition + 200) {
+            this.props.search(this.props.results.term, this.props.results.page + 1);
+            document.removeEventListener("scroll", this.trackScroll);
+        }
+
+    };
 
     onClick = (post) => {
         this.setState({shownPost: post});
-    }
+    };
 
     render() {
         return (
             <div>
-                <h4>Search results for <b>{this.props.search.term}</b></h4>
+                <h4>Search results for <b>{this.props.results.term}</b></h4>
                 <p>
-                    Total results: {this.props.search.totalResults}<br/>
-                    Page: {this.props.search.page + 1}<br/>
+                    Total results: {this.props.results.totalResults}<br/>
+                    Page: {this.props.results.page + 1}<br/>
                 </p>
                 <div className="results_container">
-                    {this.props.search.shownResults.map(post => {
+                    {this.props.results.shownResults.map(post => {
                         return <SearchResult key={post.id} post={post} onClick={this.onClick}/>;
                     })}
                 </div>
@@ -61,10 +92,17 @@ class SearchResultsPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        search: state.search
+        results: state.search
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        search: (term, page) => dispatch(search(term, page))
+    };
+};
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(SearchResultsPage);

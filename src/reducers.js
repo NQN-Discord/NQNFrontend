@@ -32,7 +32,7 @@ function search(state = {
         case RECEIVE_SEARCH:
             return update(state,
                 {$merge: {
-                        shownResults: action.results.posts,
+                        shownResults: update(state.shownResults, {$push: action.results.posts}),
                         totalResults: action.results.total,
                         term: action.term,
                         page: action.page
