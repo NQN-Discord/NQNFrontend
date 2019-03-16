@@ -1,12 +1,11 @@
 .page_result {
     max-width: 30%;
-    height: 30vh;
     margin-top: 16px;
     margin-bottom: 16px;
 }
 
 .page_result > img {
-    height: 100%;
+    max-height: 30vh;
     max-width: 100%;
     display: block;
 }
