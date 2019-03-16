@@ -5,13 +5,13 @@ WORKDIR /usr/src/app
 
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-COPY ./frontend/package.json /usr/src/app/package.json
+COPY ./package.json /usr/src/app/package.json
 RUN npm install
 
-COPY ./frontend /usr/src/app
+COPY . /usr/src/app
 
-RUN npm build
+RUN npm run build
 
 
 FROM nginx:1.15
-COPY --from=build /usr/src/app/dist/frontend /usr/share/nginx/html
+COPY --from=build /usr/src/app/build/static /usr/share/nginx/html
