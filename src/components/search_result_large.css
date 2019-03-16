@@ -1,0 +1,16 @@
+.page_result_large {
+    min-width: 40vw;
+    background: #2b4d82;
+    display: inline-block;
+}
+
+.page_result_large > img {
+    max-height: 70vh;
+    max-width: 80vw;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
