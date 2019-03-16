@@ -30,9 +30,13 @@ function search(state = {
 }, action) {
     switch (action.type) {
         case RECEIVE_SEARCH:
+            var shownResults = action.results.posts;
+            if (action.term === state.term) {
+                shownResults = update(state.shownResults, {$push: action.results.posts});
+            }
             return update(state,
                 {$merge: {
-                        shownResults: update(state.shownResults, {$push: action.results.posts}),
+                        shownResults,
                         totalResults: action.results.total,
                         term: action.term,
                         page: action.page

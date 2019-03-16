@@ -3,10 +3,12 @@ import connect from "react-redux/es/connect/connect";
 import {parse, stringify} from "query-string";
 import VisibilitySensor from "react-visibility-sensor";
 
+import Search from "../components/search";
 import SearchResult from "../components/search_result";
 import SearchResultLarge from "../components/search_result_large";
-import "./search_results.css"
 import {search} from "../actions/search";
+
+import "./search_results.css"
 
 
 class SearchResultsPage extends Component {
@@ -25,7 +27,7 @@ class SearchResultsPage extends Component {
         const query = parse(this.props.location.search);
         if (Object.keys(query).filter(q => ["page", "term"].includes(q)).length === 2) {
             const page = parseInt(query.page, 10);
-            if (page !== this.props.results.page) {
+            if (page !== this.props.results.page || query.term !== this.props.results.term) {
                 this.onUpdate();
             }
         }
@@ -64,11 +66,9 @@ class SearchResultsPage extends Component {
     render() {
         return (
             <div>
-                <h4>Search results for <b>{this.props.results.term}</b></h4>
-                <p>
-                    Total results: {this.props.results.totalResults}<br/>
-                    Page: {this.props.results.page + 1}<br/>
-                </p>
+                <div className="container-fluid">
+                    <Search initial={this.props.results.term}/>
+                </div>
                 <div className="results_container">
                     {this.props.results.shownResults.map(post => {
                         return (

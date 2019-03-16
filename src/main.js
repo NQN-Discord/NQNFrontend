@@ -25,10 +25,10 @@ class App extends Component {
                 <div>
                     <Header/>
                     <Switch>
-                        { this.props.search.shownResults.length === 0 &&
+                        { this.props.search.term.length === 0 &&
                             <Route exact path="/" component={HomePage}/>
                         }
-                        { this.props.search.shownResults.length !== 0 &&
+                        { this.props.search.term.length !== 0 &&
                             <Route exact path="/" component={SearchResultsPage}/>
                         }
                         <Route exact path="/login" component={LoginPage}/>
