@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {parse, stringify} from "query-string";
+import VisibilitySensor from "react-visibility-sensor";
 
 import SearchResult from "../components/search_result";
 import SearchResultLarge from "../components/search_result_large";
@@ -70,7 +71,13 @@ class SearchResultsPage extends Component {
                 </p>
                 <div className="results_container">
                     {this.props.results.shownResults.map(post => {
-                        return <SearchResult key={post.id} post={post} onClick={this.onClick}/>;
+                        return (
+                            <VisibilitySensor key={post.id} partialVisibility={true}>
+                                {isVisible => {
+                                    return <SearchResult post={post} onClick={this.onClick} isVisible={isVisible.isVisible}/>;
+                                }}
+                            </VisibilitySensor>
+                        );
                     })}
                 </div>
                 {this.state.shownPost !== null &&
