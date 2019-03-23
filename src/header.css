@@ -1,0 +1,10 @@
+.nav li {
+    padding-left: 16px;
+}
+
+.results_search_bar {
+    z-index: 1;
+    top: 15px;
+    left: 15px;
+    position: fixed;
+}

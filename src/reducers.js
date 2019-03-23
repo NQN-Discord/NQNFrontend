@@ -31,7 +31,7 @@ function search(state = {
     switch (action.type) {
         case RECEIVE_SEARCH:
             var shownResults = action.results.posts;
-            if (action.term === state.term) {
+            if (action.term === state.term && action.page !== 0) {
                 shownResults = update(state.shownResults, {$push: action.results.posts});
             }
             return update(state,

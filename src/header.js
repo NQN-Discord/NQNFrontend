@@ -4,26 +4,41 @@ import {Navbar, Nav, NavItem} from "react-bootstrap";
 import {withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import "./header.css";
+import Search from "./components/search";
+
 
 class Header extends Component {
     render() {
         return (
-            <Navbar inverse={true} fluid={true} onSelect={(eventKey) => {
-                this.props.history.push(eventKey);
-            }}>
-                <Nav activeKey={this.props.location.pathname} className="navbar-right">
-                    {!this.props.loggedIn &&
-                        <NavItem eventKey="/login">
-                            Login
-                        </NavItem>
+            <div>
+                <div className="results_search_bar">
+                    { !(this.props.location.pathname === "/" && this.props.results.term.length === 0) &&
+                        <Search initial={this.props.results.term}/>
                     }
-                    {this.props.loggedIn &&
-                        <NavItem eventKey="/logout">
-                            Logout
-                        </NavItem>
-                    }
-                </Nav>
-            </Navbar>
+                </div>
+                <Navbar inverse={true} fluid={true} onSelect={(eventKey) => {
+                    this.props.history.push(eventKey);
+                }}>
+                    <Nav activeKey={this.props.location.pathname} className="navbar-right">
+                        {!this.props.loggedIn &&
+                            <NavItem eventKey="/login">
+                                Login
+                            </NavItem>
+                        }
+                        {this.props.loggedIn &&
+                            <NavItem eventKey="/logout">
+                                Logout
+                            </NavItem>
+                        }
+                        {this.props.loggedIn &&
+                            <NavItem eventKey="/settings">
+                                Settings
+                            </NavItem>
+                        }
+                    </Nav>
+                </Navbar>
+            </div>
         );
     }
 }
@@ -31,11 +46,12 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.auth.loggedIn
+        loggedIn: state.auth.loggedIn,
+        results: state.search
     }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
     return {}
 };
 

@@ -3,7 +3,6 @@ import connect from "react-redux/es/connect/connect";
 import {parse, stringify} from "query-string";
 import VisibilitySensor from "react-visibility-sensor";
 
-import Search from "../components/search";
 import SearchResult from "../components/search_result";
 import SearchResultLarge from "../components/search_result_large";
 import {search} from "../actions/search";
@@ -67,9 +66,6 @@ class SearchResultsPage extends Component {
     render() {
         return (
             <div>
-                <div className="results_search_bar">
-                    <Search initial={this.props.results.term}/>
-                </div>
                 <div className="results_container">
                     {this.props.results.shownResults.map(post => {
                         return (

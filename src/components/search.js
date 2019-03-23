@@ -4,6 +4,7 @@ import React from "react";
 import connect from "react-redux/es/connect/connect";
 
 import {search} from "../actions/search";
+import {withRouter} from "react-router-dom";
 
 
 class Search extends Component {
@@ -22,6 +23,7 @@ class Search extends Component {
     onKeyPress(event) {
         if (event.key === "Enter") {
             this.props.search(event.target.value, 0);
+            this.props.history.push("/");
         }
     }
 
@@ -37,7 +39,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Search)
+)(Search))
