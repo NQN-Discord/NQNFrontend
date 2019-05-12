@@ -10,9 +10,7 @@ import {readStorageState} from "./actions/auth";
 
 import Header from "./header";
 import HomePage from "./pages/home";
-import SearchResultsPage from "./pages/search_results";
 import LoginPage from "./pages/login";
-import LogoutPage from "./pages/logout";
 
 class App extends Component {
     componentDidMount() {
@@ -20,20 +18,28 @@ class App extends Component {
     }
 
     render() {
+        if (this.props.loggedIn === null) {
+            return <div>
+                Loading...
+            </div>
+        }
         return (
             <Router>
                 <div>
-                    <Header/>
-                    <Switch>
-                        { this.props.search.term.length === 0 &&
-                            <Route exact path="/" component={HomePage}/>
-                        }
-                        { this.props.search.term.length !== 0 &&
-                            <Route exact path="/" component={SearchResultsPage}/>
-                        }
-                        <Route exact path="/login" component={LoginPage}/>
-                        <Route exact path="/logout" component={LogoutPage}/>
-                    </Switch>
+                    {!this.props.loggedIn &&
+                        <Switch>
+                            <LoginPage/>
+                        </Switch>
+                    }
+                    {this.props.loggedIn &&
+                        <div>
+                            <Header/>
+                            <Switch>
+                                <Route exact path="/" component={HomePage}/>
+                                <Route exact path="/login" component={LoginPage}/>
+                            </Switch>
+                        </div>
+                    }
                 </div>
             </Router>
         );
@@ -42,8 +48,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.auth.loggedIn,
-        search: state.search
+        loggedIn: state.auth.loggedIn
     }
 };
 

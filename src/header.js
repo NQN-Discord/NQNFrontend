@@ -5,37 +5,24 @@ import {withRouter} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./header.css";
-import Search from "./components/search";
+import {logout} from "./actions/auth";
 
 
 class Header extends Component {
     render() {
         return (
             <div>
-                <div className="results_search_bar">
-                    { !(this.props.location.pathname === "/" && this.props.results.term.length === 0) &&
-                        <Search initial={this.props.results.term}/>
-                    }
-                </div>
                 <Navbar inverse={true} fluid={true} onSelect={(eventKey) => {
+                    if (eventKey === "/logout") {
+                        this.props.logout();
+                        return
+                    }
                     this.props.history.push(eventKey);
                 }}>
                     <Nav activeKey={this.props.location.pathname} className="navbar-right">
-                        {!this.props.loggedIn &&
-                            <NavItem eventKey="/login">
-                                Login
-                            </NavItem>
-                        }
-                        {this.props.loggedIn &&
-                            <NavItem eventKey="/logout">
-                                Logout
-                            </NavItem>
-                        }
-                        {this.props.loggedIn &&
-                            <NavItem eventKey="/settings">
-                                Settings
-                            </NavItem>
-                        }
+                        <NavItem eventKey="/logout">
+                            Logout
+                        </NavItem>
                     </Nav>
                 </Navbar>
             </div>
@@ -51,8 +38,10 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = () => {
-    return {}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logout())
+    }
 };
 
 export default withRouter(connect(

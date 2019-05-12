@@ -6,7 +6,7 @@ import {RECEIVE_SEARCH} from "./actions/search";
 
 function auth(state = {
     refreshToken: "",
-    loggedIn: false
+    loggedIn: null
 }, action) {
     switch (action.type) {
         case RECEIVE_REFRESH:
