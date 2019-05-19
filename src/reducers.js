@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
 import {RECEIVE_SEARCH} from "./actions/search";
+import axios from "axios";
 
 function auth(state = {
     refreshToken: "",
@@ -11,6 +12,7 @@ function auth(state = {
     switch (action.type) {
         case RECEIVE_REFRESH:
             console.log("Refresh token: " + action.refreshToken);
+            axios.defaults.headers.common['Authorization'] = action.refreshToken;
             return update(state,
                 {$merge: {
                         refreshToken: action.refreshToken,

@@ -3,11 +3,8 @@ import React from "react";
 
 import connect from "react-redux/es/connect/connect";
 
-import {search} from "../actions/search";
-import {withRouter} from "react-router-dom";
 
-
-class Search extends Component {
+class Textbox extends Component {
     render() {
         return (
             <div>
@@ -22,8 +19,10 @@ class Search extends Component {
 
     onKeyPress(event) {
         if (event.key === "Enter") {
-            this.props.search(event.target.value, 0);
-            this.props.history.push("/");
+            this.props.func(event.target.value, 0);
+            if (this.props.clear === true) {
+                event.target.value = "";
+            }
         }
     }
 
@@ -33,13 +32,11 @@ const mapStateToProps = () => {
     return {};
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        search: (term, page) => dispatch(search(term, page))
-    };
+const mapDispatchToProps = () => {
+    return {};
 };
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Search))
+)(Textbox)

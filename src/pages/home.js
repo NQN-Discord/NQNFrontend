@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 
-import {search} from "../actions/search";
-
 class HomePage extends Component {
 
     componentDidMount() {
@@ -23,7 +21,6 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        search: (term, page) => dispatch(search(term, page))
     }
 };
 
