@@ -1,0 +1,33 @@
+#container {
+    background: greenyellow;
+
+    display: flex;
+    flex-flow: row;
+    height: calc(100vh - 1rem - 28px);
+}
+
+.guild_icons {
+    background: darksalmon;
+    width: 64px;
+    overflow-y: auto;
+}
+
+.guild_icon {
+    margin-left: 8px;
+    width: 48px;
+    height: 48px;
+}
+
+.sidebar {
+    background: #00ffff;
+
+    overflow-y: auto;
+    width: 240px;
+}
+
+.content {
+    background: red;
+
+    overflow-y: auto;
+    flex: 1;
+}

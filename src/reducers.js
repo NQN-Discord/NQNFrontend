@@ -2,7 +2,8 @@ import {combineReducers} from 'redux'
 import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
-import {RECEIVE_SEARCH} from "./actions/search";
+import {RECEIVE_GUILDS} from "./actions/user";
+
 import axios from "axios";
 
 function auth(state = {
@@ -17,41 +18,37 @@ function auth(state = {
                 {$merge: {
                         refreshToken: action.refreshToken,
                         loggedIn: action.refreshToken !== ""
-                }}
+                    }}
             );
         default:
             return state;
     }
 }
 
-function search(state = {
-    shownResults: [],
-    totalResults: 0,
-    term: "",
-    page: 0
+function user(state = {
+    guilds: {},
+    name_map: {},
+    guild_icons: {},
+    emotes: {}
 }, action) {
     switch (action.type) {
-        case RECEIVE_SEARCH:
-            var shownResults = action.results.posts;
-            if (action.term === state.term && action.page !== 0) {
-                shownResults = update(state.shownResults, {$push: action.results.posts});
-            }
+        case RECEIVE_GUILDS:
             return update(state,
                 {$merge: {
-                        shownResults,
-                        totalResults: action.results.total,
-                        term: action.term,
-                        page: action.page
-                }}
+                        guilds: action.guilds,
+                        guild_icons: action.icons,
+                        name_map: action.names
+                    }}
             );
         default:
             return state;
     }
 }
+
 
 const rootReducer = combineReducers({
     auth,
-    search
+    user
 });
 
 export default rootReducer;
