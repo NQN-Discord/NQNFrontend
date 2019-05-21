@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
-import {RECEIVE_GUILDS} from "./actions/user";
+import {RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
 
 import axios from "axios";
 
@@ -29,7 +29,10 @@ function user(state = {
     guilds: {},
     name_map: {},
     guild_icons: {},
-    emotes: {}
+    packs: {},
+    user_packs: [],
+    user_emotes: {},
+    user_aliases: []
 }, action) {
     switch (action.type) {
         case RECEIVE_GUILDS:
@@ -38,6 +41,15 @@ function user(state = {
                         guilds: action.guilds,
                         guild_icons: action.icons,
                         name_map: action.names
+                    }}
+            );
+        case RECEIVE_EMOTES:
+            return update(state,
+                {$merge: {
+                        packs: action.packs,
+                        user_packs: action.user_packs,
+                        user_emotes: action.user_emotes,
+                        user_aliases: action.user_aliases
                     }}
             );
         default:
