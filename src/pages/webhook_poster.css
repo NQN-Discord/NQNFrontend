@@ -14,8 +14,11 @@
 
 .guild_icon {
     margin-left: 8px;
+    margin-top: 8px;
     width: 48px;
     height: 48px;
+
+    cursor: pointer;
 }
 
 .sidebar {
