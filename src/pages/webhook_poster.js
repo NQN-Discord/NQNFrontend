@@ -164,7 +164,7 @@ class WebhookPage extends Component {
                         this.setState(update(this.state, {$merge: {message}}));
                         // event.target.value = message + "a";
                     }}
-                    onKeyUp={ event => {
+                    onKeyDown={ event => {
                         if (event.key === "Enter" && !event.shiftKey) {
                             this.props.postMessage(
                                 this.state.selectedChannel,
@@ -175,6 +175,10 @@ class WebhookPage extends Component {
                                     return rtn + message.renderEmote();
                                 }, "")
                             );
+                        }
+                    }}
+                    onKeyUp={ event => {
+                        if (event.key === "Enter" && !event.shiftKey) {
                             this.setState(update(this.state, {$merge: {message: []}}));
                             event.target.value = "";
                         }
@@ -185,7 +189,7 @@ class WebhookPage extends Component {
         );
     }
 
-    renderWelcome() {
+    static renderWelcome() {
         return (
             <div>
                 <h3>
@@ -225,7 +229,7 @@ class WebhookPage extends Component {
                     </div>
                 }
                 <div className="content">
-                    { this.state.selectedGuild === null && this.renderWelcome() }
+                    { this.state.selectedGuild === null && WebhookPage.renderWelcome() }
                     { this.state.selectedChannel !== null && this.renderPostBox() }
                 </div>
             </div>
@@ -242,7 +246,7 @@ const mapStateToProps = (state) => {
         user_emotes: state.user.user_emotes,
         user_aliases: state.user.user_aliases,
         allEmotes: state.user.user_aliases.concat(
-            Object.entries(state.user.packs).filter(([pack, value]) => state.user.user_packs.includes(pack)).reduce((rtn, [pack, value]) => {
+            Object.entries(state.user.packs).filter(([pack]) => state.user.user_packs.includes(pack)).reduce((rtn, [pack, value]) => {
                 return rtn.concat(value);
             }, [])
         ).concat(
