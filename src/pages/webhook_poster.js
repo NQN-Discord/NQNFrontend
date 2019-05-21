@@ -67,6 +67,34 @@ class WebhookPage extends Component {
         );
     }
 
+    renderWelcome() {
+        return (
+            <div>
+                <h3>
+                    Hello, and thanks for using Not Quite Nitro.
+                </h3>
+                <p>
+                    This is the beta version of the web user interface to the bot.
+                    It is incomplete in areas and may not function as intended.
+                </p>
+                <p>
+                    To start, click on the icon of the server you want to post to and then
+                    choose which channel.
+                </p>
+                <p>
+                    To send a message, simply type into the text box which appears.
+                    This site provides emote autocompletion for messages as you're typing them,
+                    providing an easier to use interface than the native client.
+                    <br/>
+                    The site does not support reading new messages from Discord yet.
+                    If you would like to see this feature, DM me about it.
+                    Any implementation would likely require you to install a native application
+                    to your computer and not supporting Android or iOS at all.
+                </p>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div id="container">
@@ -79,6 +107,7 @@ class WebhookPage extends Component {
                     </div>
                 }
                 <div className="content">
+                    { this.state.selectedGuild === null && this.renderWelcome() }
                     { this.state.selectedChannel !== null && this.renderPostBox() }
                 </div>
             </div>

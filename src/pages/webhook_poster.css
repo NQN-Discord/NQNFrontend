@@ -7,7 +7,7 @@
 }
 
 .guild_icons {
-    background: darksalmon;
+    background-color: #202225;
     width: 64px;
     overflow-y: auto;
 }
@@ -19,14 +19,24 @@
 }
 
 .sidebar {
-    background: #00ffff;
-
     overflow-y: auto;
     width: 240px;
 }
 
+.sidebar, .sidebar > div > button {
+    background-color: #2f3136;
+    color: #8e9297;
+}
+
+.sidebar > div > button.active {
+    background-color: #40444b;
+    border-color: #495053;
+    outline-color: #495053;
+}
+
 .content {
-    background: red;
+    background-color: #36393f;
+    color: #dcddde;
 
     overflow-y: auto;
     flex: 1;

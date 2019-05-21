@@ -8,7 +8,7 @@ import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 
 import {readStorageState, setRefreshToken} from "./actions/auth";
-import {fetchGuilds} from "./actions/user";
+import {fetchGuilds, fetchEmotes} from "./actions/user";
 
 import HomePage from "./pages/home";
 import WebhookPage from "./pages/webhook_poster";
@@ -33,7 +33,8 @@ class App extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.loggedIn !== true && this.props.loggedIn === true) {
-            this.props.fetchGuilds()
+            this.props.fetchGuilds();
+            this.props.fetchEmotes();
         }
     }
 
@@ -78,7 +79,8 @@ const mapDispatchToProps = dispatch => {
     return {
         readStorageState: () => dispatch(readStorageState()),
         setRefreshToken: (auth) => dispatch(setRefreshToken(auth)),
-        fetchGuilds: () => dispatch(fetchGuilds())
+        fetchGuilds: () => dispatch(fetchGuilds()),
+        fetchEmotes: () => dispatch(fetchEmotes())
     }
 };
 
