@@ -32,7 +32,7 @@ function user(state = {
     packs: {},
     user_packs: [],
     user_emotes: {},
-    user_aliases: {}
+    user_aliases: []
 }, action) {
     switch (action.type) {
         case RECEIVE_GUILDS:

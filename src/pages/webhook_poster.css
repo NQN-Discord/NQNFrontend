@@ -34,6 +34,17 @@
     outline-color: #495053;
 }
 
+.content textarea {
+    width: 100%;
+    background-color: rgba(114, 118, 125, 0.3);
+    color: hsla(0,0%,100%,.7);
+}
+
+.emote {
+    width: 2rem;
+    height: 2rem;
+}
+
 .content {
     background-color: #36393f;
     color: #dcddde;
