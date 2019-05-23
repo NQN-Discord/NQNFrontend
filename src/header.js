@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./header.css";
 import {logout} from "./actions/auth";
-import {inviteURL} from "./config";
 
 
 class Header extends Component {
@@ -26,9 +25,6 @@ class Header extends Component {
                         </NavItem>
                         <NavItem eventKey="/channels/">
                             Post
-                        </NavItem>
-                        <NavItem href={inviteURL} target="_blank" rel="noopener">
-                            Invite Me
                         </NavItem>
                     </Nav>
                 </Navbar>
