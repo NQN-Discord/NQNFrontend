@@ -1,25 +1,32 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 
+import Textarea from "react-textarea-autosize";
+
 import postMessage from "../actions/post_message"
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroup, ListGroupItem, Jumbotron} from "react-bootstrap";
 
 import "./webhook_poster.css";
 import update from "immutability-helper";
 
 
 class Emote {
-    constructor(name, id, animated) {
-        this.name = name;
-        this.id = id;
-        this.animated = animated;
+    constructor(emoteObj) {
+        this.name = emoteObj.name;
+        this.id = emoteObj.id;
+        this.animated = emoteObj.animated;
     }
 
-    renderImg() {
+    renderImg(onClick) {
+        if (typeof(onClick) === "undefined") {
+            onClick = () => {};
+        }
         return <img
             className="emote"
             src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
-            alt={this.name}
+            alt={`:${this.name}:`}
+            title={`:${this.name}:`}
+            onClick={() => onClick()}
         />;
     }
 
@@ -36,6 +43,7 @@ class Emote {
 class WebhookPage extends Component {
     constructor(props)  {
         super(props);
+        this.textArea = null;
         this.state = {
             selectedGuild: null,
             selectedChannel: null,
@@ -50,7 +58,7 @@ class WebhookPage extends Component {
                 if (rtn !== null) {
                     return rtn;
                 }
-                return this.props.allEmotes.find((emote) => {
+                return this.props.all_emotes.find((emote) => {
                     if (caseSensitive) {
                         return emote.name === value;
                     }
@@ -72,9 +80,56 @@ class WebhookPage extends Component {
         if (!emoteObj) {
             return null;
         }
-        return new Emote(emoteObj["name"], emoteObj["id"], emoteObj["animated"]);
+        return new Emote(emoteObj);
     }
 
+    renderEmoteBox() {
+        const regex = /:((?:[a-zA-Z0-9_]+-)?[a-zA-Z0-9_]{2,})$/;
+        let match = null;
+        let prefix = "";
+        if (this.state.message.length !== 0) {
+            match = regex.exec(this.state.message.slice(-1)[0]);
+            if (match !== null) {
+                prefix = match[1];
+            }
+        }
+        return (
+            <Jumbotron>
+                <div className="emote_picker">
+                    { this.props.all_emotes.filter(emoteObj => {
+                        return emoteObj.name.toLowerCase().startsWith(prefix.toLowerCase());
+                    }).concat(
+                        this.props.all_emotes.filter(emoteObj => {
+                            return !(emoteObj.name.toLowerCase().startsWith(prefix.toLowerCase())) &&
+                                (emoteObj.name.toLowerCase().includes(prefix.toLowerCase()));
+                        })
+                    ).map(emoteObj => {
+                        const emote = new Emote(emoteObj);
+                        return emote.renderImg(() => {
+                            if (match !== null) {
+                                const newMsg = this.state.message.slice(-1)[0].slice(0, match.index);
+                                this.setState(update(this.state, {$merge: {
+                                    message: this.state.message.splice(0, this.state.message.length - 1)
+                                        .concat(newMsg)
+                                        .concat(emote)
+                                }}));
+                                this.textArea.value = this.textArea.value.slice(0,
+                                    regex.exec(this.textArea.value)
+                                ) + emote.renderText();
+                            }
+                            else {
+                                this.setState(update(this.state, {$merge: {
+                                        message: this.state.message.concat(emote)
+                                    }}));
+                                console.log({te: this.textArea, r: emote.renderText()});
+                                this.textArea.value = this.textArea.value + emote.renderText();
+                            }
+                        });
+                    }) }
+                </div>
+            </Jumbotron>
+        );
+    }
 
     renderGuilds() {
         return Object.keys(this.props.guilds).map( guildID => {
@@ -143,7 +198,6 @@ class WebhookPage extends Component {
     }
 
     renderPostBox() {
-
         return (
             <div className="message_poster">
                 <p>
@@ -151,13 +205,7 @@ class WebhookPage extends Component {
                     <br/>
                     { this.renderMessage() }
                 </p>
-                <textarea
-                    rows={this.state.message.reduce((i, e) => {
-                        if (typeof(e) === "string") {
-                            return (e.match(/\n/g) || []).length + i;
-                        }
-                        return i;
-                    }, 1)}
+                <Textarea
                     placeholder={`Message #${this.props.name_map[this.state.selectedChannel]}`}
                     onInput={ event => {
                         const message = this.prerenderMessage(event.target.value);
@@ -183,8 +231,10 @@ class WebhookPage extends Component {
                             event.target.value = "";
                         }
                     }}
+                    inputRef={(textArea => this.textArea = textArea)}
                 >
-                </textarea>
+                </Textarea>
+                { this.renderEmoteBox() }
             </div>
         );
     }
@@ -245,7 +295,7 @@ const mapStateToProps = (state) => {
         packs: state.user.packs,
         user_emotes: state.user.user_emotes,
         user_aliases: state.user.user_aliases,
-        allEmotes: state.user.user_aliases.concat(
+        all_emotes: state.user.user_aliases.concat(
             Object.entries(state.user.packs).filter(([pack]) => state.user.user_packs.includes(pack)).reduce((rtn, [pack, value]) => {
                 return rtn.concat(value);
             }, [])

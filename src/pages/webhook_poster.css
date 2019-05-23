@@ -55,3 +55,7 @@
     overflow-y: auto;
     flex: 1;
 }
+
+.message_poster > p {
+    word-wrap: break-word;
+}
