@@ -20,11 +20,11 @@ class Header extends Component {
                     }
                     this.props.history.push(eventKey);
                 }}>
-                    <Nav activeKey={this.props.location.pathname} className="navbar-right">
+                    <Nav activeKey={this.props.location.pathname.split("/", 2).join("/")} className="navbar-right">
                         <NavItem eventKey="/logout">
                             Logout
                         </NavItem>
-                        <NavItem eventKey="/channels/">
+                        <NavItem eventKey="/channels">
                             Post
                         </NavItem>
                         <NavItem href={inviteURL} target="_blank" rel="noopener">

@@ -8,3 +8,7 @@
     left: 15px;
     position: fixed;
 }
+
+li.active > a {
+    background-color: #00000040;
+}
