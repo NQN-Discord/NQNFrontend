@@ -140,10 +140,20 @@ class WebhookPage extends Component {
                     src={this.props.icons[guildID]}
                     alt={this.props.name_map[guildID]}
                     onClick={() => {
-                        this.setState({
-                            selectedGuild: guildID,
-                            selectedChannel: null
-                        });
+                        if (this.state.selectedGuild !== guildID) {
+                            this.setState(update(this.state,
+                                {$merge: {
+                                    selectedGuild: guildID
+                                }}
+                            ));
+                        } else {
+
+                            this.setState(update(this.state,
+                                {$merge: {
+                                    selectedGuild: null
+                                }}
+                            ));
+                        }
                     }}
                 />
             );
@@ -198,8 +208,18 @@ class WebhookPage extends Component {
     }
 
     renderPostBox() {
+        let guildID = this.state.selectedGuild;
+        if (guildID === null) {
+            guildID = Object.keys(this.props.guilds).find(guildID => {
+                return this.props.guilds[guildID].includes(this.state.selectedChannel);
+            });
+        }
         return (
             <div className="message_poster">
+                <h3>
+                    { this.props.name_map[guildID] }
+                </h3>
+                <hr/>
                 <p>
                     Rendered message:
                     <br/>
@@ -279,7 +299,9 @@ class WebhookPage extends Component {
                     </div>
                 }
                 <div className="content">
-                    { this.state.selectedGuild === null && WebhookPage.renderWelcome() }
+                    { this.state.selectedGuild === null &&
+                      this.state.selectedChannel === null &&
+                        WebhookPage.renderWelcome() }
                     { this.state.selectedChannel !== null && this.renderPostBox() }
                 </div>
             </div>
