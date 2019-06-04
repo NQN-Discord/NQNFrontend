@@ -171,7 +171,8 @@ class WebhookPage extends Component {
                             onClick={() => {
                                 this.setState(update(this.state,
                                     {$merge: {
-                                            selectedChannel: channelID
+                                        selectedChannel: channelID,
+                                        selectedGuild: null
                                     }}
                                 ));
                                 this.props.history.push(`/channels/${channelID}`);
