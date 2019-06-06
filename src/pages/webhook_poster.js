@@ -22,6 +22,7 @@ class Emote {
             onClick = () => {};
         }
         return <img
+            key={this.id}
             className="emote"
             src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
             alt={`:${this.name}:`}
@@ -49,6 +50,25 @@ class WebhookPage extends Component {
             selectedChannel: null,
             message: []
         };
+    }
+
+    componentDidMount() {
+        const channelID = this.props.match.params.id;
+        if (channelID) {
+            this.setState(update(this.state,
+                {
+                    $merge: {
+                        selectedChannel: channelID
+                    }
+                }
+            ));
+        }
+    }
+
+    getGuild(channelID) {
+        return Object.keys(this.props.guilds).find(guildID => {
+            return this.props.guilds[guildID].includes(channelID);
+        });
     }
 
     findEmote(value) {
@@ -209,16 +229,11 @@ class WebhookPage extends Component {
     }
 
     renderPostBox() {
-        let guildID = this.state.selectedGuild;
-        if (guildID === null) {
-            guildID = Object.keys(this.props.guilds).find(guildID => {
-                return this.props.guilds[guildID].includes(this.state.selectedChannel);
-            });
-        }
+        let guildID = this.state.selectedGuild || this.getGuild(this.state.selectedChannel);
         return (
             <div className="message_poster">
                 <h3>
-                    { this.props.name_map[guildID] }
+                    { this.props.name_map[guildID] } - #{ this.props.name_map[this.state.selectedChannel] }
                 </h3>
                 <hr/>
                 <p>
@@ -311,6 +326,7 @@ class WebhookPage extends Component {
 }
 
 const mapStateToProps = (state) => {
+    let seen = new Set();
     return {
         icons: state.user.guild_icons,
         guilds: state.user.guilds,
@@ -326,7 +342,13 @@ const mapStateToProps = (state) => {
             Object.values(state.user.user_emotes).reduce((rtn, value) => {
                 return rtn.concat(value);
             }, [])
-        )
+        ).filter(emote => {
+            if (seen.has(emote.id)) {
+                return false;
+            }
+            seen.add(emote.id);
+            return true;
+        })
     }
 };
 
