@@ -4,42 +4,12 @@ import connect from "react-redux/es/connect/connect";
 import Textarea from "react-textarea-autosize";
 
 import postMessage from "../actions/post_message"
+import {Emote} from "../components/emote";
 import {ListGroup, ListGroupItem, Jumbotron} from "react-bootstrap";
 
 import "./webhook_poster.css";
 import update from "immutability-helper";
 
-
-class Emote {
-    constructor(emoteObj) {
-        this.name = emoteObj.name;
-        this.id = emoteObj.id;
-        this.animated = emoteObj.animated;
-    }
-
-    renderImg(onClick) {
-        if (typeof(onClick) === "undefined") {
-            onClick = () => {};
-        }
-        return <img
-            key={this.id}
-            className="emote"
-            src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
-            alt={`:${this.name}:`}
-            title={`:${this.name}:`}
-            onClick={() => onClick()}
-        />;
-    }
-
-    renderEmote() {
-        return `<${this.animated? "a": ""}:${this.name}:${this.id}>`;
-    }
-
-    renderText() {
-        return `:${this.name}:`;
-    }
-
-}
 
 class WebhookPage extends Component {
     constructor(props)  {

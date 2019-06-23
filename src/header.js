@@ -24,6 +24,9 @@ class Header extends Component {
                         <NavItem eventKey="/logout">
                             Logout
                         </NavItem>
+                        <NavItem eventKey="/search">
+                            Find Emotes
+                        </NavItem>
                         <NavItem eventKey="/channels">
                             Post
                         </NavItem>
