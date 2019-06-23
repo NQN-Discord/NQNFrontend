@@ -12,6 +12,7 @@ import {fetchGuilds, fetchEmotes} from "./actions/user";
 
 import HomePage from "./pages/home";
 import WebhookPage from "./pages/webhook_poster";
+import SearchPage from "./pages/search";
 import LoginPage from "./pages/login";
 import Header from "./header";
 
@@ -59,6 +60,7 @@ class App extends Component {
                                 <Route exact path="/" component={HomePage}/>
                                 <Route exact path="/channels/:id" component={WebhookPage}/>
                                 <Route exact path="/channels/" component={WebhookPage}/>
+                                <Route exact path="/search" component={SearchPage}/>
                                 <Route exact path="/login" component={LoginPage}/>
                             </Switch>
                         </div>

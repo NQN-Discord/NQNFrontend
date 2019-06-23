@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
-import {RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
+import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
 
 import axios from "axios";
 
@@ -41,6 +41,21 @@ function user(state = {
                         guilds: action.guilds,
                         guild_icons: action.icons,
                         name_map: action.names
+                    }}
+            );
+        case ADD_ALIASES:
+            return update(state,
+                {$merge: {
+                        user_aliases:
+                            state.user_aliases.filter(({id}) => !action.aliases.some(({aliasID}) => aliasID === id))
+                                .concat(action.aliases)
+                    }}
+            );
+        case DEL_ALIASES:
+            return update(state,
+                {$merge: {
+                        user_aliases:
+                            state.user_aliases.filter(({name}) => !action.aliases.includes(name))
                     }}
             );
         case RECEIVE_EMOTES:
