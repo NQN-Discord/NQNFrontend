@@ -50,7 +50,8 @@ class SearchPage extends Component {
                         const alias = this.props.aliases.find(alias => alias.id === emote.id);
                         return <div key={emote.id}>
                             <input
-                                name={emote.name}
+                                name={emote.id}
+                                id={emote.id}
                                 type="checkbox"
                                 checked={alias !== undefined}
                                 onChange={() => {
@@ -62,21 +63,28 @@ class SearchPage extends Component {
                                     }
                                 }}
                             />
-                            {emoteObj.renderImg()} - {!alias && emote.name}{alias &&
-                                <Entry
-                                    initial={alias.name}
-                                    inline={true}
-                                    onBlur={(newAlias) => {
-                                        this.props.changeAliases([{
-                                            name: newAlias,
-                                            oldName: alias.name,
-                                            id: emote.id,
-                                            animated: emote.animated
-                                        }]);
-                                    }}
-                                    clearOnSubmit={false}
-                                />
-                            }
+                            <label
+                                htmlFor={emote.id}
+                            >
+                                {emoteObj.renderImg()} - {!alias && emote.name}{alias &&
+                                    <Entry
+                                        initial={alias.name}
+                                        inline={true}
+                                        onBlur={(newAlias) => {
+                                            if (newAlias === alias.name) {
+                                                return
+                                            }
+                                            this.props.changeAliases([{
+                                                name: newAlias,
+                                                oldName: alias.name,
+                                                id: emote.id,
+                                                animated: emote.animated
+                                            }]);
+                                        }}
+                                        clearOnSubmit={false}
+                                    />
+                                }
+                            </label>
                             <br/>
                         </div>
                     })}
