@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import connect from "react-redux/es/connect/connect";
 
-import { Grid, Header, Icon } from 'semantic-ui-react'
+import { Grid, Header } from 'semantic-ui-react'
 
 
 class HomePage extends Component {
@@ -24,16 +23,4 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-  }
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomePage);
+export default HomePage;

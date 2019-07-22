@@ -1,36 +1,46 @@
 import {Component} from "react";
 import React from "react";
+import { Input, Form } from 'semantic-ui-react'
 
-import "./entry.css";
 
 
 class Entry extends Component {
-  render() {
-    return (
-      <div className={this.props.inline? "entry-inline": ""}>
-        <input
-          type="text"
-          defaultValue={this.props.initial || ""}
-          onKeyPress={this.props.onSubmit && (event => this.onKeyPress(event))}
-          onBlur={this.props.onBlur && (event => this.onBlur(event))}
-        />
-      </div>
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: this.props.term || ""
+    };
   }
 
-  onKeyPress(event) {
-    if (event.key === "Enter") {
-      this.props.onSubmit(event.target.value);
-      if (this.props.clearOnSubmit) {
-        event.target.value = "";
-      }
-    }
+  render() {
+    return (
+      <Form onSubmit={() => {
+        this.props.onSubmit(this.state.query, 1);
+        if (this.props.clearOnSubmit) {
+          this.setState({
+            query: ""
+          });
+        }
+      }}>
+        <Input
+          type="text"
+          value={this.state.query}
+          fluid={this.props.fluid || false}
+          size={this.props.size || "small"}
+          onBlur={(e) => this.props.onBlur && this.onBlur(e)}
+          onChange={(e) => {
+            this.setState({
+              query: e.target.value
+            });
+          }}
+        />
+      </Form>
+    );
   }
 
   onBlur(event) {
     this.props.onBlur(event.target.value);
   }
-
 }
 
 export default Entry
