@@ -7,75 +7,75 @@ import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILDS} from "./action
 import axios from "axios";
 
 function auth(state = {
-    refreshToken: "",
-    loggedIn: null
+  refreshToken: "",
+  loggedIn: null
 }, action) {
-    switch (action.type) {
-        case RECEIVE_REFRESH:
-            console.log("Refresh token: " + action.refreshToken);
-            axios.defaults.headers.common['Authorization'] = action.refreshToken;
-            return update(state,
-                {$merge: {
-                        refreshToken: action.refreshToken,
-                        loggedIn: action.refreshToken !== ""
-                    }}
-            );
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case RECEIVE_REFRESH:
+      console.log("Refresh token: " + action.refreshToken);
+      axios.defaults.headers.common['Authorization'] = action.refreshToken;
+      return update(state,
+        {$merge: {
+            refreshToken: action.refreshToken,
+            loggedIn: action.refreshToken !== ""
+          }}
+      );
+    default:
+      return state;
+  }
 }
 
 function user(state = {
-    guilds: {},
-    name_map: {},
-    guild_icons: {},
-    packs: {},
-    user_packs: [],
-    user_emotes: {},
-    user_aliases: []
+  guilds: {},
+  name_map: {},
+  guild_icons: {},
+  packs: {},
+  user_packs: [],
+  user_emotes: {},
+  user_aliases: []
 }, action) {
-    switch (action.type) {
-        case RECEIVE_GUILDS:
-            return update(state,
-                {$merge: {
-                        guilds: action.guilds,
-                        guild_icons: action.icons,
-                        name_map: action.names
-                    }}
-            );
-        case ADD_ALIASES:
-            return update(state,
-                {$merge: {
-                        user_aliases:
-                            state.user_aliases.filter(({id}) => !action.aliases.some(({aliasID}) => aliasID === id))
-                                .concat(action.aliases)
-                    }}
-            );
-        case DEL_ALIASES:
-            return update(state,
-                {$merge: {
-                        user_aliases:
-                            state.user_aliases.filter(({name}) => !action.aliases.includes(name))
-                    }}
-            );
-        case RECEIVE_EMOTES:
-            return update(state,
-                {$merge: {
-                        packs: action.packs,
-                        user_packs: action.user_packs,
-                        user_emotes: action.user_emotes,
-                        user_aliases: action.user_aliases
-                    }}
-            );
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case RECEIVE_GUILDS:
+      return update(state,
+        {$merge: {
+            guilds: action.guilds,
+            guild_icons: action.icons,
+            name_map: action.names
+          }}
+      );
+    case ADD_ALIASES:
+      return update(state,
+        {$merge: {
+            user_aliases:
+              state.user_aliases.filter(({id}) => !action.aliases.some(({aliasID}) => aliasID === id))
+                .concat(action.aliases)
+          }}
+      );
+    case DEL_ALIASES:
+      return update(state,
+        {$merge: {
+            user_aliases:
+              state.user_aliases.filter(({name}) => !action.aliases.includes(name))
+          }}
+      );
+    case RECEIVE_EMOTES:
+      return update(state,
+        {$merge: {
+            packs: action.packs,
+            user_packs: action.user_packs,
+            user_emotes: action.user_emotes,
+            user_aliases: action.user_aliases
+          }}
+      );
+    default:
+      return state;
+  }
 }
 
 
 const rootReducer = combineReducers({
-    auth,
-    user
+  auth,
+  user
 });
 
 export default rootReducer;
