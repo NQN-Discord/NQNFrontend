@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Image} from 'semantic-ui-react';
+
 
 export class Emote {
   constructor(emoteObj) {
@@ -12,12 +14,13 @@ export class Emote {
     if (typeof(onClick) === "undefined") {
       onClick = () => {};
     }
-    return <img
+    return <Image
       key={this.id}
       className="emote"
       src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
+      size="mini"
       onClick={() => onClick()}
     />;
   }
