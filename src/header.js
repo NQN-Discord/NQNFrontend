@@ -18,9 +18,9 @@ class Header extends Component {
               Invite Me
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "/post"}
+              active={activeElement === "/channels"}
               onClick={() => {
-                this.props.history.push("/post");
+                this.props.history.push("/channels");
               }}
             >
               Post
