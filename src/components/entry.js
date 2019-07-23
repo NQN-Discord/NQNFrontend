@@ -15,7 +15,9 @@ class Entry extends Component {
   render() {
     return (
       <Form onSubmit={() => {
-        this.props.onSubmit(this.state.query, 1);
+        if (this.props.onSubmit) {
+          this.props.onSubmit(this.state.query, 1);
+        }
         if (this.props.clearOnSubmit) {
           this.setState({
             query: ""
@@ -27,7 +29,8 @@ class Entry extends Component {
           value={this.state.query}
           fluid={this.props.fluid || false}
           size={this.props.size || "small"}
-          onBlur={(e) => this.props.onBlur && this.onBlur(e)}
+          disabled={this.props.disabled || false}
+          onBlur={(e) => this.props.onBlur && this.props.onBlur(e.target.value)}
           onChange={(e) => {
             this.setState({
               query: e.target.value
@@ -36,10 +39,6 @@ class Entry extends Component {
         />
       </Form>
     );
-  }
-
-  onBlur(event) {
-    this.props.onBlur(event.target.value);
   }
 }
 

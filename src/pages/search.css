@@ -1,0 +1,8 @@
+.emote_search_result {
+  cursor: pointer;
+}
+
+.emote_search_result > .checkbox {
+  margin-top: 7px;
+  margin-right: 7px;
+}

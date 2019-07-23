@@ -3,10 +3,14 @@ import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 import axios from "axios";
 
+import {Container, Header, Divider, Grid, Pagination, Label, Checkbox, List} from 'semantic-ui-react';
+
 import {setAliases, unsetAliases, changeAliases} from "../actions/user";
 import {Emote} from "../components/emote";
 import Entry from "../components/entry";
 import {api_url} from "../config";
+
+import './search.css';
 
 class SearchPage extends Component {
   componentDidMount() {
@@ -31,80 +35,97 @@ class SearchPage extends Component {
     });
   }
 
+  renderSearchResult(emote) {
+    const emoteObj = new Emote(emote);
+    const alias = this.props.aliases.find(alias => alias.id === emote.id);
+    return (
+      <List.Item
+        key={emote.id}
+        className="emote_search_result"
+        onClick={(e) => {
+          if (e.target.tagName === "INPUT") {
+            return
+          }
+          if (alias) {
+            this.props.unsetAliases([alias.name]);
+          }
+          else {
+            this.props.setAliases([emote]);
+          }
+        }}
+      >
+        <Checkbox
+          checked={alias !== undefined}
+        />
+        {emoteObj.renderImg()}
+        <List.Content>
+          <Entry
+            term={(alias || emote).name}
+            onBlur={(newAlias) => {
+              if (newAlias === alias.name) {
+                return
+              }
+              this.props.changeAliases([{
+                name: newAlias,
+                oldName: alias.name,
+                id: emote.id,
+                animated: emote.animated
+              }]);
+            }}
+            clearOnSubmit={false}
+            disabled={alias === undefined}
+          />
+        </List.Content>
+      </List.Item>
+    );
+  }
+
+  renderNavigationButtons() {
+    return (
+      <Grid centered>
+        <Grid.Row>
+          <Pagination
+            activePage={this.state.pageNo + 1}
+            boundaryRange={1}
+            onPageChange={(event) => {
+              const pageNo = parseInt(event.target.innerText);
+              this.getNewEmotes(this.state.term, pageNo - 1);
+            }}
+            size='mini'
+            siblingRange={2}
+            totalPages={Math.ceil(this.state.totalResults / 20)}
+            firstItem={null}
+            lastItem={null}
+            prevItem={null}
+            nextItem={null}
+          />
+        </Grid.Row>
+      </Grid>
+    );
+  }
+
   render() {
     if (!this.state) {
       return <div/>;
     }
     return (
-      <div>
-        <h4>Find Emotes</h4>
+      <Container>
+        <Header as="h4">
+          Find Emotes
+        </Header>
         <Entry
           onSubmit={(term) => {this.getNewEmotes(term, 0)}}
           clearOnSubmit={false}
         />
         { Object.keys(this.state.emotes).length !== 0 && <div>
           {this.state.totalResults} results (page {this.state.pageNo + 1} of {Math.ceil(this.state.totalResults / 20)})
-          <br/>
-          {this.state.emotes.map((emote) => {
-            const emoteObj = new Emote(emote);
-            const alias = this.props.aliases.find(alias => alias.id === emote.id);
-            return <div key={emote.id}>
-              <input
-                name={emote.id}
-                id={emote.id}
-                type="checkbox"
-                checked={alias !== undefined}
-                onChange={() => {
-                  if (alias) {
-                    this.props.unsetAliases([alias.name]);
-                  }
-                  else {
-                    this.props.setAliases([emote]);
-                  }
-                }}
-              />
-              <label
-                htmlFor={emote.id}
-              >
-                {emoteObj.renderImg()} - {!alias && emote.name}{alias &&
-                  <Entry
-                    initial={alias.name}
-                    inline={true}
-                    onBlur={(newAlias) => {
-                      if (newAlias === alias.name) {
-                        return
-                      }
-                      this.props.changeAliases([{
-                        name: newAlias,
-                        oldName: alias.name,
-                        id: emote.id,
-                        animated: emote.animated
-                      }]);
-                    }}
-                    clearOnSubmit={false}
-                  />
-                }
-              </label>
-              <br/>
-            </div>
-          })}
-          <hr/>
-          { this.state.totalResults > 20 && <div>
-            <button
-              disabled={this.state.pageNo === 0}
-              onClick={() => {
-                this.getNewEmotes(this.state.term, this.state.pageNo - 1);
-              }}
-            >Previous</button>
-            <button
-              disabled={(this.state.pageNo + 1) * 20 >= this.state.totalResults}
-              onClick={() => {
-                this.getNewEmotes(this.state.term, this.state.pageNo + 1);
-              }}
-            >Next</button>
-          </div>}
+          <List celled>
+            {this.state.emotes.map(emote => this.renderSearchResult(emote))}
+          </List>
+          <Divider/>
+          { this.state.totalResults > 20 && this.renderNavigationButtons()}
         </div>}
-      </div>
+      </Container>
     );
   }
 }
