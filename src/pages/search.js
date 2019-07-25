@@ -3,14 +3,14 @@ import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 import axios from "axios";
 
-import {Container, Header, Divider, Grid, Pagination, Label, Checkbox, List} from 'semantic-ui-react';
+import {Container, Header, Divider, Grid, Pagination, Button, Icon, List} from 'semantic-ui-react';
 
 import {setAliases, unsetAliases, changeAliases} from "../actions/user";
 import {Emote} from "../components/emote";
 import Entry from "../components/entry";
 import {api_url} from "../config";
 
-import './search.css';
+import './search.css'
 
 class SearchPage extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class SearchPage extends Component {
       term: "",
       pageNo: 0,
       emotes: {},
-      totalResults: 0
+      totalResults: 0,
     });
   }
 
@@ -35,45 +35,49 @@ class SearchPage extends Component {
     });
   }
 
+  toggleAlias(emote) {
+    const alias = this.props.aliases.find(alias => alias.id === emote.id);
+    if (alias) {
+      this.props.unsetAliases([alias.name]);
+    }
+    else {
+      this.props.setAliases([emote]);
+    }
+  }
+
+  saveAlias(emote, newAlias) {
+    const alias = this.props.aliases.find(alias => alias.id === emote.id);
+    console.log(update(this.state, {savedAliases: {$merge: {[emote.id]: newAlias}}}))
+    this.setState(update(this.state, {savedAliases: {$merge: {[emote.id]: newAlias}}}), () => {
+      console.log(this.state)
+      this.props.changeAliases([{
+        name: newAlias,
+        oldName: alias.name,
+        id: emote.id,
+        animated: emote.animated
+      }]);
+    });
+  }
+
   renderSearchResult(emote) {
     const emoteObj = new Emote(emote);
     const alias = this.props.aliases.find(alias => alias.id === emote.id);
     return (
       <List.Item
         key={emote.id}
-        className="emote_search_result"
-        onClick={(e) => {
-          if (e.target.tagName === "INPUT") {
-            return
-          }
-          if (alias) {
-            this.props.unsetAliases([alias.name]);
-          }
-          else {
-            this.props.setAliases([emote]);
-          }
-        }}
       >
-        <Checkbox
-          checked={alias !== undefined}
-        />
         {emoteObj.renderImg()}
-        <List.Content>
-          <Entry
-            term={(alias || emote).name}
-            onBlur={(newAlias) => {
-              if (newAlias === alias.name) {
-                return
-              }
-              this.props.changeAliases([{
-                name: newAlias,
-                oldName: alias.name,
-                id: emote.id,
-                animated: emote.animated
-              }]);
-            }}
-            clearOnSubmit={false}
-            disabled={alias === undefined}
+        <List.Content verticalAlign='middle'>
+          {emote.name}
+          {alias &&
+            <Button className="search_edit" icon='edit'/>
+          }
+        </List.Content>
+        <List.Content floated='right'>
+          <Button
+            icon={alias? 'minus': 'add'}
+            negative={Boolean(alias)}
+            onClick={() => this.toggleAlias(emote)}
           />
         </List.Content>
       </List.Item>
@@ -105,24 +109,27 @@ class SearchPage extends Component {
   }
 
   render() {
+    window.update = update;
     if (!this.state) {
       return <div/>;
     }
     return (
       <Container>
         <Header as="h4">
-          Find Emotes
+          Alias Emotes
         </Header>
         <Entry
           onSubmit={(term) => {this.getNewEmotes(term, 0)}}
           clearOnSubmit={false}
         />
         { Object.keys(this.state.emotes).length !== 0 && <div>
-          {this.state.totalResults} results (page {this.state.pageNo + 1} of {Math.ceil(this.state.totalResults / 20)})
+          <Divider hidden />
+          <Header as="h4">
+            {this.state.totalResults} results (page {this.state.pageNo + 1} of {Math.ceil(this.state.totalResults / 20)})
+          </Header>
           <List celled>
             {this.state.emotes.map(emote => this.renderSearchResult(emote))}
           </List>
-          <Divider/>
           { this.state.totalResults > 20 && this.renderNavigationButtons()}
         </div>}
       </Container>

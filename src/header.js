@@ -31,7 +31,7 @@ class Header extends Component {
                 this.props.history.push("/search");
               }}
             >
-              Find Emotes
+              Alias Emotes
             </Menu.Item>
             <Menu.Item
               onClick={() => {

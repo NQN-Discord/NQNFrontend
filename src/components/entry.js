@@ -16,7 +16,10 @@ class Entry extends Component {
     return (
       <Form onSubmit={() => {
         if (this.props.onSubmit) {
-          this.props.onSubmit(this.state.query, 1);
+          this.props.onSubmit(this.state.query);
+        }
+        if (this.props.onBlur) {
+          this.props.onBlur(this.state.query);
         }
         if (this.props.clearOnSubmit) {
           this.setState({

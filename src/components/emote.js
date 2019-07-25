@@ -21,6 +21,7 @@ export class Emote {
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       size="mini"
+      verticalAlign='middle'
       onClick={() => onClick()}
     />;
   }

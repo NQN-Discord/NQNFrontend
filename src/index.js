@@ -2,18 +2,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk';
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import { Provider } from 'react-redux';
 
 import rootReducer from "./reducers";
 import App from "./main";
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(
+  composeEnhancer(applyMiddleware(
     thunkMiddleware
-  )
+  ))
 );
 
 
