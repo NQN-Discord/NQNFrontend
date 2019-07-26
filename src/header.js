@@ -26,9 +26,9 @@ class Header extends Component {
               Post
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "/search"}
+              active={activeElement === "/alias"}
               onClick={() => {
-                this.props.history.push("/search");
+                this.props.history.push("/alias/search");
               }}
             >
               Alias Emotes
