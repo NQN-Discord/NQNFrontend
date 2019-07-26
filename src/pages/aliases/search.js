@@ -152,6 +152,8 @@ class SearchPage extends Component {
     return (
       <div>
         <Entry
+          icon='search'
+          placeholder='Search...'
           onSubmit={(term) => {this.getNewEmotes(term, 0)}}
           clearOnSubmit={false}
         />

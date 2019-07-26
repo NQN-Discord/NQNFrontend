@@ -29,6 +29,8 @@ class Entry extends Component {
       }}>
         <Input
           type="text"
+          icon={this.props.icon}
+          placeholder={this.props.placeholder || ""}
           value={this.state.query}
           fluid={this.props.fluid || false}
           size={this.props.size || "small"}
