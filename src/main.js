@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch
+  BrowserRouter as Router,
+  Route,
+  Switch
 } from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
@@ -12,78 +12,85 @@ import {fetchGuilds, fetchEmotes} from "./actions/user";
 
 import HomePage from "./pages/home";
 import WebhookPage from "./pages/webhook_poster";
-import SearchPage from "./pages/search";
+import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
 import Header from "./header";
+import {HelpTextPage} from "./components/helpText";
+
+import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
-    componentDidMount() {
-        this.props.readStorageState();
-        axios.interceptors.response.use((response) => {
-            const auth = response.data.authorization;
-            if (auth) {
-                this.props.setRefreshToken(auth);
-            }
-            return response;
-        }, (err) => {
-            if (err.response.status === 403 && err.response.data.message === "Invalid login token") {
-                this.props.setRefreshToken("");
-            }
-        });
-    }
+  componentDidMount() {
+    this.props.readStorageState();
+    axios.interceptors.response.use((response) => {
+      const auth = response.data.authorization;
+      if (auth) {
+        this.props.setRefreshToken(auth);
+      }
+      return response;
+    }, (err) => {
+      if (err.response.status === 403 && err.response.data.message === "Invalid login token") {
+        this.props.setRefreshToken("");
+      }
+    });
+  }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.loggedIn !== true && this.props.loggedIn === true) {
-            this.props.fetchGuilds();
-            this.props.fetchEmotes();
-        }
+  componentDidUpdate(prevProps) {
+    if (prevProps.loggedIn !== true && this.props.loggedIn === true) {
+      this.props.fetchGuilds();
+      this.props.fetchEmotes();
     }
+  }
 
-    render() {
-        if (this.props.loggedIn === null) {
-            return <div>
-                Loading...
+  render() {
+    if (window.location.pathname === "/help") {
+      return <HelpTextPage/>
+    }
+    if (this.props.loggedIn === null) {
+      return <div>
+        Loading...
+      </div>
+    }
+    return (
+      <Router>
+        <div>
+          {!this.props.loggedIn &&
+            <Switch>
+              <LoginPage/>
+            </Switch>
+          }
+          {this.props.loggedIn &&
+            <div>
+              <Header/>
+              <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route exact path="/channels/:id" component={WebhookPage}/>
+                <Route exact path="/channels/" component={WebhookPage}/>
+                <Route exact path="/alias/" component={AliasRootPage}/>
+                <Route exact path="/alias/:id" component={AliasRootPage}/>
+                <Route exact path="/login" component={LoginPage}/>
+              </Switch>
             </div>
-        }
-        return (
-            <Router>
-                <div>
-                    {!this.props.loggedIn &&
-                        <Switch>
-                            <LoginPage/>
-                        </Switch>
-                    }
-                    {this.props.loggedIn &&
-                        <div>
-                            <Header/>
-                            <Switch>
-                                <Route exact path="/" component={HomePage}/>
-                                <Route exact path="/channels/:id" component={WebhookPage}/>
-                                <Route exact path="/channels/" component={WebhookPage}/>
-                                <Route exact path="/search" component={SearchPage}/>
-                                <Route exact path="/login" component={LoginPage}/>
-                            </Switch>
-                        </div>
-                    }
-                </div>
-            </Router>
-        );
-    }
+          }
+        </div>
+      </Router>
+    );
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        loggedIn: state.auth.loggedIn
-    }
+  return {
+    loggedIn: state.auth.loggedIn
+  }
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        readStorageState: () => dispatch(readStorageState()),
-        setRefreshToken: (auth) => dispatch(setRefreshToken(auth)),
-        fetchGuilds: () => dispatch(fetchGuilds()),
-        fetchEmotes: () => dispatch(fetchEmotes())
-    }
+  return {
+    readStorageState: () => dispatch(readStorageState()),
+    setRefreshToken: (auth) => dispatch(setRefreshToken(auth)),
+    fetchGuilds: () => dispatch(fetchGuilds()),
+    fetchEmotes: () => dispatch(fetchEmotes())
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

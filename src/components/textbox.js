@@ -5,38 +5,38 @@ import connect from "react-redux/es/connect/connect";
 
 
 class Textbox extends Component {
-    render() {
-        return (
-            <div>
-                <input
-                    type="text"
-                    defaultValue={this.props.initial || ""}
-                    onKeyPress={(event) => this.onKeyPress(event)}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <input
+          type="text"
+          defaultValue={this.props.initial || ""}
+          onKeyPress={(event) => this.onKeyPress(event)}
+        />
+      </div>
+    );
+  }
 
-    onKeyPress(event) {
-        if (event.key === "Enter") {
-            this.props.func(event.target.value, 0);
-            if (this.props.clear === true) {
-                event.target.value = "";
-            }
-        }
+  onKeyPress(event) {
+    if (event.key === "Enter") {
+      this.props.func(event.target.value, 0);
+      if (this.props.clear === true) {
+        event.target.value = "";
+      }
     }
+  }
 
 }
 
 const mapStateToProps = () => {
-    return {};
+  return {};
 };
 
 const mapDispatchToProps = () => {
-    return {};
+  return {};
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Textbox)

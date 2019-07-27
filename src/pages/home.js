@@ -1,30 +1,21 @@
 import React, {Component} from 'react';
-import connect from "react-redux/es/connect/connect";
+
+import { Header, Container } from 'semantic-ui-react'
+import {HelpText} from "../components/helpText";
+
 
 class HomePage extends Component {
+  render() {
+    return (
+      <Container>
+        <Header as='h2' icon textAlign='center'>
+          <Header.Content>
+            Welcome to Not Quite Nitro
+          </Header.Content>
+        </Header>
+        <HelpText/>
+      </Container>
+    )}
+  }
 
-    componentDidMount() {
-    }
-
-    render() {
-        return (
-            <div>
-                <h4>Home page</h4>
-            </div>
-        );
-    }
-}
-
-const mapStateToProps = () => {
-    return {}
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-    }
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(HomePage);
+  export default HomePage;
