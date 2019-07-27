@@ -10,12 +10,12 @@ export class Emote {
     this.animated = emoteObj.animated;
   }
 
-  renderImg(onClick) {
+  renderImg(onClick, id) {
     if (typeof(onClick) === "undefined") {
       onClick = () => {};
     }
     return <Image
-      key={this.id}
+      key={id || this.id}
       className="emote"
       src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
       alt={`:${this.name}:`}

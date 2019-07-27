@@ -3,15 +3,14 @@ import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 
 
-import Textarea from "react-textarea-autosize";
+import TextareaAutosize from "react-textarea-autosize";
 
 import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
 import GuildSelector from "../components/server_list";
 import ChannelSelector from "../components/channel_list";
 
-import {Container, Grid} from 'semantic-ui-react';
-import {Jumbotron} from "react-bootstrap";
+import {Container, Grid, Segment, Form} from 'semantic-ui-react';
 
 import "./webhook_poster.css";
 
@@ -89,7 +88,7 @@ class WebhookPage extends Component {
       }
     }
     return (
-      <Jumbotron>
+      <Segment>
         <div className="emote_picker">
           { this.props.all_emotes.filter(emoteObj => {
             return emoteObj.name.toLowerCase().startsWith(prefix.toLowerCase());
@@ -122,18 +121,18 @@ class WebhookPage extends Component {
             });
           }) }
         </div>
-      </Jumbotron>
+      </Segment>
     );
   }
 
   renderMessage() {
-    return this.state.message.reduce((r, message) => {
+    return this.state.message.reduce((r, message, i) => {
       if (typeof(message) === 'string') {
         const newlines = message.split(/\n/g).reduce((r, a) => r.concat(a, <br/>), []);
         return r.concat(newlines.splice(0, newlines.length - 1));
       }
       else {
-        return r.concat(message.renderImg());
+        return r.concat(message.renderImg(undefined, i));
       }
     }, []);
   }
@@ -161,35 +160,36 @@ class WebhookPage extends Component {
           <br/>
           { this.renderMessage() }
         </p>
-        <Textarea
-          placeholder={`Message #${this.props.name_map[this.state.selectedChannel]}`}
-          onInput={ event => {
-            const message = this.prerenderMessage(event.target.value);
-            this.setState(update(this.state, {$merge: {message}}));
-            // event.target.value = message + "a";
-          }}
-          onKeyDown={ event => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              this.props.postMessage(
-                this.state.selectedChannel,
-                this.state.message.reduce((rtn, message) => {
-                  if (typeof(message) === "string") {
-                    return rtn + message
-                  }
-                  return rtn + message.renderEmote();
-                }, "")
-              );
-            }
-          }}
-          onKeyUp={ event => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              this.setState(update(this.state, {$merge: {message: []}}));
-              event.target.value = "";
-            }
-          }}
-          inputRef={(textArea => this.textArea = textArea)}
-        >
-        </Textarea>
+        <Form>
+          <Form.Field
+            control={TextareaAutosize}
+            placeholder={`Message #${this.props.name_map[this.state.selectedChannel]}`}
+            onInput={ event => {
+              const message = this.prerenderMessage(event.target.value);
+              this.setState(update(this.state, {$merge: {message}}));
+            }}
+            onKeyDown={ event => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                this.props.postMessage(
+                  this.state.selectedChannel,
+                  this.state.message.reduce((rtn, message) => {
+                    if (typeof(message) === "string") {
+                      return rtn + message
+                    }
+                    return rtn + message.renderEmote();
+                  }, "")
+                );
+              }
+            }}
+            onKeyUp={ event => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                this.setState(update(this.state, {$merge: {message: []}}));
+                event.target.value = "";
+              }
+            }}
+            inputRef={(textArea => this.textArea = textArea)}
+          />
+        </Form>
         { this.renderEmoteBox() }
       </div>
     );
