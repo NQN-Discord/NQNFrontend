@@ -1,0 +1,13 @@
+.channel_list .ui.vertical.menu {
+  width: initial;
+}
+
+.channel_list {
+  width: 13% !important;
+  min-width: 8rem;
+}
+
+.channel_list .item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import update from "immutability-helper";
+
 
 import Textarea from "react-textarea-autosize";
 
 import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
-import {ListGroup, ListGroupItem, Jumbotron} from "react-bootstrap";
+import GuildSelector from "../components/server_list";
+import ChannelSelector from "../components/channel_list";
 
-import update from "immutability-helper";
+import {Container, Grid} from 'semantic-ui-react';
+import {Jumbotron} from "react-bootstrap";
+
+import "./webhook_poster.css";
 
 
 class WebhookPage extends Component {
@@ -120,61 +126,6 @@ class WebhookPage extends Component {
     );
   }
 
-  renderGuilds() {
-    return Object.keys(this.props.guilds).map( guildID => {
-      return (
-        <img
-          key={guildID}
-          className="guild_icon"
-          src={this.props.icons[guildID]}
-          alt={this.props.name_map[guildID]}
-          onClick={() => {
-            if (this.state.selectedGuild !== guildID) {
-              this.setState(update(this.state,
-                {$merge: {
-                  selectedGuild: guildID
-                }}
-              ));
-            } else {
-
-              this.setState(update(this.state,
-                {$merge: {
-                  selectedGuild: null
-                }}
-              ));
-            }
-          }}
-        />
-      );
-    });
-  }
-
-  renderChannels() {
-    return (
-      <ListGroup>
-        {this.props.guilds[this.state.selectedGuild].map(channelID => {
-          return (
-            <ListGroupItem
-              key={channelID}
-              active={this.state.selectedChannel === channelID}
-              onClick={() => {
-                this.setState(update(this.state,
-                  {$merge: {
-                    selectedChannel: channelID,
-                    selectedGuild: null
-                  }}
-                ));
-                this.props.history.push(`/channels/${channelID}`);
-              }}
-            >
-              {this.props.name_map[channelID]}
-            </ListGroupItem>
-          );
-        })}
-      </ListGroup>
-    );
-  }
-
   renderMessage() {
     return this.state.message.reduce((r, message) => {
       if (typeof(message) === 'string') {
@@ -274,22 +225,35 @@ class WebhookPage extends Component {
 
   render() {
     return (
-      <div id="container">
-        <div className="guild_icons">
-          { this.renderGuilds() }
-        </div>
-        { this.state.selectedGuild !== null &&
-          <div className="sidebar">
-            { this.renderChannels() }
-          </div>
-        }
-        <div className="content">
-          { this.state.selectedGuild === null &&
-            this.state.selectedChannel === null &&
-            WebhookPage.renderWelcome() }
-          { this.state.selectedChannel !== null && this.renderPostBox() }
-        </div>
-      </div>
+      <Container fluid>
+        <Grid>
+          <GuildSelector
+            selected={this.state.selectedGuild}
+            onSelect={guildID => this.setState(update(this.state, {$merge: {selectedGuild: guildID}}))}
+          />
+          { this.state.selectedGuild !== null &&
+            <ChannelSelector
+              channels={this.props.guilds[this.state.selectedGuild]}
+              selected={this.state.selectedChannel}
+              onSelect={(channelID) => {
+                this.setState(update(this.state,
+                  {$merge: {
+                      selectedChannel: channelID,
+                      selectedGuild: null
+                    }}
+                ));
+                this.props.history.push(`/channels/${channelID}`);
+              }}
+            />
+          }
+          <Grid.Column className={`message_container ${this.state.selectedGuild === null? "": "with_channel"}`}>
+            { this.state.selectedGuild === null &&
+              this.state.selectedChannel === null &&
+              WebhookPage.renderWelcome() }
+            { this.state.selectedChannel !== null && this.renderPostBox() }
+          </Grid.Column>
+        </Grid>
+      </Container>
     );
   }
 }
