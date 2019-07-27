@@ -15,6 +15,7 @@ import WebhookPage from "./pages/webhook_poster";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
 import Header from "./header";
+import {HelpTextPage} from "./components/helpText";
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -42,6 +43,9 @@ class App extends Component {
   }
 
   render() {
+    if (window.location.pathname === "/help") {
+      return <HelpTextPage/>
+    }
     if (this.props.loggedIn === null) {
       return <div>
         Loading...
