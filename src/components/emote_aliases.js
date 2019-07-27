@@ -18,6 +18,9 @@ class EmoteAliases extends Component {
 
   toggleAlias(emote) {
     const alias = this.props.aliases.find(alias => alias.id === emote.id);
+    if (this.props.onToggle) {
+      this.props.onToggle(emote.id, alias);
+    }
     if (alias) {
       this.props.unsetAliases([alias.name]);
     }
