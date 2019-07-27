@@ -1,5 +1,6 @@
-import {Container, Divider, Header} from "semantic-ui-react";
 import React from "react";
+import {Container, Divider, Header, Image} from "semantic-ui-react";
+
 import "../components/helpText.css";
 
 export function HelpText() {
@@ -207,7 +208,12 @@ export function HelpText() {
 
 export function HelpTextPage() {
   return (
-    <Container>
+    <Container fluid>
+      <Image
+        src="/try_it_out.gif"
+        alt="Example usage image"
+        style={{float: "right"}}
+      />
       <HelpText/>
     </Container>
   )
