@@ -115,7 +115,6 @@ class WebhookPage extends Component {
                 this.setState(update(this.state, {$merge: {
                     message: this.state.message.concat(emote)
                   }}));
-                console.log({te: this.textArea, r: emote.renderText()});
                 this.textArea.value = this.textArea.value + emote.renderText();
               }
             });
