@@ -147,7 +147,7 @@ class WebhookPage extends Component {
   }
 
   renderPostBox() {
-    let guildID = this.state.selectedGuild || this.getGuild(this.state.selectedChannel);
+    let guildID = this.getGuild(this.state.selectedChannel) || this.state.selectedGuild;
     return (
       <div className="message_poster">
         <h3>
@@ -232,6 +232,7 @@ class WebhookPage extends Component {
           />
           { this.state.selectedGuild !== null &&
             <ChannelSelector
+              guildName={this.props.name_map[this.state.selectedGuild]}
               channels={this.props.guilds[this.state.selectedGuild]}
               selected={this.state.selectedChannel}
               onSelect={(channelID) => {

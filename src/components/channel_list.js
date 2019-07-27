@@ -10,6 +10,9 @@ class ChannelSelector extends Component {
     return (
       <Grid.Column className="channel_list">
         <Menu pointing vertical secondary>
+          {this.props.guildName &&
+            <Menu.Item header>{this.props.guildName}</Menu.Item>
+          }
           {this.props.channels.map(channelID => {
             return (
               <Menu.Item

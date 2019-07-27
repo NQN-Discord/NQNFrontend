@@ -11,3 +11,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.channel_list .item:not(.header):hover {
+  background: #00000020 !important;
+}
