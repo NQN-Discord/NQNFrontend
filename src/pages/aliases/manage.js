@@ -19,19 +19,21 @@ class ManagePage extends Component {
     if (!this.state) {
       return <div/>;
     }
+    const renderedEmotes = this.props.aliases;
+    const noAliases = Object.keys(this.props.aliases).length;
     return (
       <div>
         <Entry
           icon='search'
-          placeholder='Search...'
+          placeholder='Filter...'
           onSubmit={(term) => {this.getNewEmotes(term, 0)}}
           clearOnSubmit={false}
         />
         <Divider hidden />
         <Header as="h4">
-          You have {Object.keys(this.props.aliases).length} aliases
+          You have {noAliases} alias{noAliases !== 1? 'es': ''}
         </Header>
-        <EmoteAliases emotes={this.props.aliases}/>
+        <EmoteAliases emotes={renderedEmotes}/>
       </div>
     );
   }

@@ -75,7 +75,8 @@ class SearchPage extends Component {
         { Object.keys(this.state.emotes).length !== 0 && <div>
           <Divider hidden />
           <Header as="h4">
-            {this.state.totalResults} results (page {this.state.pageNo + 1} of {Math.ceil(this.state.totalResults / 20)})
+            {this.state.totalResults} result{this.state.totalResults !== 1? 's ': ' '}
+            (page {this.state.pageNo + 1} of {Math.ceil(this.state.totalResults / 20)})
           </Header>
           <EmoteAliases emotes={this.state.emotes}/>
           {this.state.totalResults > 20 && this.renderNavigationButtons()}
