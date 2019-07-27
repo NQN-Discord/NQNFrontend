@@ -11,7 +11,7 @@ class HomePage extends Component {
   render() {
     return (
       <Grid textAlign='center'>
-        <Grid.Column style={{ maxWidth: '16cm' }} centered>
+        <Grid.Column style={{ maxWidth: '16cm' }}>
           <Header as='h2' icon textAlign='center'>
             <Header.Content>
               Welcome to Not Quite Nitro
