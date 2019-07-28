@@ -7,6 +7,9 @@ import "./server_list.css";
 
 class GuildSelector extends Component {
   render() {
+    if (Object.keys(this.props.guilds).length === 0) {
+      return <div/>;
+    }
     return (
       <Grid.Column className="server_list">
         <Menu pointing secondary compact vertical>
