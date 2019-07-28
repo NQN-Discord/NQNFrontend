@@ -25,13 +25,7 @@ class WebhookPage extends Component {
   componentDidMount() {
     const channelID = this.props.match.params.id;
     if (channelID) {
-      this.setState(update(this.state,
-        {
-          $merge: {
-            selectedChannel: channelID
-          }
-        }
-      ));
+      this.setState(update(this.state, {$merge: {selectedChannel: channelID}}));
     }
   }
 
