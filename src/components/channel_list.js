@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Grid} from 'semantic-ui-react';
+import {Menu, Grid, Button, Icon} from 'semantic-ui-react';
 
 import "./channel_list.css";
 
@@ -11,7 +11,12 @@ class ChannelSelector extends Component {
       <Grid.Column className="channel_list">
         <Menu pointing vertical secondary>
           {this.props.guildName &&
-            <Menu.Item header>{this.props.guildName}</Menu.Item>
+            <Menu.Item header>
+              <Button icon labelPosition='right'>
+                {this.props.guildName}
+                <Icon name='setting' />
+              </Button>
+            </Menu.Item>
           }
           {this.props.channels.map(channelID => {
             return (

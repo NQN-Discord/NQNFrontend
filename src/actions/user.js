@@ -11,7 +11,6 @@ export function receiveGuilds(guild_names) {
   return {
     type: RECEIVE_GUILDS,
     guilds: guild_names.guilds,
-    icons: guild_names.icons,
     names: guild_names.names
   }
 }

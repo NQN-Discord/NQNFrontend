@@ -31,7 +31,7 @@ class WebhookPage extends Component {
 
   getGuild(channelID) {
     return Object.keys(this.props.guilds).find(guildID => {
-      return this.props.guilds[guildID].includes(channelID);
+      return this.props.guilds[guildID].channels.includes(channelID);
     });
   }
 
@@ -46,7 +46,7 @@ class WebhookPage extends Component {
           { this.state.selectedGuild !== null &&
             <ChannelSelector
               guildName={this.props.name_map[this.state.selectedGuild]}
-              channels={this.props.guilds[this.state.selectedGuild]}
+              channels={this.props.guilds[this.state.selectedGuild].channels}
               selected={this.state.selectedChannel}
               onSelect={(channelID) => {
                 this.setState(update(this.state,
@@ -82,7 +82,6 @@ class WebhookPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    icons: state.user.guild_icons,
     guilds: state.user.guilds,
     name_map: state.user.name_map,
   }

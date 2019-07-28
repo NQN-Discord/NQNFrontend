@@ -22,7 +22,7 @@ class GuildSelector extends Component {
                 fitted
               >
                 <Image
-                  src={this.props.icons[guildID]}
+                  src={this.props.guilds[guildID].icon}
                   alt={this.props.name_map[guildID]}
                   size="tiny"
                 />
@@ -37,7 +37,6 @@ class GuildSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    icons: state.user.guild_icons,
     guilds: state.user.guilds,
     name_map: state.user.name_map,
   }
