@@ -18,7 +18,11 @@ class ChannelSelector extends Component {
           {guildName &&
             <Menu.Item header>
               {showGear &&
-                <Button icon labelPosition='right'>
+                <Button
+                  icon
+                  labelPosition='right'
+                  onClick={() => this.props.showSettings()}
+                >
                   {guildName}
                   <Icon name='setting'/>
                 </Button>

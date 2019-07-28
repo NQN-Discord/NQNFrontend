@@ -65,6 +65,8 @@ class App extends Component {
                 <Route exact path="/" component={WebhookPage}/>
                 <Route exact path="/channels/:id" component={WebhookPage}/>
                 <Route exact path="/channels/" component={WebhookPage}/>
+                <Route exact path="/guilds/:id" component={WebhookPage}/>
+                <Route exact path="/guilds/" component={WebhookPage}/>
                 <Route exact path="/alias/" component={AliasRootPage}/>
                 <Route exact path="/alias/:id" component={AliasRootPage}/>
                 <Route exact path="/login" component={LoginPage}/>
