@@ -13,7 +13,7 @@ class HomePage extends Component {
             Welcome to Not Quite Nitro
           </Header.Content>
         </Header>
-        <HelpText/>
+        <HelpText dbl={false}/>
       </Container>
     )}
   }
