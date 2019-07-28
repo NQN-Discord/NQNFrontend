@@ -28,7 +28,6 @@ function auth(state = {
 function user(state = {
   guilds: {},
   name_map: {},
-  guild_icons: {},
   packs: {},
   user_packs: [],
   user_emotes: {},
@@ -39,7 +38,6 @@ function user(state = {
       return update(state,
         {$merge: {
             guilds: action.guilds,
-            guild_icons: action.icons,
             name_map: action.names
           }}
       );

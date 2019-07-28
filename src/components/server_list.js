@@ -7,6 +7,9 @@ import "./server_list.css";
 
 class GuildSelector extends Component {
   render() {
+    if (Object.keys(this.props.guilds).length === 0) {
+      return <div/>;
+    }
     return (
       <Grid.Column className="server_list">
         <Menu pointing secondary compact vertical>
@@ -19,7 +22,7 @@ class GuildSelector extends Component {
                 fitted
               >
                 <Image
-                  src={this.props.icons[guildID]}
+                  src={this.props.guilds[guildID].icon}
                   alt={this.props.name_map[guildID]}
                   size="tiny"
                 />
@@ -34,7 +37,6 @@ class GuildSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    icons: state.user.guild_icons,
     guilds: state.user.guilds,
     name_map: state.user.name_map,
   }

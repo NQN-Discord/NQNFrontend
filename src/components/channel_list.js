@@ -1,19 +1,36 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Grid} from 'semantic-ui-react';
+import {Menu, Grid, Button, Icon} from 'semantic-ui-react';
 
 import "./channel_list.css";
 
 class ChannelSelector extends Component {
   render() {
+    const guild = this.props.guilds[this.props.guildID];
+    const guildName = this.props.name_map[this.props.guildID];
+    const channels = guild.channels;
+    const showGear = false; //guild.permissions.includes("manage_guild") || guild.permissions.includes("manage_emojis");
+
     return (
       <Grid.Column className="channel_list">
         <Menu pointing vertical secondary>
-          {this.props.guildName &&
-            <Menu.Item header>{this.props.guildName}</Menu.Item>
+          {guildName &&
+            <Menu.Item header>
+              {showGear &&
+                <Button
+                  icon
+                  labelPosition='right'
+                  onClick={() => this.props.showSettings()}
+                >
+                  {guildName}
+                  <Icon name='setting'/>
+                </Button>
+              }
+              {!showGear && guildName}
+            </Menu.Item>
           }
-          {this.props.channels.map(channelID => {
+          {channels.map(channelID => {
             return (
               <Menu.Item
                 key={channelID}
@@ -32,6 +49,7 @@ class ChannelSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    guilds: state.user.guilds,
     name_map: state.user.name_map,
   }
 };

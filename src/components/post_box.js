@@ -7,42 +7,17 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
-import GuildSelector from "../components/server_list";
-import ChannelSelector from "../components/channel_list";
 
-import {Container, Grid, Segment, Form} from 'semantic-ui-react';
-
-import "./webhook_poster.css";
+import {Segment, Form} from 'semantic-ui-react';
 
 
-class WebhookPage extends Component {
+class PostBox extends Component {
   constructor(props)  {
     super(props);
     this.textArea = null;
     this.state = {
-      selectedGuild: null,
-      selectedChannel: null,
       message: []
     };
-  }
-
-  componentDidMount() {
-    const channelID = this.props.match.params.id;
-    if (channelID) {
-      this.setState(update(this.state,
-        {
-          $merge: {
-            selectedChannel: channelID
-          }
-        }
-      ));
-    }
-  }
-
-  getGuild(channelID) {
-    return Object.keys(this.props.guilds).find(guildID => {
-      return this.props.guilds[guildID].includes(channelID);
-    });
   }
 
   findEmote(value) {
@@ -103,10 +78,10 @@ class WebhookPage extends Component {
               if (match !== null) {
                 const newMsg = this.state.message.slice(-1)[0].slice(0, match.index);
                 this.setState(update(this.state, {$merge: {
-                  message: this.state.message.splice(0, this.state.message.length - 1)
-                    .concat(newMsg)
-                    .concat(emote)
-                }}));
+                    message: this.state.message.splice(0, this.state.message.length - 1)
+                      .concat(newMsg)
+                      .concat(emote)
+                  }}));
                 this.textArea.value = this.textArea.value.slice(0,
                   regex.exec(this.textArea.value)
                 ) + emote.renderText();
@@ -146,31 +121,30 @@ class WebhookPage extends Component {
     });
   }
 
-  renderPostBox() {
-    let guildID = this.getGuild(this.state.selectedChannel) || this.state.selectedGuild;
+  render() {
     return (
       <div className="message_poster">
         <h3>
-          { this.props.name_map[guildID] } - #{ this.props.name_map[this.state.selectedChannel] }
+          {this.props.name_map[this.props.guildID]} - #{this.props.name_map[this.props.channelID]}
         </h3>
         <hr/>
         <p>
           Rendered message:
           <br/>
-          { this.renderMessage() }
+          {this.renderMessage()}
         </p>
         <Form>
           <Form.Field
             control={TextareaAutosize}
-            placeholder={`Message #${this.props.name_map[this.state.selectedChannel]}`}
-            onInput={ event => {
+            placeholder={`Message #${this.props.name_map[this.props.channelID]}`}
+            onInput={event => {
               const message = this.prerenderMessage(event.target.value);
               this.setState(update(this.state, {$merge: {message}}));
             }}
-            onKeyDown={ event => {
+            onKeyDown={event => {
               if (event.key === "Enter" && !event.shiftKey) {
                 this.props.postMessage(
-                  this.state.selectedChannel,
+                  this.props.channelID,
                   this.state.message.reduce((rtn, message) => {
                     if (typeof(message) === "string") {
                       return rtn + message
@@ -180,7 +154,7 @@ class WebhookPage extends Component {
                 );
               }
             }}
-            onKeyUp={ event => {
+            onKeyUp={event => {
               if (event.key === "Enter" && !event.shiftKey) {
                 this.setState(update(this.state, {$merge: {message: []}}));
                 event.target.value = "";
@@ -189,71 +163,8 @@ class WebhookPage extends Component {
             inputRef={(textArea => this.textArea = textArea)}
           />
         </Form>
-        { this.renderEmoteBox() }
+        {this.renderEmoteBox()}
       </div>
-    );
-  }
-
-  static renderWelcome() {
-    return (
-      <div>
-        <h3>
-          Hello, and thanks for using Not Quite Nitro.
-        </h3>
-        <p>
-          This is the beta version of the web user interface to the bot.
-          It is incomplete in areas and may not function as intended.
-        </p>
-        <p>
-          To start, click on the icon of the server you want to post to and then
-          choose which channel.
-        </p>
-        <p>
-          To send a message, simply type into the text box which appears.
-          This site provides emote autocompletion for messages as you're typing them,
-          providing an easier to use interface than the native client.
-          <br/>
-          The site does not support reading new messages from Discord yet.
-          If you would like to see this feature, DM me about it.
-          Any implementation would likely require you to install a native application
-          to your computer and not supporting Android or iOS at all.
-        </p>
-      </div>
-    );
-  }
-
-  render() {
-    return (
-      <Container fluid>
-        <Grid>
-          <GuildSelector
-            selected={this.state.selectedGuild}
-            onSelect={guildID => this.setState(update(this.state, {$merge: {selectedGuild: guildID}}))}
-          />
-          { this.state.selectedGuild !== null &&
-            <ChannelSelector
-              guildName={this.props.name_map[this.state.selectedGuild]}
-              channels={this.props.guilds[this.state.selectedGuild]}
-              selected={this.state.selectedChannel}
-              onSelect={(channelID) => {
-                this.setState(update(this.state,
-                  {$merge: {
-                      selectedChannel: channelID,
-                      selectedGuild: null
-                    }}
-                ));
-                this.props.history.push(`/channels/${channelID}`);
-              }}
-            />
-          }
-          <Grid.Column className={`message_container ${this.state.selectedGuild === null? "": "with_channel"}`}>
-            { this.state.selectedGuild === null &&
-              this.state.selectedChannel === null &&
-              WebhookPage.renderWelcome() }
-            { this.state.selectedChannel !== null && this.renderPostBox() }
-          </Grid.Column>
-        </Grid>
-      </Container>
     );
   }
 }
@@ -261,8 +172,6 @@ class WebhookPage extends Component {
 const mapStateToProps = (state) => {
   let seen = new Set();
   return {
-    icons: state.user.guild_icons,
-    guilds: state.user.guilds,
     name_map: state.user.name_map,
     packs: state.user.packs,
     user_emotes: state.user.user_emotes,
@@ -294,4 +203,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WebhookPage);
+)(PostBox);

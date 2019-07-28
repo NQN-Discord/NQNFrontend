@@ -3,7 +3,7 @@ import {Container, Divider, Header, Image} from "semantic-ui-react";
 
 import "../components/helpText.css";
 
-export function HelpText() {
+export function HelpText({dbl}) {
   return (
     <div>
       <p>
@@ -12,6 +12,24 @@ export function HelpText() {
       <Header as="h4" textAlign='center'>
         NQN has no command to use external emotes.
       </Header>
+      { dbl && (
+        <Image
+          src="/try_it_out.gif"
+          alt="Example usage image"
+          floated='right'
+        />
+      )}
+      { !dbl && (
+        <Image
+          src="https://discordbots.org/api/widget/559426966151757824.svg"
+          floated='right'
+          alt=""
+          as='a'
+          href="https://discordbots.org/bot/559426966151757824"
+          target='_blank'
+          rel="nofollow noreferrer"
+        />
+      )}
       <p>
         Instead, NQN looks for :emotes: in your messages and replaces the message with the appropriate emote.
         By default, you can use <em>any</em> emote you and NQN share servers with.
@@ -209,12 +227,7 @@ export function HelpText() {
 export function HelpTextPage() {
   return (
     <Container fluid>
-      <Image
-        src="/try_it_out.gif"
-        alt="Example usage image"
-        style={{float: "right"}}
-      />
-      <HelpText/>
+      <HelpText dbl={true}/>
     </Container>
   )
 }

@@ -1,0 +1,7 @@
+.message_container {
+  width: calc(80% + 1rem) !important;
+}
+
+.message_container.with_channel {
+  max-width: calc(93% - 15rem);
+}
