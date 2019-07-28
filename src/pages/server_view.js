@@ -9,7 +9,7 @@ import PostBox from "../components/post_box";
 
 import {Container, Grid} from 'semantic-ui-react';
 
-import "./webhook_poster.css";
+import "./server_view.css";
 
 
 class WebhookPage extends Component {

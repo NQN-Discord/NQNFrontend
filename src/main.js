@@ -10,7 +10,7 @@ import axios from "axios";
 import {readStorageState, setRefreshToken} from "./actions/auth";
 import {fetchGuilds, fetchEmotes} from "./actions/user";
 
-import WebhookPage from "./pages/webhook_poster";
+import WebhookPage from "./pages/server_view";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
 import Header from "./header";
