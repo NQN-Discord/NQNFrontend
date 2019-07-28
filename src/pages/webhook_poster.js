@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 
-import postMessage from "../actions/post_message"
 import GuildSelector from "../components/server_list";
 import ChannelSelector from "../components/channel_list";
 import HomePage from "./home";
@@ -95,13 +94,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    postMessage: (channel, message) => dispatch(postMessage(channel, message))
-  }
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(WebhookPage);
