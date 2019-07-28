@@ -7,18 +7,26 @@ import "./channel_list.css";
 
 class ChannelSelector extends Component {
   render() {
+    const guild = this.props.guilds[this.props.guildID];
+    const guildName = this.props.name_map[this.props.guildID];
+    const channels = guild.channels;
+    const showGear = guild.permissions.includes("manage_guild") || guild.permissions.includes("manage_emojis");
+
     return (
       <Grid.Column className="channel_list">
         <Menu pointing vertical secondary>
-          {this.props.guildName &&
+          {guildName &&
             <Menu.Item header>
-              <Button icon labelPosition='right'>
-                {this.props.guildName}
-                <Icon name='setting' />
-              </Button>
+              {showGear &&
+                <Button icon labelPosition='right'>
+                  {guildName}
+                  <Icon name='setting'/>
+                </Button>
+              }
+              {!showGear && guildName}
             </Menu.Item>
           }
-          {this.props.channels.map(channelID => {
+          {channels.map(channelID => {
             return (
               <Menu.Item
                 key={channelID}
@@ -37,6 +45,7 @@ class ChannelSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    guilds: state.user.guilds,
     name_map: state.user.name_map,
   }
 };

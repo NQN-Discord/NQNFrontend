@@ -45,8 +45,7 @@ class WebhookPage extends Component {
           />
           { this.state.selectedGuild !== null &&
             <ChannelSelector
-              guildName={this.props.name_map[this.state.selectedGuild]}
-              channels={this.props.guilds[this.state.selectedGuild].channels}
+              guildID={this.state.selectedGuild}
               selected={this.state.selectedChannel}
               onSelect={(channelID) => {
                 this.setState(update(this.state,
