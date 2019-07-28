@@ -182,7 +182,7 @@ export function HelpText({dbl}) {
         NQN stores reposted messages such that users can delete them and for the audit log. Every emote in your
         server is visible by anybody using the bot and is searchable, though unlinkable to your server.
         When NQN is invited to your server, it will crawl through every message viewable and add new emotes to
-        it's database. It does not save any of the message content when doing this.
+        its database. It does not save any of the message content when doing this.
         On occasion, certain statistics about how the bot is used may be gathered to inform choices as to how to
         improve the bot further but will never include generic messages sent by your users.
       </p>
