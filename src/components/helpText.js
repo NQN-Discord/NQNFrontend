@@ -25,6 +25,10 @@ export function HelpText({dbl}) {
           src="https://discordbots.org/api/widget/559426966151757824.svg"
           floated='right'
           alt=""
+          as='a'
+          href="https://discordbots.org/bot/559426966151757824"
+          target='_blank'
+          rel="nofollow noreferrer"
         />
       )}
       <p>
