@@ -10,7 +10,6 @@ import axios from "axios";
 import {readStorageState, setRefreshToken} from "./actions/auth";
 import {fetchGuilds, fetchEmotes} from "./actions/user";
 
-import HomePage from "./pages/home";
 import WebhookPage from "./pages/webhook_poster";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
@@ -63,7 +62,7 @@ class App extends Component {
             <div>
               <Header/>
               <Switch>
-                <Route exact path="/" component={HomePage}/>
+                <Route exact path="/" component={WebhookPage}/>
                 <Route exact path="/channels/:id" component={WebhookPage}/>
                 <Route exact path="/channels/" component={WebhookPage}/>
                 <Route exact path="/alias/" component={AliasRootPage}/>

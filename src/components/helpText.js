@@ -4,7 +4,6 @@ import {Container, Divider, Header, Image} from "semantic-ui-react";
 import "../components/helpText.css";
 
 export function HelpText({dbl}) {
-  console.log(dbl)
   return (
     <div>
       <p>

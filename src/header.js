@@ -10,7 +10,7 @@ import {Menu} from 'semantic-ui-react';
 
 class Header extends Component {
   render() {
-    const activeElement = this.props.location.pathname;
+    const activeElement = this.props.location.pathname.split("/", 2)[1];
     return (
         <Menu>
           <Menu.Menu className="header" position='right'>
@@ -18,7 +18,7 @@ class Header extends Component {
               Invite Me
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "/channels"}
+              active={["", "channels"].includes(activeElement)}
               onClick={() => {
                 this.props.history.push("/channels");
               }}
@@ -26,7 +26,7 @@ class Header extends Component {
               Post
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "/alias"}
+              active={activeElement === "alias"}
               onClick={() => {
                 this.props.history.push("/alias/search");
               }}

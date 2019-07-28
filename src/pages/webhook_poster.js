@@ -9,6 +9,7 @@ import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
 import GuildSelector from "../components/server_list";
 import ChannelSelector from "../components/channel_list";
+import HomePage from "./home";
 
 import {Container, Grid, Segment, Form} from 'semantic-ui-react';
 
@@ -194,34 +195,6 @@ class WebhookPage extends Component {
     );
   }
 
-  static renderWelcome() {
-    return (
-      <div>
-        <h3>
-          Hello, and thanks for using Not Quite Nitro.
-        </h3>
-        <p>
-          This is the beta version of the web user interface to the bot.
-          It is incomplete in areas and may not function as intended.
-        </p>
-        <p>
-          To start, click on the icon of the server you want to post to and then
-          choose which channel.
-        </p>
-        <p>
-          To send a message, simply type into the text box which appears.
-          This site provides emote autocompletion for messages as you're typing them,
-          providing an easier to use interface than the native client.
-          <br/>
-          The site does not support reading new messages from Discord yet.
-          If you would like to see this feature, DM me about it.
-          Any implementation would likely require you to install a native application
-          to your computer and not supporting Android or iOS at all.
-        </p>
-      </div>
-    );
-  }
-
   render() {
     return (
       <Container fluid>
@@ -242,14 +215,18 @@ class WebhookPage extends Component {
                       selectedGuild: null
                     }}
                 ));
-                this.props.history.push(`/channels/${channelID}`);
+                if (channelID !== null) {
+                  this.props.history.push(`/channels/${channelID}`);
+                } else {
+                  this.props.history.push(`/channels/`);
+                }
               }}
             />
           }
           <Grid.Column className={`message_container ${this.state.selectedGuild === null? "": "with_channel"}`}>
-            { this.state.selectedGuild === null &&
-              this.state.selectedChannel === null &&
-              WebhookPage.renderWelcome() }
+            { this.state.selectedChannel === null &&
+              <HomePage/>
+            }
             { this.state.selectedChannel !== null && this.renderPostBox() }
           </Grid.Column>
         </Grid>
