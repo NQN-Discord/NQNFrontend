@@ -24,9 +24,13 @@ class WebhookPage extends Component {
   }
 
   componentDidMount() {
-    const channelID = this.props.match.params.id;
+    const channelID = this.props.match.params.channelID;
     if (channelID) {
       this.setState(update(this.state, {$merge: {selectedChannel: channelID}}));
+    }
+    const guildID = this.props.match.params.guildID;
+    if (guildID) {
+      this.setState(update(this.state, {$merge: {showSettingsFor: guildID}}));
     }
   }
 

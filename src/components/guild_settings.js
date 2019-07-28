@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Container} from 'semantic-ui-react';
+import {Container, Header, Form, Label, Input, Button} from 'semantic-ui-react';
 
 import "./channel_list.css";
 
@@ -12,7 +12,21 @@ class GuildSettings extends Component {
 
     return (
       <Container>
-        Settings for {guildName}
+        <Header as="h3">
+          Settings for {guildName}
+        </Header>
+        <Form>
+          <Form.Field inline>
+            <Form.Input label="Prefix"/>
+          </Form.Field>
+          <Form.Field inline>
+            <Form.Input label="Boost Channel"/>
+          </Form.Field>
+          <Form.Field inline>
+            <Form.Input label="Announcement Channel"/>
+          </Form.Field>
+          <Button type='submit'>Save</Button>
+        </Form>
       </Container>
     );
   }
