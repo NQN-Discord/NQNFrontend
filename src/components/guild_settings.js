@@ -23,6 +23,17 @@ class GuildSettings extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.guildID !== this.props.guildID) {
+      const guild = this.props.guilds[this.props.guildID];
+      this.setState({
+        prefix: guild.prefix,
+        boostChannel: guild.boost_channel,
+        announcementChannel: guild.announcement_channel,
+      });
+    }
+  }
+
   renderDropdown(description, helpText, attr) {
     const guild = this.props.guilds[this.props.guildID];
     return (
