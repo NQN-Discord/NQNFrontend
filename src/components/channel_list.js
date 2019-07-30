@@ -8,14 +8,13 @@ import "./channel_list.css";
 class ChannelSelector extends Component {
   render() {
     const guild = this.props.guilds[this.props.guildID];
-    const guildName = this.props.name_map[this.props.guildID];
     const channels = guild.channels;
-    const showGear = false; //guild.permissions.includes("manage_guild") || guild.permissions.includes("manage_emojis");
+    const showGear = guild.permissions.includes("manage_guild") || guild.permissions.includes("manage_emojis");
 
     return (
       <Grid.Column className="channel_list">
         <Menu pointing vertical secondary>
-          {guildName &&
+          {guild.name &&
             <Menu.Item header>
               {showGear &&
                 <Button
@@ -23,21 +22,21 @@ class ChannelSelector extends Component {
                   labelPosition='right'
                   onClick={() => this.props.showSettings()}
                 >
-                  {guildName}
+                  {guild.name}
                   <Icon name='setting'/>
                 </Button>
               }
-              {!showGear && guildName}
+              {!showGear && guild.name}
             </Menu.Item>
           }
-          {channels.map(channelID => {
+          {Object.entries(channels).map(([id, {name}]) => {
             return (
               <Menu.Item
-                key={channelID}
-                active={this.props.selected === channelID}
-                onClick={() => this.props.onSelect(this.props.selected === channelID ? null : channelID)}
+                key={id}
+                active={this.props.selected === id}
+                onClick={() => this.props.onSelect(this.props.selected === id ? null : id)}
               >
-                {this.props.name_map[channelID]}
+                {name}
               </Menu.Item>
             );
           })}
@@ -49,8 +48,7 @@ class ChannelSelector extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guilds: state.user.guilds,
-    name_map: state.user.name_map,
+    guilds: state.user.guilds
   }
 };
 

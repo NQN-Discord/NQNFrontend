@@ -27,7 +27,6 @@ function auth(state = {
 
 function user(state = {
   guilds: {},
-  name_map: {},
   packs: {},
   user_packs: [],
   user_emotes: {},
@@ -35,12 +34,7 @@ function user(state = {
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
-      return update(state,
-        {$merge: {
-            guilds: action.guilds,
-            name_map: action.names
-          }}
-      );
+      return update(state, {$merge: {guilds: action.guilds}});
     case ADD_ALIASES:
       return update(state,
         {$merge: {

@@ -122,10 +122,11 @@ class PostBox extends Component {
   }
 
   render() {
+    const guild = this.props.guilds[this.props.guildID];
     return (
       <div className="message_poster">
         <h3>
-          {this.props.name_map[this.props.guildID]} - #{this.props.name_map[this.props.channelID]}
+          {guild.name} - #{guild.channels[this.props.channelID].name}
         </h3>
         <hr/>
         <p>
@@ -136,7 +137,7 @@ class PostBox extends Component {
         <Form>
           <Form.Field
             control={TextareaAutosize}
-            placeholder={`Message #${this.props.name_map[this.props.channelID]}`}
+            placeholder={`Message #${guild.channels[this.props.channelID].name}`}
             onInput={event => {
               const message = this.prerenderMessage(event.target.value);
               this.setState(update(this.state, {$merge: {message}}));
@@ -172,8 +173,8 @@ class PostBox extends Component {
 const mapStateToProps = (state) => {
   let seen = new Set();
   return {
-    name_map: state.user.name_map,
     packs: state.user.packs,
+    guilds: state.user.guilds,
     user_emotes: state.user.user_emotes,
     user_aliases: state.user.user_aliases,
     all_emotes: state.user.user_aliases.concat(
