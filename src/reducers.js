@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
 import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
+import {RECEIVE_GUILD_SETTINGS} from "./actions/guild_settings";
 
 import axios from "axios";
 
@@ -27,7 +28,6 @@ function auth(state = {
 
 function user(state = {
   guilds: {},
-  name_map: {},
   packs: {},
   user_packs: [],
   user_emotes: {},
@@ -35,12 +35,7 @@ function user(state = {
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
-      return update(state,
-        {$merge: {
-            guilds: action.guilds,
-            name_map: action.names
-          }}
-      );
+      return update(state, {$merge: {guilds: action.guilds}});
     case ADD_ALIASES:
       return update(state,
         {$merge: {
@@ -64,6 +59,10 @@ function user(state = {
             user_emotes: action.user_emotes,
             user_aliases: action.user_aliases
           }}
+      );
+    case RECEIVE_GUILD_SETTINGS:
+      return update(state,
+        {guilds: {[action.guild]: {$merge: action.settings}}}
       );
     default:
       return state;

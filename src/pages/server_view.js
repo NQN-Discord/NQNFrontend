@@ -36,11 +36,12 @@ class WebhookPage extends Component {
 
   getGuild(channelID) {
     return Object.keys(this.props.guilds).find(guildID => {
-      return this.props.guilds[guildID].channels.includes(channelID);
+      return Object.keys(this.props.guilds[guildID].channels).includes(channelID);
     });
   }
 
   render() {
+    const selectedGuild = this.getGuild(this.state.selectedChannel);
     return (
       <Container fluid>
         <Grid>
@@ -82,14 +83,14 @@ class WebhookPage extends Component {
             { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
               <HomePage/>
             }
-            { this.state.showSettingsFor !== null &&
+            { this.state.showSettingsFor !== null && Object.keys(this.props.guilds).length !== 0 &&
               <GuildSettings
                 guildID={this.state.showSettingsFor}
               />
             }
-            { this.state.selectedChannel !== null &&
+            { this.state.selectedChannel !== null && selectedGuild &&
               <PostBox
-                guildID={this.getGuild(this.state.selectedChannel)}
+                guildID={selectedGuild}
                 channelID={this.state.selectedChannel}
               />
             }
@@ -102,8 +103,7 @@ class WebhookPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    guilds: state.user.guilds,
-    name_map: state.user.name_map,
+    guilds: state.user.guilds
   }
 };
 

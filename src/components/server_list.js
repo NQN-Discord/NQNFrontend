@@ -23,7 +23,7 @@ class GuildSelector extends Component {
               >
                 <Image
                   src={this.props.guilds[guildID].icon}
-                  alt={this.props.name_map[guildID]}
+                  alt={this.props.guilds[guildID].name}
                   size="tiny"
                 />
               </Menu.Item>
@@ -38,7 +38,6 @@ class GuildSelector extends Component {
 const mapStateToProps = (state) => {
   return {
     guilds: state.user.guilds,
-    name_map: state.user.name_map,
   }
 };
 export default connect(
