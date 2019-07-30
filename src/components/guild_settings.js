@@ -1,11 +1,16 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Container, Header, Form, Button, Dropdown} from 'semantic-ui-react';
+import {Container, Header, Form, Button, Dropdown, Label, Divider} from 'semantic-ui-react';
 
 import postGuildSettings from "../actions/guild_settings";
 import "./channel_list.css";
 import update from "immutability-helper";
+
+
+const announcementHelp = "Announcements about updates to the bot.";
+const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
+
 
 class GuildSettings extends Component {
   constructor(props) {
@@ -18,12 +23,15 @@ class GuildSettings extends Component {
     };
   }
 
-  renderDropdown(text, attr) {
+  renderDropdown(description, helpText, attr) {
     const guild = this.props.guilds[this.props.guildID];
     return (
       <Form.Field>
-        <label>{text}</label>
-        <Dropdown button search floating labeled scrolling className='icon'
+        <Form.Field inline>
+          <label>{description}</label>
+          <Label pointing='left'>{helpText}</Label>
+        </Form.Field>
+        <Dropdown button search floating scrolling labeled className='icon'
           icon='hashtag'
           options={[
             {key: "0", text: "None", value: 0},
@@ -60,8 +68,9 @@ class GuildSettings extends Component {
               onChange={e => this.setState(update(this.state, {$merge: {prefix: e.target.value}}))}
             />
           </Form.Field>
-          {this.renderDropdown("Announcement Channel", "announcementChannel")}
-          {this.renderDropdown("Boost Channel", "boostChannel")}
+          {this.renderDropdown("Announcement Channel", announcementHelp, "announcementChannel")}
+          {this.renderDropdown("Boost Channel", boostHelp, "boostChannel")}
+          <Divider/>
           <Button type='submit'>Save</Button>
         </Form>
       </Container>
