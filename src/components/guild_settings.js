@@ -1,11 +1,45 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Container, Header, Form, Button} from 'semantic-ui-react';
+import {Container, Header, Form, Button, Dropdown} from 'semantic-ui-react';
 
+import postGuildSettings from "../actions/guild_settings";
 import "./channel_list.css";
+import update from "immutability-helper";
 
 class GuildSettings extends Component {
+  constructor(props) {
+    super(props);
+    const guild = this.props.guilds[this.props.guildID];
+    this.state = {
+      prefix: guild.prefix,
+      boostChannel: guild.boost_channel,
+      announcementChannel: guild.announcement_channel,
+    };
+  }
+
+  renderDropdown(text, attr) {
+    const guild = this.props.guilds[this.props.guildID];
+    return (
+      <Form.Field>
+        <label>{text}</label>
+        <Dropdown button search floating labeled scrolling className='icon'
+          icon='hashtag'
+          options={[
+            {key: "0", text: "None", value: 0},
+            <Dropdown.Divider key="divider"/>,
+          ].concat(Object.entries(guild.channels).map(([id, {name}]) => ({
+            key: id,
+            text: name,
+            value: id
+          })))}
+          text={(guild.channels[this.state[attr]] || {name: "None"}).name}
+          onChange={(e, d) => this.setState(update(this.state, {$merge: {[attr]: d.value in guild.channels? d.value: "0"}}))}
+        />
+      </Form.Field>
+    );
+  }
+
   render() {
     const guild = this.props.guilds[this.props.guildID];
 
@@ -14,16 +48,20 @@ class GuildSettings extends Component {
         <Header as="h3">
           Settings for {guild.name}
         </Header>
-        <Form>
+        <Form
+          onSubmit={() => {
+            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.announcementChannel, this.state.boostChannel);
+          }}
+        >
           <Form.Field inline>
-            <Form.Input label="Prefix"/>
+            <Form.Input
+              label="Prefix"
+              value={this.state.prefix}
+              onChange={e => this.setState(update(this.state, {$merge: {prefix: e.target.value}}))}
+            />
           </Form.Field>
-          <Form.Field inline>
-            <Form.Input label="Boost Channel"/>
-          </Form.Field>
-          <Form.Field inline>
-            <Form.Input label="Announcement Channel"/>
-          </Form.Field>
+          {this.renderDropdown("Announcement Channel", "announcementChannel")}
+          {this.renderDropdown("Boost Channel", "boostChannel")}
           <Button type='submit'>Save</Button>
         </Form>
       </Container>
@@ -37,7 +75,13 @@ const mapStateToProps = (state) => {
   }
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    postGuildSettings: (guildID, prefix, announcementChannel, boostChannel) => dispatch(postGuildSettings(guildID, prefix, announcementChannel, boostChannel))
+  }
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(GuildSettings);
