@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
 import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
-import {RECEIVE_GUILD_SETTINGS} from "./actions/guild";
+import {RECEIVE_GUILD_SETTINGS, RECEIVE_GUILD_LOGS} from "./actions/guild";
 
 import axios from "axios";
 
@@ -63,6 +63,10 @@ function user(state = {
     case RECEIVE_GUILD_SETTINGS:
       return update(state,
         {guilds: {[action.guild]: {$merge: action.settings}}}
+      );
+    case RECEIVE_GUILD_LOGS:
+      return update(state,
+        {guilds: {[action.guild]: {$merge: {auditLog: action.logs}}}}
       );
     default:
       return state;
