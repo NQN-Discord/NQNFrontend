@@ -4,7 +4,7 @@ import update from "immutability-helper";
 
 import GuildSelector from "../components/server_list";
 import ChannelSelector from "../components/channel_list";
-import GuildSettings from "../components/guild_settings";
+import GuildSettingsRoot from "./guild_settings_root";
 import HomePage from "./home";
 import PostBox from "../components/post_box";
 
@@ -75,7 +75,7 @@ class WebhookPage extends Component {
                     showSettingsFor: this.state.selectedGuild
                   }
                 }));
-                this.props.history.push(`/guilds/${this.state.selectedGuild}/`);
+                this.props.history.push(`/guilds/${this.state.selectedGuild}/settings`);
               }}
             />
           }
@@ -84,7 +84,7 @@ class WebhookPage extends Component {
               <HomePage/>
             }
             { this.state.showSettingsFor !== null && Object.keys(this.props.guilds).length !== 0 &&
-              <GuildSettings
+              <GuildSettingsRoot
                 guildID={this.state.showSettingsFor}
               />
             }

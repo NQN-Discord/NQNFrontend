@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
 import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILDS} from "./actions/user";
-import {RECEIVE_GUILD_SETTINGS} from "./actions/guild_settings";
+import {RECEIVE_GUILD_SETTINGS} from "./actions/guild";
 
 import axios from "axios";
 

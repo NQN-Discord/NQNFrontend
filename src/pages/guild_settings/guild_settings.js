@@ -3,8 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import {Container, Header, Form, Button, Dropdown, Label, Divider} from 'semantic-ui-react';
 
-import postGuildSettings from "../actions/guild_settings";
-import "./channel_list.css";
+import {postGuildSettings} from "../../actions/guild";
 import update from "immutability-helper";
 
 
