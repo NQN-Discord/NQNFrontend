@@ -1,0 +1,7 @@
+.ui.feed>.event>div.content {
+  min-width: 0;
+}
+
+.ui.feed>.event>.content div.extra.text{
+  max-width: initial;
+}
