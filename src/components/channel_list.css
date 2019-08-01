@@ -7,6 +7,14 @@
   min-width: 12rem;
 }
 
+@media (max-width: 550px) {
+  .channel_list {
+    width: 50% !important;
+    min-width: 12rem;
+  }
+
+}
+
 .channel_list .item {
   overflow: hidden;
   text-overflow: ellipsis;

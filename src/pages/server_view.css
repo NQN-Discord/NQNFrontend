@@ -5,3 +5,9 @@
 .message_container.with_channel {
   max-width: calc(93% - 15rem);
 }
+
+@media (max-width: 550px) {
+  .message_container.with_channel {
+    display: none !important;
+  }
+}
