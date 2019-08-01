@@ -5,6 +5,7 @@ import Long from "long";
 import {Container, Header, Placeholder, Feed, Pagination, Grid} from 'semantic-ui-react';
 
 import {fetchGuildLogs} from "../../actions/guild";
+import './audit_logs.css';
 
 const EPOCH = 1420070400000;
 const dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric', hour: "numeric", minute: "numeric" };
