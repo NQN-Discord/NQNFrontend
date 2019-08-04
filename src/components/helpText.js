@@ -12,6 +12,19 @@ export function HelpText({dbl}) {
       <Header as="h4" textAlign='center'>
         NQN has no command to use external emotes.
       </Header>
+      <p>
+        Instead, NQN looks for :emotes: in your messages and replaces the message with the appropriate emote.
+        By default, you can use <em>any</em> emote you and NQN share servers with.
+      </p>
+      <p>
+        You'll end up with the bot posting a message that looks like it came from you, except without any colours
+        your role may have and with a fancy <span className="botTag">BOT</span>™ tag.
+      </p>
+      <p>
+        If you ever send something not quite right, you can react to the reposted message with
+        <span role="img" aria-label=":x:">❌</span>
+        to delete it.
+      </p>
       { dbl && (
         <Image
           src="/try_it_out.gif"
@@ -30,22 +43,61 @@ export function HelpText({dbl}) {
           rel="nofollow noreferrer"
         />
       )}
+      <h3>Features</h3>
       <p>
-        Instead, NQN looks for :emotes: in your messages and replaces the message with the appropriate emote.
-        By default, you can use <em>any</em> emote you and NQN share servers with.
+        NQN has a lot of features, and it would be a shame to miss out on them:
+      </p>
+      <ul>
+        <li>
+          Emotes anywhere - even without Nitro
+        </li>
+        <li>
+          Stickers - full size images in the middle of messages
+        </li>
+        <li>
+          Emote packs - perfect for sharing
+        </li>
+        <li>
+          Message quoting/replies
+        </li>
+      </ul>
+      <Divider/>
+
+      <h2>Stickers</h2>
+      <p>
+        Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app.
       </p>
       <p>
-        You'll end up with the bot posting a message that looks like it came from you, except without any colours
-        your role may have and with a fancy <span className="botTag">BOT</span>™ tag.
+        Stickers allow anyone to post full size images in the middle of messages. Once you've created the sticker, you
+        can use it like you would an emote, except stickers have a file extension at the end.{" "}
+        <code>Hello :wave.png: How are you doing?</code> would post a similar message to this one if wave.png was a
+        sticker. Each message can contain up to 10 stickers.
       </p>
       <p>
-        If you ever send something not quite right, you can react to the reposted message with
-        <span role="img" aria-label=":x:">❌</span>
-        to delete it.
+        To create a sticker, use <code>!sticker create</code> and upload an image to be your new sticker.
+        You can optionally give an alias like <code>!sticker create BluePat.png</code>.
+      </p>
+      <p>
+        If your sticker already exists as an emote, you can import from it.
+        Either from an emote directly, with an optional alias. <code>!sticker import :blue_smirk: smirk.png</code>.
+        Or by searching through emotes NQN has. <code>!sticker import blue pat</code>.
+        Note that the searching through emotes option does not support aliasing.
+      </p>
+      <p>
+        If you've had enough time with a sticker, you can say goodbye with <code>!sticker delete BluePat.png</code>.
+        You can only delete your own stickers.
+      </p>
+      <p>
+        To remind you which stickers are yours, you can use <code>!stickers mine</code> and the bot will tell you which
+        are yours.
+      </p>
+      <p>
+        To look through the list of them, use <code>!sticker search</code> with optional search terms.
       </p>
 
       <h2>Emote packs</h2>
-      <p>Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
+      <p>
+        Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
         use without having to manually add every emote. It's also very easy to share and use emote packs.
       </p>
       <p>
@@ -75,11 +127,12 @@ export function HelpText({dbl}) {
 
       <h2>Manually adding emotes</h2>
       <p>
-        Know exactly which emote you want to use? <code>!alias</code> is for you.
+        Know exactly which emote you want to use? <code>!alias</code> is for you.{" "}
         <code>!alias emote_name emote_url</code> allows you to use an emote the bot has but you don't.
       </p>
-      <p>For example <code>!alias FifiHappy
-        https://cdn.discordapp.com/emojis/393786352166109195.gif?v=1</code> allows you to
+      <p>
+        For example{" "}
+        <code>!alias FifiHappy https://cdn.discordapp.com/emojis/393786352166109195.gif?v=1</code> allows you to
         use <code>:FifiHappy:</code>
       </p>
       <p>
@@ -198,18 +251,27 @@ export function HelpText({dbl}) {
 
       <h2>Troubleshooting</h2>
       <ul>
-        <li>If you have Nitro, the bot will only be useful for emotes in servers you're not in.</li>
-        <li>To use an emote from a server you aren't in, you need to add an alias for it or be part of an emote
+        <li>
+          To use an emote from a server you aren't in, you need to add an alias for it or be part of an emote
           pack with it in.
         </li>
-        <li>If you add an alias with the same name as another alias, it will overwrite the old one.</li>
-        <li>If you join an emote pack with an emote with the same name as one from your servers, the emote pack
-          will be prefered.
+        <li>
+          If you add an alias with the same name as another alias, it will overwrite the old one.
         </li>
-        <li>If you add an alias with the same name as an emote from a server you're in or an emote pack, the
-          alias will be prefered.
+        <li>
+          If you join an emote pack with an emote with the same name as one from your servers, the emote pack
+          will be preferred.
         </li>
-        <li>If the bot isn't posting messages, try <code>!help</code> - the bot will tell you of any
+        <li>
+          If you add an alias with the same name as an emote from a server you're in or an emote pack, the
+          alias will be preferred.
+        </li>
+        <li>
+          If the bot isn't letting you create a sticker, make sure it's an image, under 8MB and isn't called the same
+          thing as an already existing sticker.
+        </li>
+        <li>
+          If the bot isn't posting messages, try <code>!help</code> - the bot will tell you of any
           permission's it's missing.
         </li>
       </ul>
