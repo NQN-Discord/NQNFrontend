@@ -230,6 +230,16 @@ export function HelpText({dbl}) {
         </li>
       </ul>
 
+      <h3>Disabling Features</h3>
+      <p>
+        The following features can be disabled per guild:
+      </p>
+      <ul>
+        <li>Emotes everywhere</li>
+        <li>Stickers</li>
+        <li>Message replies</li>
+      </ul>
+
       <h3>Information gathering:</h3>
       <p>
         NQN stores reposted messages such that users can delete them and for the audit log. Every emote in your
