@@ -75,7 +75,7 @@ export function HelpText({dbl}) {
       </p>
       <p>
         To create a sticker, use <code>!sticker create</code> and upload an image to be your new sticker.
-        You can optionally give an alias like <code>!sticker create BluePat.png</code>.
+        You can optionally give an alias like <code>!sticker create BluePat.gif</code>.
       </p>
       <p>
         If your sticker already exists as an emote, you can import from it.
@@ -84,7 +84,7 @@ export function HelpText({dbl}) {
         Note that the searching through emotes option does not support aliasing.
       </p>
       <p>
-        If you've had enough time with a sticker, you can say goodbye with <code>!sticker delete BluePat.png</code>.
+        If you've had enough time with a sticker, you can say goodbye with <code>!sticker delete BluePat.gif</code>.
         You can only delete your own stickers.
       </p>
       <p>
