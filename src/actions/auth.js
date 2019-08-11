@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {api_url} from '../config.js';
+import {api_url, discordNoLoginURL} from '../config.js';
 
 export const RECEIVE_REFRESH = "RECEIVE_REFRESH";
 
@@ -33,7 +33,8 @@ export function exchangeCode(code) {
 }
 
 export function logout() {
-  return function(dispatch) {
-    dispatch(setRefreshToken(""));
+  return function() {
+    localStorage.setItem("refreshToken", "");
+    window.location.replace(discordNoLoginURL);
   }
 }
