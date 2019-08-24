@@ -13,7 +13,7 @@ class GuildSettingsRoot extends Component {
     const guild = this.props.guilds[this.props.guildID];
     const pageName = this.props.match.params.page || "settings";
     const page = {
-      settings: <GuildSettings guildID={this.props.guildID}/>,
+      settings: <GuildSettings guildID={this.props.guildID} showHeader={true}/>,
       logs: <AuditLogs guildID={this.props.guildID}/>
     }[pageName];
     return (

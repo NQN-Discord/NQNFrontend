@@ -15,8 +15,8 @@ class LoginPage extends Component {
 
     console.log({code, state, invitedBot, redirect, token: this.props.refreshToken})
 
-    if (invitedBot && redirect !== "/joined_server") {
-      localStorage.setItem("redirect", "/joined_server");
+    if (invitedBot && !redirect.startsWith("/joined_server")) {
+      localStorage.setItem("redirect", `/joined_server?guild_id=${query.guild_id}`);
       localStorage.setItem("refreshToken", "");
       window.location.reload();
       return

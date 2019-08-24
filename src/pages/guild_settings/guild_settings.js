@@ -63,9 +63,11 @@ class GuildSettings extends Component {
 
     return (
       <Container>
-        <Header as="h3">
-          Settings for {guild.name}
-        </Header>
+        { this.props.showHeader &&
+          <Header as="h3">
+            Settings for {guild.name}
+          </Header>
+        }
         <Form
           onSubmit={() => {
             this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.announcementChannel, this.state.boostChannel);
