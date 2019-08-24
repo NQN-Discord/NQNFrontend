@@ -10,7 +10,23 @@ class LoginPage extends Component {
     const query = parse(this.props.location.search);
     const code = query.code;
     const state = query.state;
+    const invitedBot = query.guild_id !== undefined;
     const redirect = localStorage.getItem("redirect");
+
+    console.log({code, state, invitedBot, redirect, token: this.props.refreshToken})
+
+    if (invitedBot && redirect !== "/joined_server") {
+      localStorage.setItem("redirect", "/joined_server");
+      localStorage.setItem("refreshToken", "");
+      window.location.reload();
+      return
+    }
+
+    if (invitedBot && redirect === "/joined_server" && this.props.refreshToken) {
+      localStorage.setItem("redirect", "");
+      this.props.history.push(redirect);
+      return
+    }
 
     if (this.props.refreshToken) {
       localStorage.setItem("redirect", "");
