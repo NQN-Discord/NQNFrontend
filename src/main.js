@@ -13,6 +13,7 @@ import {fetchGuilds, fetchEmotes} from "./actions/user";
 import WebhookPage from "./pages/server_view";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
+import JoinedPage from "./pages/joined_server";
 import Header from "./header";
 import {HelpTextPage} from "./components/helpText";
 
@@ -69,6 +70,7 @@ class App extends Component {
                 <Route exact path="/guilds/" component={WebhookPage}/>
                 <Route exact path="/alias/" component={AliasRootPage}/>
                 <Route exact path="/alias/:id" component={AliasRootPage}/>
+                <Route exact path="/joined_server" component={JoinedPage}/>
                 <Route exact path="/login" component={LoginPage}/>
               </Switch>
             </div>

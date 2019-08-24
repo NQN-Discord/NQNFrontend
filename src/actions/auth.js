@@ -24,9 +24,9 @@ export function receiveRefresh(refreshToken) {
   }
 }
 
-export function exchangeCode(code) {
+export function exchangeCode(code, state) {
   return function(dispatch) {
-    axios.get(`${api_url}/login`, {params: {code}}).then(response => {
+    axios.get(`${api_url}/login`, {params: {code, state: state || ''}}).then(response => {
       dispatch(setRefreshToken(response.data.refresh_token));
     });
   };

@@ -7,18 +7,38 @@ import connect from "react-redux/es/connect/connect";
 
 class LoginPage extends Component {
   async componentDidMount() {
-    if (this.props.refreshToken) {
-      this.props.history.push(localStorage.getItem("redirect") || "/");
-      return
-    }
     const query = parse(this.props.location.search);
     const code = query.code;
+    const state = query.state;
+    const invitedBot = query.guild_id !== undefined;
+    const redirect = localStorage.getItem("redirect");
+
+    console.log({code, state, invitedBot, redirect, token: this.props.refreshToken})
+
+    if (invitedBot && !redirect.startsWith("/joined_server")) {
+      localStorage.setItem("redirect", `/joined_server?guild_id=${query.guild_id}`);
+      localStorage.setItem("refreshToken", "");
+      window.location.reload();
+      return
+    }
+
+    if (invitedBot && redirect === "/joined_server" && this.props.refreshToken) {
+      localStorage.setItem("redirect", "");
+      this.props.history.push(redirect);
+      return
+    }
+
+    if (this.props.refreshToken) {
+      localStorage.setItem("redirect", "");
+      this.props.history.push(redirect || "/");
+      return
+    }
     if (!code) {
       localStorage.setItem("redirect", this.props.location.pathname);
       window.location = discordURL;
       return
     }
-    this.props.exchangeCode(code);
+    this.props.exchangeCode(code, state);
   }
 
   render() {
@@ -36,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    exchangeCode: (token) => dispatch(exchangeCode(token))
+    exchangeCode: (token, state) => dispatch(exchangeCode(token, state))
   }
 };
 
