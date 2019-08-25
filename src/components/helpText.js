@@ -128,16 +128,15 @@ export function HelpText({dbl}) {
       <h2>Manually adding emotes</h2>
       <p>
         Know exactly which emote you want to use? <code>!alias</code> is for you.{" "}
-        <code>!alias emote_name emote_url</code> allows you to use an emote the bot has but you don't.
+        <code>!alias create</code> allows you to use an emote the bot has but you don't.
       </p>
       <p>
         For example{" "}
-        <code>!alias FifiHappy https://cdn.discordapp.com/emojis/393786352166109195.gif?v=1</code> allows you to
-        use <code>:FifiHappy:</code>
+        <code>!alias create FifiHappy</code> allows you to use <code>:FifiHappy:</code>
       </p>
       <p>
-        Don't have the exact emote yet? Why not <code>!search</code> for it?
-        <code>!search happy</code> shows you all emotes the bot can use with the word 'happy' in their name.
+        Don't have the exact emote yet? Why not search for it?
+        <code>!alias search happy</code> shows you all emotes the bot can use with the word 'happy' in their name.
       </p>
       <Divider/>
 
@@ -169,7 +168,7 @@ export function HelpText({dbl}) {
         single emote that the bot has ever seen, and add it directly to your server, as long as you and the bot have
         'manage emotes' permissions. Note that
         the bot does not ask for this permission by default, so it will have to be added manually.
-        <code>!search_all</code> supports the same search syntax as <code>!search</code>, except it picks up more
+        <code>!search_all</code> supports the same search syntax as <code>!alias search</code>, except it picks up more
         results.
       </p>
 
