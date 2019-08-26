@@ -190,7 +190,8 @@ export function HelpText({dbl}) {
         <h3>Server wide emotes:</h3>
         <p>
           If you would like everyone in your server to have access to a particular emote, you can use <code>!server
-          alias &lt;emote_name&gt; &lt;emote_id&gt;</code>.
+          alias create :emote_name:</code>. This works exactly like the <code>!alias</code> set of commands in terms of
+          management.
         </p>
         <p>
           Note that by default, each server gets 10 additional emotes, but you can get more by voting up the bot on
