@@ -21,9 +21,7 @@ export function HelpText({dbl}) {
         your role may have and with a fancy <span className="botTag">BOT</span>™ tag.
       </p>
       <p>
-        If you ever send something not quite right, you can react to the reposted message with
-        <span role="img" aria-label=":x:">❌</span>
-        to delete it.
+        If you ever send something not quite right, you can react to the reposted message with the <span role="img" aria-label=":x:">❌</span> emote to delete it.
       </p>
       { dbl && (
         <Image
@@ -64,59 +62,61 @@ export function HelpText({dbl}) {
       <Divider/>
 
       <h2>Stickers</h2>
-      <p>
-        Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app.
-      </p>
-      <p>
-        Stickers allow anyone to post full size images in the middle of messages. Once you've created the sticker, you
-        can use it like you would an emote, except stickers have a file extension at the end.{" "}
-        <code>Hello :wave.png: How are you doing?</code> would post a similar message to this one if wave.png was a
-        sticker. Each message can contain up to 10 stickers.
-      </p>
-      <p>
-        To create a sticker, use <code>!sticker create</code> and upload an image to be your new sticker.
-        You can optionally give an alias like <code>!sticker create BluePat.gif</code>.
-      </p>
-      <p>
-        If your sticker already exists as an emote, you can import from it.
-        Either from an emote directly, with an optional alias. <code>!sticker import :blue_smirk: smirk.png</code>.
-        Or by searching through emotes NQN has. <code>!sticker import blue pat</code>.
-        Note that the searching through emotes option does not support aliasing.
-      </p>
-      <p>
-        If you've had enough time with a sticker, you can say goodbye with <code>!sticker delete BluePat.gif</code>.
-        You can only delete your own stickers.
-      </p>
-      <p>
-        To remind you which stickers are yours, you can use <code>!stickers mine</code> and the bot will tell you which
-        are yours.
-      </p>
-      <p>
-        To look through the list of them, use <code>!sticker search</code> with optional search terms.
-      </p>
+      <div>
+        <p>
+          Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app.
+        </p>
+        <p>
+          Stickers allow anyone to post full size images in the middle of messages. Once you've created the sticker, you
+          can use it like you would an emote, except stickers have a file extension at the end.{" "}
+          <code>Hello :wave.png: How are you doing?</code> would post a similar message to this one if wave.png was a
+          sticker. Each message can contain up to 10 stickers.
+        </p>
+        <p>
+          To create a sticker, use <code>!sticker create</code> and upload an image to be your new sticker.
+          You can optionally give an alias like <code>!sticker create BluePat.gif</code>.
+        </p>
+        <p>
+          If your sticker already exists as an emote, you can import from it.
+          Either from an emote directly, with an optional alias. <code>!sticker import :blue_smirk: smirk.png</code>.
+          Or by searching through emotes NQN has. <code>!sticker import blue pat</code>.
+          Note that the searching through emotes option does not support aliasing.
+        </p>
+        <p>
+          If you've had enough time with a sticker, you can say goodbye with <code>!sticker delete BluePat.gif</code>.
+          You can only delete your own stickers.
+        </p>
+        <p>
+          To remind you which stickers are yours, you can use <code>!stickers mine</code> and the bot will tell you which
+          are yours.
+        </p>
+        <p>
+          To look through the list of them, use <code>!sticker search</code> with optional search terms.
+        </p>
+      </div>
 
       <h2>Emote packs</h2>
-      <p>
-        Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
-        use without having to manually add every emote. It's also very easy to share and use emote packs.
-      </p>
-      <p>
-        To create an emote pack, simply upload your emotes to a server and use
-        <code>!pack publish MySuperCoolEmotePackName</code>
-        and they'll be available for anyone to use. Once published, you can join a pack with
-        <code>!pack join MySuperCoolEmotePackName</code>.
-      </p>
-      <p>
-        Feeling lazy? You can even use emote packs you're not in by typing
-        <code>:MySuperCoolEmotePackName-EmoteName:</code> and the bot will know what you meant.
-      </p>
-      <p>
-        Want to see what's out there? NQN provides easy to use emote pack search functionality.
-        <code>!pack search Cool</code> or even <code>!pack search</code> to find <em>everything</em>.
-      </p>
-      <p>
-        Forgot which packs you're in? <code>!pack mine</code> tells you just in case.
-      </p>
+      <div>
+        <p>
+          Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
+          use without having to manually add every emote. It's also very easy to share and use emote packs.
+        </p>
+        <p>
+          To create an emote pack, simply upload your emotes to a server and use <code>!pack publish MySuperCoolEmotePackName</code> and
+          they'll be available for anyone to use. Once published, you can join a pack with <code>!pack join MySuperCoolEmotePackName</code>.
+        </p>
+        <p>
+          Feeling lazy? You can even use emote packs you're not in by typing <code>:MySuperCoolEmotePackName-EmoteName:</code> and
+          the bot will know what you meant.
+        </p>
+        <p>
+          Want to see what's out there? NQN provides easy to use emote pack search functionality. <code>!pack search Cool</code> or
+          even <code>!pack search</code> to find <em>everything</em>.
+        </p>
+        <p>
+          Forgot which packs you're in? <code>!pack mine</code> tells you just in case.
+        </p>
+      </div>
 
       <h2>Message Replies</h2>
       <p>
@@ -125,129 +125,130 @@ export function HelpText({dbl}) {
         then to clipboard) and then paste it into your message, and it'll post the message you're replying to as well.
       </p>
 
-      <h2>Manually adding emotes</h2>
-      <p>
-        Know exactly which emote you want to use? <code>!alias</code> is for you.{" "}
-        <code>!alias create</code> allows you to use an emote the bot has but you don't.
-      </p>
-      <p>
-        For example{" "}
-        <code>!alias create FifiHappy</code> allows you to use <code>:FifiHappy:</code>
-      </p>
-      <p>
-        Don't have the exact emote yet? Why not search for it?
-        <code>!alias search happy</code> shows you all emotes the bot can use with the word 'happy' in their name.
-      </p>
+      <h2>Aliases</h2>
+      <div>
+        <p>
+          Want control over what emotes you can use? <code>!alias</code> is for you. <code>!alias create</code> allows
+          you to use an emote the bot has but you don't.
+        </p>
+        <p>
+          For example <code>!alias create FifiHappy</code> allows you to use <code>:FifiHappy:</code>. If there are
+          multiple emotes with a name, then the bot will show a list and ask you which you want.
+        </p>
+        <p>
+          Don't know the exact emote yet? Why not search for it? <code>!alias search happy</code> shows you all emotes
+          the bot can use with the word 'happy' in their name. You can select from these to use them in any server you
+          share with the bot.
+        </p>
+      </div>
       <Divider/>
 
       <h2>For server admins:</h2>
-      <h3>Auditing messages:</h3>
-      <p>
-        NQN reposts messages on behalf of users, using their avatars and usernames. This can cause issues with
-        users changing their nicknames and avatars to pretend to be another user using the bot.
-        To remedy this, NQN allows members with the 'View Audit Logs' permission to run <code>!audit</code>.
-        This command allows you to identify who posted a message, including their current username#discriminator
-        as well as their Discord ID.
-      </p>
-      <ul>
-        <li><code>!audit guild</code> returns all reposted messages</li>
-        <li><code>!audit #channel</code> returns all reposted messages in #channel</li>
-        <li><code>!audit @member</code> returns all reposted messages by @member</li>
-        <li><code>!audit #channel @member</code> returns all reposted messages by @member in #channel (Note
-          that <code>!audit @member #channel</code> does not work)
-        </li>
-      </ul>
-      <p>
-        Also consider using the message reply functionality across channels to help discuss certain messages to
-        keep a link to context before deleting them.
-      </p>
+      <div>
+        <h3>Auditing messages:</h3>
+        <p>
+          NQN reposts messages on behalf of users, using their avatars and usernames. This can cause issues with
+          users changing their nicknames and avatars to pretend to be another user using the bot.
+          To remedy this, NQN allows members with the 'View Audit Logs' permission to run <code>!audit</code>.
+          This command allows you to identify who posted a message, including their current username#discriminator
+          as well as their Discord ID.
+        </p>
+        <ul>
+          <li><code>!audit guild</code> returns all reposted messages</li>
+          <li><code>!audit #channel</code> returns all reposted messages in #channel</li>
+          <li><code>!audit @member</code> returns all reposted messages by @member</li>
+          <li><code>!audit #channel @member</code> returns all reposted messages by @member in #channel (Note
+            that <code>!audit @member #channel</code> does not work)
+          </li>
+        </ul>
+        <p>
+          Also consider using the message reply functionality across channels to help discuss certain messages to
+          keep a link to context before deleting them.
+        </p>
 
-      <h3>Emote Servers</h3>
-      <p>
-        NQN supports the creation of Emote Servers. Using <code>!search_all</code>, you can look through every
-        single emote that the bot has ever seen, and add it directly to your server, as long as you and the bot have
-        'manage emotes' permissions. Note that
-        the bot does not ask for this permission by default, so it will have to be added manually.
-        <code>!search_all</code> supports the same search syntax as <code>!alias search</code>, except it picks up more
-        results.
-      </p>
+        <h3>Emote Servers</h3>
+        <p>
+          NQN supports the creation of Emote Servers. Using <code>!search_all</code>, you can look through every
+          single emote that the bot has ever seen, and add it directly to your server, as long as you and the bot have
+          'Manage Emotes' permissions.
+          <code>!search_all</code> supports the same search syntax as <code>!alias search</code>, except it picks up more
+          results.
+        </p>
 
-      <h3>NQN's command prefix:</h3>
-      <p>If the default prefix NQN uses (<code>!</code>) is not right for your server, someone with 'Manage
-        Server' permissions can change it.
-      </p>
-      <p>
-        <code>!server prefix @Not Quite Nitro &gt;</code> will change the prefix NQN listens on
-        to <code>&gt;</code>. Note that you need to ping the bot to change the
-        prefix to avoid conflicts with other bots with the same change prefix command. NQN allows prefixes that
-        are more than one character long, and if the prefix given ends with a letter, a space is appended to it.
-        So if the prefix were <code>nqn</code>, you would run commands like <code>nqn help</code>.
-      </p>
+        <h3>NQN's command prefix:</h3>
+        <p>If the default prefix NQN uses (<code>!</code>) is not right for your server, someone with 'Manage
+          Server' permissions can change it.
+        </p>
+        <p>
+          <code>!server prefix @Not Quite Nitro &gt;</code> will change the prefix NQN listens on
+          to <code>&gt;</code>. Note that you need to ping the bot to change the
+          prefix to avoid conflicts with other bots with the same change prefix command. NQN allows prefixes that
+          are more than one character long, and if the prefix given ends with a letter, a space is appended to it.
+          So if the prefix were <code>nqn</code>, you would run commands like <code>nqn help</code>.
+        </p>
 
-      <h3>Server wide emotes:</h3>
-      <p>
-        If you would like everyone in your server to have access to a particular emote, you can use <code>!server
-        alias &lt;emote_name&gt; &lt;emote_id&gt;</code>,
-        much like the <code>!alias</code> command. In fact, every alias command can be prepended
-        with <code>server</code> to add the alias to your entire server.
-      </p>
-      <p>
-        Note that by default, each server gets 10 additional emotes, but you can get more by voting up the bot on
-        this site via the link
-        sent when adding a server wide alias. Anyone in your server can do this.
-      </p>
+        <h3>Server wide emotes:</h3>
+        <p>
+          If you would like everyone in your server to have access to a particular emote, you can use <code>!server
+          alias &lt;emote_name&gt; &lt;emote_id&gt;</code>.
+        </p>
+        <p>
+          Note that by default, each server gets 10 additional emotes, but you can get more by voting up the bot on
+          this site via the link sent when adding a server wide alias. Anyone in your server can do this.
+        </p>
 
-      <h4>The Boost channel:</h4>
-      <p>
-        You can encourage your users to get your server more votes by adding a Boost channel via NQN. This posts
-        whenever someone votes for
-        your server via DBL. To add a bit of friendly inter-server competition, it also shows your members how
-        many other servers have more
-        server wide emote slots than yours, creating a team effort to get your one up the ranks.
-      </p>
-      <ul>
-        <li><code>!server set_boost_channel #channel</code> sets the Boost channel to #channel</li>
-        <li><code>!server set_boost_channel</code> unsets the Boost channel in case you don't want messages posted
-          anymore
-        </li>
-        <li><code>!rank</code> shows you how many servers have more server wide emote slots than yours</li>
-      </ul>
+        <h4>The Boost channel:</h4>
+        <p>
+          You can encourage your users to get your server more votes by adding a Boost channel via NQN. This posts
+          whenever someone votes for
+          your server via DBL. To add a bit of friendly inter-server competition, it also shows your members how
+          many other servers have more
+          server wide emote slots than yours, creating a team effort to get your one up the ranks.
+        </p>
+        <ul>
+          <li><code>!server set_boost_channel #channel</code> sets the Boost channel to #channel</li>
+          <li><code>!server set_boost_channel</code> unsets the Boost channel in case you don't want messages posted
+            anymore
+          </li>
+          <li><code>!rank</code> shows you the voting leaderboard with your server listed if it's in the top 10.</li>
+        </ul>
 
-      <h3>Permissions:</h3>
-      <p>NQN requires the 'Manage Webhooks' server permission to correctly function; reposting messages will not
-        work without this.
-      </p>
-      <ul>
-        <li>To disable commands from working in a specific channel, deny NQN 'Send Message' permissions there via
-          user permissions.
-        </li>
-        <li>To disable reposting messages in a specific channel, deny NQN 'Manage Webhook' permissions there via
-          user permissions.
-        </li>
-        <li>To disable all interactions in a specific channel, deny NQN 'Read Message' permissions there via user
-          permissions.
-        </li>
-      </ul>
+        <h3>Permissions:</h3>
+        <p>NQN requires the 'Manage Webhooks' server permission to correctly function; reposting messages will not
+          work without this.
+        </p>
+        <ul>
+          <li>To disable commands from working in a specific channel, deny NQN 'Send Message' permissions there via
+            user permissions.
+          </li>
+          <li>To disable reposting messages in a specific channel, deny NQN 'Manage Webhook' permissions there via
+            user permissions.
+          </li>
+          <li>To disable all interactions in a specific channel, deny NQN 'Read Message' permissions there via user
+            permissions.
+          </li>
+        </ul>
 
-      <h3>Disabling Features</h3>
-      <p>
-        The following features can be disabled per guild:
-      </p>
-      <ul>
-        <li>Emotes everywhere</li>
-        <li>Stickers</li>
-        <li>Message replies</li>
-      </ul>
+        <h3>Disabling Features</h3>
+        <p>
+          The following features can be disabled per guild:
+        </p>
+        <ul>
+          <li>Emotes everywhere</li>
+          <li>Stickers</li>
+          <li>Message replies</li>
+        </ul>
 
-      <h3>Information gathering:</h3>
-      <p>
-        NQN stores reposted messages such that users can delete them and for the audit log. Every emote in your
-        server is visible by anybody using the bot and is searchable, though unlinkable to your server.
-        When NQN is invited to your server, it will crawl through every message viewable and add new emotes to
-        its database. It does not save any of the message content when doing this.
-        On occasion, certain statistics about how the bot is used may be gathered to inform choices as to how to
-        improve the bot further but will never include generic messages sent by your users.
-      </p>
+        <h3>Information gathering:</h3>
+        <p>
+          NQN stores reposted messages such that users can delete them and for the audit log. Every emote in your
+          server is visible by anybody using the bot and is searchable, though unlinkable to your server.
+          When NQN is invited to your server, it will crawl through every message viewable and add new emotes to
+          its database. It does not save any of the message content when doing this.
+          On occasion, certain statistics about how the bot is used may be gathered to inform choices as to how to
+          improve the bot further but will never include generic messages sent by your users.
+        </p>
+      </div>
       <Divider/>
 
       <h2>Things NQN doesn't do</h2>
