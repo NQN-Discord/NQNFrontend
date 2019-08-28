@@ -299,7 +299,7 @@ export function HelpText({dbl}) {
 
 export function HelpTextPage() {
   return (
-    <Container fluid>
+    <Container text>
       <HelpText dbl={true}/>
     </Container>
   )

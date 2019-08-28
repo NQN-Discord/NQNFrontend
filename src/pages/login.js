@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {discordURL} from "../config";
 import {parse} from "query-string";
 import {exchangeCode} from "../actions/auth";
+import FailedInvite from "./failed_invite";
 import connect from "react-redux/es/connect/connect";
 
 class LoginPage extends Component {
@@ -10,10 +11,13 @@ class LoginPage extends Component {
     const query = parse(this.props.location.search);
     const code = query.code;
     const state = query.state;
+    const error = query.error;
     const invitedBot = query.guild_id !== undefined;
     const redirect = localStorage.getItem("redirect");
 
-    console.log({code, state, invitedBot, redirect, token: this.props.refreshToken})
+    if (error) {
+      return
+    }
 
     if (invitedBot && !redirect.startsWith("/joined_server")) {
       localStorage.setItem("redirect", `/joined_server?guild_id=${query.guild_id}`);
@@ -42,6 +46,11 @@ class LoginPage extends Component {
   }
 
   render() {
+    const query = parse(this.props.location.search);
+    const error = query.error;
+    if (error) {
+      return <FailedInvite/>
+    }
     return (
       <h4>Redirecting</h4>
     );
