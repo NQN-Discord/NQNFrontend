@@ -75,8 +75,8 @@ export function HelpText({dbl}) {
         </p>
         <p>
           To import a sticker pack from telegram, run <code>!sticker telegram URL</code>, where URL is the url of the
-          pack. NQN supports <a href="#">tg://addstickers?set=</a> and <a href="#">https://t.me/addstickers/</a>
-          style urls, as well as plain pack names. NQN will then show them all with their names.
+          pack. NQN supports <a href="#">tg://addstickers?set=</a> and <a href="#">https://t.me/addstickers/</a> style
+          urls, as well as plain pack names. NQN will then show them all with their names.
         </p>
         <p>
           To create a sticker from a file, use <code>!sticker create</code> and upload an image to be your new sticker.
