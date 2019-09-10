@@ -304,9 +304,5 @@ export function HelpText({dbl}) {
 }
 
 export function HelpTextPage() {
-  return (
-    <Container text>
-      <HelpText dbl={true}/>
-    </Container>
-  )
+  return <HelpText dbl={true}/>;
 }
