@@ -64,7 +64,8 @@ export function HelpText({dbl}) {
       <h2>Stickers</h2>
       <div>
         <p>
-          Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app.
+          Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app and
+          even import them directly from Telegram.
         </p>
         <p>
           Stickers allow anyone to post full size images in the middle of messages. Once you've created the sticker, you
@@ -73,7 +74,12 @@ export function HelpText({dbl}) {
           sticker. Each message can contain up to 10 stickers.
         </p>
         <p>
-          To create a sticker, use <code>!sticker create</code> and upload an image to be your new sticker.
+          To import a sticker pack from telegram, run <code>!sticker telegram URL</code>, where URL is the url of the
+          pack. NQN supports <a href="#">tg://addstickers?set=</a> and <a href="#">https://t.me/addstickers/</a> style
+          urls, as well as plain pack names. NQN will then show them all with their names.
+        </p>
+        <p>
+          To create a sticker from a file, use <code>!sticker create</code> and upload an image to be your new sticker.
           You can optionally give an alias like <code>!sticker create BluePat.gif</code>.
         </p>
         <p>
