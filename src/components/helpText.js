@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Divider, Header, Image} from "semantic-ui-react";
+import {Divider, Header, Image} from "semantic-ui-react";
 
 import "../components/helpText.css";
 
@@ -75,7 +75,7 @@ export function HelpText({dbl}) {
         </p>
         <p>
           To import a sticker pack from telegram, run <code>!sticker telegram URL</code>, where URL is the url of the
-          pack. NQN supports <a href="#">tg://addstickers?set=</a> and <a href="#">https://t.me/addstickers/</a> style
+          pack. NQN supports tg://addstickers?set= and https://t.me/addstickers/ style
           urls, as well as plain pack names. NQN will then show them all with their names.
         </p>
         <p>

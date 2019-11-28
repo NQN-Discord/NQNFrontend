@@ -16,6 +16,7 @@ import LoginPage from "./pages/login";
 import JoinedPage from "./pages/joined_server";
 import Header from "./header";
 import {HelpTextPage} from "./components/helpText";
+import UserFeedback from "./pages/feedback";
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -45,6 +46,9 @@ class App extends Component {
   render() {
     if (window.location.pathname === "/help") {
       return <HelpTextPage/>
+    }
+    if (window.location.pathname === "/feedback") {
+      return <UserFeedback/>
     }
     if (this.props.loggedIn === null) {
       return <div>
