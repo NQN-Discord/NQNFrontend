@@ -40,3 +40,11 @@ export function fetchGuildLogs(guildID, page=0, author=0, channel=0) {
     });
   };
 }
+
+export function postGuildFeedback(guildID, reason, details, callback) {
+  return function(dispatch) {
+    axios.post(`${api_url}/guilds/${guildID}/feedback`, {reason, details}).then(response => {
+      callback();
+    });
+  };
+}
