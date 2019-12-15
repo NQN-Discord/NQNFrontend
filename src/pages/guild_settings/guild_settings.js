@@ -9,7 +9,7 @@ import update from "immutability-helper";
 
 const announcementHelp = "Announcements about updates to the bot.";
 const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
-
+const auditHelp = "Whenever the bot reposts a message on behalf of someone";
 
 class GuildSettings extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class GuildSettings extends Component {
     this.state = {
       prefix: guild.prefix,
       boostChannel: guild.boost_channel,
+      auditChannel: guild.audit_channel,
       announcementChannel: guild.announcement_channel,
     };
   }
@@ -28,6 +29,7 @@ class GuildSettings extends Component {
       this.setState({
         prefix: guild.prefix,
         boostChannel: guild.boost_channel,
+        auditChannel: guild.audit_channel,
         announcementChannel: guild.announcement_channel,
       });
     }
@@ -70,7 +72,7 @@ class GuildSettings extends Component {
         }
         <Form
           onSubmit={() => {
-            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.announcementChannel, this.state.boostChannel);
+            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.announcementChannel, this.state.boostChannel, this.state.auditChannel);
           }}
         >
           <Form.Field inline>
@@ -82,6 +84,7 @@ class GuildSettings extends Component {
           </Form.Field>
           {this.renderDropdown("Announcement Channel", announcementHelp, "announcementChannel")}
           {this.renderDropdown("Boost Channel", boostHelp, "boostChannel")}
+          {this.renderDropdown("Audit Channel", auditHelp, "auditChannel")}
           <Divider/>
           <Button type='submit'>Save</Button>
         </Form>
@@ -98,7 +101,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postGuildSettings: (guildID, prefix, announcementChannel, boostChannel) => dispatch(postGuildSettings(guildID, prefix, announcementChannel, boostChannel))
+    postGuildSettings: (guildID, prefix, announcementChannel, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, prefix, announcementChannel, boostChannel, auditChannel))
   }
 };
 
