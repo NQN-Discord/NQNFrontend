@@ -22,12 +22,13 @@ function receiveGuildLogs(guild, logs) {
   }
 }
 
-export function postGuildSettings(guildID, prefix, announcementChannel, boostChannel) {
+export function postGuildSettings(guildID, prefix, announcementChannel, boostChannel, auditChannel) {
   return function(dispatch) {
     axios.put(`${api_url}/guilds/${guildID}/settings`, {
       prefix,
       announcement_channel: announcementChannel,
-      boost_channel: boostChannel
+      boost_channel: boostChannel,
+      audit_channel: auditChannel
     });
     dispatch(receiveGuildSettings(guildID, {prefix, announcementChannel, boostChannel}));
   };
