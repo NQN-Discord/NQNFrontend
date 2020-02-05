@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import EmotePreview from "./emotes/preview";
 import {postGuildEmotes} from "../../actions/guild"
+import {receiveGuildEmotes} from "../../actions/user"
 
 import {withRouter} from "react-router-dom";
 import EmoteAliases from "../../components/emote_aliases";
@@ -48,8 +49,15 @@ class EmoteSettings extends Component {
   }
 
   save() {
-    this.props.postGuildEmotes(this.props.guildID, this.state.emotes, () => {
-      console.log("Saved");
+    this.props.postGuildEmotes(this.props.guildID, this.state.emotes, (ids) => {
+      const emotes = this.state.emotes.map(emote => {
+        if (Object.keys(ids).includes(emote.id)) {
+          emote.id = ids[emote.id];
+        }
+        return emote;
+      });
+      console.log(emotes);
+      this.props.receiveGuildEmotes(this.props.guildID, emotes);
     });
   }
 
@@ -147,7 +155,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postGuildEmotes: (guildID, emotes, cb) => dispatch(postGuildEmotes(guildID, emotes, cb))
+    postGuildEmotes: (guildID, emotes, cb) => dispatch(postGuildEmotes(guildID, emotes, cb)),
+    receiveGuildEmotes: (guildID, emotes) => dispatch(receiveGuildEmotes(guildID, emotes))
   }
 };
 
