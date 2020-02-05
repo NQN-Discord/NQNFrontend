@@ -2,6 +2,7 @@ import axios from 'axios';
 import {api_url} from '../config.js';
 
 export const RECEIVE_GUILDS = "RECEIVE_GUILDS";
+export const RECEIVE_GUILD_EMOTES = "RECEIVE_GUILD_EMOTES";
 export const RECEIVE_EMOTES = "RECEIVE_EMOTES";
 export const ADD_ALIASES = "ADD_ALIASES";
 export const DEL_ALIASES = "DEL_ALIASES";
@@ -23,6 +24,14 @@ export function receiveEmotes(emotes) {
     guild_emotes: emotes.guild_emotes,
     guild_aliases: emotes.guild_aliases,
     user_aliases: emotes.aliases
+  }
+}
+
+export function receiveGuildEmotes(guild, emotes) {
+  return {
+    type: RECEIVE_GUILD_EMOTES,
+    guild,
+    emotes,
   }
 }
 
