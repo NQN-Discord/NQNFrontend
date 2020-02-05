@@ -10,7 +10,7 @@ class ChannelSelector extends Component {
     const guild = this.props.guilds[this.props.guildID];
     const channels = guild.channels;
     const perms = ["manage_guild", "manage_emojis", "view_audit_log"];
-    const showGear = perms.some(perm => guild.permissions.includes(perm));
+    const showGear = perms.some(perm => guild.user_permissions.includes(perm));
 
     return (
       <Grid.Column className="channel_list">

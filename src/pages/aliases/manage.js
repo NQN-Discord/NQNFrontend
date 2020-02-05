@@ -50,7 +50,15 @@ class ManagePage extends Component {
         <Header as="h4">
           You have {noAliases} alias{noAliases !== 1? 'es': ''}
         </Header>
-        <EmoteAliases emotes={renderedEmotes} onToggle={(id, alias) => this.handleToggle(id, alias)}/>
+        <EmoteAliases
+          emotes={renderedEmotes}
+          onToggle={(id, alias) => this.handleToggle(id, alias)}
+          aliases={this.props.aliases}
+          setAliases={this.props.setAliases}
+          changeAliases={this.props.changeAliases}
+          unsetAliases={this.props.unsetAliases}
+          showButtons={true}
+        />
       </div>
     );
   }

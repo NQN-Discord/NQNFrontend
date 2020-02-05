@@ -20,7 +20,8 @@ export function receiveEmotes(emotes) {
     type: RECEIVE_EMOTES,
     packs: emotes.packs,
     user_packs: emotes.user_packs,
-    user_emotes: emotes.user_emotes,
+    guild_emotes: emotes.guild_emotes,
+    guild_aliases: emotes.guild_aliases,
     user_aliases: emotes.aliases
   }
 }
@@ -57,7 +58,7 @@ export function changeAliases(aliases) {
 
 export function unsetAliases(aliases) {
   return function(dispatch) {
-    axios.delete(`${api_url}/emotes`, {data: {emotes: aliases}});
+    axios.delete(`${api_url}/emotes`, {data: {emotes: aliases.map(alias => alias.name)}});
     dispatch(delAliases(aliases));
   };
 }

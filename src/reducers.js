@@ -30,7 +30,8 @@ function user(state = {
   guilds: {},
   packs: {},
   user_packs: [],
-  user_emotes: {},
+  guild_emotes: {},
+  guild_aliases: {},
   user_aliases: []
 }, action) {
   switch (action.type) {
@@ -56,7 +57,8 @@ function user(state = {
         {$merge: {
             packs: action.packs,
             user_packs: action.user_packs,
-            user_emotes: action.user_emotes,
+            guild_emotes: action.guild_emotes,
+            guild_aliases: action.guild_aliases,
             user_aliases: action.user_aliases
           }}
       );
