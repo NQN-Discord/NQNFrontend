@@ -175,14 +175,19 @@ const mapStateToProps = (state) => {
   return {
     packs: state.user.packs,
     guilds: state.user.guilds,
-    user_emotes: state.user.user_emotes,
+    guild_emotes: state.user.guild_emotes,
+    guild_aliases: state.user.guild_aliases,
     user_aliases: state.user.user_aliases,
     all_emotes: state.user.user_aliases.concat(
       Object.entries(state.user.packs).filter(([pack]) => state.user.user_packs.includes(pack)).reduce((rtn, [pack, value]) => {
         return rtn.concat(value);
       }, [])
     ).concat(
-      Object.values(state.user.user_emotes).reduce((rtn, value) => {
+      Object.values(state.user.guild_emotes).reduce((rtn, value) => {
+        return rtn.concat(value);
+      }, [])
+    ).concat(
+      Object.values(state.user.guild_aliases).reduce((rtn, value) => {
         return rtn.concat(value);
       }, [])
     ).filter(emote => {

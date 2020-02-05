@@ -49,3 +49,11 @@ export function postGuildFeedback(guildID, reason, details, callback) {
     });
   };
 }
+
+export function postGuildEmotes(guildID, emotes, callback) {
+  return function(dispatch) {
+    axios.put(`${api_url}/guilds/${guildID}/emotes`, {emotes}).then(response => {
+      callback();
+    });
+  };
+}

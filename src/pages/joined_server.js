@@ -15,7 +15,6 @@ class JoinedPage extends Component {
       return <div/>
     }
     const guild = this.props.guilds[query.guild_id];
-    console.log(guild)
     if (!guild) {
       return <div/>
     }

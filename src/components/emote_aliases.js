@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 
 import {Button, Popup, List, Input} from 'semantic-ui-react';
 
-import {setAliases, unsetAliases, changeAliases} from "../actions/user";
 import {Emote} from "./emote";
 
 
@@ -22,7 +20,7 @@ class EmoteAliases extends Component {
       this.props.onToggle(emote.id, alias);
     }
     if (alias) {
-      this.props.unsetAliases([alias.name]);
+      this.props.unsetAliases([alias]);
     }
     else {
       this.props.setAliases([emote]);
@@ -48,7 +46,7 @@ class EmoteAliases extends Component {
 
   renderSearchResult(emote) {
     const emoteObj = new Emote(emote);
-    const alias = this.props.aliases.find(alias => alias.id === emote.id);
+    const alias = this.props.showButtons && this.props.aliases.find(alias => alias.id === emote.id);
     const getName = () => {
       if (typeof this.state.renameBox[emote.id] === "undefined") {
         return alias.name;
@@ -63,43 +61,48 @@ class EmoteAliases extends Component {
         <List.Content verticalAlign='middle'>
           {(alias || emote).name}
         </List.Content>
-        <List.Content floated='right'>
-          {alias &&
-          <Popup
-            open={this.state.openPopup === emote.id}
-            onOpen={() => this.setState(update(this.state, {$merge: {openPopup: emote.id}}))}
-            onClose={() => this.setState(update(this.state, {$merge: {openPopup: null}}))}
-            trigger={
-              <Button icon="edit"/>
+
+        {this.props.showButtons &&
+          <List.Content floated='right'>
+            {alias &&
+            <Popup
+              open={this.state.openPopup === emote.id}
+              onOpen={() => this.setState(update(this.state, {$merge: {openPopup: emote.id}}))}
+              onClose={() => this.setState(update(this.state, {$merge: {openPopup: null}}))}
+              trigger={
+                <Button icon="edit"/>
+              }
+              content={
+                <Input
+                  labelPosition='left'
+                  label="Rename"
+                  action={{
+                    color: 'blue',
+                    icon: 'save',
+                    onClick: () => {
+                      this.saveAlias(emote, getName())
+                    }
+                  }}
+                  value={getName()}
+                  onChange={(e) => this.setState(update(this.state, {renameBox: {$merge: {[emote.id]: e.target.value}}}))}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      this.saveAlias(emote, getName())
+                    }
+                  }}
+                />
+              }
+              on="click"
+              position="left center"
+            />
             }
-            content={
-              <Input
-                labelPosition='left'
-                label="Rename"
-                action={{
-                  color: 'blue',
-                  icon: 'save',
-                  onClick: () => {this.saveAlias(emote, getName())}
-                }}
-                value={getName()}
-                onChange={(e) => this.setState(update(this.state, {renameBox: {$merge: {[emote.id]: e.target.value}}}))}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    this.saveAlias(emote, getName())
-                  }
-                }}
-              />
-            }
-            on="click"
-            position="left center"
-          />
-          }
-          <Button
-            icon={alias? 'minus': 'add'}
-            negative={Boolean(alias)}
-            onClick={() => this.toggleAlias(emote)}
-          />
-        </List.Content>
+            <Button
+              icon={alias ? 'minus' : 'add'}
+              negative={Boolean(alias)}
+              onClick={() => this.toggleAlias(emote)}
+            />
+          </List.Content>
+        }
       </List.Item>
     );
   }
@@ -110,27 +113,11 @@ class EmoteAliases extends Component {
     }
     return (
       <List celled>
+        {this.props.header}
         {this.props.emotes.map(emote => this.renderSearchResult(emote))}
       </List>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    aliases: state.user.user_aliases
-  }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setAliases: (aliases) => dispatch(setAliases(aliases)),
-    changeAliases: (aliases) => dispatch(changeAliases(aliases)),
-    unsetAliases: (emotes) => dispatch(unsetAliases(emotes))
-  }
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EmoteAliases);
+export default EmoteAliases;
