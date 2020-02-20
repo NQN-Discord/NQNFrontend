@@ -19,6 +19,7 @@ import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 
 import 'semantic-ui-css/semantic.min.css';
+import HomePage from "./pages/home";
 
 class App extends Component {
   componentDidMount() {
@@ -44,12 +45,6 @@ class App extends Component {
   }
 
   render() {
-    if (window.location.pathname === "/help") {
-      return <HelpTextPage/>
-    }
-    if (window.location.pathname === "/feedback") {
-      return <UserFeedback/>
-    }
     if (this.props.loggedIn === null) {
       return <div>
         Loading...
@@ -60,6 +55,9 @@ class App extends Component {
         <div>
           {!this.props.loggedIn &&
             <Switch>
+              <Route exact path="/" component={HomePage}/>
+              <Route exact path="/help" component={HelpTextPage}/>
+              <Route exact path="/feedback" component={UserFeedback}/>
               <LoginPage/>
             </Switch>
           }

@@ -35,6 +35,6 @@ export function exchangeCode(code, state) {
 export function logout() {
   return function() {
     localStorage.setItem("refreshToken", "");
-    window.location.replace(discordNoLoginURL);
+    window.location.replace("/");
   }
 }
