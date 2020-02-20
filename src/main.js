@@ -74,6 +74,8 @@ class App extends Component {
                 <Route exact path="/alias/:id" component={AliasRootPage}/>
                 <Route exact path="/joined_server" component={JoinedPage}/>
                 <Route exact path="/login" component={LoginPage}/>
+                <Route exact path="/help" component={HelpTextPage}/>
+                <Route exact path="/feedback" component={UserFeedback}/>
               </Switch>
             </div>
           }

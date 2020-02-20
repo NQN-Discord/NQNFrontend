@@ -42,7 +42,7 @@ class UserFeedback extends Component {
         </Header>
         Thanks for deciding to help out by sending me some feedback.
         <br/>
-        The only thing we're logging is the server you came from, not who you are on Discord.
+        The only extra thing we're logging is the server you came from, not who you are on Discord.
         <Divider/>
 
 
