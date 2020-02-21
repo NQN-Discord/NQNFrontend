@@ -3,6 +3,7 @@ import { Container, Header, Divider, Form, Radio, TextArea, Button } from "seman
 import update from 'immutability-helper';
 import {postGuildFeedback} from '../actions/guild';
 import connect from "react-redux/es/connect/connect";
+import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
 
 
 class UserFeedback extends Component {
@@ -43,6 +44,12 @@ class UserFeedback extends Component {
         Thanks for deciding to help out by sending me some feedback.
         <br/>
         The only extra thing we're logging is the server you came from, not who you are on Discord.
+        <br/>
+        If you want, you can <a
+          href="https://discord.gg/UMVpPN7"
+          target="_blank"
+          rel="noopener"
+        >join our support server</a> if there's anything we can help you with.
         <Divider/>
 
 
