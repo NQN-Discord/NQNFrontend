@@ -3,7 +3,48 @@ import {Divider, Header, Image} from "semantic-ui-react";
 
 import "../components/helpText.css";
 
-export function HelpText({dbl}) {
+
+// https://stackoverflow.com/a/12646864/3398583
+// Laurens Holst
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+
+export function HelpText({isBotList}) {
+  const botLists = [
+    <Image
+      src="https://discordbots.org/api/widget/559426966151757824.svg"
+      floated='right'
+      alt=""
+      as='a'
+      href="https://discordbots.org/bot/559426966151757824"
+      target='_blank'
+      rel="nofollow noreferrer"
+    />,
+    <Image
+      src="https://discord.boats/api/widget/559426966151757824"
+      floated='right'
+      alt=""
+      as='a'
+      href="https://discord.boats/bot/559426966151757824"
+      target='_blank'
+      rel="nofollow noreferrer"
+    />,
+    <Image
+      src="https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark"
+      floated='right'
+      alt=""
+      as='a'
+      href="https://botsfordiscord.com/bot/559426966151757824"
+      target='_blank'
+      rel="nofollow noreferrer"
+    />
+  ];
+  shuffleArray(botLists);
   return (
     <div>
       <p>
@@ -23,24 +64,14 @@ export function HelpText({dbl}) {
       <p>
         If you ever send something not quite right, you can react to the reposted message with the <span role="img" aria-label=":x:">❌</span> emote to delete it.
       </p>
-      { dbl && (
+      { isBotList && (
         <Image
           src="/try_it_out.gif"
           alt="Example usage image"
           floated='right'
         />
       )}
-      { !dbl && (
-        <Image
-          src="https://discordbots.org/api/widget/559426966151757824.svg"
-          floated='right'
-          alt=""
-          as='a'
-          href="https://discordbots.org/bot/559426966151757824"
-          target='_blank'
-          rel="nofollow noreferrer"
-        />
-      )}
+      { !isBotList && botLists[0]}
       <h3>Features</h3>
       <p>
         NQN has a lot of features, and it would be a shame to miss out on them:
@@ -67,6 +98,7 @@ export function HelpText({dbl}) {
           Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app and
           even import them directly from Telegram.
         </p>
+        { !isBotList && botLists[1]}
         <p>
           Stickers allow anyone to post full size images in the middle of messages. Once you've created the sticker, you
           can use it like you would an emote, except stickers have a file extension at the end.{" "}
@@ -82,6 +114,7 @@ export function HelpText({dbl}) {
           To create a sticker from a file, use <code>!sticker create</code> and upload an image to be your new sticker.
           You can optionally give an alias like <code>!sticker create BluePat.gif</code>.
         </p>
+        { !isBotList && botLists[2]}
         <p>
           If your sticker already exists as an emote, you can import from it.
           Either from an emote directly, with an optional alias. <code>!sticker import :blue_smirk: smirk.png</code>.

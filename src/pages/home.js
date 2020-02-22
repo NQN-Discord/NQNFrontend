@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import { Header, Menu, Container } from 'semantic-ui-react'
+import { Header, Menu, Container, Divider } from 'semantic-ui-react'
 import {HelpText} from "../components/helpText";
 import connect from "react-redux/es/connect/connect";
 import {inviteURL} from "../config";
@@ -32,6 +32,7 @@ class HomePage extends Component {
           </Header.Content>
         </Header>
         <HelpText dbl={false}/>
+        <Divider/>
       </div>
     );
     if (this.props.loggedIn) {
