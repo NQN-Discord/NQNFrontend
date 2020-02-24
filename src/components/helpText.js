@@ -100,6 +100,13 @@ export function HelpText({isBotList}) {
         />
       )}
 
+      <h2>Message Replies</h2>
+      <p>
+        Ever wanted to reply to a message way up in the conversation, but there would be no context? NQN allows you
+        to reply to messages sent long ago. Simply copy the message link via Discord (the Share button on mobile and
+        then to clipboard) and then paste it into your message, and it'll post the message you're replying to as well.
+      </p>
+
       <h2>Emote packs</h2>
       <div>
         <p>
@@ -122,13 +129,6 @@ export function HelpText({isBotList}) {
           Forgot which packs you're in? <code>!pack mine</code> tells you just in case.
         </p>
       </div>
-
-      <h2>Message Replies</h2>
-      <p>
-        Ever wanted to reply to a message way up in the conversation, but there would be no context? NQN allows you
-        to reply to messages sent long ago. Simply copy the message link via Discord (the Share button on mobile and
-        then to clipboard) and then paste it into your message, and it'll post the message you're replying to as well.
-      </p>
 
       <h2>Stickers</h2>
       { isBotList && (
