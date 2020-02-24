@@ -31,7 +31,7 @@ class HomePage extends Component {
             Welcome to Not Quite Nitro
           </Header.Content>
         </Header>
-        <HelpText dbl={false}/>
+        <HelpText isBotList={false}/>
         <Divider/>
       </div>
     );

@@ -92,7 +92,52 @@ export function HelpText({isBotList}) {
       </ul>
       <Divider/>
 
+      { isBotList && (
+        <Image
+          src="/replies.gif"
+          alt="Example replies image"
+          floated='right'
+        />
+      )}
+
+      <h2>Emote packs</h2>
+      <div>
+        <p>
+          Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
+          use without having to manually add every emote. It's also very easy to share and use emote packs.
+        </p>
+        <p>
+          To create an emote pack, simply upload your emotes to a server and use <code>!pack publish MySuperCoolEmotePackName</code> and
+          they'll be available for anyone to use. Once published, you can join a pack with <code>!pack join MySuperCoolEmotePackName</code>.
+        </p>
+        <p>
+          Feeling lazy? You can even use emote packs you're not in by typing <code>:MySuperCoolEmotePackName-EmoteName:</code> and
+          the bot will know what you meant.
+        </p>
+        <p>
+          Want to see what's out there? NQN provides easy to use emote pack search functionality. <code>!pack search Cool</code> or
+          even <code>!pack search</code> to find <em>everything</em>.
+        </p>
+        <p>
+          Forgot which packs you're in? <code>!pack mine</code> tells you just in case.
+        </p>
+      </div>
+
+      <h2>Message Replies</h2>
+      <p>
+        Ever wanted to reply to a message way up in the conversation, but there would be no context? NQN allows you
+        to reply to messages sent long ago. Simply copy the message link via Discord (the Share button on mobile and
+        then to clipboard) and then paste it into your message, and it'll post the message you're replying to as well.
+      </p>
+
       <h2>Stickers</h2>
+      { isBotList && (
+        <Image
+          src="/stickers.gif"
+          alt="Example stickers image"
+          floated='right'
+        />
+      )}
       <div>
         <p>
           Telegram has them, so why not Discord? NQN allows you to create and post stickers from inside the app and
@@ -133,36 +178,6 @@ export function HelpText({isBotList}) {
           To look through the list of them, use <code>!sticker search</code> with optional search terms.
         </p>
       </div>
-
-      <h2>Emote packs</h2>
-      <div>
-        <p>
-          Ever felt like Discord was lacking something? NQN allows you to create emote packs which other people can
-          use without having to manually add every emote. It's also very easy to share and use emote packs.
-        </p>
-        <p>
-          To create an emote pack, simply upload your emotes to a server and use <code>!pack publish MySuperCoolEmotePackName</code> and
-          they'll be available for anyone to use. Once published, you can join a pack with <code>!pack join MySuperCoolEmotePackName</code>.
-        </p>
-        <p>
-          Feeling lazy? You can even use emote packs you're not in by typing <code>:MySuperCoolEmotePackName-EmoteName:</code> and
-          the bot will know what you meant.
-        </p>
-        <p>
-          Want to see what's out there? NQN provides easy to use emote pack search functionality. <code>!pack search Cool</code> or
-          even <code>!pack search</code> to find <em>everything</em>.
-        </p>
-        <p>
-          Forgot which packs you're in? <code>!pack mine</code> tells you just in case.
-        </p>
-      </div>
-
-      <h2>Message Replies</h2>
-      <p>
-        Ever wanted to reply to a message way up in the conversation, but there would be no context? NQN allows you
-        to reply to messages sent long ago. Simply copy the message link via Discord (the Share button on mobile and
-        then to clipboard) and then paste it into your message, and it'll post the message you're replying to as well.
-      </p>
 
       <h2>Aliases</h2>
       <div>
@@ -337,5 +352,5 @@ export function HelpText({isBotList}) {
 }
 
 export function HelpTextPage() {
-  return <HelpText dbl={true}/>;
+  return <HelpText isBotList={true}/>;
 }
