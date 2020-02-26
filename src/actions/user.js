@@ -68,7 +68,7 @@ export function changeAliases(aliases) {
 export function unsetAliases(aliases) {
   return function(dispatch) {
     axios.delete(`${api_url}/emotes`, {data: {emotes: aliases.map(alias => alias.name)}});
-    dispatch(delAliases(aliases));
+    dispatch(delAliases(aliases.map(({name}) => name)));
   };
 }
 

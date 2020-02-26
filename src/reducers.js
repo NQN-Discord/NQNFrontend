@@ -46,6 +46,7 @@ function user(state = {
           }}
       );
     case DEL_ALIASES:
+      console.log(action);
       return update(state,
         {$merge: {
             user_aliases:
