@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {api_url, discordNoLoginURL} from '../config.js';
+import {api_url} from '../config.js';
 
 export const RECEIVE_REFRESH = "RECEIVE_REFRESH";
 
