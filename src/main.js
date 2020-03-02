@@ -6,6 +6,10 @@ import {
 } from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
+import Alert from 'react-s-alert';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 import {readStorageState, setRefreshToken} from "./actions/auth";
 import {fetchGuilds, fetchEmotes} from "./actions/user";
@@ -17,6 +21,7 @@ import JoinedPage from "./pages/joined_server";
 import Header from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
+import ReferencePage from "./pages/reference";
 
 import 'semantic-ui-css/semantic.min.css';
 import HomePage from "./pages/home";
@@ -53,6 +58,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <Alert stack={{limit: 3}}/>
           {!this.props.loggedIn &&
             <Switch>
               <Route exact path="/" component={HomePage}/>
@@ -76,6 +82,7 @@ class App extends Component {
                 <Route exact path="/login" component={LoginPage}/>
                 <Route exact path="/help" component={HelpTextPage}/>
                 <Route exact path="/feedback" component={UserFeedback}/>
+                <Route exact path="/reference" component={ReferencePage}/>
               </Switch>
             </div>
           }
