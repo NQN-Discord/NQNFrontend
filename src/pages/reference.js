@@ -55,10 +55,10 @@ class ReferencePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    packs: Object.values(state.user.packs).flat(),
+    packs: Object.entries(state.user.packs).filter(([pack, value]) => state.user.user_packs.includes(pack)).map(([pack, value]) => value).flat(),
     guild_emotes: Object.values(state.user.guild_emotes).flat(),
     guild_aliases: Object.values(state.user.guild_aliases).flat(),
-    user_aliases: state.user.user_aliases
+    user_aliases: state.user.user_aliases,
   }
 };
 
