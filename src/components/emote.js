@@ -10,7 +10,7 @@ export class Emote {
     this.animated = emoteObj.animated;
   }
 
-  renderImg(onClick, id) {
+  renderImg(onClick, id, kwargs={verticalAlign: 'middle'}) {
     if (typeof(onClick) === "undefined") {
       onClick = () => {};
     }
@@ -21,8 +21,8 @@ export class Emote {
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       size="mini"
-      verticalAlign='middle'
       onClick={() => onClick()}
+      {...kwargs}
     />;
   }
 
