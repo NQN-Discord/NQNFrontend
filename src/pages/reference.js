@@ -36,7 +36,7 @@ class ReferencePage extends Component {
     return (
       <Container>
         <p>
-          Clicking on an emote will copy it to your clipboard for use on Discord!
+          Clicking on an emote will copy it to your clipboard to use on Discord!
         </p>
         <Accordion
           defaultActiveIndex={[0, 1, 2]}
