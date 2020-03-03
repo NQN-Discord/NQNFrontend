@@ -19,6 +19,7 @@ export function HelpText({isBotList}) {
     <Image
       src="https://discordbots.org/api/widget/559426966151757824.svg"
       floated='right'
+      style={{maxWidth: "300px"}}
       alt=""
       as='a'
       href="https://discordbots.org/bot/559426966151757824"
@@ -28,6 +29,7 @@ export function HelpText({isBotList}) {
     <Image
       src="https://discord.boats/api/widget/559426966151757824"
       floated='right'
+      style={{maxWidth: "300px"}}
       alt=""
       as='a'
       href="https://discord.boats/bot/559426966151757824"
@@ -37,12 +39,23 @@ export function HelpText({isBotList}) {
     <Image
       src="https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark"
       floated='right'
+      style={{maxWidth: "300px"}}
       alt=""
       as='a'
       href="https://botsfordiscord.com/bot/559426966151757824"
       target='_blank'
       rel="nofollow noreferrer"
-    />
+    />,
+    <Image
+      src="https://discordbotlist.com/bots/559426966151757824/widget"
+      floated='right'
+      style={{maxWidth: "300px"}}
+      alt=""
+      as='a'
+      href="https://discordbotlist.com/bots/559426966151757824/"
+      target='_blank'
+      rel="nofollow noreferrer"
+    />,
   ];
   shuffleArray(botLists);
   return (
@@ -181,6 +194,7 @@ export function HelpText({isBotList}) {
 
       <h2>Aliases</h2>
       <div>
+        { !isBotList && botLists[3]}
         <p>
           Want control over what emotes you can use? <code>!alias</code> is for you. <code>!alias create</code> allows
           you to use an emote the bot has but you don't.
