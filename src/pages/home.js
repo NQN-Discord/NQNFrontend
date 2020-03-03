@@ -35,9 +35,6 @@ class HomePage extends Component {
         <Divider/>
       </div>
     );
-    if (this.props.loggedIn) {
-      return rtn;
-    }
     return (
       <Container>
         {rtn}
