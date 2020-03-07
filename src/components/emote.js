@@ -17,7 +17,7 @@ export class Emote {
     return <Image
       key={id || this.id}
       className="emote"
-      src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`}
+      src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}?size=32`}
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       size="mini"
