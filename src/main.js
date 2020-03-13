@@ -22,6 +22,7 @@ import Header from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import ReferencePage from "./pages/reference";
+import PackPage from "./pages/packs";
 
 import 'semantic-ui-css/semantic.min.css';
 import HomePage from "./pages/home";
@@ -83,6 +84,7 @@ class App extends Component {
                 <Route exact path="/help" component={HelpTextPage}/>
                 <Route exact path="/feedback" component={UserFeedback}/>
                 <Route exact path="/reference" component={ReferencePage}/>
+                <Route exact path="/packs" component={PackPage}/>
               </Switch>
             </div>
           }
