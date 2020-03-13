@@ -6,6 +6,8 @@ export const RECEIVE_GUILD_EMOTES = "RECEIVE_GUILD_EMOTES";
 export const RECEIVE_EMOTES = "RECEIVE_EMOTES";
 export const ADD_ALIASES = "ADD_ALIASES";
 export const DEL_ALIASES = "DEL_ALIASES";
+export const LEAVE_GROUPS = "LEAVE_GROUPS";
+export const JOIN_GROUPS = "JOIN_GROUPS";
 
 
 export function receiveGuilds(guild_names) {
@@ -69,6 +71,26 @@ export function unsetAliases(aliases) {
   return function(dispatch) {
     axios.delete(`${api_url}/emotes`, {data: {emotes: aliases.map(alias => alias.name)}});
     dispatch(delAliases(aliases.map(({name}) => name)));
+  };
+}
+
+export function leaveGroups(groups) {
+  return function(dispatch) {
+    axios.delete(`${api_url}/groups`, {data: {groups}});
+    dispatch({
+      type: LEAVE_GROUPS,
+      groups
+    });
+  };
+}
+
+export function joinGroups(groups) {
+  return function(dispatch) {
+    axios.put(`${api_url}/groups`, {groups});
+    dispatch({
+      type: JOIN_GROUPS,
+      groups
+    });
   };
 }
 

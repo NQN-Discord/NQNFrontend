@@ -21,7 +21,7 @@ export class Emote {
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       size="mini"
-      onClick={() => onClick()}
+      onClick={(e) => onClick(e)}
       {...kwargs}
     />;
   }
