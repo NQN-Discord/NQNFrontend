@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {Container, Accordion, Button, Divider} from 'semantic-ui-react';
 import {Emote} from "../components/emote";
+import SearchComponent from "../components/search";
 import connect from "react-redux/es/connect/connect";
 import Alert from "react-s-alert";
 import {joinGroups, leaveGroups} from "../actions/user";
@@ -58,6 +59,7 @@ class PackPage extends Component {
       return <Container/>
     }
     const joined = new Set(this.props.user_packs);
+    const resultsPerPage = 10;
     return (
       <Container>
         <p>
@@ -65,11 +67,21 @@ class PackPage extends Component {
           to your clipboard. If you're running an emote pack and are finding yours does not support copy-paste
           functionality, make sure the name is composed of only letters, numbers and underscores.
         </p>
-        <Accordion
-          defaultActiveIndex={[]}
-          panels={Object.entries(this.props.packs).map(([name, entries]) => this.renderPack(name, entries, joined.has(name)))}
-          exclusive={false}
-          fluid
+        <SearchComponent
+          totalResults={Object.keys(this.props.packs).length}
+          resultsPerPage={resultsPerPage}
+          renderPage={page => (
+            <Accordion
+              defaultActiveIndex={[]}
+              panels={
+                Object.entries(this.props.packs)
+                  .slice(page*resultsPerPage, (page+1)*resultsPerPage)
+                  .map(([name, entries]) => this.renderPack(name, entries, joined.has(name)))
+              }
+              exclusive={false}
+              fluid
+            />
+          )}
         />
       </Container>
     );
