@@ -8,7 +8,7 @@ import Alert from 'react-s-alert';
 
 class ReferencePage extends Component {
   renderEmotes(title, emotes, names) {
-    const content = (
+    const emoteList = (
       emotes.filter(emote => {
         if (names.has(emote.name)) {
           return false;
@@ -25,26 +25,32 @@ class ReferencePage extends Component {
         navigator.clipboard.writeText(`:${emote.name}:`);
       }, emote.name))
     );
-    if (content.length === 0) {
+    if (emoteList.length === 0) {
       return
     }
-    return {key: title, title, content}
+    return {key: title, title: [
+        title,
+        <div key="div" style={{display: "inline", padding: "0.5rem"}}/>,
+        emoteList.slice(0, 5)
+      ], content: emoteList}
   }
 
   render() {
     const names = new Set();
+    const panels = [
+      this.renderEmotes("Aliases", this.props.user_aliases, names),
+      ...this.props.packs.map(([name, emotes]) => this.renderEmotes(name, emotes, names)),
+      ...Object.entries(this.props.guilds).map(([id, {name}]) =>
+        this.renderEmotes(name, (this.props.guild_emotes[id] || []).concat(this.props.guild_aliases[id] || []), names))
+    ].filter(e => e);
     return (
       <Container>
         <p>
           Clicking on an emote will copy it to your clipboard to use on Discord!
         </p>
         <Accordion
-          defaultActiveIndex={[0, 1, 2]}
-          panels={[
-            this.renderEmotes("Aliases", this.props.user_aliases, names),
-            this.renderEmotes("Packs", this.props.packs, names),
-            this.renderEmotes("Mutual Servers", this.props.guild_emotes, names),
-          ].filter(e => e)}
+          defaultActiveIndex={[0]}
+          panels={panels}
           exclusive={false}
           fluid
         />
@@ -55,9 +61,10 @@ class ReferencePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    packs: Object.entries(state.user.packs).filter(([pack, value]) => state.user.user_packs.includes(pack)).map(([pack, value]) => value).flat(),
-    guild_emotes: Object.values(state.user.guild_emotes).flat(),
-    guild_aliases: Object.values(state.user.guild_aliases).flat(),
+    packs: Object.entries(state.user.packs).filter(([pack, value]) => state.user.user_packs.includes(pack)),
+    guilds: state.user.guilds,
+    guild_emotes: state.user.guild_emotes,
+    guild_aliases: state.user.guild_aliases,
     user_aliases: state.user.user_aliases,
   }
 };
