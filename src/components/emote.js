@@ -20,7 +20,6 @@ export class Emote {
       src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}?size=32`}
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
-      size="mini"
       onClick={(e) => onClick(e)}
       {...kwargs}
     />;
