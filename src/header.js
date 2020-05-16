@@ -34,14 +34,6 @@ class Header extends Component {
               Emote Reference
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "packs"}
-              onClick={() => {
-                this.props.history.push("/packs");
-              }}
-            >
-              Emote Packs
-            </Menu.Item>
-            <Menu.Item
               active={activeElement === "alias"}
               onClick={() => {
                 this.props.history.push("/alias/search");
