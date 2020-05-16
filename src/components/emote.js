@@ -21,6 +21,7 @@ export class Emote {
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       onClick={(e) => onClick(e)}
+      loading="lazy"
       {...kwargs}
     />;
   }
