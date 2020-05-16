@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import {setAliases, unsetAliases, changeAliases} from "../../actions/user";
 import EmoteAliases from "../../components/emote_aliases";
-import SearchComponent from "../../components/search";
+import SearchComponent from "../../components/emote_search";
 
 
 class SearchPage extends Component {
