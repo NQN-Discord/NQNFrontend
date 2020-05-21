@@ -62,12 +62,13 @@ class GuildSettings extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
+    const packMeta = guild.pack_meta;
 
     return (
       <Container>
         { this.props.showHeader &&
           <Header as="h3">
-            Settings for {guild.name}
+            Settings for {guild.name} {packMeta !== null && <small>- {packMeta} users in the pack</small>}
           </Header>
         }
         <Form
