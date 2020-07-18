@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
       </ol>
 
       <h3>
-        We also store the following information
+        We Also Store the Following Information
       </h3>
       <ol start={7}>
         <li>
