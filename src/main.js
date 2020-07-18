@@ -23,6 +23,7 @@ import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import ReferencePage from "./pages/reference";
 import PackPage from "./pages/packs";
+import PrivacyPolicy from "./pages/policy";
 
 import 'semantic-ui-css/semantic.min.css';
 import HomePage from "./pages/home";
@@ -37,7 +38,7 @@ class App extends Component {
       }
       return response;
     }, (err) => {
-      if (err.response.status === 403 && err.response.data.message === "Invalid login token") {
+      if (err.response && err.response.status === 403 && err.response.data.message === "Invalid login token") {
         this.props.setRefreshToken("");
       }
     });
@@ -65,6 +66,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage}/>
               <Route exact path="/help" component={HelpTextPage}/>
               <Route exact path="/feedback" component={UserFeedback}/>
+              <Route exact path="/privacy" component={PrivacyPolicy}/>
               <LoginPage/>
             </Switch>
           }
@@ -81,10 +83,12 @@ class App extends Component {
                 <Route exact path="/alias/:id" component={AliasRootPage}/>
                 <Route exact path="/joined_server" component={JoinedPage}/>
                 <Route exact path="/login" component={LoginPage}/>
-                <Route exact path="/help" component={HelpTextPage}/>
-                <Route exact path="/feedback" component={UserFeedback}/>
                 <Route exact path="/reference" component={ReferencePage}/>
                 <Route exact path="/packs" component={PackPage}/>
+
+                <Route exact path="/help" component={HelpTextPage}/>
+                <Route exact path="/feedback" component={UserFeedback}/>
+                <Route exact path="/privacy" component={PrivacyPolicy}/>
               </Switch>
             </div>
           }

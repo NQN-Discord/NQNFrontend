@@ -97,7 +97,9 @@ export function joinGroups(groups) {
 export function fetchGuilds() {
   return function(dispatch) {
     axios.get(`${api_url}/user/guilds`).then(response => {
-      dispatch(receiveGuilds(response.data));
+      if (response) {
+        dispatch(receiveGuilds(response.data));
+      }
     });
   };
 }
@@ -105,7 +107,9 @@ export function fetchGuilds() {
 export function fetchEmotes() {
   return function(dispatch) {
     axios.get(`${api_url}/user/emotes`).then(response => {
-      dispatch(receiveEmotes(response.data));
+      if (response) {
+        dispatch(receiveEmotes(response.data));
+      }
     });
   };
 }
