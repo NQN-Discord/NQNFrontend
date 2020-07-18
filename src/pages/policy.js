@@ -105,7 +105,7 @@ export default function PrivacyPolicy() {
         service on to developers of the service, and we protect access by forcing the use of keys when accessing the
         servers. Physical access to the servers is also limited. If you find a security issue with any portion of the
         service, please email me at blue@nqn.blue or send me a Direct Message on Discord. DO NOT post the issue publicly
-        before I have fixed it.
+        before we have fixed it.
       </p>
 
       <h2>Data Removal</h2>
