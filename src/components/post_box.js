@@ -40,9 +40,9 @@ class PostBox extends Component {
       if (!Object.keys(this.props.packs).includes(pack)) {
         return null;
       }
-      emoteObj = this.props.packs[pack].find(e => {
+      emoteObj = this.props.packs[pack].emotes.find(e => {
         return e.name === emote || e.name === `${pack}${emote}`;
-      }) || this.props.packs[pack].find(e => {
+      }) || this.props.packs[pack].emotes.find(e => {
         return e.name.toLowerCase() === emote.toLowerCase() || e.name.toLowerCase() === `${pack}${emote}`.toLowerCase();
       });
     }

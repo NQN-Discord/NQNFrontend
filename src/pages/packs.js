@@ -76,7 +76,7 @@ class PackPage extends Component {
               panels={
                 Object.entries(this.props.packs)
                   .slice(page*resultsPerPage, (page+1)*resultsPerPage)
-                  .map(([name, entries]) => this.renderPack(name, entries, joined.has(name)))
+                  .map(([name, {is_public, emotes}]) => this.renderPack(name, emotes, joined.has(name)))
               }
               exclusive={false}
               fluid
