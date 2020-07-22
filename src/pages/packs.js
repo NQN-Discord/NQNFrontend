@@ -5,16 +5,17 @@ import {Emote} from "../components/emote";
 import SearchComponent from "../components/search";
 import connect from "react-redux/es/connect/connect";
 import Alert from "react-s-alert";
-import {joinGroups, leaveGroups} from "../actions/user";
+import {joinGroups, leaveGroups, joinPackServer} from "../actions/user";
 
 
 const regex = /^[a-zA-Z0-9_]+$/g;
 
 
 class PackPage extends Component {
-  renderPack(title, entries, has_joined) {
+  renderPack(title, pack, has_joined) {
     const names = new Set();
-    const emoteList = entries.filter(emote => {
+    const {is_public, emotes} = pack;
+    const emoteList = emotes.filter(emote => {
       if (names.has(emote.name)) {
         return false;
       }
@@ -48,7 +49,7 @@ class PackPage extends Component {
           <Divider key="div1" hidden/>,
           !has_joined && <Button key="pack_join" primary onClick={() => this.props.joinGroups([title])}>Join Pack</Button>,
           has_joined && <Button key="pack_leave" primary onClick={() => this.props.leaveGroups([title])}>Leave Pack</Button>,
-          //<Button key="server" secondary>Join Discord Server</Button>,
+          is_public && <Button key="join_server" secondary onClick={() => this.props.joinPackServer(title)}>Join Discord Server</Button>,
           <Divider key="div2" hidden/>
       ]
     }
@@ -76,7 +77,7 @@ class PackPage extends Component {
               panels={
                 Object.entries(this.props.packs)
                   .slice(page*resultsPerPage, (page+1)*resultsPerPage)
-                  .map(([name, {is_public, emotes}]) => this.renderPack(name, emotes, joined.has(name)))
+                  .map(([name, pack]) => this.renderPack(name, pack, joined.has(name)))
               }
               exclusive={false}
               fluid
@@ -98,7 +99,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     joinGroups: (packs) => dispatch(joinGroups(packs)),
-    leaveGroups: (packs) => dispatch(leaveGroups(packs))
+    leaveGroups: (packs) => dispatch(leaveGroups(packs)),
+    joinPackServer: (pack) => dispatch(joinPackServer(pack))
   }
 };
 export default connect(
