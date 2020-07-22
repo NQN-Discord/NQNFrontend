@@ -11,3 +11,7 @@
     display: none !important;
   }
 }
+
+.d-spoiler {
+  background: #cccccc;
+}

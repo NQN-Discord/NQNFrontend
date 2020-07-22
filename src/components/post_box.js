@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import ReactDOMServer from 'react-dom/server';
 import connect from "react-redux/es/connect/connect";
+import {toHTML} from "discord-markdown";
 import update from "immutability-helper";
 
 
@@ -100,15 +102,12 @@ class PostBox extends Component {
   }
 
   renderMessage() {
-    return this.state.message.reduce((r, message, i) => {
-      if (typeof(message) === 'string') {
-        const newlines = message.split(/\n/g).reduce((r, a) => r.concat(a, <br/>), []);
-        return r.concat(newlines.splice(0, newlines.length - 1));
+    return this.state.message.reduce((rtn, message) => {
+      if (typeof(message) === "string") {
+        return rtn + message
       }
-      else {
-        return r.concat(message.renderImg(undefined, i));
-      }
-    }, []);
+      return rtn + message.renderEmote();
+    }, "")
   }
 
   prerenderMessage(message) {
@@ -123,6 +122,7 @@ class PostBox extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
+    const discordRendered = this.renderMessage();
     return (
       <div className="message_poster">
         <h3>
@@ -131,9 +131,22 @@ class PostBox extends Component {
         <hr/>
         <p>
           Rendered message:
-          <br/>
-          {this.renderMessage()}
         </p>
+        <div
+          dangerouslySetInnerHTML={
+            {__html:
+                toHTML(
+                  discordRendered,
+                  {
+                    embed: true,
+                    discordCallback: {
+                      emoji: emote => ReactDOMServer.renderToStaticMarkup(new Emote(emote).renderImg())
+                    }
+                  }
+                )
+            }
+          }
+        />
         <Form>
           <Form.Field
             control={TextareaAutosize}
@@ -146,12 +159,7 @@ class PostBox extends Component {
               if (event.key === "Enter" && !event.shiftKey) {
                 this.props.postMessage(
                   this.props.channelID,
-                  this.state.message.reduce((rtn, message) => {
-                    if (typeof(message) === "string") {
-                      return rtn + message
-                    }
-                    return rtn + message.renderEmote();
-                  }, "")
+                  discordRendered
                 );
               }
             }}
