@@ -29,9 +29,9 @@ code {
   }
 
   img {
-    height: 30vh;
-    top: 10vh;
-    left: 10vw;
+    top: 25vh;
+    width: 20vw;
+    transform: translate(50%, -50%);
   }
 }
 
