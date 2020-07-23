@@ -9,7 +9,7 @@ code {
 }
 
 .bot_branding {
-  height: 50vh;
+  height: 40vh;
 
   background-image: linear-gradient(90deg,#b473f5,#e292aa);
   z-index: 0;
@@ -29,7 +29,7 @@ code {
   }
 
   img {
-    top: 25vh;
+    top: 20vh;
     width: 30vw;
     transform: translate(25%, -50%);
     max-height: 30vh;
@@ -53,14 +53,14 @@ code {
   color: #fff;
 
   position: absolute;
-  top: 25vh;
+  top: 20vh;
   left: 35vw;
 
   font-size: 10vh;
   line-height: 10vh;
 
-  font-size: ~"min(15vh, 20vw)";
-  line-height: ~"min(15vh, 20vw)";
+  font-size: ~"min(13vh, 20vw)";
+  line-height: ~"min(13vh, 20vw)";
 
   text-align: center;
   transform: translateY(-50%);
