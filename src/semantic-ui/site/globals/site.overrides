@@ -49,6 +49,9 @@ code {
   top: 25vh;
   left: 35vw;
 
+  font-size: 10vh;
+  line-height: 10vh;
+
   font-size: ~"min(15vh, 20vw)";
   line-height: ~"min(15vh, 20vw)";
 
