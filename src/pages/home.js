@@ -7,6 +7,22 @@ import {Image, Grid, Header, Divider} from 'semantic-ui-react';
 
 
 class HomePage extends Component {
+  renderImgColumn(src, right) {
+    return (
+      <Grid padded doubling={true}>
+        <Grid.Column width={8}>
+          <Image
+            src={src}
+            floated="right"
+          />
+        </Grid.Column>
+        <Grid.Column className="large_fonts" width={4}>
+          {right}
+        </Grid.Column>
+      </Grid>
+    );
+  }
+
   renderColumn(left, right) {
     return (
       <Grid columns={2} padded centered={true}>
@@ -46,14 +62,8 @@ class HomePage extends Component {
 
         <Divider hidden={true}/>
 
-        <Grid columns={2} padded doubling={true}>
-          <Grid.Column>
-            <Image
-              src='/nqn-nqn_demo.gif'
-              floated="right"
-            />
-          </Grid.Column>
-          <Grid.Column className="large_fonts">
+        {this.renderImgColumn('/nqn-nqn_demo.gif', (
+          <div>
             <Header as="h1" className="unisans">
               Animated Emotes Without Nitro
             </Header>
@@ -64,14 +74,51 @@ class HomePage extends Component {
               <br/>
               By default, you can use <em>any</em> emote you and NQN share servers with.
             </p>
-          </Grid.Column>
-        </Grid>
-
+          </div>
+        ))}
         <Divider hidden={true}/>
 
-        {this.renderColumn("Quote messages", "Reply to your friends")}
-        {this.renderColumn("Emote packs", "Entire packs for you to use")}
-        {this.renderColumn("Stickers", "Full size images in the middle of messages")}
+        {this.renderImgColumn('/replies_cropped.gif', (
+          <div>
+            <Header as="h1" className="unisans">
+              Quote Messages
+            </Header>
+            <p>
+              Reply to your friends simply by pasting in a Discord message link.
+              <br/>
+              NQN then instantly responds with the full context; useful for when you're discussing a
+              message from a different channel.
+            </p>
+          </div>
+        ))}
+        <Divider hidden={true}/>
+
+        {this.renderImgColumn('/packs.png', (
+          <div>
+            <Header as="h1" className="unisans">
+              Emote packs
+            </Header>
+            <p>
+              Search for and join emote packs to instantly gain access to their emotes!
+              <br/>
+              Publish your own to share your favourite set of emotes with the world!
+            </p>
+          </div>
+        ))}
+        <Divider hidden={true}/>
+
+        {this.renderImgColumn('/stickers.gif', (
+          <div>
+            <Header as="h1" className="unisans">
+              Stickers
+            </Header>
+            <p>
+              Embed full size images into your messages.
+              <br/>
+              Upload your own, or import sticker packs from Telegram and share them with everyone.
+            </p>
+          </div>
+        ))}
       </div>
     )}
   }
