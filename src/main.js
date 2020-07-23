@@ -18,7 +18,7 @@ import WebhookPage from "./pages/server_view";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
 import JoinedPage from "./pages/joined_server";
-import {Header, TopHeader} from "./header";
+import {Header, TopHeader, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import ReferencePage from "./pages/reference";
@@ -61,42 +61,44 @@ class App extends Component {
     }
     return (
       <Router>
-        <div>
+        <div className="site_content">
           <Alert stack={{limit: 3}}/>
-          {!this.props.loggedIn &&
-            <Switch>
-              <Route exact path="/" component={HomePage}/>
-              <Route exact path="/help" component={HelpTextPage}/>
-              <Route exact path="/feedback" component={UserFeedback}/>
-              <Route exact path="/privacy" component={PrivacyPolicy}/>
-              <Route exact path="/licenses" component={LicensePage}/>
-              <LoginPage/>
-            </Switch>
-          }
-          {this.props.loggedIn &&
-            <div>
-              <TopHeader/>
-              <Header/>
+          <div className="site_body">
+            <TopHeader/>
+            {!this.props.loggedIn &&
               <Switch>
-                <Route exact path="/guilds/:channelID" component={WebhookPage}/>
-                <Route exact path="/guilds/" component={WebhookPage}/>
-                <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
-                <Route exact path="/alias/" component={AliasRootPage}/>
-                <Route exact path="/alias/:id" component={AliasRootPage}/>
-                <Route exact path="/joined_server" component={JoinedPage}/>
-                <Route exact path="/login" component={LoginPage}/>
-                <Route exact path="/reference" component={ReferencePage}/>
-                <Route exact path="/packs" component={PackPage}/>
-                <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
-
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/help" component={HelpTextPage}/>
-                <Route exact path="/feedback" component={UserFeedback}/>
                 <Route exact path="/privacy" component={PrivacyPolicy}/>
                 <Route exact path="/licenses" component={LicensePage}/>
+                <LoginPage/>
               </Switch>
-            </div>
-          }
+            }
+            {this.props.loggedIn &&
+              <div className="site_body">
+                <Header/>
+                <Switch>
+                  <Route exact path="/guilds/:channelID" component={WebhookPage}/>
+                  <Route exact path="/guilds/" component={WebhookPage}/>
+                  <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
+                  <Route exact path="/alias/" component={AliasRootPage}/>
+                  <Route exact path="/alias/:id" component={AliasRootPage}/>
+                  <Route exact path="/joined_server" component={JoinedPage}/>
+                  <Route exact path="/login" component={LoginPage}/>
+                  <Route exact path="/reference" component={ReferencePage}/>
+                  <Route exact path="/packs" component={PackPage}/>
+                  <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
+
+                  <Route exact path="/" component={HomePage}/>
+                  <Route exact path="/help" component={HelpTextPage}/>
+                  <Route exact path="/feedback" component={UserFeedback}/>
+                  <Route exact path="/privacy" component={PrivacyPolicy}/>
+                  <Route exact path="/licenses" component={LicensePage}/>
+                </Switch>
+              </div>
+            }
+          </div>
+          <BottomFooter/>
         </div>
       </Router>
     );

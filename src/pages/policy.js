@@ -136,8 +136,7 @@ export default function PrivacyPolicy() {
       <h2>Contact Us</h2>
       <p>
         If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at
-        blue@nqn.blue. I am also available in the Not Quite Nitro Discord server at
-        <a href="https://discord.gg/e6pQupV">https://discord.gg/e6pQupV</a>
+        blue@nqn.blue. I am also available in the Not Quite Nitro Discord server at <a href="https://discord.gg/e6pQupV">https://discord.gg/e6pQupV</a>
       </p>
     </Container>
   );

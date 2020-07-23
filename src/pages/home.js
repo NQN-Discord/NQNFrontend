@@ -2,21 +2,34 @@ import React, {Component} from 'react';
 
 import connect from "react-redux/es/connect/connect";
 import classNames from "classnames";
-import {TopHeader} from "../header";
-import {Image, Grid, Header, Divider} from 'semantic-ui-react';
+import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
+import {inviteURL} from "../config";
+
+
+// https://stackoverflow.com/a/12646864/3398583
+// Laurens Holst
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 
 class HomePage extends Component {
   renderImgColumn(src, right) {
     return (
       <Grid padded doubling={true} columns={2}>
-        <Grid.Column width={8}>
+        <Grid.Column width={2}/>
+        <Grid.Column width={6}>
           <Image
             src={src}
-            floated="right"
+            centered
+            ui
+            image
           />
         </Grid.Column>
-        <Grid.Column className="large_fonts" width={4}>
+        <Grid.Column className="large_fonts" width={5}>
           {right}
         </Grid.Column>
       </Grid>
@@ -24,11 +37,24 @@ class HomePage extends Component {
   }
 
   render() {
+    const botLists = [
+      [
+        "https://discordbots.org/api/widget/559426966151757824.svg",
+        "https://discordbots.org/bot/559426966151757824"
+      ],
+      [
+        "https://discord.boats/api/widget/559426966151757824",
+        "https://discord.boats/bot/559426966151757824"
+      ],
+      [
+        "https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark",
+        "https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark"
+      ]
+    ];
+    shuffleArray(botLists);
+
     return (
       <div>
-        {!this.props.loggedIn &&
-          <TopHeader/>
-        }
         <div className={classNames(
           "bot_branding",
           {
@@ -41,6 +67,15 @@ class HomePage extends Component {
           <div className="unisans nqn_name">
             Not Quite Nitro
           </div>
+          <Button
+            primary
+            className="unisans nqn_add"
+            onClick={() => {
+              window.open(inviteURL, "_blank");
+            }}
+          >
+            Add NQN
+          </Button>
         </div>
 
         <Divider hidden={true}/>
@@ -102,6 +137,24 @@ class HomePage extends Component {
             </p>
           </div>
         ))}
+
+        <Container>
+          <Divider/>
+          <Divider hidden={true}/>
+          <Grid columns={3} doubling={true} centered>
+            {botLists.map(([src, href]) => (
+              <Image
+                centered
+                ui
+                image
+                src={src}
+                href={href}
+                style={{maxWidth: "300px"}}
+              />
+            ))}
+          </Grid>
+        </Container>
+        <Divider hidden={true}/>
       </div>
     )}
   }

@@ -97,6 +97,42 @@ class HeaderO extends Component {
 }
 
 
+class BottomFooterO extends Component {
+  render() {
+    const activeElement = this.props.location.pathname.split("/", 2)[1];
+    return (
+      <Menu className="header secondary footer" stackable>
+        <Menu.Menu position='left'>
+          <Menu.Item
+            header
+          >
+            NQN is not affiliated with Discord
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu position='right'>
+          <Menu.Item
+            active={activeElement === "licenses"}
+            onClick={() => {
+              this.props.history.push("/licenses");
+            }}
+          >
+            Licenses
+          </Menu.Item>
+          <Menu.Item
+            active={activeElement === "privacy"}
+            onClick={() => {
+              this.props.history.push("/privacy");
+            }}
+          >
+            Privacy
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+    )
+  }
+}
+
+
 const mapStateToProps = state => {
   return {
     loggedIn: state.auth.loggedIn,
@@ -119,3 +155,8 @@ export let TopHeader = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(TopHeaderO));
+
+export let BottomFooter = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BottomFooterO));

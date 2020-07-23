@@ -45,6 +45,20 @@ code {
   margin-top: -13px;
 }
 
+.site_content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .site_body {
+    flex: 1;
+  }
+}
+
+.footer {
+  margin-top: 16px !important;
+}
+
 .unisans {
   font-family: "UniSans" !important;
 }
@@ -57,17 +71,26 @@ code {
   color: #fff;
 
   position: absolute;
-  top: 20vh;
+  top: 17vh;
   left: 35vw;
 
   font-size: 10vh;
   line-height: 10vh;
 
-  font-size: ~"min(13vh, 20vw)";
-  line-height: ~"min(13vh, 20vw)";
+  font-size: ~"min(11vh, 20vw)";
+  line-height: ~"min(11vh, 20vw)";
 
   text-align: center;
   transform: translateY(-50%);
+}
+
+button.ui.button.nqn_add {
+  font-size: 3vh;
+  padding: 1vh;
+  position: absolute;
+  top: 34vh;
+  left: 60vw;
+  transform: translateX(-50%);
 }
 
 @-webkit-keyframes sb {
