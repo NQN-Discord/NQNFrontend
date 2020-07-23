@@ -11,7 +11,7 @@ class HomePage extends Component {
     const rtn = (
       <div>
         {!this.props.loggedIn &&
-          <Menu className="header">>
+          <Menu className="header">
             <Menu.Menu className="header" position='right'>
               <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
                 Invite Me
