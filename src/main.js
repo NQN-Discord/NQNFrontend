@@ -18,7 +18,7 @@ import WebhookPage from "./pages/server_view";
 import AliasRootPage from "./pages/alias_root";
 import LoginPage from "./pages/login";
 import JoinedPage from "./pages/joined_server";
-import Header from "./header";
+import {Header, TopHeader} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import ReferencePage from "./pages/reference";
@@ -73,6 +73,7 @@ class App extends Component {
           }
           {this.props.loggedIn &&
             <div>
+              <TopHeader/>
               <Header/>
               <Switch>
                 <Route exact path="/" component={WebhookPage}/>

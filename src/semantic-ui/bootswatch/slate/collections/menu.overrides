@@ -57,15 +57,21 @@
 
   &.inverted {
     .button-shadow(@primaryColor);
-
   }
 
-  .item {
+  &.secondary {
+    .menu a.item:hover {
+      border: 0px;
+      color: darken(@textColor, 5%);
+    }
+  }
+
+  .menu a.item {
     padding: 1rem;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
     color: #fff;
     &:hover,
     &:focus {
+      color: darken(@textColor, 5%);
       border-left: 1px solid rgba(0, 0, 0, 0.2);
     }
   }

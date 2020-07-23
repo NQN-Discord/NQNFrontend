@@ -1,3 +1,9 @@
 /*******************************
          Site Overrides
 *******************************/
+
+code {
+  font-weight: 600;
+  background: #23272A;
+  padding: 2px;
+}

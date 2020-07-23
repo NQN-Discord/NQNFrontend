@@ -8,15 +8,55 @@ import {inviteURL} from "./config";
 import {Menu} from 'semantic-ui-react';
 
 
-class Header extends Component {
+class TopHeaderO extends Component {
+  render() {
+    return (
+      <Menu className="header secondary">
+        <Menu.Menu position='left'>
+          <Menu.Item
+            active={false}
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
+            NQN
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu position='right'>
+          <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
+            Invite Me
+          </Menu.Item>
+          { this.props.loggedIn &&
+            <Menu.Item
+              onClick={() => {
+                this.props.logout();
+              }}
+            >
+              Logout
+            </Menu.Item>
+          }
+          {!this.props.loggedIn &&
+            <Menu.Item
+              onClick={() => {
+                this.props.history.push("/login");
+              }}
+            >
+              Login
+            </Menu.Item>
+          }
+        </Menu.Menu>
+      </Menu>
+    )
+  }
+}
+
+
+class HeaderO extends Component {
   render() {
     const activeElement = this.props.location.pathname.split("/", 2)[1];
     return (
         <Menu className="header">
           <Menu.Menu position='right'>
-            <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
-              Invite Me
-            </Menu.Item>
             <Menu.Item
               active={["", "channels"].includes(activeElement)}
               onClick={() => {
@@ -49,13 +89,6 @@ class Header extends Component {
             >
               Alias Emotes
             </Menu.Item>
-            <Menu.Item
-              onClick={() => {
-                this.props.logout();
-              }}
-            >
-              Logout
-            </Menu.Item>
           </Menu.Menu>
         </Menu>
     );
@@ -76,7 +109,12 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default withRouter(connect(
+export let Header = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header));
+)(HeaderO));
+
+export let TopHeader = withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopHeaderO));
