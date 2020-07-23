@@ -37,11 +37,15 @@ code {
   }
 }
 
+.large_fonts {
+  font-size: 1.5rem;
+}
+
 .no_banner_margin {
   margin-top: -13px;
 }
 
-.nqn {
+.unisans {
   font-family: "UniSans" !important;
 }
 
