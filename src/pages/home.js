@@ -22,7 +22,7 @@ class HomePage extends Component {
           <Image
             src="/wumpus_logo.png"
           />
-          <div className="nqn_name">
+          <div className="nqn nqn_name">
             Not Quite Nitro
           </div>
         </div>

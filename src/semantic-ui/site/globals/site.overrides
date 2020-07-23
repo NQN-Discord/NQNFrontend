@@ -41,8 +41,15 @@ code {
   margin-top: -13px;
 }
 
+.nqn {
+  font-family: "UniSans" !important;
+}
+
+.nqn_header {
+  font-size: 30px;
+}
+
 .nqn_name {
-  font-family: "UniSans";
   color: #fff;
 
   position: absolute;

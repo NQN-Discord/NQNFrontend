@@ -18,6 +18,7 @@ class TopHeaderO extends Component {
             onClick={() => {
               this.props.history.push("/");
             }}
+            className="nqn nqn_header"
           >
             NQN
           </Menu.Item>
