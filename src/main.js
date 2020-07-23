@@ -25,6 +25,7 @@ import ReferencePage from "./pages/reference";
 import PackPage from "./pages/packs";
 import PrivacyPolicy from "./pages/policy";
 import GuildCreatorPage from "./pages/guild_creator";
+import LicensePage from "./pages/licenses"
 
 import 'semantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
@@ -68,6 +69,7 @@ class App extends Component {
               <Route exact path="/help" component={HelpTextPage}/>
               <Route exact path="/feedback" component={UserFeedback}/>
               <Route exact path="/privacy" component={PrivacyPolicy}/>
+              <Route exact path="/licenses" component={LicensePage}/>
               <LoginPage/>
             </Switch>
           }
@@ -76,11 +78,9 @@ class App extends Component {
               <TopHeader/>
               <Header/>
               <Switch>
-                <Route exact path="/" component={WebhookPage}/>
-                <Route exact path="/channels/:channelID" component={WebhookPage}/>
-                <Route exact path="/channels/" component={WebhookPage}/>
-                <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
+                <Route exact path="/guilds/:channelID" component={WebhookPage}/>
                 <Route exact path="/guilds/" component={WebhookPage}/>
+                <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
                 <Route exact path="/alias/" component={AliasRootPage}/>
                 <Route exact path="/alias/:id" component={AliasRootPage}/>
                 <Route exact path="/joined_server" component={JoinedPage}/>
@@ -89,9 +89,11 @@ class App extends Component {
                 <Route exact path="/packs" component={PackPage}/>
                 <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
 
+                <Route exact path="/" component={HomePage}/>
                 <Route exact path="/help" component={HelpTextPage}/>
                 <Route exact path="/feedback" component={UserFeedback}/>
                 <Route exact path="/privacy" component={PrivacyPolicy}/>
+                <Route exact path="/licenses" component={LicensePage}/>
               </Switch>
             </div>
           }

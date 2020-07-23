@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import { Header, Container, Divider } from 'semantic-ui-react'
-import {HelpText} from "../components/helpText";
 import connect from "react-redux/es/connect/connect";
+import classNames from "classnames";
 import {TopHeader} from "../header";
+import {Image} from 'semantic-ui-react';
 
 
 class HomePage extends Component {
@@ -13,15 +13,19 @@ class HomePage extends Component {
         {!this.props.loggedIn &&
           <TopHeader/>
         }
-        <Container>
-          <Header as='h2' icon textAlign='center'>
-            <Header.Content>
-              Welcome to Not Quite Nitro
-            </Header.Content>
-          </Header>
-          <HelpText isBotList={false}/>
-          <Divider/>
-        </Container>
+        <div className={classNames(
+          "bot_branding",
+          {
+            "no_banner_margin": this.props.loggedIn
+          }
+          )}>
+          <Image
+            src="/wumpus_logo.png"
+          />
+          <div className="nqn_name">
+            Not Quite Nitro
+          </div>
+        </div>
       </div>
     )}
   }

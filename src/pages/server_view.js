@@ -5,7 +5,6 @@ import update from "immutability-helper";
 import GuildSelector from "../components/server_list";
 import ChannelSelector from "../components/channel_list";
 import GuildSettingsRoot from "./guild_settings_root";
-import HomePage from "./home";
 import PostBox from "../components/post_box";
 
 import {Container, Grid} from 'semantic-ui-react';
@@ -80,9 +79,6 @@ class WebhookPage extends Component {
             />
           }
           <Grid.Column className={`message_container ${this.state.selectedGuild === null? "": "with_channel"}`}>
-            { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
-              <HomePage/>
-            }
             { this.state.showSettingsFor !== null && Object.keys(this.props.guilds).length !== 0 &&
               <GuildSettingsRoot
                 guildID={this.state.showSettingsFor}

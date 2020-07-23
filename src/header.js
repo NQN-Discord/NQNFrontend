@@ -58,9 +58,9 @@ class HeaderO extends Component {
         <Menu className="header">
           <Menu.Menu position='right'>
             <Menu.Item
-              active={["", "channels"].includes(activeElement)}
+              active={activeElement === "guilds"}
               onClick={() => {
-                this.props.history.push("/channels");
+                this.props.history.push("/guilds");
               }}
             >
               Post
