@@ -17,7 +17,7 @@ code {
 
   &::after {
     background: url(https://discordapp.com/assets/8d2cc61d9f06d4b1fb0e3b15b36b2817.svg) repeat;
-    animation: sb 600s linear infinite;
+    animation: sb 60s linear infinite;
     content: "";
     opacity: .2;
     top: 0;
@@ -52,17 +52,17 @@ code {
 
 @-webkit-keyframes sb {
   0% {
-    left: -100%;
+    background-position: 100vw 0px;
   } to {
-    left: -1500%;
+    background-position: 0vw 0px;
   }
 }
 
 @keyframes sb {
   0% {
-    left: -100%;
+    background-position: 100vw 0px;
   } to {
-    left: -1500%;
+    background-position: 0vw 0px;
   }
 }
 
