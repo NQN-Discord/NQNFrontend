@@ -71,7 +71,7 @@ class HeaderO extends Component {
                 this.props.history.push("/reference");
               }}
             >
-              Emote Reference
+              My Emotes
             </Menu.Item>
             <Menu.Item
               active={activeElement === "packs"}
