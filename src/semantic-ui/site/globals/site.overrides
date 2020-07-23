@@ -43,6 +43,11 @@ code {
   font-family: "UniSans";
   font-size: 10vh;
   color: #fff;
+  position: absolute;
+  top: 10vh;
+  left: 35vw;
+  text-align: center;
+  line-height: 10vh;
 }
 
 @-webkit-keyframes sb {
