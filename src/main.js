@@ -24,8 +24,9 @@ import UserFeedback from "./pages/feedback";
 import ReferencePage from "./pages/reference";
 import PackPage from "./pages/packs";
 import PrivacyPolicy from "./pages/policy";
+import GuildCreatorPage from "./pages/guild_creator";
 
-import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
 
 class App extends Component {
@@ -85,6 +86,7 @@ class App extends Component {
                 <Route exact path="/login" component={LoginPage}/>
                 <Route exact path="/reference" component={ReferencePage}/>
                 <Route exact path="/packs" component={PackPage}/>
+                <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
 
                 <Route exact path="/help" component={HelpTextPage}/>
                 <Route exact path="/feedback" component={UserFeedback}/>

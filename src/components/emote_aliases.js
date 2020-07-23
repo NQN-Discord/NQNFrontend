@@ -77,7 +77,7 @@ class EmoteAliases extends Component {
                   labelPosition='left'
                   label="Rename"
                   action={{
-                    color: 'blue',
+                    color: 'positive',
                     icon: 'save',
                     onClick: () => {
                       this.saveAlias(emote, getName())

@@ -1,0 +1,104 @@
+
+
+.ui.button {
+  border-color: rgba(0, 0, 0, 0.6);
+  background-color: @gray-dark;
+
+  &:hover {
+    color: @textColor;
+    background-color: @gray-dark;
+  }
+
+  &:not([disabled]):not(.disabled).active,
+  &.disabled {
+    border-color: rgba(0, 0, 0, 0.6);
+    box-shadow: none;
+    color: @textColor;
+  }
+
+  &:active,
+  &:focus {
+    background-color: @gray-dark;
+    color: @textColor;
+  }
+}
+
+.ui.button.primary {
+  background-color: @primaryColor;
+
+  &:hover {
+    background-color: @primaryColor;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus,
+  &:not([disabled]):not(.disabled):active:hover,
+  &:not([disabled]):not(.disabled).active:hover {
+    background-color: @primaryColor;
+  }
+}
+
+.ui.button.positive {
+  background-color: @positiveColor;
+
+  &:hover {
+    background-color: @positiveColor;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    background-color: @positiveColor;
+  }
+}
+
+.ui.button.info {
+  background-color: @infoColor;
+
+  &:hover {
+    background-color: @infoColor;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    background-color: @infoColor;
+  }
+}
+
+.ui.button.warning {
+  background-color: @warningColor;
+
+  &:hover {
+    background-color: @warningColor;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    background-color: @warningColor;
+  }
+}
+
+.ui.button.negative {
+  background-color: @negativeColor;
+
+  &:hover {
+    background-color: @negativeColor;
+  }
+
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus,
+  &:not([disabled]):not(.disabled):active,
+  &:not([disabled]):not(.disabled).active {
+    background-color: @negativeColor;
+  }
+}
+
+.ui.inverted.button:focus,
+.ui.inverted.button:hover {
+  background-color: @gray-base;
+}

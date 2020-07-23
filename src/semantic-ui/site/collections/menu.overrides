@@ -1,0 +1,23 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.menu.header {
+  background-color: @blurple;
+
+  .item {
+    font-weight: 500;
+    font-family: "Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+    &:hover,
+    &:focus {
+      background-color: darken(@blurple, 2%) !important;
+    }
+
+    &.active {
+      color: #fff !important;
+      font-weight: 500;
+      background-color: lighten(@blurple, 5%);
+    }
+  }
+}

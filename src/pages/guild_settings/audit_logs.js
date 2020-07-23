@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 import Long from "long";
+import RenderedMessage from "../../components/rendered_message";
 
 import {Container, Header, Placeholder, Feed, Pagination, Grid} from 'semantic-ui-react';
 
@@ -45,11 +46,9 @@ class AuditLogs extends Component {
       <Feed>
         {logs.messages.map(({channel, author, id, content}) => (
           <Feed.Event key={id}>
-            <Feed.Label image={author.avatar} />
             <Feed.Content>
-              <Feed.Date>{author.name} at {this.parseSnowflake(id).toLocaleDateString(undefined, dateOptions)}</Feed.Date>
-              <Feed.Summary>{channel}</Feed.Summary>
-              <Feed.Extra text>{content}</Feed.Extra>
+              <Feed.Summary>{channel} - {this.parseSnowflake(id).toLocaleDateString(undefined, dateOptions)}</Feed.Summary>
+              <Feed.Extra text><RenderedMessage text={content}/></Feed.Extra>
             </Feed.Content>
           </Feed.Event>
         ))}

@@ -12,8 +12,8 @@ class Header extends Component {
   render() {
     const activeElement = this.props.location.pathname.split("/", 2)[1];
     return (
-        <Menu>
-          <Menu.Menu className="header" position='right'>
+        <Menu className="header">
+          <Menu.Menu position='right'>
             <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
               Invite Me
             </Menu.Item>

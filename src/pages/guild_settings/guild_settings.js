@@ -87,7 +87,12 @@ class GuildSettings extends Component {
           {this.renderDropdown("Boost Channel", boostHelp, "boostChannel")}
           {this.renderDropdown("Audit Channel", auditHelp, "auditChannel")}
           <Divider/>
-          <Button type='submit'>Save</Button>
+          <Button
+            type="submit"
+            color="primary"
+          >
+            Save
+          </Button>
         </Form>
       </Container>
     );

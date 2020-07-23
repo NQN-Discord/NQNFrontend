@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import ReactDOMServer from 'react-dom/server';
 import connect from "react-redux/es/connect/connect";
-import {toHTML} from "discord-markdown";
+import RenderedMessage from "./rendered_message";
 import update from "immutability-helper";
 
 
@@ -132,21 +131,7 @@ class PostBox extends Component {
         <p>
           Rendered message:
         </p>
-        <div
-          dangerouslySetInnerHTML={
-            {__html:
-                toHTML(
-                  discordRendered,
-                  {
-                    embed: true,
-                    discordCallback: {
-                      emoji: emote => ReactDOMServer.renderToStaticMarkup(new Emote(emote).renderImg())
-                    }
-                  }
-                )
-            }
-          }
-        />
+        <RenderedMessage text={discordRendered}/>
         <Form>
           <Form.Field
             control={TextareaAutosize}

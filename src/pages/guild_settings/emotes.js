@@ -130,7 +130,7 @@ class EmoteSettings extends Component {
             position='right'
           >
             <Button
-              color="blue"
+              color="primary"
               icon
               labelPosition="right"
               onClick={() => this.save()}

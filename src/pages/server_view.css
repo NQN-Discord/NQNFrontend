@@ -13,5 +13,6 @@
 }
 
 .d-spoiler {
-  background: #cccccc;
+  background: #000;
+  padding: 4px;
 }
