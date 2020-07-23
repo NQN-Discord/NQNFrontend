@@ -32,6 +32,8 @@ code {
     top: 25vh;
     width: 30vw;
     transform: translate(25%, -50%);
+    max-height: 30vh;
+    object-fit: contain;
   }
 }
 
@@ -41,13 +43,17 @@ code {
 
 .nqn_name {
   font-family: "UniSans";
-  font-size: 10vh;
   color: #fff;
+
   position: absolute;
-  top: 10vh;
+  top: 25vh;
   left: 35vw;
+
+  font-size: ~"min(15vh, 20vw)";
+  line-height: ~"min(15vh, 20vw)";
+
   text-align: center;
-  line-height: 10vh;
+  transform: translateY(-50%);
 }
 
 @-webkit-keyframes sb {
