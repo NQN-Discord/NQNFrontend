@@ -30,8 +30,8 @@ code {
 
   img {
     top: 25vh;
-    width: 20vw;
-    transform: translate(50%, -50%);
+    width: 30vw;
+    transform: translate(25%, -50%);
   }
 }
 
