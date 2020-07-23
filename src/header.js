@@ -79,7 +79,7 @@ class HeaderO extends Component {
                 this.props.history.push("/packs");
               }}
             >
-              Emote Packs
+              Packs
             </Menu.Item>
             <Menu.Item
               active={activeElement === "alias"}
@@ -87,7 +87,7 @@ class HeaderO extends Component {
                 this.props.history.push("/alias/search");
               }}
             >
-              Alias Emotes
+              Aliases
             </Menu.Item>
           </Menu.Menu>
         </Menu>
