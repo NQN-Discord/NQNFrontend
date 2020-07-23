@@ -9,7 +9,7 @@ import {Image, Grid, Header, Divider} from 'semantic-ui-react';
 class HomePage extends Component {
   renderImgColumn(src, right) {
     return (
-      <Grid padded doubling={true}>
+      <Grid padded doubling={true} columns={2}>
         <Grid.Column width={8}>
           <Image
             src={src}
@@ -18,23 +18,6 @@ class HomePage extends Component {
         </Grid.Column>
         <Grid.Column className="large_fonts" width={4}>
           {right}
-        </Grid.Column>
-      </Grid>
-    );
-  }
-
-  renderColumn(left, right) {
-    return (
-      <Grid columns={2} padded centered={true}>
-        <Grid.Column textAlign="right">
-          <Header as="h1" className="unisans">
-            {left}
-          </Header>
-        </Grid.Column>
-        <Grid.Column>
-          <p className="large_fonts">
-            {right}
-          </p>
         </Grid.Column>
       </Grid>
     );
