@@ -22,7 +22,7 @@ class HomePage extends Component {
       <div>
         <Grid padded doubling={true} columns={2} reversed={swap}>
           <Grid.Column width={2}/>
-          {!swap && <Grid.Column className="large_fonts" width={5}>{right}</Grid.Column>}
+          {!swap && right}
           <Grid.Column width={6}>
             <Image
               src={src}
@@ -31,7 +31,7 @@ class HomePage extends Component {
               image
             />
           </Grid.Column>
-          {swap && <Grid.Column className="large_fonts" width={5}>{right}</Grid.Column>}
+          {swap && right}
           <Grid.Column width={2}/>
           <Grid.Column width={2}/>
           <Grid.Column width={11}>
@@ -54,7 +54,7 @@ class HomePage extends Component {
       ],
       [
         "https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark",
-        "https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark"
+        "https://botsfordiscord.com/bots/559426966151757824"
       ]
     ];
     shuffleArray(botLists);
@@ -87,7 +87,7 @@ class HomePage extends Component {
         <Divider hidden/>
 
         {this.renderImgColumn(true, '/nqn-nqn_demo.gif', (
-          <div>
+          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Animated Emotes Without Nitro
             </Header>
@@ -98,11 +98,11 @@ class HomePage extends Component {
               <br/>
               By default, you can use <em>any</em> emote you and NQN share servers with.
             </p>
-          </div>
+          </Grid.Column>
         ))}
 
         {this.renderImgColumn(false, '/replies_cropped.gif', (
-          <div>
+          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Quote Messages
             </Header>
@@ -112,11 +112,11 @@ class HomePage extends Component {
               NQN then instantly responds with the full context; useful for when you're discussing a
               message from a different channel.
             </p>
-          </div>
+          </Grid.Column>
         ))}
 
         {this.renderImgColumn(true, '/packs.png', (
-          <div>
+          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Emote packs
             </Header>
@@ -125,11 +125,11 @@ class HomePage extends Component {
               <br/>
               Publish your own to share your favourite set of emotes with the world!
             </p>
-          </div>
+          </Grid.Column>
         ))}
 
         {this.renderImgColumn(false, '/stickers.gif', (
-          <div>
+          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Stickers
             </Header>
@@ -138,7 +138,7 @@ class HomePage extends Component {
               <br/>
               Upload your own, or import sticker packs from Telegram and share them with everyone.
             </p>
-          </div>
+          </Grid.Column>
         ))}
 
         <Container>
