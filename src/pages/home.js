@@ -17,22 +17,28 @@ function shuffleArray(array) {
 
 
 class HomePage extends Component {
-  renderImgColumn(src, right) {
+  renderImgColumn(swap, src, right) {
     return (
-      <Grid padded doubling={true} columns={2}>
-        <Grid.Column width={2}/>
-        <Grid.Column width={6}>
-          <Image
-            src={src}
-            centered
-            ui
-            image
-          />
-        </Grid.Column>
-        <Grid.Column className="large_fonts" width={5}>
-          {right}
-        </Grid.Column>
-      </Grid>
+      <div>
+        <Grid padded doubling={true} columns={2} reversed={swap}>
+          <Grid.Column width={2}/>
+          {!swap && <Grid.Column className="large_fonts" width={5}>{right}</Grid.Column>}
+          <Grid.Column width={6}>
+            <Image
+              src={src}
+              centered
+              ui
+              image
+            />
+          </Grid.Column>
+          {swap && <Grid.Column className="large_fonts" width={5}>{right}</Grid.Column>}
+          <Grid.Column width={2}/>
+          <Grid.Column width={2}/>
+          <Grid.Column width={11}>
+            <Divider/>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 
@@ -78,9 +84,9 @@ class HomePage extends Component {
           </Button>
         </div>
 
-        <Divider hidden={true}/>
+        <Divider hidden/>
 
-        {this.renderImgColumn('/nqn-nqn_demo.gif', (
+        {this.renderImgColumn(true, '/nqn-nqn_demo.gif', (
           <div>
             <Header as="h1" className="unisans">
               Animated Emotes Without Nitro
@@ -94,9 +100,8 @@ class HomePage extends Component {
             </p>
           </div>
         ))}
-        <Divider hidden={true}/>
 
-        {this.renderImgColumn('/replies_cropped.gif', (
+        {this.renderImgColumn(false, '/replies_cropped.gif', (
           <div>
             <Header as="h1" className="unisans">
               Quote Messages
@@ -109,9 +114,8 @@ class HomePage extends Component {
             </p>
           </div>
         ))}
-        <Divider hidden={true}/>
 
-        {this.renderImgColumn('/packs.png', (
+        {this.renderImgColumn(true, '/packs.png', (
           <div>
             <Header as="h1" className="unisans">
               Emote packs
@@ -123,9 +127,8 @@ class HomePage extends Component {
             </p>
           </div>
         ))}
-        <Divider hidden={true}/>
 
-        {this.renderImgColumn('/stickers.gif', (
+        {this.renderImgColumn(false, '/stickers.gif', (
           <div>
             <Header as="h1" className="unisans">
               Stickers
@@ -139,7 +142,6 @@ class HomePage extends Component {
         ))}
 
         <Container>
-          <Divider/>
           <Divider hidden={true}/>
           <Grid columns={3} doubling={true} centered>
             {botLists.map(([src, href]) => (
