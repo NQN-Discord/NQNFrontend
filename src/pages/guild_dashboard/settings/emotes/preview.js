@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import {Header, Grid, List} from 'semantic-ui-react';
 
-import EmoteAliases from "../../../components/emote_aliases";
+import EmoteAliases from "../../../../components/emote_aliases";
 
 
 class EmotePreview extends Component {

@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import update from "immutability-helper";
 
-import GuildSelector from "../components/server_list";
-import ChannelSelector from "../components/channel_list";
-import GuildSettingsRoot from "./guild_settings_root";
-import PostBox from "../components/post_box";
+import GuildSelector from "../../components/server_list";
+import ChannelSelector from "../../components/channel_list";
+import GuildSettingsRoot from "./settings_root";
+import PostBox from "../../components/post_box";
 
 import {Container, Grid} from 'semantic-ui-react';
 

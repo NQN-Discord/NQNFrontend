@@ -64,31 +64,15 @@ class HeaderO extends Component {
                 this.props.history.push("/guilds");
               }}
             >
-              Post
+              Dashboard
             </Menu.Item>
             <Menu.Item
-              active={activeElement === "reference"}
+              active={activeElement === "emote_manager"}
               onClick={() => {
-                this.props.history.push("/reference");
+                this.props.history.push("/emote_manager/overview");
               }}
             >
               My Emotes
-            </Menu.Item>
-            <Menu.Item
-              active={activeElement === "packs"}
-              onClick={() => {
-                this.props.history.push("/packs");
-              }}
-            >
-              Packs
-            </Menu.Item>
-            <Menu.Item
-              active={activeElement === "alias"}
-              onClick={() => {
-                this.props.history.push("/alias/search");
-              }}
-            >
-              Aliases
             </Menu.Item>
           </Menu.Menu>
         </Menu>

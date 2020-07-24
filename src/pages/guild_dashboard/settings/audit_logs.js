@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 import Long from "long";
-import RenderedMessage from "../../components/rendered_message";
+import RenderedMessage from "../../../components/rendered_message";
 
 import {Container, Header, Placeholder, Feed, Pagination, Grid} from 'semantic-ui-react';
 
-import {fetchGuildLogs} from "../../actions/guild";
+import {fetchGuildLogs} from "../../../actions/guild";
 import './audit_logs.css';
 
 const EPOCH = 1420070400000;

@@ -3,9 +3,9 @@ import {withRouter} from "react-router-dom";
 
 import {Container, Menu, Segment} from 'semantic-ui-react';
 
-import GuildSettings from './guild_settings/guild_settings';
-import AuditLogs from './guild_settings/audit_logs';
-import EmoteSettings from './guild_settings/emotes';
+import GuildSettings from './settings/guild_settings';
+import AuditLogs from './settings/audit_logs';
+import EmoteSettings from './settings/emotes';
 import connect from "react-redux/es/connect/connect";
 
 

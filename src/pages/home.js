@@ -27,6 +27,7 @@ class HomePage extends Component {
             <Image
               src={src}
               centered
+              loading="lazy"
               ui
               image
             />
@@ -147,14 +148,13 @@ class HomePage extends Component {
           <Divider hidden={true}/>
           <Grid columns={3} doubling={true} centered>
             {botLists.map(([src, href]) => (
-              <Image
-                centered
-                ui
-                image
-                src={src}
-                href={href}
-                style={{maxWidth: "300px"}}
-              />
+              <a className="ui centered image" href={href}>
+                <img
+                  loading="lazy"
+                  src={src}
+                  style={{maxWidth: "300px"}}
+                />
+              </a>
             ))}
           </Grid>
         </Container>

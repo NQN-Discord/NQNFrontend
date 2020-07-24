@@ -14,15 +14,13 @@ import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 import {readStorageState, setRefreshToken} from "./actions/auth";
 import {fetchGuilds, fetchEmotes} from "./actions/user";
 
-import WebhookPage from "./pages/server_view";
-import AliasRootPage from "./pages/alias_root";
+import WebhookPage from "./pages/guild_dashboard/server_view";
+import ManagerRootPage from "./pages/emote_manager/manager_root";
 import LoginPage from "./pages/login";
 import JoinedPage from "./pages/joined_server";
 import {Header, TopHeader, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
-import ReferencePage from "./pages/reference";
-import PackPage from "./pages/packs";
 import PrivacyPolicy from "./pages/policy";
 import GuildCreatorPage from "./pages/guild_creator";
 import LicensePage from "./pages/licenses"
@@ -82,12 +80,15 @@ class App extends Component {
                   <Route exact path="/channels/:channelID" component={WebhookPage}/>
                   <Route exact path="/guilds/" component={WebhookPage}/>
                   <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
-                  <Route exact path="/alias/" component={AliasRootPage}/>
-                  <Route exact path="/alias/:id" component={AliasRootPage}/>
-                  <Route exact path="/joined_server" component={JoinedPage}/>
+
+                  <Route exact path="/emote_manager/overview" component={ManagerRootPage}/>
+                  <Route exact path="/emote_manager/packs" component={ManagerRootPage}/>
+                  <Route exact path="/emote_manager/packs/search" component={ManagerRootPage}/>
+                  <Route exact path="/emote_manager/alias" component={ManagerRootPage}/>
+                  <Route exact path="/emote_manager/alias/search" component={ManagerRootPage}/>
+
                   <Route exact path="/login" component={LoginPage}/>
-                  <Route exact path="/reference" component={ReferencePage}/>
-                  <Route exact path="/packs" component={PackPage}/>
+                  <Route exact path="/joined_server" component={JoinedPage}/>
                   <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
 
                   <Route exact path="/" component={HomePage}/>

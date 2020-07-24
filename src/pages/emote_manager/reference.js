@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {Container, Accordion} from 'semantic-ui-react';
-import {Emote} from "../components/emote";
+import {Emote} from "../../components/emote";
 import connect from "react-redux/es/connect/connect";
 import Alert from 'react-s-alert';
 

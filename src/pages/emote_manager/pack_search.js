@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 
 import {Container, Accordion, Button, Divider} from 'semantic-ui-react';
-import {Emote} from "../components/emote";
-import SearchComponent from "../components/search";
+import {Emote} from "../../components/emote";
+import SearchComponent from "../../components/search";
 import connect from "react-redux/es/connect/connect";
 import Alert from "react-s-alert";
-import {joinGroups, leaveGroups, joinPackServer} from "../actions/user";
+import {joinGroups, leaveGroups, joinPackServer} from "../../actions/user";
 
 
 const regex = /^[a-zA-Z0-9_]+$/g;
 
 
-class PackPage extends Component {
+class PackSearchPage extends Component {
   renderPack(title, pack, has_joined) {
     const names = new Set();
     const {is_public, emotes} = pack;
@@ -106,4 +106,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PackPage);
+)(PackSearchPage);
