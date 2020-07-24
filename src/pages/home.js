@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import connect from "react-redux/es/connect/connect";
-import classNames from "classnames";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
 import {inviteURL} from "../config";
 
@@ -69,12 +68,7 @@ class HomePage extends Component {
 
     return (
       <div>
-        <div className={classNames(
-          "bot_branding",
-          {
-            "no_banner_margin": this.props.loggedIn
-          }
-          )}>
+        <div className="bot_branding">
           <Image
             src="/wumpus_logo.png"
           />
