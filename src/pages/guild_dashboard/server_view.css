@@ -5,7 +5,8 @@
 
 .message_container {
   margin-top: 30px;
-  width: calc(100% - 230px);
+  width: 70%;
+  width: calc(100% - min(230px, 30%));
 }
 
 .no_channel_list {
