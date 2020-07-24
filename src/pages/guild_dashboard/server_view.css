@@ -5,14 +5,14 @@
 
 .message_container {
   margin-top: 30px;
-  width: 70%;
-  width: calc(100% - min(230px, 30%));
+  width: calc(100% - 230px);
+  min-width: 70%;
 }
 
 .no_channel_list {
-  -webkit-transform: translateX(230px);
-  -moz-transform: translateX(230px);
-  -ms-transform: translateX(230px);
-  -o-transform: translateX(230px);
-  transform: translateX(230px);
+  -webkit-transform: translateX(min(230px, 30%));
+  -moz-transform: translateX(min(230px, 30%));
+  -ms-transform: translateX(min(230px, 30%));
+  -o-transform: translateX(min(230px, 30%));
+  transform: translateX(min(230px, 30%));
 }
