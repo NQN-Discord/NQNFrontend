@@ -1,0 +1,119 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+code {
+  font-weight: 600;
+  background: #23272A;
+  padding: 2px;
+}
+
+.bot_branding {
+  height: 40vh;
+
+  background-image: linear-gradient(90deg,#b473f5,#e292aa);
+  z-index: 0;
+  position: relative;
+
+  &::after {
+    background: url(https://discordapp.com/assets/8d2cc61d9f06d4b1fb0e3b15b36b2817.svg) repeat;
+    animation: sb 60s linear infinite;
+    content: "";
+    opacity: .2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+  }
+
+  img {
+    top: 20vh;
+    width: 30vw;
+    transform: translate(25%, -50%);
+    max-height: 30vh;
+    object-fit: contain;
+  }
+}
+
+.large_fonts {
+  font-size: 1.5rem;
+}
+
+.no_banner_margin {
+  margin-top: -13px;
+}
+
+.site_content {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .site_body {
+    flex: 1;
+  }
+}
+
+.footer {
+  margin-top: 16px !important;
+}
+
+.unisans {
+  font-family: "UniSans" !important;
+}
+
+.nqn_header {
+  font-size: 30px;
+}
+
+.nqn_title {
+  position: absolute;
+  top: 30vh;
+  left: 37vw;
+  transform: translateY(-80%);
+}
+
+.nqn_name {
+  color: #fff;
+
+  font-size: 10vh;
+  line-height: 10vh;
+
+  font-size: ~"min(11vh, 20vw)";
+  line-height: ~"min(11vh, 20vw)";
+  text-align: center;
+
+  transform: translateY(calc(-6vh + 20%));
+}
+
+button.ui.button.nqn_add {
+  font-size: 3vh;
+  padding: 1vh;
+  transform: translateX(-50%);
+  left: 50%;
+  position: relative;
+}
+
+@-webkit-keyframes sb {
+  0% {
+    background-position: 100vw 0px;
+  } to {
+    background-position: 0vw 0px;
+  }
+}
+
+@keyframes sb {
+  0% {
+    background-position: 100vw 0px;
+  } to {
+    background-position: 0vw 0px;
+  }
+}
+
+@font-face {
+  font-family: 'UniSans';
+  src: url('/fonts/uni-sans-heavy-italic.woff') format('woff'),
+       url('/fonts/uni-sans-heavy-italic.ttf') format('truetype'),
+       url('/fonts/uni-sans-heavy-italic.woff2') format('woff2');
+}

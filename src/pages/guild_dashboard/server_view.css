@@ -1,0 +1,17 @@
+.d-spoiler {
+  background: #000;
+  padding: 4px;
+}
+
+.message_container {
+  margin-top: 30px;
+  width: calc(100% - 230px);
+}
+
+.no_channel_list {
+  -webkit-transform: translateX(230px);
+  -moz-transform: translateX(230px);
+  -ms-transform: translateX(230px);
+  -o-transform: translateX(230px);
+  transform: translateX(230px);
+}

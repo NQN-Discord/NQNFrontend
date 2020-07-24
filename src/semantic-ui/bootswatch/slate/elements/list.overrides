@@ -1,0 +1,7 @@
+.ui.list {
+  border-color: rgba(0, 0, 0, 0.6);
+
+  &:disabled {
+    color: #52575c;
+  }
+}

@@ -3,16 +3,7 @@
 }
 
 .channel_list {
-  width: 13% !important;
-  min-width: 12rem;
-}
-
-@media (max-width: 550px) {
-  .channel_list {
-    width: 50% !important;
-    min-width: 12rem;
-  }
-
+  width: 230px;
 }
 
 .channel_list .item {

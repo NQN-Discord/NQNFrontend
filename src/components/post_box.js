@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
+import RenderedMessage from "./rendered_message";
 import update from "immutability-helper";
 
 
@@ -40,9 +41,9 @@ class PostBox extends Component {
       if (!Object.keys(this.props.packs).includes(pack)) {
         return null;
       }
-      emoteObj = this.props.packs[pack].find(e => {
+      emoteObj = this.props.packs[pack].emotes.find(e => {
         return e.name === emote || e.name === `${pack}${emote}`;
-      }) || this.props.packs[pack].find(e => {
+      }) || this.props.packs[pack].emotes.find(e => {
         return e.name.toLowerCase() === emote.toLowerCase() || e.name.toLowerCase() === `${pack}${emote}`.toLowerCase();
       });
     }
@@ -100,15 +101,12 @@ class PostBox extends Component {
   }
 
   renderMessage() {
-    return this.state.message.reduce((r, message, i) => {
-      if (typeof(message) === 'string') {
-        const newlines = message.split(/\n/g).reduce((r, a) => r.concat(a, <br/>), []);
-        return r.concat(newlines.splice(0, newlines.length - 1));
+    return this.state.message.reduce((rtn, message) => {
+      if (typeof(message) === "string") {
+        return rtn + message
       }
-      else {
-        return r.concat(message.renderImg(undefined, i));
-      }
-    }, []);
+      return rtn + message.renderEmote();
+    }, "")
   }
 
   prerenderMessage(message) {
@@ -123,6 +121,7 @@ class PostBox extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
+    const discordRendered = this.renderMessage();
     return (
       <div className="message_poster">
         <h3>
@@ -131,9 +130,8 @@ class PostBox extends Component {
         <hr/>
         <p>
           Rendered message:
-          <br/>
-          {this.renderMessage()}
         </p>
+        <RenderedMessage text={discordRendered}/>
         <Form>
           <Form.Field
             control={TextareaAutosize}
@@ -146,12 +144,7 @@ class PostBox extends Component {
               if (event.key === "Enter" && !event.shiftKey) {
                 this.props.postMessage(
                   this.props.channelID,
-                  this.state.message.reduce((rtn, message) => {
-                    if (typeof(message) === "string") {
-                      return rtn + message
-                    }
-                    return rtn + message.renderEmote();
-                  }, "")
+                  discordRendered
                 );
               }
             }}

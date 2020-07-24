@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Grid, Button, Icon} from 'semantic-ui-react';
+import {Menu, Button, Icon} from 'semantic-ui-react';
 
 import "./channel_list.css";
 
@@ -13,7 +13,7 @@ class ChannelSelector extends Component {
     const showGear = perms.some(perm => guild.user_permissions.includes(perm));
 
     return (
-      <Grid.Column className="channel_list">
+      <div className="channel_list">
         <Menu pointing vertical secondary>
           {guild.name &&
             <Menu.Item header>
@@ -42,7 +42,7 @@ class ChannelSelector extends Component {
             );
           })}
         </Menu>
-      </Grid.Column>
+      </div>
     );
   }
 }

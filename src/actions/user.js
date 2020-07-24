@@ -74,30 +74,38 @@ export function unsetAliases(aliases) {
   };
 }
 
-export function leaveGroups(groups) {
+export function leaveGroups(packs) {
   return function(dispatch) {
-    axios.delete(`${api_url}/groups`, {data: {groups}});
+    axios.delete(`${api_url}/groups`, {data: {groups: packs}});
     dispatch({
       type: LEAVE_GROUPS,
-      groups
+      groups: packs
     });
   };
 }
 
-export function joinGroups(groups) {
+export function joinGroups(packs) {
   return function(dispatch) {
-    axios.put(`${api_url}/groups`, {groups});
+    axios.put(`${api_url}/groups`, {groups: packs});
     dispatch({
       type: JOIN_GROUPS,
-      groups
+      groups: packs
     });
   };
+}
+
+export function joinPackServer(pack) {
+  return function(dispatch) {
+    window.open(`${api_url}/join_server/${pack}`, "_blank");
+  }
 }
 
 export function fetchGuilds() {
   return function(dispatch) {
     axios.get(`${api_url}/user/guilds`).then(response => {
-      dispatch(receiveGuilds(response.data));
+      if (response) {
+        dispatch(receiveGuilds(response.data));
+      }
     });
   };
 }
@@ -105,7 +113,9 @@ export function fetchGuilds() {
 export function fetchEmotes() {
   return function(dispatch) {
     axios.get(`${api_url}/user/emotes`).then(response => {
-      dispatch(receiveEmotes(response.data));
+      if (response) {
+        dispatch(receiveEmotes(response.data));
+      }
     });
   };
 }

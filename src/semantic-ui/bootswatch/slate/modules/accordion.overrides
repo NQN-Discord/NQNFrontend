@@ -1,0 +1,10 @@
+.ui.accordion {
+  background: @background-secondary;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: @background-tertiary;
+}
+
+.ui.accordion .active.title .dropdown.icon {
+  transform: rotate(-90deg);
+}

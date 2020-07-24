@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import { Header, Container, List } from 'semantic-ui-react'
-import GuildSettings from "./guild_settings/guild_settings";
+import GuildSettings from "./guild_dashboard/settings/guild_settings";
 import {parse} from "query-string";
 import connect from "react-redux/es/connect/connect";
 
