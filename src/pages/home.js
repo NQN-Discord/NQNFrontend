@@ -17,20 +17,27 @@ function shuffleArray(array) {
 
 
 class HomePage extends Component {
-  renderImgColumn(swap, src, right) {
+  renderImgColumn(swap, src, animated, right) {
     return (
       <div>
         <Grid padded doubling={true} columns={2} reversed={swap}>
           <Grid.Column width={2}/>
           {!swap && right}
           <Grid.Column width={6}>
-            <Image
-              src={src}
-              centered
-              loading="lazy"
-              ui
-              image
-            />
+            {!animated &&
+              <Image
+                src={src}
+                centered
+                loading="lazy"
+                ui
+                image
+              />
+            }
+            {animated &&
+              <video autoPlay loop muted playsinline className="centered ui image">
+                <source src={`${src}.webm`} type="video/mp4"/>
+              </video>
+            }
           </Grid.Column>
           {swap && right}
           <Grid.Column width={2}/>
@@ -89,7 +96,7 @@ class HomePage extends Component {
 
         <Divider hidden/>
 
-        {this.renderImgColumn(true, '/nqn-nqn_demo.gif', (
+        {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
           <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Animated Emotes Without Nitro
@@ -104,7 +111,7 @@ class HomePage extends Component {
           </Grid.Column>
         ))}
 
-        {this.renderImgColumn(false, '/replies_cropped.gif', (
+        {this.renderImgColumn(false, '/replies_cropped', true, (
           <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Quote Messages
@@ -118,7 +125,7 @@ class HomePage extends Component {
           </Grid.Column>
         ))}
 
-        {this.renderImgColumn(true, '/packs.png', (
+        {this.renderImgColumn(true, '/packs.png', false, (
           <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Emote packs
@@ -131,7 +138,7 @@ class HomePage extends Component {
           </Grid.Column>
         ))}
 
-        {this.renderImgColumn(false, '/stickers.gif', (
+        {this.renderImgColumn(false, '/stickers', true, (
           <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
             <Header as="h1" className="unisans">
               Stickers
