@@ -91,6 +91,8 @@ class App extends Component {
                   <Route exact path="/joined_server" component={JoinedPage}/>
                   <Route exact path="/guild_creator/aliases" component={GuildCreatorPage}/>
 
+                  <Route exact path="/reference" component={ManagerRootPage}/>
+
                   <Route exact path="/" component={HomePage}/>
                   <Route exact path="/help" component={HelpTextPage}/>
                   <Route exact path="/feedback" component={UserFeedback}/>

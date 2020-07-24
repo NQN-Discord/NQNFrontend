@@ -12,6 +12,7 @@ const pages = {
   "/emote_manager/alias": <AliasPage/>,
   "/emote_manager/alias/search": <AliasSearchPage/>,
   "/emote_manager/packs/search": <PackSearchPage/>,
+  "/reference": <ReferencePage/>,
 };
 
 class ManagerRootPage extends Component {
