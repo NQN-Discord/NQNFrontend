@@ -79,6 +79,7 @@ class App extends Component {
                 <Header/>
                 <Switch>
                   <Route exact path="/guilds/:channelID" component={WebhookPage}/>
+                  <Route exact path="/channels/:channelID" component={WebhookPage}/>
                   <Route exact path="/guilds/" component={WebhookPage}/>
                   <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
                   <Route exact path="/alias/" component={AliasRootPage}/>
