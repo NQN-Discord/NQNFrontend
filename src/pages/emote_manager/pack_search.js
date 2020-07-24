@@ -40,7 +40,7 @@ class PackSearchPage extends Component {
     return {
       key: title,
       title: [
-        title,
+        `${title} - ${emoteList.length} emote${emoteList.length === 1? '': 's'}`,
         <div key="div" style={{display: "inline", padding: "0.5rem"}}/>,
         emoteList.slice(0, 5)
       ],
