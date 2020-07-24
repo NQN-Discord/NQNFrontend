@@ -173,7 +173,7 @@ const mapStateToProps = (state) => {
     user_aliases: state.user.user_aliases,
     all_emotes: state.user.user_aliases.concat(
       Object.entries(state.user.packs).filter(([pack]) => state.user.user_packs.includes(pack)).reduce((rtn, [pack, value]) => {
-        return rtn.concat(value);
+        return rtn.concat(value.emotes);
       }, [])
     ).concat(
       Object.values(state.user.guild_emotes).reduce((rtn, value) => {

@@ -17,17 +17,14 @@ class ChannelSelector extends Component {
         <Menu pointing vertical secondary>
           {guild.name &&
             <Menu.Item header>
-              {showGear &&
-                <Button
-                  icon
-                  labelPosition='right'
-                  onClick={() => this.props.showSettings()}
-                >
-                  {guild.name}
-                  <Icon name='setting'/>
-                </Button>
-              }
-              {!showGear && guild.name}
+              <Button
+                icon
+                labelPosition='right'
+                onClick={() => this.props.showSettings(showGear)}
+              >
+                {guild.name}
+                {showGear && <Icon name='setting'/>}
+              </Button>
             </Menu.Item>
           }
           {Object.entries(channels).map(([id, {name}]) => {

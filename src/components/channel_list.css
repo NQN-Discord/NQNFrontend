@@ -4,6 +4,7 @@
 
 .channel_list {
   width: 230px;
+  max-width: 30%;
 }
 
 .channel_list .item {
