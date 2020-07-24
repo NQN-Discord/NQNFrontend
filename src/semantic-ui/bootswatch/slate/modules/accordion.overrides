@@ -3,8 +3,13 @@
   border-radius: 3px;
   border: 1px solid;
   border-color: @background-tertiary;
-}
 
-.ui.accordion .active.title .dropdown.icon {
-  transform: rotate(-90deg);
+
+  .title .dropdown.icon {
+    transform: rotate(-90deg);
+  }
+
+  .active.title .dropdown.icon  {
+    transform: rotate(0deg);
+  }
 }
