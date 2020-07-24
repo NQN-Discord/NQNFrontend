@@ -37,12 +37,20 @@ code {
   }
 }
 
-.large_fonts {
-  font-size: 1.5rem;
+@media (min-width: 600px) {
+  .only_on_small {
+    display: none !important;
+  }
 }
 
-.no_banner_margin {
-  margin-top: -13px;
+@media (max-width: 600px) {
+  .hidden_on_small {
+    display: none !important;
+  }
+}
+
+.large_fonts {
+  font-size: 1.5rem;
 }
 
 .site_content {

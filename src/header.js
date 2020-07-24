@@ -8,9 +8,11 @@ import {inviteURL} from "./config";
 import {Menu} from 'semantic-ui-react';
 
 
-class TopHeaderO extends Component {
+class HeaderO extends Component {
   render() {
+    const activeElement = this.props.location.pathname.split("/", 2)[1];
     return (
+      <div>
       <Menu className="header secondary">
         <Menu.Menu position='left'>
           <Menu.Item
@@ -24,6 +26,29 @@ class TopHeaderO extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position='right'>
+          {this.props.loggedIn &&
+            <Menu.Item
+              className="hidden_on_small"
+              active={activeElement === "guilds"}
+              onClick={() => {
+                this.props.history.push("/guilds");
+              }}
+            >
+              Dashboard
+            </Menu.Item>
+          }
+          {this.props.loggedIn &&
+            <Menu.Item
+              className="hidden_on_small"
+              active={activeElement === "emote_manager"}
+              onClick={() => {
+                this.props.history.push("/emote_manager/overview");
+              }}
+            >
+              My Emotes
+            </Menu.Item>
+          }
+
           <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
             Invite Me
           </Menu.Item>
@@ -47,16 +72,8 @@ class TopHeaderO extends Component {
           }
         </Menu.Menu>
       </Menu>
-    )
-  }
-}
-
-
-class HeaderO extends Component {
-  render() {
-    const activeElement = this.props.location.pathname.split("/", 2)[1];
-    return (
-        <Menu className="header">
+        {this.props.loggedIn &&
+        <Menu className="header only_on_small">
           <Menu.Menu position='right'>
             <Menu.Item
               active={activeElement === "guilds"}
@@ -76,7 +93,9 @@ class HeaderO extends Component {
             </Menu.Item>
           </Menu.Menu>
         </Menu>
-    );
+      }
+      </div>
+    )
   }
 }
 
@@ -134,11 +153,6 @@ export let Header = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(HeaderO));
-
-export let TopHeader = withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TopHeaderO));
 
 export let BottomFooter = withRouter(connect(
   mapStateToProps,

@@ -18,7 +18,7 @@ import WebhookPage from "./pages/guild_dashboard/server_view";
 import ManagerRootPage from "./pages/emote_manager/manager_root";
 import LoginPage from "./pages/login";
 import JoinedPage from "./pages/joined_server";
-import {Header, TopHeader, BottomFooter} from "./header";
+import {Header, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import PrivacyPolicy from "./pages/policy";
@@ -62,7 +62,7 @@ class App extends Component {
         <div className="site_content">
           <Alert stack={{limit: 3}}/>
           <div className="site_body">
-            <TopHeader/>
+            <Header/>
             {!this.props.loggedIn &&
               <Switch>
                 <Route exact path="/" component={HomePage}/>
@@ -74,7 +74,6 @@ class App extends Component {
             }
             {this.props.loggedIn &&
               <div className="site_body">
-                <Header/>
                 <Switch>
                   <Route exact path="/guilds/:channelID" component={WebhookPage}/>
                   <Route exact path="/channels/:channelID" component={WebhookPage}/>
