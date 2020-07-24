@@ -62,8 +62,8 @@ class WebhookPage extends Component {
                   this.props.history.push(`/guilds/`);
                 }
               }}
-              showSettings={() => {
-                if (this.state.showSettingsFor !== null) {
+              showSettings={(showSettings) => {
+                if (!showSettings || this.state.showSettingsFor !== null) {
                   this.setState(update(this.state, {
                     $merge: {
                       selectedChannel: null,
