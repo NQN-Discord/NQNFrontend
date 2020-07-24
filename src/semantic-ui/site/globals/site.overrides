@@ -67,30 +67,32 @@ code {
   font-size: 30px;
 }
 
+.nqn_title {
+  position: absolute;
+  top: 30vh;
+  left: 37vw;
+  transform: translateY(-80%);
+}
+
 .nqn_name {
   color: #fff;
-
-  position: absolute;
-  top: 17vh;
-  left: 35vw;
 
   font-size: 10vh;
   line-height: 10vh;
 
   font-size: ~"min(11vh, 20vw)";
   line-height: ~"min(11vh, 20vw)";
-
   text-align: center;
-  transform: translateY(-50%);
+
+  transform: translateY(calc(-6vh + 20%));
 }
 
 button.ui.button.nqn_add {
   font-size: 3vh;
   padding: 1vh;
-  position: absolute;
-  top: 34vh;
-  left: 60vw;
   transform: translateX(-50%);
+  left: 50%;
+  position: relative;
 }
 
 @-webkit-keyframes sb {

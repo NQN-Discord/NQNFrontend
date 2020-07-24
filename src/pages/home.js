@@ -70,18 +70,20 @@ class HomePage extends Component {
           <Image
             src="/wumpus_logo.png"
           />
-          <div className="unisans nqn_name">
-            Not Quite Nitro
+          <div className="nqn_title">
+            <div className="unisans nqn_name">
+              Not Quite Nitro
+            </div>
+            <Button
+              primary
+              className="unisans nqn_add"
+              onClick={() => {
+                window.open(inviteURL, "_blank");
+              }}
+            >
+              Add NQN
+            </Button>
           </div>
-          <Button
-            primary
-            className="unisans nqn_add"
-            onClick={() => {
-              window.open(inviteURL, "_blank");
-            }}
-          >
-            Add NQN
-          </Button>
         </div>
 
         <Divider hidden/>
