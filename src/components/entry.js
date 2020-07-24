@@ -33,7 +33,7 @@ class Entry extends Component {
           placeholder={this.props.placeholder || ""}
           value={this.state.query}
           fluid={this.props.fluid || false}
-          size={this.props.size || "small"}
+          size={this.props.size}
           disabled={this.props.disabled || false}
           onBlur={(e) => this.props.onBlur && this.props.onBlur(e.target.value)}
           onChange={(e) => {

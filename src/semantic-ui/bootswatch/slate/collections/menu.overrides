@@ -60,6 +60,15 @@
   }
 
   &.secondary {
+    &.vertical .item.active {
+      background: @gray;
+      color: darken(@textColor, 5%);
+      &:hover {
+        background: darken(@gray, 5%);
+        color: darken(@textColor, 5%);
+      }
+    }
+
     .menu a.item:hover {
       border: 0px;
       color: darken(@textColor, 5%);

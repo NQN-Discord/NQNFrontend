@@ -10,6 +10,7 @@ import PostBox from "../../components/post_box";
 import {Container, Grid} from 'semantic-ui-react';
 
 import "./server_view.css";
+import classNames from "classnames";
 
 
 class WebhookPage extends Component {
@@ -44,10 +45,6 @@ class WebhookPage extends Component {
     return (
       <Container fluid>
         <Grid>
-          <GuildSelector
-            selected={this.state.selectedGuild}
-            onSelect={guildID => this.setState(update(this.state, {$merge: {selectedGuild: guildID}}))}
-          />
           { this.state.selectedGuild !== null &&
             <ChannelSelector
               guildID={this.state.selectedGuild}
@@ -56,20 +53,27 @@ class WebhookPage extends Component {
                 this.setState(update(this.state,
                   {$merge: {
                       selectedChannel: channelID,
-                      selectedGuild: null,
-                      showSettingsFor: null
+                      showSettingsFor: null,
                     }}
                 ));
                 if (channelID !== null) {
                   this.props.history.push(`/channels/${channelID}`);
                 } else {
-                  this.props.history.push(`/channels/`);
+                  this.props.history.push(`/guilds/`);
                 }
               }}
               showSettings={() => {
+                if (this.state.showSettingsFor !== null) {
+                  this.setState(update(this.state, {
+                    $merge: {
+                      selectedChannel: null,
+                      showSettingsFor: null
+                    }
+                  }));
+                  return
+                }
                 this.setState(update(this.state, {
                   $merge: {
-                    selectedGuild: null,
                     selectedChannel: null,
                     showSettingsFor: this.state.selectedGuild
                   }
@@ -91,7 +95,18 @@ class WebhookPage extends Component {
               }}
             />
           }
-          <Grid.Column className={`message_container ${this.state.selectedGuild === null? "": "with_channel"}`}>
+          <div className={
+            classNames(
+              "message_container",
+              {"no_channel_list": this.state.selectedGuild === null}
+            )
+          }>
+            { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
+              <GuildSelector
+                selected={this.state.selectedGuild}
+                onSelect={guildID => this.setState(update(this.state, {$merge: {selectedGuild: guildID}}))}
+              />
+            }
             { this.state.showSettingsFor !== null && Object.keys(this.props.guilds).length !== 0 &&
               <GuildSettingsRoot
                 guildID={this.state.showSettingsFor}
@@ -103,7 +118,7 @@ class WebhookPage extends Component {
                 channelID={this.state.selectedChannel}
               />
             }
-          </Grid.Column>
+          </div>
         </Grid>
       </Container>
     );

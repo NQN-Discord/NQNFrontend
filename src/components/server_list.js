@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Image, Grid} from 'semantic-ui-react';
+import {Container, Image, Card} from 'semantic-ui-react';
 
 import "./server_list.css";
 
@@ -11,26 +11,29 @@ class GuildSelector extends Component {
       return <div/>;
     }
     return (
-      <Grid.Column className="server_list">
-        <Menu pointing secondary compact vertical>
+      <Container className="server_list">
+        <Card.Group>
           {Object.keys(this.props.guilds).map(guildID => {
             return (
-              <Menu.Item
+              <Card
                 key={guildID}
-                active={this.props.selected === guildID}
                 onClick={() => this.props.onSelect(this.props.selected === guildID ? null : guildID)}
-                fitted
               >
                 <Image
                   src={this.props.guilds[guildID].icon}
-                  alt={this.props.guilds[guildID].name}
-                  size="tiny"
+                  centered
+                  size="medium"
                 />
-              </Menu.Item>
+                <Card.Content>
+                  <Card.Header textAlign="center">
+                    {this.props.guilds[guildID].name}
+                  </Card.Header>
+                </Card.Content>
+              </Card>
             );
           })}
-        </Menu>
-      </Grid.Column>
+        </Card.Group>
+      </Container>
     );
   }
 }

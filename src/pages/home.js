@@ -159,6 +159,7 @@ class HomePage extends Component {
                 <img
                   loading="lazy"
                   src={src}
+                  alt="Bot list"
                   style={{maxWidth: "300px"}}
                 />
               </a>
