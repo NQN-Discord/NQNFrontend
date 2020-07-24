@@ -74,7 +74,20 @@ class WebhookPage extends Component {
                     showSettingsFor: this.state.selectedGuild
                   }
                 }));
-                this.props.history.push(`/guilds/${this.state.selectedGuild}/settings`);
+                const perms = {
+                  "manage_emojis": "emotes",
+                  "view_audit_log": "logs",
+                  "manage_guild": "settings",
+                };
+                const guild = this.props.guilds[this.state.selectedGuild];
+                const perm = Object.keys(perms).reduce((found, perm) => {
+                  if (guild.user_permissions.includes(perm)) {
+                    return perm;
+                  }
+                  return found;
+                }, "");
+
+                this.props.history.push(`/guilds/${this.state.selectedGuild}/${perms[perm]}`);
               }}
             />
           }
