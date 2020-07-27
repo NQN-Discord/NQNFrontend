@@ -1,13 +1,21 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Button, Icon} from 'semantic-ui-react';
+import {Menu, Button, Icon, Loader} from 'semantic-ui-react';
 
 import "./channel_list.css";
+import {fetchChannels} from "../actions/guild";
 
 class ChannelSelector extends Component {
   render() {
     const guild = this.props.guilds[this.props.guildID];
+    if (!guild) {
+      return <div/>
+    }
+    const channelsLoaded = guild.loaded_channels;
+    if (!channelsLoaded) {
+      this.props.fetchChannels(this.props.guildID);
+    }
     const channels = guild.channels;
     const perms = ["manage_guild", "manage_emojis", "view_audit_log"];
     const showGear = perms.some(perm => guild.user_permissions.includes(perm));
@@ -15,18 +23,17 @@ class ChannelSelector extends Component {
     return (
       <div className="channel_list">
         <Menu pointing vertical secondary>
-          {guild.name &&
-            <Menu.Item header>
-              <Button
-                icon
-                labelPosition='right'
-                onClick={() => this.props.showSettings(showGear)}
-              >
-                {guild.name}
-                {showGear && <Icon name='setting'/>}
-              </Button>
-            </Menu.Item>
-          }
+          <Menu.Item header>
+            <Button
+              icon
+              labelPosition='right'
+              onClick={() => this.props.showSettings(showGear)}
+            >
+              {guild.name}
+              {showGear && <Icon name='setting'/>}
+            </Button>
+          </Menu.Item>
+          <Loader active={!channelsLoaded} inline="centered"/>
           {Object.entries(channels).map(([id, {name}]) => {
             return (
               <Menu.Item
@@ -50,7 +57,14 @@ const mapStateToProps = (state) => {
   }
 };
 
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchChannels: (guild) => dispatch(fetchChannels(guild))
+  }
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ChannelSelector);

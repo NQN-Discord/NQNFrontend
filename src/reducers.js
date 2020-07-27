@@ -2,8 +2,8 @@ import {combineReducers} from 'redux'
 import update from 'immutability-helper';
 
 import {RECEIVE_REFRESH} from "./actions/auth";
-import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILD_EMOTES, RECEIVE_GUILDS, JOIN_GROUPS, LEAVE_GROUPS} from "./actions/user";
-import {RECEIVE_GUILD_SETTINGS, RECEIVE_GUILD_LOGS} from "./actions/guild";
+import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILD_EMOTES, JOIN_GROUPS, LEAVE_GROUPS} from "./actions/user";
+import {RECEIVE_GUILDS, RECEIVE_GUILD_CHANNELS, RECEIVE_GUILD_SETTINGS, RECEIVE_GUILD_LOGS} from "./actions/guild";
 
 import axios from "axios";
 
@@ -36,7 +36,21 @@ function user(state = {
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
+      Object.keys(action.guilds).forEach(k =>
+        action.guilds[k].loaded_channels = false
+      );
       return update(state, {$merge: {guilds: action.guilds}});
+    case RECEIVE_GUILD_CHANNELS:
+      console.log(update(state,
+        {guilds: {[action.guild]: {$merge: {
+                channels: action.channels, loaded_channels: true
+              }}}}
+      ))
+      return update(state,
+        {guilds: {[action.guild]: {$merge: {
+          channels: action.channels, loaded_channels: true
+        }}}}
+      );
     case ADD_ALIASES:
       return update(state,
         {$merge: {

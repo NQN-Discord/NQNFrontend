@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {api_url} from '../config.js';
 
-export const RECEIVE_GUILDS = "RECEIVE_GUILDS";
 export const RECEIVE_GUILD_EMOTES = "RECEIVE_GUILD_EMOTES";
 export const RECEIVE_EMOTES = "RECEIVE_EMOTES";
 export const ADD_ALIASES = "ADD_ALIASES";
@@ -9,14 +8,6 @@ export const DEL_ALIASES = "DEL_ALIASES";
 export const LEAVE_GROUPS = "LEAVE_GROUPS";
 export const JOIN_GROUPS = "JOIN_GROUPS";
 
-
-export function receiveGuilds(guild_names) {
-  return {
-    type: RECEIVE_GUILDS,
-    guilds: guild_names.guilds,
-    names: guild_names.names
-  }
-}
 
 export function receiveEmotes(emotes) {
   return {
@@ -53,15 +44,15 @@ function delAliases(aliases) {
 
 export function setAliases(aliases) {
   return function(dispatch) {
-    axios.put(`${api_url}/emotes`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
+    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
     dispatch(addAliases(aliases));
   };
 }
 
 export function changeAliases(aliases) {
   return function(dispatch) {
-    axios.put(`${api_url}/emotes`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
-    axios.delete(`${api_url}/emotes`, {data: {emotes: aliases.map(({oldName}) => oldName)}});
+    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
+    axios.delete(`${api_url}/aliases`, {data: {emotes: aliases.map(({oldName}) => oldName)}});
     dispatch(addAliases(aliases.map(({id, name, animated}) => {return {id, name, animated}})));
     dispatch(delAliases(aliases.map(({oldName}) => oldName)));
   };
@@ -69,14 +60,14 @@ export function changeAliases(aliases) {
 
 export function unsetAliases(aliases) {
   return function(dispatch) {
-    axios.delete(`${api_url}/emotes`, {data: {emotes: aliases.map(alias => alias.name)}});
+    axios.delete(`${api_url}/aliases`, {data: {emotes: aliases.map(alias => alias.name)}});
     dispatch(delAliases(aliases.map(({name}) => name)));
   };
 }
 
 export function leaveGroups(packs) {
   return function(dispatch) {
-    axios.delete(`${api_url}/groups`, {data: {groups: packs}});
+    axios.delete(`${api_url}/packs`, {data: {groups: packs}});
     dispatch({
       type: LEAVE_GROUPS,
       groups: packs
@@ -86,7 +77,7 @@ export function leaveGroups(packs) {
 
 export function joinGroups(packs) {
   return function(dispatch) {
-    axios.put(`${api_url}/groups`, {groups: packs});
+    axios.put(`${api_url}/packs`, {groups: packs});
     dispatch({
       type: JOIN_GROUPS,
       groups: packs
@@ -100,19 +91,9 @@ export function joinPackServer(pack) {
   }
 }
 
-export function fetchGuilds() {
-  return function(dispatch) {
-    axios.get(`${api_url}/user/guilds`).then(response => {
-      if (response) {
-        dispatch(receiveGuilds(response.data));
-      }
-    });
-  };
-}
-
 export function fetchEmotes() {
   return function(dispatch) {
-    axios.get(`${api_url}/user/emotes`).then(response => {
+    axios.get(`${api_url}/emotes`).then(response => {
       if (response) {
         dispatch(receiveEmotes(response.data));
       }

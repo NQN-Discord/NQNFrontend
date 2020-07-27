@@ -58,6 +58,13 @@ class AuditLogs extends Component {
 
   renderNavigationButtons() {
     const guild = this.props.guilds[this.props.guildID];
+    if (!guild.logs) {
+      return (
+        <div>
+          There are no audit logs for this server
+        </div>
+      )
+    }
     return (
       <Grid centered>
         <Grid.Row>

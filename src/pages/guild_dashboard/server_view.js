@@ -24,13 +24,15 @@ class WebhookPage extends Component {
   }
 
   componentDidMount() {
-    const channelID = this.props.match.params.channelID;
-    if (channelID) {
-      this.setState(update(this.state, {$merge: {selectedChannel: channelID}}));
-    }
-    const guildID = this.props.match.params.guildID;
-    if (guildID) {
-      this.setState(update(this.state, {$merge: {showSettingsFor: guildID}}));
+    const channelID = this.props.match.params.channelID || null;
+    const guildID = this.props.match.params.guildID || null;
+    const showSettingsFor = (this.props.match.params.page && guildID) || null;
+    if (guildID || channelID || showSettingsFor) {
+      this.setState(update(this.state, {$merge: {
+        selectedGuild: guildID,
+        selectedChannel: channelID,
+        showSettingsFor
+      }}));
     }
   }
 
@@ -38,6 +40,16 @@ class WebhookPage extends Component {
     return Object.keys(this.props.guilds).find(guildID => {
       return Object.keys(this.props.guilds[guildID].channels).includes(channelID);
     });
+  }
+
+  setURL(guildID, channelID) {
+    if (channelID !== null) {
+      this.props.history.push(`/guilds/${guildID}/channels/${channelID}`);
+    } else if (guildID !== null) {
+      this.props.history.push(`/guilds/${guildID}`);
+    } else {
+      this.props.history.push(`/guilds`);
+    }
   }
 
   render() {
@@ -50,20 +62,17 @@ class WebhookPage extends Component {
               guildID={this.state.selectedGuild}
               selected={this.state.selectedChannel}
               onSelect={(channelID) => {
+                this.setURL(this.state.selectedGuild, channelID);
                 this.setState(update(this.state,
                   {$merge: {
                       selectedChannel: channelID,
                       showSettingsFor: null,
                     }}
                 ));
-                if (channelID !== null) {
-                  this.props.history.push(`/channels/${channelID}`);
-                } else {
-                  this.props.history.push(`/guilds/`);
-                }
               }}
               showSettings={(showSettings) => {
                 if (!showSettings || this.state.showSettingsFor !== null) {
+                  this.setURL(this.state.selectedGuild, null);
                   this.setState(update(this.state, {
                     $merge: {
                       selectedChannel: null,
@@ -104,7 +113,10 @@ class WebhookPage extends Component {
             { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
               <GuildSelector
                 selected={this.state.selectedGuild}
-                onSelect={guildID => this.setState(update(this.state, {$merge: {selectedGuild: guildID}}))}
+                onSelect={guildID => {
+                  this.setURL(guildID, null);
+                  this.setState(update(this.state, {$merge: {selectedGuild: guildID}}));
+                }}
               />
             }
             { this.state.showSettingsFor !== null && Object.keys(this.props.guilds).length !== 0 &&

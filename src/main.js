@@ -12,7 +12,8 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 import {readStorageState, setRefreshToken} from "./actions/auth";
-import {fetchGuilds, fetchEmotes} from "./actions/user";
+import {fetchEmotes} from "./actions/user";
+import {fetchGuilds} from "./actions/guild";
 
 import WebhookPage from "./pages/guild_dashboard/server_view";
 import ManagerRootPage from "./pages/emote_manager/manager_root";
@@ -25,7 +26,7 @@ import PrivacyPolicy from "./pages/policy";
 import GuildCreatorPage from "./pages/guild_creator";
 import LicensePage from "./pages/licenses"
 
-import 'semantic-ui-less/semantic.less';
+import 'fomantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
 
 class App extends Component {
@@ -73,10 +74,10 @@ class App extends Component {
               </Switch>
             }
             {this.props.loggedIn &&
-              <div className="site_body">
+              <div className="site_container">
                 <Switch>
-                  <Route exact path="/guilds/:channelID" component={WebhookPage}/>
-                  <Route exact path="/channels/:channelID" component={WebhookPage}/>
+                  <Route exact path="/guilds/:guildID" component={WebhookPage}/>
+                  <Route exact path="/guilds/:guildID/channels/:channelID" component={WebhookPage}/>
                   <Route exact path="/guilds/" component={WebhookPage}/>
                   <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
 
