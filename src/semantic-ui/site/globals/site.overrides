@@ -9,6 +9,7 @@ code {
 }
 
 .bot_branding {
+  margin-top: -20px;
   height: 40vh;
 
   background-image: linear-gradient(90deg,#b473f5,#e292aa);
@@ -60,6 +61,10 @@ code {
 
   .site_body {
     flex: 1;
+
+    .site_container {
+      margin-top: 20px;
+    }
   }
 }
 

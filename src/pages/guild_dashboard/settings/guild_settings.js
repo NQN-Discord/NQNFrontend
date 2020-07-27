@@ -89,7 +89,7 @@ class GuildSettings extends Component {
           <Divider/>
           <Button
             type="submit"
-            color="primary"
+            primary
           >
             Save
           </Button>
