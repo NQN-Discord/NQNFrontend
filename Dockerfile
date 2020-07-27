@@ -10,6 +10,7 @@ RUN npm install
 
 COPY . /usr/src/app
 
+RUN npm install
 RUN npm run build
 RUN npm run precompress -v build
 
