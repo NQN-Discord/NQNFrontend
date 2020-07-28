@@ -64,17 +64,17 @@ class App extends Component {
           <Alert stack={{limit: 3}}/>
           <div className="site_body">
             <Header/>
-            {!this.props.loggedIn &&
-              <Switch>
-                <Route exact path="/" component={HomePage}/>
-                <Route exact path="/help" component={HelpTextPage}/>
-                <Route exact path="/privacy" component={PrivacyPolicy}/>
-                <Route exact path="/licenses" component={LicensePage}/>
-                <LoginPage/>
-              </Switch>
-            }
-            {this.props.loggedIn &&
-              <div className="site_container">
+            <div className="site_container">
+              {!this.props.loggedIn &&
+                <Switch>
+                  <Route exact path="/" component={HomePage}/>
+                  <Route exact path="/help" component={HelpTextPage}/>
+                  <Route exact path="/privacy" component={PrivacyPolicy}/>
+                  <Route exact path="/licenses" component={LicensePage}/>
+                  <LoginPage/>
+                </Switch>
+              }
+              {this.props.loggedIn &&
                 <Switch>
                   <Route exact path="/guilds/:guildID" component={WebhookPage}/>
                   <Route exact path="/guilds/:guildID/channels/:channelID" component={WebhookPage}/>
@@ -99,8 +99,8 @@ class App extends Component {
                   <Route exact path="/privacy" component={PrivacyPolicy}/>
                   <Route exact path="/licenses" component={LicensePage}/>
                 </Switch>
-              </div>
-            }
+              }
+            </div>
           </div>
           <BottomFooter/>
         </div>
