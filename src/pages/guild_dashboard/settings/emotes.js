@@ -1,14 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {
-  Container,
-  Header,
-  Button,
-  Divider,
-  Menu,
-  Icon
-} from 'semantic-ui-react';
+import {Container, Header, Button, Divider, Menu, Icon} from 'semantic-ui-react';
 import EmotePreview from "./emotes/preview";
 import {postGuildEmotes} from "../../../actions/guild"
 import {receiveGuildEmotes} from "../../../actions/user"
