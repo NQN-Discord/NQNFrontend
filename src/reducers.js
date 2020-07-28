@@ -41,11 +41,6 @@ function user(state = {
       );
       return update(state, {$merge: {guilds: action.guilds}});
     case RECEIVE_GUILD_CHANNELS:
-      console.log(update(state,
-        {guilds: {[action.guild]: {$merge: {
-                channels: action.channels, loaded_channels: true
-              }}}}
-      ))
       return update(state,
         {guilds: {[action.guild]: {$merge: {
           channels: action.channels, loaded_channels: true
