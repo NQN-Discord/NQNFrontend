@@ -1,6 +1,6 @@
 const path = require("path").join(
   __dirname,
-  "/src/semantic-ui/theme.config",
+  "/semantic/src/theme.config",
 );
 
 module.exports = {
