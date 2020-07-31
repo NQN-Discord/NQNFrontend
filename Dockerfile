@@ -9,7 +9,6 @@ COPY ./package.json /usr/src/app/package.json
 COPY ./package-lock.json /usr/src/app/package-lock.json
 COPY ./semantic.json /usr/src/app/semantic.json
 COPY ./semantic /usr/src/app/semantic
-COPY ./src/semantic-ui /usr/src/app/src/semantic-ui
 
 RUN npm install
 
