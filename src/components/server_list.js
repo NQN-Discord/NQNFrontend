@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Container, Image, Card} from 'semantic-ui-react';
+import {Container, Image, Card, Button} from 'semantic-ui-react';
 
 import "./server_list.css";
 
@@ -22,6 +22,7 @@ class GuildSelector extends Component {
                 <Image
                   src={this.props.guilds[guildID].icon}
                   centered
+                  disabled={!this.props.guilds[guildID].bot_in_guild}
                   size="medium"
                 />
                 <Card.Content>
@@ -29,6 +30,14 @@ class GuildSelector extends Component {
                     {this.props.guilds[guildID].name}
                   </Card.Header>
                 </Card.Content>
+
+                {!this.props.guilds[guildID].bot_in_guild &&
+                  <Button
+                    primary
+                  >
+                    Add NQN
+                  </Button>
+                }
               </Card>
             );
           })}

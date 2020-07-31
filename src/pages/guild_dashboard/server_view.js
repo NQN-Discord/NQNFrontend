@@ -11,6 +11,7 @@ import {Container, Grid} from 'semantic-ui-react';
 
 import "./server_view.css";
 import classNames from "classnames";
+import {inviteURL} from "../../config";
 
 
 class WebhookPage extends Component {
@@ -114,8 +115,13 @@ class WebhookPage extends Component {
               <GuildSelector
                 selected={this.state.selectedGuild}
                 onSelect={guildID => {
-                  this.setURL(guildID, null);
-                  this.setState(update(this.state, {$merge: {selectedGuild: guildID}}));
+                  if (!guildID || this.props.guilds[guildID].bot_in_guild) {
+                    this.setURL(guildID, null);
+                    this.setState(update(this.state, {$merge: {selectedGuild: guildID}}));
+                  }
+                  else {
+                    window.open(inviteURL + `&guild_id=${guildID}&disable_guild_select=true`, '_blank');
+                  }
                 }}
               />
             }
