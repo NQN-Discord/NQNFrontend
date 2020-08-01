@@ -40,20 +40,35 @@
   box-shadow: initial;
 }
 
-div.ui.checkbox {
+div.ui.checkbox, div.ui.toggle.checkbox {
   input:checked ~ label {
     color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
   }
   input:focus ~ label {
     color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
   }
   input:focus:checked ~ label {
     color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
   }
   input:active ~ label {
     color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
   }
-  label:hover {
+  label:hover, .ui.checkbox + label:hover {
     color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
   }
 }
