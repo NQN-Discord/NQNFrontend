@@ -6,7 +6,7 @@ import {discordGuildBuilderURL} from "../config";
 import update from "immutability-helper";
 import classNames from "classnames";
 
-import "./guild_creator.css";
+import "./guild_builder.css";
 
 
 const sourceList = [
