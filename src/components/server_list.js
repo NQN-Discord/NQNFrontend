@@ -13,33 +13,37 @@ class GuildSelector extends Component {
     return (
       <Container className="server_list">
         <Card.Group>
-          {Object.keys(this.props.guilds).map(guildID => {
-            return (
-              <Card
-                key={guildID}
-                onClick={() => this.props.onSelect(this.props.selected === guildID ? null : guildID)}
-              >
-                <Image
-                  src={this.props.guilds[guildID].icon}
-                  centered
-                  disabled={!this.props.guilds[guildID].bot_in_guild}
-                  size="medium"
-                />
-                <Card.Content>
-                  <Card.Header textAlign="center">
-                    {this.props.guilds[guildID].name}
-                  </Card.Header>
-                </Card.Content>
+          {Object.keys(this.props.guilds)
+            .map(guildID => this.props.guilds[guildID])
+            .filter(guild => guild.bot_in_guild || guild.user_permissions.includes("manage_guild"))
+            .map(guild => {
+              return (
+                <Card
+                  key={guild.id}
+                  onClick={() => this.props.onSelect(this.props.selected === guild.id ? null : guild.id)}
+                  className="guild_icon"
+                >
+                  <Image
+                    src={guild.icon}
+                    centered
+                    disabled={!guild.bot_in_guild}
+                    size="small"
+                  />
+                  <Card.Content>
+                    <Card.Header textAlign="center">
+                      {guild.name}
+                    </Card.Header>
+                  </Card.Content>
 
-                {!this.props.guilds[guildID].bot_in_guild &&
-                  <Button
-                    primary
-                  >
-                    Add NQN
-                  </Button>
-                }
-              </Card>
-            );
+                  {!guild.bot_in_guild &&
+                    <Button
+                      primary
+                    >
+                      Add NQN
+                    </Button>
+                  }
+                </Card>
+              );
           })}
         </Card.Group>
       </Container>

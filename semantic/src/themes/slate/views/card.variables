@@ -2,3 +2,4 @@
 @border: rgba(0, 0, 0, 0.6);
 @descriptionColor: @textColor;
 @boxShadow: none;
+@invertedBackground: @primaryColor;

@@ -1,0 +1,9 @@
+.modal {
+  height: fit-content;
+  top: initial;
+  left: initial;
+}
+
+.ui.modal > .header {
+  color: @textColor;
+}

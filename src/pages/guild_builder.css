@@ -1,0 +1,34 @@
+.ui.button.guild_creator {
+  margin: -1px 6px 6px 0px;
+}
+
+.ui.button.guild_creator.guild_create {
+  margin: 0px;
+}
+
+.ui.input.guild_creator {
+   margin: 0px 6px 6px 0px;
+}
+
+.ui.cards.guild_creator > .card, .ui.card {
+  width: 200px;
+}
+
+.ui.cards.guild_creator {
+  justify-content: center;
+}
+
+.ui.label.guild_creator {
+  text-align: center;
+}
+
+@media (max-width: 675px) {
+  .ui.cards.guild_creator > .card, .ui.card {
+    width: 64px;
+    height: 64px;
+  }
+
+  .ui.cards.guild_creator > .card > .content > .header{
+    display: none;
+  }
+}

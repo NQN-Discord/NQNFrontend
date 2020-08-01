@@ -31,3 +31,44 @@
 .dash:before  { content: '\e801'; }
 .plus:before { content: '\e802'; }
 */
+
+.ui.toggle.checkbox input:checked ~ label:after {
+  box-shadow: initial;
+}
+
+.ui.toggle.checkbox input ~ label:after {
+  box-shadow: initial;
+}
+
+div.ui.checkbox, div.ui.toggle.checkbox {
+  input:checked ~ label {
+    color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
+  }
+  input:focus ~ label {
+    color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
+  }
+  input:focus:checked ~ label {
+    color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
+  }
+  input:active ~ label {
+    color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
+  }
+  label:hover, .ui.checkbox + label:hover {
+    color: @textColor !important;
+    &:before {
+      color: @checkboxActiveCheckColor !important;
+    }
+  }
+}
