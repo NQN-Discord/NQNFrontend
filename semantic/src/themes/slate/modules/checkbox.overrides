@@ -31,3 +31,29 @@
 .dash:before  { content: '\e801'; }
 .plus:before { content: '\e802'; }
 */
+
+.ui.toggle.checkbox input:checked ~ label:after {
+  box-shadow: initial;
+}
+
+.ui.toggle.checkbox input ~ label:after {
+  box-shadow: initial;
+}
+
+div.ui.checkbox {
+  input:checked ~ label {
+    color: @textColor !important;
+  }
+  input:focus ~ label {
+    color: @textColor !important;
+  }
+  input:focus:checked ~ label {
+    color: @textColor !important;
+  }
+  input:active ~ label {
+    color: @textColor !important;
+  }
+  label:hover {
+    color: @textColor !important;
+  }
+}

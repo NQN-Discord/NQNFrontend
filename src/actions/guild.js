@@ -1,5 +1,5 @@
 import axios from "axios";
-import {api_url} from "../config";
+import {api_url, guildBuilderApiURL} from "../config";
 
 export const RECEIVE_GUILDS = "RECEIVE_GUILDS";
 export const RECEIVE_GUILD_CHANNELS = "RECEIVE_GUILD_CHANNELS";
@@ -95,4 +95,12 @@ export function postGuildEmotes(guildID, emotes, callback) {
       callback(response.data.ids);
     });
   };
+}
+
+export function createGuild(aliases, code, callback) {
+  return function(dispatch) {
+    axios.post(`${guildBuilderApiURL}/create_guild`, {emotes: aliases, code}).then(response => {
+      callback();
+    });
+  }
 }

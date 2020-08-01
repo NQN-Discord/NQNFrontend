@@ -1,7 +1,6 @@
 
 .ui.cards {
   .ui.card {
-    width: 140px;
 
     &:hover {
       background: lighten(@gray-darker, 15%);
@@ -9,6 +8,12 @@
 
     .content>.header {
       color: @textColor;
+    }
+
+    &.inverted {
+      &:hover {
+        background: lighten(@primaryColor, 15%);
+      }
     }
   }
 }

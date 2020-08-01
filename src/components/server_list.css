@@ -1,3 +1,7 @@
 .server_list {
   padding-top: 30px;
 }
+
+.ui.cards > .card.guild_icon {
+  width: 140px;
+}

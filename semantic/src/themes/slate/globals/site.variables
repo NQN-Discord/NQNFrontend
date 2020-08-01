@@ -5,6 +5,7 @@
 @gray-light: #99AAB5;
 @gray-lighter: #FFFFFF;
 @blurple: #7289DA;
+@green: #43b581;
 
 @header-primary: #fff;
 @header-secondary: #b9bbbe;
@@ -23,7 +24,7 @@
 @background-accent: #4f545c;
 
 @primaryColor: @blurple;
-@positiveColor: #43b581;
+@positiveColor: @green;
 @warningColor: #f89406;
 @negativeColor: #f04747;
 
