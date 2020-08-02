@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox } from "semantic-ui-react";
+import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
 import {Emote} from "../components/emote";
 import {discordGuildBuilderURL} from "../config";
@@ -23,14 +23,15 @@ class GuildCreatorPage extends Component {
     this.state = {
       query: "",
       filter: "none",
+      emoteType: "alias",
       selected: new Set(),
       modalOpen: false,
       uploadAgree: false
     };
   }
 
-  filterAliases() {
-    return this.props.aliases.filter(({name, source}) => {
+  filterEmotes() {
+    return this.props[this.state.emoteType].filter(({name, source}) => {
       if (!name.toLowerCase().includes(this.state.query)) {
         return false;
       }
@@ -43,18 +44,33 @@ class GuildCreatorPage extends Component {
   }
 
   countGuilds() {
-    const emotes = this.props.aliases.filter(({id}) => this.state.selected.has(id));
+    //const emotes = this.props.aliases.filter(({id}) => this.state.selected.has(id));
     //const animated = emotes.filter(({id, animated}) => animated).length;
     //const static_ = emotes.filter(({id, animated}) => !animated).length;
 
     //const emoteCount = Math.max(animated, static_);
-    const emoteCount = emotes.length;
+    const emoteCount = this.state.selected.size;
 
     return Math.ceil(emoteCount / 50);
   }
 
   handleFilter(filter) {
-    this.setState(update(this.state, {$merge: {filter}}));
+    const filterIndex = sourceList.findIndex(i => i === filter);
+    let emoteType = this.state.emoteType;
+    if (emoteType === "packs" && filterIndex > 1) {
+      emoteType = "alias";
+    }
+    if (emoteType === "mutuals" && filterIndex > 0) {
+      emoteType = "alias";
+    }
+    this.setState(update(this.state, {$merge: {
+      filter,
+      emoteType
+    }}));
+  }
+
+  handleEmoteMenu(emoteType) {
+    this.setState(update(this.state, {$merge: {emoteType}}));
   }
 
   setModal(open) {
@@ -159,6 +175,7 @@ class GuildCreatorPage extends Component {
   }
 
   render() {
+    const currentFilterIndex = sourceList.findIndex(i => i === this.state.filter);
     const currentGuildCount = Object.keys(this.props.guilds).length;
     const guildCount = this.countGuilds();
     const tooManyGuilds = guildCount + currentGuildCount > 100;
@@ -242,7 +259,7 @@ class GuildCreatorPage extends Component {
               primary
               className="guild_creator"
               onClick={() => {
-                this.setState(update(this.state, {selected: {$add: this.filterAliases().map(({id}) => id)}}));
+                this.setState(update(this.state, {selected: {$add: this.filterEmotes().map(({id}) => id)}}));
               }}
             >
               Select All
@@ -277,11 +294,34 @@ class GuildCreatorPage extends Component {
           </Grid.Column>
         </Grid>
 
+        {currentFilterIndex <= 1 &&
+          <Grid container>
+            <Menu fluid tabular>
+              <Menu.Item
+                name="Aliases"
+                active={this.state.emoteType === "alias"}
+                onClick={() => this.handleEmoteMenu("alias")}
+              />
+              <Menu.Item
+                name="Packs"
+                active={this.state.emoteType === "packs"}
+                onClick={() => this.handleEmoteMenu("packs")}
+              />
+              {currentFilterIndex <= 0 &&
+                <Menu.Item
+                  name="Mutual Servers"
+                  active={this.state.emoteType === "mutuals"}
+                  onClick={() => this.handleEmoteMenu("mutuals")}
+                />
+              }
+            </Menu>
+          </Grid>
+        }
         <Divider hidden/>
 
         <Container fluid>
           <Card.Group className="guild_creator">
-            {this.filterAliases().map(emote => this.renderEmote(emote))}
+            {this.filterEmotes().map(emote => this.renderEmote(emote))}
           </Card.Group>
         </Container>
       </div>
@@ -291,7 +331,11 @@ class GuildCreatorPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    aliases: state.user.user_aliases,
+    alias: state.user.user_aliases,
+    packs: Object.values(state.user.packs)
+      .filter(({is_mutual}) => !is_mutual)
+      .flatMap(({emotes}) => emotes),
+    mutuals: Object.values(state.user.guild_emotes).flat(),
     guilds: state.user.guilds
   }
 };
