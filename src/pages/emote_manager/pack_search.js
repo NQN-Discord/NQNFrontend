@@ -2,16 +2,28 @@ import React, {Component} from 'react';
 
 import {Container, Accordion, Button, Divider} from 'semantic-ui-react';
 import {Emote} from "../../components/emote";
-import SearchComponent from "../../components/search";
+import EmoteSearchComponent from "../../components/emote_search";
 import connect from "react-redux/es/connect/connect";
 import Alert from "react-s-alert";
 import {joinGroups, leaveGroups, joinPackServer} from "../../actions/user";
+import axios from "axios";
+import {api_url} from "../../config";
+import update from "immutability-helper";
 
 
 const regex = /^[a-zA-Z0-9_]+$/g;
 
 
 class PackSearchPage extends Component {
+  componentDidMount() {
+    this.setState({
+      term: "",
+      pageNo: 0,
+      packs: {},
+      totalResults: 0,
+    });
+  }
+
   renderPack(title, pack, has_joined) {
     const names = new Set();
     const {is_public, emotes} = pack;
@@ -55,12 +67,24 @@ class PackSearchPage extends Component {
     }
   }
 
+  getNewPacks(term, pageNo) {
+    axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo}}).then(response => {
+      this.setState(update(this.state,
+        {$merge: {
+            pageNo,
+            term,
+            totalResults: response.data.total,
+            packs: response.data.results,
+          }}
+      ));
+    });
+  }
+
   render() {
-    if (!Object.keys(this.props.packs).length) {
-      return <Container/>
+    if (!this.state) {
+      return <div/>
     }
     const joined = new Set(this.props.user_packs);
-    const resultsPerPage = 10;
     return (
       <Container>
         <p>
@@ -68,21 +92,21 @@ class PackSearchPage extends Component {
           to your clipboard. If you're running an emote pack and are finding yours does not support copy-paste
           functionality, make sure the name is composed of only letters, numbers and underscores.
         </p>
-        <SearchComponent
-          totalResults={Object.keys(this.props.packs).length}
-          resultsPerPage={resultsPerPage}
-          renderPage={page => (
+        <EmoteSearchComponent
+          search={(term, pageNo) => this.getNewPacks(term, pageNo)}
+          renderer={() =>
             <Accordion
               defaultActiveIndex={[]}
               panels={
-                Object.entries(this.props.packs)
-                  .slice(page*resultsPerPage, (page+1)*resultsPerPage)
-                  .map(([name, pack]) => this.renderPack(name, pack, joined.has(name)))
+                Object.entries(this.state.packs).map(([name, pack]) => this.renderPack(name, pack, joined.has(name)))
               }
               exclusive={false}
               fluid
             />
-          )}
+          }
+          term={this.state.term}
+          pageNo={this.state.pageNo}
+          totalResults={this.state.totalResults}
         />
       </Container>
     );
@@ -91,7 +115,6 @@ class PackSearchPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    packs: state.user.packs,
     user_packs: state.user.user_packs
   }
 };

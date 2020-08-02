@@ -24,6 +24,7 @@ class LoginPage extends Component {
 
     if (guildBuilder) {
       const guildAliases = JSON.parse(guildBuilder);
+      localStorage.removeItem("guild_builder");
       this.props.createGuild(guildAliases, code, () => {
         this.props.history.push("/guilds");
         window.location.reload();
