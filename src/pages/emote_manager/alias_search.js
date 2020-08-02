@@ -3,18 +3,45 @@ import connect from "react-redux/es/connect/connect";
 
 import {setAliases, unsetAliases, changeAliases} from "../../actions/user";
 import EmoteAliases from "../../components/emote_aliases";
-import SearchComponent from "../../components/emote_search";
+import EmoteSearchComponent from "../../components/emote_search";
+import axios from "axios";
+import {api_url} from "../../config";
+import update from "immutability-helper";
 
 
-class SearchPage extends Component {
+class AliasSearchPage extends Component {
+  componentDidMount() {
+    this.setState({
+      term: "",
+      pageNo: 0,
+      emotes: {},
+      totalResults: 0,
+    });
+  }
+
+  getNewEmotes(term, pageNo) {
+    axios.get(`${api_url}/emotes/search`, {params: {term, page_no: pageNo}}).then(response => {
+      this.setState(update(this.state,
+        {$merge: {
+            pageNo,
+            term,
+            totalResults: response.data.total,
+            emotes: response.data.results,
+          }}
+      ));
+    });
+  }
 
   render() {
+    if (!this.state) {
+      return <div/>
+    }
     return (
-      <SearchComponent
-        getNewEmotes={this.getNewEmotes}
-        emoteAliases={(emotes) =>
+      <EmoteSearchComponent
+        search={(term, pageNo) => this.getNewEmotes(term, pageNo)}
+        renderer={() =>
           <EmoteAliases
-            emotes={emotes}
+            emotes={this.state.emotes}
             aliases={this.props.aliases}
             setAliases={this.props.setAliases}
             changeAliases={this.props.changeAliases}
@@ -22,6 +49,9 @@ class SearchPage extends Component {
             showButtons={true}
           />
         }
+        term={this.state.term}
+        pageNo={this.state.pageNo}
+        totalResults={this.state.totalResults}
       />
     );
   }
@@ -44,4 +74,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchPage);
+)(AliasSearchPage);
