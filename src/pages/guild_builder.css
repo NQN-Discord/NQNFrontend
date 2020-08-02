@@ -10,8 +10,17 @@
    margin: 0px 6px 6px 0px;
 }
 
-.ui.cards.guild_creator > .card, .ui.card {
+.ui.cards.guild_creator > .card {
   width: 200px;
+  height: 64px;
+}
+
+.ui.cards.guild_creator > .card .header {
+  transform: translateY(10px);
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .ui.cards.guild_creator {
@@ -25,7 +34,6 @@
 @media (max-width: 675px) {
   .ui.cards.guild_creator > .card, .ui.card {
     width: 64px;
-    height: 64px;
   }
 
   .ui.cards.guild_creator > .card > .content > .header{

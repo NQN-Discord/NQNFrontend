@@ -63,6 +63,7 @@ class GuildCreatorPage extends Component {
 
   renderModal(guildCount, tooManyGuilds) {
     const guildsText = `${guildCount > 1? guildCount: 'a'} Server${guildCount > 1? 's': ''}`;
+    const them = guildCount > 1 ? "them" : "it";
     return (
       <Modal
         onClose={() => this.setModal(false)}
@@ -85,8 +86,8 @@ class GuildCreatorPage extends Component {
         <Modal.Content>
           <Modal.Description>
             <p>
-              This will create {guildsText} with the emotes you selected, automatically add you to them
-              and give you ownership of them.
+              This will create {guildsText} with the emotes you selected, automatically add you to {them} and give you
+              ownership of {them}.
             </p>
             <Checkbox
               label="I have permission to upload all of these emotes, and give permission to NQN to upload them on my behalf"
