@@ -83,8 +83,9 @@ class GuildCreatorPage extends Component {
   }
 
   renderModal(guildCount, tooManyGuilds) {
-    const guildsText = `${guildCount > 1? guildCount: 'a'} Server${guildCount > 1? 's': ''}`;
     const them = guildCount > 1 ? "them" : "it";
+    const s = guildCount > 1 ? "s" : "";
+    const guildsText = `${guildCount > 1? guildCount: 'a'} Server${s}`;
     return (
       <Modal
         onClose={() => this.setModal(false)}
@@ -110,6 +111,29 @@ class GuildCreatorPage extends Component {
               This will create {guildsText} with the emotes you selected, automatically add you to {them} and give you
               ownership of {them}.
             </p>
+
+            <div className="guild_creator template">
+              <Input
+                placeholder="Template URL"
+                className="guild_creator"
+                defaultValue={localStorage.getItem("template_id") || ""}
+                size="large"
+                onChange={(e) => {
+                  localStorage.setItem("template_id", e.target.value)
+                }}
+              />
+              <Label
+                pointing="left"
+              >
+                Optional: Server Template to base server{s} off.
+                <br/>
+                <br/>
+                Example: <a href="https://discord.new/XTcPYRk8NTKQ">https://discord.new/XTcPYRk8NTKQ</a>
+              </Label>
+            </div>
+
+            <Divider hidden/>
+
             <Checkbox
               label="I have permission to upload all of these emotes, and give permission to NQN to upload them on my behalf"
               checked={this.state.uploadAgree}
@@ -117,6 +141,7 @@ class GuildCreatorPage extends Component {
                 this.setState(update(this.state, {$merge: {uploadAgree: !this.state.uploadAgree}}));
               }}
             />
+
           </Modal.Description>
           <Divider hidden/>
           <Modal.Actions>
