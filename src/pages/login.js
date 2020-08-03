@@ -4,7 +4,6 @@ import { Container } from "semantic-ui-react";
 import {discordURL} from "../config";
 import {parse} from "query-string";
 import {exchangeCode} from "../actions/auth";
-import {createGuild} from "../actions/guild";
 import FailedInvite from "./failed_invite";
 import connect from "react-redux/es/connect/connect";
 
@@ -16,19 +15,8 @@ class LoginPage extends Component {
     const error = query.error;
     const invitedBot = query.guild_id !== undefined;
     const redirect = localStorage.getItem("redirect");
-    const guildBuilder = localStorage.getItem("guild_builder");
 
     if (error) {
-      return
-    }
-
-    if (guildBuilder) {
-      const guildAliases = JSON.parse(guildBuilder);
-      localStorage.removeItem("guild_builder");
-      this.props.createGuild(guildAliases, code, () => {
-        this.props.history.push("/guilds");
-        window.location.reload();
-      });
       return
     }
 
@@ -81,7 +69,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     exchangeCode: (token, state) => dispatch(exchangeCode(token, state)),
-    createGuild: (aliases, code, callback) => dispatch(createGuild(aliases, code, callback))
   }
 };
 

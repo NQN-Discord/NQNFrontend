@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox } from "semantic-ui-react";
+import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
-import {Emote} from "../components/emote";
-import {discordGuildBuilderURL} from "../config";
+import {EmoteCard} from "../../components/emote";
+import {discordGuildBuilderURL} from "../../config";
 import update from "immutability-helper";
-import classNames from "classnames";
 
 import "./guild_builder.css";
 
@@ -23,14 +22,15 @@ class GuildCreatorPage extends Component {
     this.state = {
       query: "",
       filter: "none",
+      emoteType: "alias",
       selected: new Set(),
       modalOpen: false,
       uploadAgree: false
     };
   }
 
-  filterAliases() {
-    return this.props.aliases.filter(({name, source}) => {
+  filterEmotes() {
+    return this.props[this.state.emoteType].filter(({name, source}) => {
       if (!name.toLowerCase().includes(this.state.query)) {
         return false;
       }
@@ -42,8 +42,14 @@ class GuildCreatorPage extends Component {
     });
   }
 
+  getSelectedEmotes() {
+    return ["alias", "packs", "mutuals"].flatMap(emoteType =>
+      this.props[emoteType].filter(({id}) => this.state.selected.has(id))
+    );
+  }
+
   countGuilds() {
-    const emotes = this.props.aliases.filter(({id}) => this.state.selected.has(id));
+    const emotes = this.getSelectedEmotes();
     //const animated = emotes.filter(({id, animated}) => animated).length;
     //const static_ = emotes.filter(({id, animated}) => !animated).length;
 
@@ -54,7 +60,22 @@ class GuildCreatorPage extends Component {
   }
 
   handleFilter(filter) {
-    this.setState(update(this.state, {$merge: {filter}}));
+    const filterIndex = sourceList.findIndex(i => i === filter);
+    let emoteType = this.state.emoteType;
+    if (emoteType === "packs" && filterIndex > 1) {
+      emoteType = "alias";
+    }
+    if (emoteType === "mutuals" && filterIndex > 0) {
+      emoteType = "alias";
+    }
+    this.setState(update(this.state, {$merge: {
+      filter,
+      emoteType
+    }}));
+  }
+
+  handleEmoteMenu(emoteType) {
+    this.setState(update(this.state, {$merge: {emoteType}}));
   }
 
   setModal(open) {
@@ -63,6 +84,7 @@ class GuildCreatorPage extends Component {
 
   renderModal(guildCount, tooManyGuilds) {
     const guildsText = `${guildCount > 1? guildCount: 'a'} Server${guildCount > 1? 's': ''}`;
+    const them = guildCount > 1 ? "them" : "it";
     return (
       <Modal
         onClose={() => this.setModal(false)}
@@ -85,8 +107,8 @@ class GuildCreatorPage extends Component {
         <Modal.Content>
           <Modal.Description>
             <p>
-              This will create {guildsText} with the emotes you selected, automatically add you to them
-              and give you ownership of them.
+              This will create {guildsText} with the emotes you selected, automatically add you to {them} and give you
+              ownership of {them}.
             </p>
             <Checkbox
               label="I have permission to upload all of these emotes, and give permission to NQN to upload them on my behalf"
@@ -107,9 +129,7 @@ class GuildCreatorPage extends Component {
               onClick={() => {
                 localStorage.setItem(
                   "guild_builder",
-                  JSON.stringify(
-                    this.props.aliases.filter(({id}) => this.state.selected.has(id))
-                  ));
+                  JSON.stringify(this.getSelectedEmotes()));
                 window.location = discordGuildBuilderURL;
               }}
             />
@@ -126,11 +146,12 @@ class GuildCreatorPage extends Component {
   }
 
   renderEmote(emote) {
-    const emoteObj = new Emote(emote);
     const isSelected = this.state.selected.has(emote.id);
     return (
-      <Card
-        key={emoteObj.name+"-"+emoteObj.id}
+      <EmoteCard
+        key={emote.name+"-"+emote.id}
+        emote={emote}
+        isSelected={isSelected}
         onClick={() => {
           if (isSelected) {
             this.setState(update(this.state, {selected: {$remove: [emote.id]}}));
@@ -139,25 +160,12 @@ class GuildCreatorPage extends Component {
             this.setState(update(this.state, {selected: {$add: [emote.id]}}));
           }
         }}
-        className={classNames({inverted: isSelected})}
-      >
-        <Card.Content>
-          {emoteObj.renderImg(
-            () => {},
-            emoteObj.id,
-            {
-              floated: 'right'
-            }
-          )}
-          <Card.Header>
-            {emoteObj.name}
-          </Card.Header>
-        </Card.Content>
-      </Card>
+      />
     );
   }
 
   render() {
+    const currentFilterIndex = sourceList.findIndex(i => i === this.state.filter);
     const currentGuildCount = Object.keys(this.props.guilds).length;
     const guildCount = this.countGuilds();
     const tooManyGuilds = guildCount + currentGuildCount > 100;
@@ -241,7 +249,7 @@ class GuildCreatorPage extends Component {
               primary
               className="guild_creator"
               onClick={() => {
-                this.setState(update(this.state, {selected: {$add: this.filterAliases().map(({id}) => id)}}));
+                this.setState(update(this.state, {selected: {$add: this.filterEmotes().map(({id}) => id)}}));
               }}
             >
               Select All
@@ -276,11 +284,34 @@ class GuildCreatorPage extends Component {
           </Grid.Column>
         </Grid>
 
+        {currentFilterIndex <= 1 &&
+          <Grid container>
+            <Menu fluid tabular>
+              <Menu.Item
+                name="Aliases"
+                active={this.state.emoteType === "alias"}
+                onClick={() => this.handleEmoteMenu("alias")}
+              />
+              <Menu.Item
+                name="Packs"
+                active={this.state.emoteType === "packs"}
+                onClick={() => this.handleEmoteMenu("packs")}
+              />
+              {currentFilterIndex <= 0 &&
+                <Menu.Item
+                  name="Mutual Servers"
+                  active={this.state.emoteType === "mutuals"}
+                  onClick={() => this.handleEmoteMenu("mutuals")}
+                />
+              }
+            </Menu>
+          </Grid>
+        }
         <Divider hidden/>
 
         <Container fluid>
           <Card.Group className="guild_creator">
-            {this.filterAliases().map(emote => this.renderEmote(emote))}
+            {this.filterEmotes().map(emote => this.renderEmote(emote))}
           </Card.Group>
         </Container>
       </div>
@@ -290,7 +321,11 @@ class GuildCreatorPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    aliases: state.user.user_aliases,
+    alias: state.user.user_aliases,
+    packs: Object.values(state.user.packs)
+      .filter(({is_mutual}) => !is_mutual)
+      .flatMap(({emotes}) => emotes),
+    mutuals: Object.values(state.user.guild_emotes).flat(),
     guilds: state.user.guilds
   }
 };

@@ -13,14 +13,13 @@ class GuildSelector extends Component {
     return (
       <Container className="server_list">
         <Card.Group>
-          {Object.keys(this.props.guilds)
-            .map(guildID => this.props.guilds[guildID])
-            .filter(guild => guild.bot_in_guild || guild.user_permissions.includes("manage_guild"))
-            .map(guild => {
+          {Object.entries(this.props.guilds)
+            .filter(([guildID, guild]) => guild.bot_in_guild || guild.user_permissions.includes("manage_guild"))
+            .map(([guildID, guild]) => {
               return (
                 <Card
-                  key={guild.id}
-                  onClick={() => this.props.onSelect(this.props.selected === guild.id ? null : guild.id)}
+                  key={guildID}
+                  onClick={() => this.props.onSelect(this.props.selected === guildID ? null : guildID)}
                   className="guild_icon"
                 >
                   <Image

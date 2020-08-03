@@ -1,19 +1,16 @@
 
-.ui.cards {
-  .ui.card {
+.ui.cards .ui.card, .ui.card {
+  &:hover {
+    background: lighten(@gray-darker, 15%);
+  }
 
+  .content>.header {
+    color: @textColor;
+  }
+
+  &.inverted {
     &:hover {
-      background: lighten(@gray-darker, 15%);
-    }
-
-    .content>.header {
-      color: @textColor;
-    }
-
-    &.inverted {
-      &:hover {
-        background: lighten(@primaryColor, 15%);
-      }
+      background: lighten(@primaryColor, 15%);
     }
   }
 }

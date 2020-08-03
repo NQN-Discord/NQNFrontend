@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
 
-import {Image} from 'semantic-ui-react';
+import {Image, Card} from 'semantic-ui-react';
+import classNames from "classnames";
 
 
 export class Emote {
@@ -35,4 +36,30 @@ export class Emote {
     return `:${this.name}:`;
   }
 
+}
+
+
+export class EmoteCard extends Component {
+  render() {
+    const emoteObj = new Emote(this.props.emote);
+    return (
+      <Card
+        onClick={() => {(this.props.onClick || (() => {}))()}}
+        className={classNames({inverted: this.props.isSelected})}
+      >
+        <Card.Content>
+          {emoteObj.renderImg(
+            () => {},
+            emoteObj.id,
+            {
+              floated: 'right'
+            }
+          )}
+          <Card.Header>
+            {emoteObj.name}
+          </Card.Header>
+        </Card.Content>
+      </Card>
+    );
+  }
 }

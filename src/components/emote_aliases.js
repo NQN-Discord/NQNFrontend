@@ -55,7 +55,7 @@ class EmoteAliases extends Component {
     };
     return (
       <List.Item
-        key={emote.id}
+        key={`${emote.id}-${emote.name}`}
       >
         {emoteObj.renderImg()}
         <List.Content verticalAlign='middle'>
