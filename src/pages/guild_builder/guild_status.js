@@ -30,7 +30,7 @@ class GuildStatusPage extends Component {
     if (guildBuilder) {
       const guildAliases = JSON.parse(guildBuilder);
       localStorage.removeItem("guild_builder");
-      this.props.createGuild(guildAliases, code, (uuid) => {
+      this.props.createGuild(guildAliases, code, localStorage.getItem("template_id") || "", (uuid) => {
         localStorage.setItem("guild_builder_uuid", uuid);
         this.loadUUID(uuid);
       });
@@ -118,10 +118,11 @@ class GuildStatusPage extends Component {
             />
             <Divider hidden/>
 
-            {this.state.errors.map(error =>
+            {this.state.errors.map((error, i) =>
               <Message
                 negative
                 icon={!!error.emote}
+                key={i}
               >
                 {error.text}
                 {error.emote && (new Emote(error.emote)).renderImg(
@@ -168,7 +169,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createGuild: (aliases, code, callback) => dispatch(createGuild(aliases, code, callback))
+    createGuild: (aliases, code, templateCode, callback) => dispatch(createGuild(aliases, code, templateCode, callback))
   }
 };
 

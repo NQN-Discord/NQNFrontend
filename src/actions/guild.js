@@ -97,9 +97,13 @@ export function postGuildEmotes(guildID, emotes, callback) {
   };
 }
 
-export function createGuild(aliases, code, callback) {
+export function createGuild(aliases, code, templateCode, callback) {
   return function(dispatch) {
-    axios.post(`${guildBuilderApiURL}/guild`, {emotes: aliases, code}).then(response => {
+    axios.post(`${guildBuilderApiURL}/guild`, {
+      emotes: aliases,
+      code,
+      template_code: templateCode
+    }).then(response => {
       callback(response.data.uuid);
     });
   }

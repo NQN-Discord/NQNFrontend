@@ -40,3 +40,16 @@
     display: none;
   }
 }
+
+.guild_creator.template {
+  display: flex;
+}
+
+.guild_creator.template > .input {
+  flex-grow: 1;
+  margin-bottom: 0px;
+}
+
+.guild_creator.template > .label {
+  margin-left: auto;
+}
