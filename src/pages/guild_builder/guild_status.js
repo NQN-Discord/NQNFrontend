@@ -74,7 +74,7 @@ class GuildStatusPage extends Component {
           mergeState[`${key}s`] = [value, ...this.state[`${key}s`]];
           break;
         case "guild_id":
-          window.open(`${inviteURL}&guild_id=${value}&disable_guild_select=true&redirect_uri=${window.location.origin}${window.location.pathname}`, "_top");
+          window.open(`${inviteURL}&guild_id=${value}&disable_guild_select=true`, "_top");
           requestData = false;
           break;
         default:
