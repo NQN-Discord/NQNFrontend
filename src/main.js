@@ -23,7 +23,8 @@ import {Header, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import PrivacyPolicy from "./pages/policy";
-import GuildCreatorPage from "./pages/guild_builder";
+import GuildCreatorPage from "./pages/guild_builder/guild_builder";
+import GuildStatusPage from "./pages/guild_builder/guild_status";
 import LicensePage from "./pages/licenses"
 
 import 'fomantic-ui-less/semantic.less';
@@ -89,7 +90,9 @@ class App extends Component {
 
                   <Route exact path="/login" component={LoginPage}/>
                   <Route exact path="/joined_server" component={JoinedPage}/>
-                  <Route exact path="/guild_builder/aliases" component={GuildCreatorPage}/>
+
+                  <Route exact path="/guild_builder" component={GuildCreatorPage}/>
+                  <Route exact path="/guild_builder/status" component={GuildStatusPage}/>
 
                   <Route exact path="/reference" component={ManagerRootPage}/>
 

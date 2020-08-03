@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
-import {Emote} from "../components/emote";
-import {discordGuildBuilderURL} from "../config";
+import {EmoteCard} from "../../components/emote";
+import {discordGuildBuilderURL} from "../../config";
 import update from "immutability-helper";
-import classNames from "classnames";
 
 import "./guild_builder.css";
 
@@ -43,13 +42,19 @@ class GuildCreatorPage extends Component {
     });
   }
 
+  getSelectedEmotes() {
+    return ["alias", "packs", "mutuals"].flatMap(emoteType =>
+      this.props[emoteType].filter(({id}) => this.state.selected.has(id))
+    );
+  }
+
   countGuilds() {
-    //const emotes = this.props.aliases.filter(({id}) => this.state.selected.has(id));
+    const emotes = this.getSelectedEmotes();
     //const animated = emotes.filter(({id, animated}) => animated).length;
     //const static_ = emotes.filter(({id, animated}) => !animated).length;
 
     //const emoteCount = Math.max(animated, static_);
-    const emoteCount = this.state.selected.size;
+    const emoteCount = emotes.length;
 
     return Math.ceil(emoteCount / 50);
   }
@@ -124,9 +129,7 @@ class GuildCreatorPage extends Component {
               onClick={() => {
                 localStorage.setItem(
                   "guild_builder",
-                  JSON.stringify(
-                    this.props.aliases.filter(({id}) => this.state.selected.has(id))
-                  ));
+                  JSON.stringify(this.getSelectedEmotes()));
                 window.location = discordGuildBuilderURL;
               }}
             />
@@ -143,11 +146,12 @@ class GuildCreatorPage extends Component {
   }
 
   renderEmote(emote) {
-    const emoteObj = new Emote(emote);
     const isSelected = this.state.selected.has(emote.id);
     return (
-      <Card
-        key={emoteObj.name+"-"+emoteObj.id}
+      <EmoteCard
+        key={emote.name+"-"+emote.id}
+        emote={emote}
+        isSelected={isSelected}
         onClick={() => {
           if (isSelected) {
             this.setState(update(this.state, {selected: {$remove: [emote.id]}}));
@@ -156,21 +160,7 @@ class GuildCreatorPage extends Component {
             this.setState(update(this.state, {selected: {$add: [emote.id]}}));
           }
         }}
-        className={classNames({inverted: isSelected})}
-      >
-        <Card.Content>
-          {emoteObj.renderImg(
-            () => {},
-            emoteObj.id,
-            {
-              floated: 'right'
-            }
-          )}
-          <Card.Header>
-            {emoteObj.name}
-          </Card.Header>
-        </Card.Content>
-      </Card>
+      />
     );
   }
 
