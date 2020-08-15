@@ -7,4 +7,33 @@
   border-left-width: 4px;
   padding: 0 0 0 8px !important;
   margin-left: 16px;
+  margin-bottom: 20px;
+}
+
+.inline {
+  display: inline;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.center_text {
+  text-align: center;
+}
+
+.label_padding {
+  padding-top: 4px;
+}
+
+.to_title, .to_title .ui.label {
+  text-transform: capitalize !important;
+}
+
+.command_title_padding {
+  padding-bottom: 12px !important;
 }
