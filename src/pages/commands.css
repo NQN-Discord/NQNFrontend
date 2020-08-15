@@ -8,6 +8,7 @@
   padding: 0 0 0 8px !important;
   margin-left: 16px;
   margin-bottom: 20px;
+  margin-top: 4px;
 }
 
 .inline {
@@ -36,4 +37,8 @@
 
 .command_title_padding {
   padding-bottom: 12px !important;
+}
+
+.full_width {
+  width: 100% !important;
 }

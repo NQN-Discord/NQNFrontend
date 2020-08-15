@@ -125,8 +125,8 @@ class CommandPage extends Component {
       key: command.name,
       title: this.renderTitle(command, depth),
       content: (
-        <Accordion.Content className="newlines quote">
-          <Grid container doubling stackable>
+        <Accordion.Content className="newlines quote" fluid>
+          <Grid container doubling stackable className="full_width">
             <Grid.Column width={10}>
               <code>{title}</code>
               <Divider hidden/>
@@ -148,7 +148,7 @@ class CommandPage extends Component {
       title: this.renderTitle(group, depth),
       content: (
         <Accordion.Content className="newlines quote">
-          <Grid container doubling stackable>
+          <Grid container doubling stackable className="full_width">
             <Accordion
               defaultActiveIndex={[sorted.findIndex(c => this.getLocation().startsWith(c.name))]}
               panels={sorted.map(command => this.renderCommandOrGroup(command, depth+1))}
