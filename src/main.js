@@ -25,7 +25,8 @@ import UserFeedback from "./pages/feedback";
 import PrivacyPolicy from "./pages/policy";
 import GuildCreatorPage from "./pages/guild_builder/guild_builder";
 import GuildStatusPage from "./pages/guild_builder/guild_status";
-import LicensePage from "./pages/licenses"
+import LicensePage from "./pages/licenses";
+import CommandPage from "./pages/commands";
 
 import 'fomantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
@@ -72,6 +73,7 @@ class App extends Component {
                   <Route exact path="/help" component={HelpTextPage}/>
                   <Route exact path="/privacy" component={PrivacyPolicy}/>
                   <Route exact path="/licenses" component={LicensePage}/>
+                  <Route exact path="/commands" component={CommandPage}/>
                   <LoginPage/>
                 </Switch>
               }
@@ -101,6 +103,7 @@ class App extends Component {
                   <Route exact path="/feedback" component={UserFeedback}/>
                   <Route exact path="/privacy" component={PrivacyPolicy}/>
                   <Route exact path="/licenses" component={LicensePage}/>
+                  <Route exact path="/commands" component={CommandPage}/>
                 </Switch>
               }
             </div>

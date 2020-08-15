@@ -6,6 +6,7 @@ import {ADD_ALIASES, DEL_ALIASES, RECEIVE_EMOTES, RECEIVE_GUILD_EMOTES, JOIN_GRO
 import {RECEIVE_GUILDS, RECEIVE_GUILD_CHANNELS, RECEIVE_GUILD_SETTINGS, RECEIVE_GUILD_LOGS} from "./actions/guild";
 
 import axios from "axios";
+import {RECEIVE_COMMANDS} from "./actions/commands";
 
 function auth(state = {
   refreshToken: "",
@@ -32,7 +33,8 @@ function user(state = {
   user_packs: [],
   guild_emotes: {},
   guild_aliases: {},
-  user_aliases: []
+  user_aliases: [],
+  commands: {}
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
@@ -98,6 +100,10 @@ function user(state = {
     case RECEIVE_GUILD_LOGS:
       return update(state,
         {guilds: {[action.guild]: {$merge: {auditLog: action.logs}}}}
+      );
+    case RECEIVE_COMMANDS:
+      return update(state,
+        {$merge: {commands: action.commands}}
       );
     default:
       return state;
