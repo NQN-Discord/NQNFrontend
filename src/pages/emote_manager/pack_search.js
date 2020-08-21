@@ -22,6 +22,7 @@ class PackSearchPage extends Component {
       packs: {},
       totalResults: 0,
     });
+    this.getNewPacks("", 0);
   }
 
   renderPack(title, pack, has_joined) {

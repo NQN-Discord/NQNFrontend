@@ -17,6 +17,7 @@ class AliasSearchPage extends Component {
       emotes: {},
       totalResults: 0,
     });
+    this.getNewEmotes("", 0);
   }
 
   getNewEmotes(term, pageNo) {
