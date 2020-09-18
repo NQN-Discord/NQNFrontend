@@ -34,7 +34,7 @@ class ChannelSelector extends Component {
             </Button>
           </Menu.Item>
           <Loader active={!channelsLoaded} inline="centered"/>
-          {Object.entries(channels).map(([id, {name}]) => {
+          {Object.entries(channels).filter(([id, {hidden}]) => !hidden).map(([id, {name}]) => {
             return (
               <Menu.Item
                 key={id}

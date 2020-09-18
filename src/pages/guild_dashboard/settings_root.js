@@ -6,6 +6,7 @@ import {Container, Menu, Segment} from 'semantic-ui-react';
 import GuildSettings from './settings/guild_settings';
 import AuditLogs from './settings/audit_logs';
 import EmoteSettings from './settings/emotes';
+import GuildPermissions from './settings/permissions';
 import connect from "react-redux/es/connect/connect";
 
 
@@ -17,7 +18,8 @@ class GuildSettingsRoot extends Component {
       settings: <GuildSettings guildID={this.props.guildID} showHeader={true}/>,
       logs: <AuditLogs guildID={this.props.guildID}/>,
       emotes: <EmoteSettings guildID={this.props.guildID}/>,
-      upload_emotes: <EmoteSettings guildID={this.props.guildID}/>
+      upload_emotes: <EmoteSettings guildID={this.props.guildID}/>,
+      permissions: <GuildPermissions guildID={this.props.guildID}/>
     }[pageName];
     return (
       <Container>
@@ -26,6 +28,11 @@ class GuildSettingsRoot extends Component {
             name='Settings'
             active={pageName === "settings"}
             onClick={() => this.props.history.push("./settings")}
+          />}
+          {guild.user_permissions.includes("manage_guild") && <Menu.Item
+            name='Permissions'
+            active={pageName === "permissions"}
+            onClick={() => this.props.history.push("./permissions")}
           />}
           {guild.user_permissions.includes("view_audit_log") && <Menu.Item
             name='Audit Logs'

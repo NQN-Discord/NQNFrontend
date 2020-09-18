@@ -3,3 +3,4 @@
 @descriptionColor: @textColor;
 @boxShadow: none;
 @invertedBackground: @primaryColor;
+@extraColor: @textColor;

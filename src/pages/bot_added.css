@@ -1,0 +1,28 @@
+.ui.card.bot_joined_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 480px;
+}
+
+.ui.card.bot_joined_modal:hover {
+  background: #2f3438;
+}
+
+.bot_joined_background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+
+  background-image: url("/wumpus_wallpaper_1080.png");
+  background-repeat: no-repeat;
+
+  background-size: cover;
+  background-position: center;
+
+  z-index: -1;
+}

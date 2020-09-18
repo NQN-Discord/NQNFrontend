@@ -66,7 +66,7 @@ class CommandPage extends Component {
         <Header as={levelDeep[depth]} className="inline">
           {command.name}
         </Header> - {command.short_doc}
-        <div className="right">
+        <div className="float_right">
           {this.getCheckData(command)
             .map(({name, perms}) => {
               switch (name) {
@@ -104,7 +104,7 @@ class CommandPage extends Component {
                 {guildID && this.props.loggedIn && colour !== "yellow" &&
                   <Icon
                     name={colour === "green"? "check": "times"}
-                    className="left"
+                    className="float_left"
                   />
                 }
                 {this.humanise(perm)}

@@ -34,14 +34,15 @@ function user(state = {
   guild_emotes: {},
   guild_aliases: {},
   user_aliases: [],
-  commands: {}
+  commands: {},
+  required_permissions: []
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
       Object.keys(action.guilds).forEach(k =>
         action.guilds[k].loaded_channels = false
       );
-      return update(state, {$merge: {guilds: action.guilds}});
+      return update(state, {$merge: {guilds: action.guilds, required_permissions: action.required_perms}});
     case RECEIVE_GUILD_CHANNELS:
       return update(state,
         {guilds: {[action.guild]: {$merge: {

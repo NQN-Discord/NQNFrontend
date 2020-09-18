@@ -1,0 +1,7 @@
+
+.permissions_table_header span {
+  writing-mode: vertical-rl;
+  transform: rotate(225deg);
+  white-space: nowrap;
+  text-transform: capitalize;
+}

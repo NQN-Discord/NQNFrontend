@@ -6,7 +6,7 @@ import {parse} from "query-string";
 import {createGuild} from "../../actions/guild";
 import update from "immutability-helper";
 import Websocket from 'react-websocket';
-import {guildBuilderApiWS, inviteURL} from "../../config";
+import {guildBuilderApiWS, inviteURLGuildBuilder} from "../../config";
 
 
 class GuildStatusPage extends Component {
@@ -74,7 +74,7 @@ class GuildStatusPage extends Component {
           mergeState[`${key}s`] = [value, ...this.state[`${key}s`]];
           break;
         case "guild_id":
-          window.open(`${inviteURL}&guild_id=${value}&disable_guild_select=true`, "_top");
+          window.open(`${inviteURLGuildBuilder}&guild_id=${value}&disable_guild_select=true`, "_top");
           requestData = false;
           break;
         default:

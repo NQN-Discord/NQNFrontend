@@ -7,11 +7,11 @@ export const RECEIVE_GUILD_SETTINGS = "RECEIVE_GUILD_SETTINGS";
 export const RECEIVE_GUILD_LOGS = "RECEIVE_GUILD_LOGS";
 
 
-export function receiveGuilds(guild_names) {
+export function receiveGuilds(guilds) {
   return {
     type: RECEIVE_GUILDS,
-    guilds: guild_names.guilds,
-    names: guild_names.names
+    guilds: guilds.guilds,
+    required_perms: guilds.required_perms
   }
 }
 
@@ -61,15 +61,13 @@ export function fetchChannels(guildID) {
 }
 
 
-export function postGuildSettings(guildID, prefix, announcementChannel, boostChannel, auditChannel) {
+export function postGuildSettings(guildID, prefix, boostChannel, auditChannel) {
   return function(dispatch) {
     axios.put(`${api_url}/guilds/${guildID}/settings`, {
       prefix,
-      announcement_channel: announcementChannel,
-      boost_channel: boostChannel,
-      audit_channel: auditChannel
+      audit_channel: auditChannel || 0
     });
-    dispatch(receiveGuildSettings(guildID, {prefix, announcementChannel, boostChannel}));
+    dispatch(receiveGuildSettings(guildID, {prefix, boostChannel}));
   };
 }
 
