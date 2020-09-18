@@ -55,6 +55,7 @@ class WebhookPage extends Component {
 
   render() {
     const selectedGuild = this.getGuild(this.state.selectedChannel);
+    const showChannels = this.state.showSettingsFor === null;
     return (
       <Container fluid>
         <Grid>
@@ -71,6 +72,7 @@ class WebhookPage extends Component {
                     }}
                 ));
               }}
+              showChannels={showChannels}
               showSettings={(showSettings) => {
                 if (!showSettings || this.state.showSettingsFor !== null) {
                   this.setURL(this.state.selectedGuild, null);
@@ -108,7 +110,8 @@ class WebhookPage extends Component {
           <div className={
             classNames(
               "message_container",
-              {"no_channel_list": this.state.selectedGuild === null}
+              {"no_channel_list": this.state.selectedGuild === null},
+              {"discount_channel_list": !showChannels}
             )
           }>
             { this.state.selectedChannel === null && this.state.showSettingsFor === null &&

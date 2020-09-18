@@ -19,6 +19,7 @@ class ChannelSelector extends Component {
     const channels = guild.channels;
     const perms = ["manage_guild", "manage_emojis", "view_audit_log"];
     const showGear = perms.some(perm => guild.user_permissions.includes(perm));
+    const showChannels = this.props.showChannels;
 
     return (
       <div className="channel_list">
@@ -34,7 +35,7 @@ class ChannelSelector extends Component {
             </Button>
           </Menu.Item>
           <Loader active={!channelsLoaded} inline="centered"/>
-          {Object.entries(channels).filter(([id, {hidden}]) => !hidden).map(([id, {name}]) => {
+          {showChannels && Object.entries(channels).filter(([id, {hidden}]) => !hidden).map(([id, {name}]) => {
             return (
               <Menu.Item
                 key={id}

@@ -45,7 +45,7 @@ class GuildPermissions extends Component {
             </List.Item>
           </List>
         </List>
-        <Table celled striped>
+        <Table celled striped unstackable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>
