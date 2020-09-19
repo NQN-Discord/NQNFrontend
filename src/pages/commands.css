@@ -15,11 +15,11 @@
   display: inline;
 }
 
-.right {
+.float_right {
   float: right;
 }
 
-.left {
+.float_left {
   float: left;
 }
 

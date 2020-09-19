@@ -16,3 +16,7 @@
   -o-transform: translateX(min(230px, 30%));
   transform: translateX(min(230px, 30%));
 }
+
+.discount_channel_list {
+  width: 100%;
+}

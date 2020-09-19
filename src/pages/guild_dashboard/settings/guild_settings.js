@@ -7,8 +7,7 @@ import {postGuildSettings} from "../../../actions/guild";
 import update from "immutability-helper";
 
 
-const announcementHelp = "Announcements about updates to the bot.";
-const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
+//const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
 const auditHelp = "Whenever the bot reposts a message on behalf of someone";
 
 class GuildSettings extends Component {
@@ -17,9 +16,7 @@ class GuildSettings extends Component {
     const guild = this.props.guilds[this.props.guildID];
     this.state = {
       prefix: guild.prefix,
-      boostChannel: guild.boost_channel,
       auditChannel: guild.audit_channel,
-      announcementChannel: guild.announcement_channel,
     };
   }
 
@@ -30,7 +27,6 @@ class GuildSettings extends Component {
         prefix: guild.prefix,
         boostChannel: guild.boost_channel,
         auditChannel: guild.audit_channel,
-        announcementChannel: guild.announcement_channel,
       });
     }
   }
@@ -43,7 +39,8 @@ class GuildSettings extends Component {
           <label>{description}</label>
           <Label pointing='left'>{helpText}</Label>
         </Form.Field>
-        <Dropdown button search floating scrolling labeled className='icon'
+        <br/>
+        <Dropdown button search scrolling labeled className='icon'
           icon='hashtag'
           options={[
             {key: "0", text: "None", value: 0},
@@ -73,7 +70,7 @@ class GuildSettings extends Component {
         }
         <Form
           onSubmit={() => {
-            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.announcementChannel, this.state.boostChannel, this.state.auditChannel);
+            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
           }}
         >
           <Form.Field inline>
@@ -83,8 +80,7 @@ class GuildSettings extends Component {
               onChange={e => this.setState(update(this.state, {$merge: {prefix: e.target.value}}))}
             />
           </Form.Field>
-          {this.renderDropdown("Announcement Channel", announcementHelp, "announcementChannel")}
-          {this.renderDropdown("Boost Channel", boostHelp, "boostChannel")}
+          <Divider hidden/>
           {this.renderDropdown("Audit Channel", auditHelp, "auditChannel")}
           <Divider/>
           <Button
@@ -107,7 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postGuildSettings: (guildID, prefix, announcementChannel, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, prefix, announcementChannel, boostChannel, auditChannel))
+    postGuildSettings: (guildID, prefix, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, prefix, boostChannel, auditChannel))
   }
 };
 

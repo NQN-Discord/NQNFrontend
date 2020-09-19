@@ -18,7 +18,6 @@ import {fetchGuilds} from "./actions/guild";
 import WebhookPage from "./pages/guild_dashboard/server_view";
 import ManagerRootPage from "./pages/emote_manager/manager_root";
 import LoginPage from "./pages/login";
-import JoinedPage from "./pages/joined_server";
 import {Header, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
@@ -27,6 +26,7 @@ import GuildCreatorPage from "./pages/guild_builder/guild_builder";
 import GuildStatusPage from "./pages/guild_builder/guild_status";
 import LicensePage from "./pages/licenses";
 import CommandPage from "./pages/commands";
+import BotAddedPage from "./pages/bot_added";
 
 import 'fomantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
@@ -74,6 +74,7 @@ class App extends Component {
                   <Route exact path="/privacy" component={PrivacyPolicy}/>
                   <Route exact path="/licenses" component={LicensePage}/>
                   <Route exact path="/commands" component={CommandPage}/>
+                  <Route exact path="/bot_added" component={BotAddedPage}/>
                   <LoginPage/>
                 </Switch>
               }
@@ -91,7 +92,6 @@ class App extends Component {
                   <Route exact path="/emote_manager/alias/search" component={ManagerRootPage}/>
 
                   <Route exact path="/login" component={LoginPage}/>
-                  <Route exact path="/joined_server" component={JoinedPage}/>
 
                   <Route exact path="/guild_builder" component={GuildCreatorPage}/>
                   <Route exact path="/guild_builder/status" component={GuildStatusPage}/>
@@ -104,6 +104,7 @@ class App extends Component {
                   <Route exact path="/privacy" component={PrivacyPolicy}/>
                   <Route exact path="/licenses" component={LicensePage}/>
                   <Route exact path="/commands" component={CommandPage}/>
+                  <Route exact path="/bot_added" component={BotAddedPage}/>
                 </Switch>
               }
             </div>
