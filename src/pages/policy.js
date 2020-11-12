@@ -36,12 +36,12 @@ export default function PrivacyPolicy() {
         <li>
           Messages re-posted by our service on your behalf including the message content, author information and where
           it was sent to. This is to provide our ‘audit’ feature, as well as to report any content to the appropriate
-          authorities. This data is stored for up to 30 days.
+          authorities. This data is stored for up to 60 days.
         </li>
         <li>
           Which commands you have executed in the past, including the user who ran it, where it was run and any
           arguments passed to the command. This is to provide developers of the service with analytical data, and to
-          help prevent abuse. This data is stored for up to 30 days.
+          help prevent abuse. This data is stored for up to 60 days.
         </li>
         <li>
           Server metadata, including the server name, metadata, channel names, topics, metadata, role names and
@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
       <p>
         I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for
         any changes. I will notify you of any changes by posting the new Privacy Policy on this page. This policy is
-        effective as of 2020-07-19.
+        effective as of 2020-11-11.
       </p>
 
       <h2>Contact Us</h2>
