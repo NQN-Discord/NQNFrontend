@@ -119,6 +119,8 @@ class BottomFooterO extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position='right'>
+          <Menu.Item data-ccpa-link="1" as="a" className="ccpa-style">
+          </Menu.Item>
           <Menu.Item
             active={activeElement === "licenses"}
             onClick={() => {

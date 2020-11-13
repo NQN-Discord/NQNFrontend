@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
 import {inviteURL} from "../config";
+import Ad from "../components/ad";
 
 
 // https://stackoverflow.com/a/12646864/3398583
@@ -22,24 +23,22 @@ class HomePage extends Component {
         <Grid padded doubling={true} columns={2} reversed={swap}>
           <Grid.Column width={2}/>
           {!swap && right}
-          <Grid.Column width={6}>
+          <Grid.Column width={9}>
             {!animated &&
               <Image
                 src={src}
                 centered
                 loading="lazy"
                 ui
-                image
               />
             }
             {animated &&
-              <video autoPlay loop muted playsinline className="centered ui image">
+              <video autoPlay loop muted playsInline className="centered ui image">
                 <source src={`${src}.webm`} type="video/mp4"/>
               </video>
             }
           </Grid.Column>
           {swap && right}
-          <Grid.Column width={2}/>
           <Grid.Column width={2}/>
           <Grid.Column width={11}>
             <Divider/>
@@ -90,66 +89,73 @@ class HomePage extends Component {
 
         <Divider hidden/>
 
-        {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
-          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-            <Header as="h1" className="unisans">
-              Animated Emotes Without Nitro
-            </Header>
-            <p>
-              NQN has no command for external emotes, instead looking for :emotes: in your messages.
-              <br/>
-              The bot then automatically replaces the emote with what you meant!
-              <br/>
-              By default, you can use <em>any</em> emote you and NQN share servers with.
-            </p>
-          </Grid.Column>
-        ))}
+        <Grid>
+          <Grid.Column width={13}>
+            {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Animated Emotes Without Nitro
+                </Header>
+                <p>
+                  NQN has no command for external emotes, instead looking for :emotes: in your messages.
+                  <br/>
+                  The bot then automatically replaces the emote with what you meant!
+                  <br/>
+                  By default, you can use <em>any</em> emote you and NQN share servers with.
+                </p>
+              </Grid.Column>
+            ))}
 
-        {this.renderImgColumn(false, '/replies_cropped', true, (
-          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-            <Header as="h1" className="unisans">
-              Quote Messages
-            </Header>
-            <p>
-              Reply to your friends simply by pasting in a Discord message link.
-              <br/>
-              NQN then instantly responds with the full context; useful for when you're discussing a
-              message from a different channel.
-            </p>
-          </Grid.Column>
-        ))}
+            {this.renderImgColumn(false, '/replies_cropped', true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Quote Messages
+                </Header>
+                <p>
+                  Reply to your friends simply by pasting in a Discord message link.
+                  <br/>
+                  NQN then instantly responds with the full context; useful for when you're discussing a
+                  message from a different channel.
+                </p>
+              </Grid.Column>
+            ))}
 
-        {this.renderImgColumn(true, '/packs.png', false, (
-          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-            <Header as="h1" className="unisans">
-              Emote packs
-            </Header>
-            <p>
-              Search for and join emote packs to instantly gain access to their emotes!
-              <br/>
-              Publish your own to share your favourite set of emotes with the world!
-            </p>
-          </Grid.Column>
-        ))}
+            {this.renderImgColumn(true, '/packs.png', false, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Emote packs
+                </Header>
+                <p>
+                  Search for and join emote packs to instantly gain access to their emotes!
+                  <br/>
+                  Publish your own to share your favourite set of emotes with the world!
+                </p>
+              </Grid.Column>
+            ))}
 
-        {this.renderImgColumn(false, '/stickers', true, (
-          <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-            <Header as="h1" className="unisans">
-              Stickers
-            </Header>
-            <p>
-              Embed full size images into your messages.
-              <br/>
-              Upload your own, or import sticker packs from Telegram and share them with everyone.
-            </p>
+            {this.renderImgColumn(false, '/stickers', true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Stickers
+                </Header>
+                <p>
+                  Embed full size images into your messages.
+                  <br/>
+                  Upload your own, or import sticker packs from Telegram and share them with everyone.
+                </p>
+              </Grid.Column>
+            ))}
           </Grid.Column>
-        ))}
+          <Grid.Column width={3}>
+            <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
+          </Grid.Column>
+        </Grid>
 
         <Container>
           <Divider hidden={true}/>
           <Grid columns={3} doubling={true} centered>
             {botLists.map(([src, href]) => (
-              <a className="ui centered image" href={href}>
+              <a className="ui centered image" href={href} key={src}>
                 <img
                   loading="lazy"
                   src={src}

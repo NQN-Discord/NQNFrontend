@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 import rootReducer from "./reducers";
 import App from "./main";
+import './nitropay.css';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
