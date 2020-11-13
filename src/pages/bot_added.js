@@ -1,11 +1,13 @@
 import React from "react";
-import { Container, Divider, Button, Card, List, Loader } from "semantic-ui-react";
+import { Container, Divider, Button, Card, List, Grid } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
 import "./bot_added.css";
 import {discordURL} from "../config";
 import {parse} from "query-string";
+import Ad from "../components/ad";
 
-function BotAddedPage(props) {
+
+function BotAddedDialog(props) {
   const loggedIn = props.loggedIn;
   const query = parse(props.location.search);
   const guildId = query.guild_id;
@@ -17,54 +19,75 @@ function BotAddedPage(props) {
   const url = `/guilds/${guildId}/permissions`;
 
   return (
+    <Card centered className="bot_joined_modal">
+      <Card.Content>
+        <Card.Header textAlign="center" as="h2">
+          NQN just landed{justLanded}
+        </Card.Header>
+        <Card.Description>
+          Check everything's working by logging into the website, or join our Support Server for help!
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <List>
+          <List.Item
+            icon="check"
+            content="Check that permissions are set up correctly!"
+          />
+          <List.Item
+            icon="check"
+            content="See which channels you can run commands in!"
+          />
+          <List.Item
+            icon="check"
+            content="Send a test message to your server!"
+          />
+        </List>
+
+        <Button primary fluid size="large" loading={loggedIn && !name} onClick={() => {
+          if (loggedIn) {
+            if (!name) {
+              return
+            }
+            props.history.push(url);
+          } else {
+            localStorage.setItem("redirect", url);
+            window.location = discordURL;
+          }
+        }}>
+          {primaryButton}
+        </Button>
+        <Divider hidden/>
+        <Button secondary fluid size="large" onClick={() => {
+          window.open("https://discord.gg/UMVpPN7", "_blank");
+        }}>
+          Join NQN Support
+        </Button>
+      </Card.Content>
+    </Card>
+  );
+}
+
+
+function BotAddedPage(props) {
+  return (
     <Container fluid>
       <div className="bot_joined_background"/>
-      <Card centered className="bot_joined_modal">
-        <Card.Content>
-          <Card.Header textAlign="center" as="h2">
-            NQN just landed{justLanded}
-          </Card.Header>
-          <Card.Description>
-            Check everything's working by logging into the website, or join our Support Server for help!
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <List>
-            <List.Item
-              icon="check"
-              content="Check that permissions are set up correctly!"
-            />
-            <List.Item
-              icon="check"
-              content="See which channels you can run commands in!"
-            />
-            <List.Item
-              icon="check"
-              content="Send a test message to your server!"
-            />
-          </List>
-
-          <Button primary fluid size="large" loading={loggedIn && !name} onClick={() => {
-            if (loggedIn) {
-              if (!name) {
-                return
-              }
-              props.history.push(url);
-            } else {
-              localStorage.setItem("redirect", url);
-              window.location = discordURL;
-            }
-          }}>
-            {primaryButton}
-          </Button>
-          <Divider hidden/>
-          <Button secondary fluid size="large" onClick={() => {
-            window.open("https://discord.gg/UMVpPN7", "_blank");
-          }}>
-            Join NQN Support
-          </Button>
-        </Card.Content>
-      </Card>
+      <Grid centered>
+        <Grid.Column width={5} only="computer">
+          <Ad id="home-column-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+        </Grid.Column>
+        <Grid.Column width={6} only="computer" style={{height: "80vh"}}>
+          <BotAddedDialog {...props}/>
+        </Grid.Column>
+        <Grid.Column width={5} only="computer">
+          <Ad id="home-column-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+        </Grid.Column>
+        <Grid.Column width={16} only="tablet mobile" style={{height: "80vh"}}>
+          <BotAddedDialog {...props}/>
+          <Ad id="home-column-mobile-ad" format="anchor"/>
+        </Grid.Column>
+      </Grid>
     </Container>
   )
 }
