@@ -75,17 +75,17 @@ function BotAddedPage(props) {
       <div className="bot_joined_background"/>
       <Grid centered>
         <Grid.Column width={5} only="computer">
-          <Ad id="home-column-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+          <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac"/>
         </Grid.Column>
         <Grid.Column width={6} only="computer" style={{height: "80vh"}}>
           <BotAddedDialog {...props}/>
         </Grid.Column>
         <Grid.Column width={5} only="computer">
-          <Ad id="home-column-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+          <Ad id="bot-added-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
         </Grid.Column>
         <Grid.Column width={16} only="tablet mobile" style={{height: "80vh"}}>
           <BotAddedDialog {...props}/>
-          <Ad id="home-column-mobile-ad" format="anchor"/>
+          <Ad id="bot-added-mobile-ad" format="anchor"/>
         </Grid.Column>
       </Grid>
     </Container>

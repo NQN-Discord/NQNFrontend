@@ -3,7 +3,8 @@ import {adDemoMode} from '../config.js';
 
 export default class Ad extends Component {
   componentDidMount() {
-    window['nitroAds'].createAd(this.props.id, {
+    console.log(`Creating ad for ${this.props.id}`);
+    const ad = window['nitroAds'].createAd(this.props.id, {
       "demo": adDemoMode,
       "refreshLimit": 10,
       "refreshTime": 90,
@@ -19,6 +20,14 @@ export default class Ad extends Component {
         "position": "top-right"
       }
     });
+    this.setState({ad});
+  }
+
+  componentWillUnmount() {
+    console.log(`Unloading ad for ${this.props.id}`);
+    if (this.state.ad) {
+      this.state.ad.onNavigate();
+    }
   }
 
   render() {
