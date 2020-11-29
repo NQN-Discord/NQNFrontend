@@ -42,16 +42,24 @@ function delAliases(aliases) {
   }
 }
 
+
+function renderEmote(alias) {
+  if (alias.animate) {
+    return [alias.name, `<a:${alias.name}:${alias.id}>`]
+  }
+  return [alias.name, `<:${alias.name}:${alias.id}>`]
+}
+
 export function setAliases(aliases) {
   return function(dispatch) {
-    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
+    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(renderEmote))});
     dispatch(addAliases(aliases));
   };
 }
 
 export function changeAliases(aliases) {
   return function(dispatch) {
-    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(({id, name}) => {return [name, id]}))});
+    axios.put(`${api_url}/aliases`, {emotes: Object.fromEntries(aliases.map(renderEmote))});
     axios.delete(`${api_url}/aliases`, {data: {emotes: aliases.map(({oldName}) => oldName)}});
     dispatch(addAliases(aliases.map(({id, name, animated}) => {return {id, name, animated}})));
     dispatch(delAliases(aliases.map(({oldName}) => oldName)));

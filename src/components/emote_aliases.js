@@ -49,9 +49,9 @@ class EmoteAliases extends Component {
     const alias = this.props.showButtons && this.props.aliases.find(alias => alias.id === emote.id);
     const getName = () => {
       if (typeof this.state.renameBox[emote.id] === "undefined") {
-        return alias.name;
+        return alias.name.replace(/[^A-Za-z0-9_]+/g, '');
       }
-      return this.state.renameBox[emote.id];
+      return this.state.renameBox[emote.id].replace(/[^A-Za-z0-9_]+/g, '');
     };
     return (
       <List.Item
@@ -111,10 +111,19 @@ class EmoteAliases extends Component {
     if (!this.state) {
       return <div/>;
     }
+    const ids = new Set();
+    // this.props.emotes -> emotes to render
+    // this.props.aliases -> our aliases
     return (
       <List celled>
         {this.props.header}
-        {this.props.emotes.map(emote => this.renderSearchResult(emote))}
+        {this.props.emotes.filter(emote => {
+          if (ids.has(emote.id)) {
+            return false;
+          }
+          ids.add(emote.id);
+          return true;
+        }).map(emote => this.renderSearchResult(emote))}
       </List>
     );
   }
