@@ -44,7 +44,7 @@ function delAliases(aliases) {
 
 
 function renderEmote(alias) {
-  if (alias.animate) {
+  if (alias.animated) {
     return [alias.name, `<a:${alias.name}:${alias.id}>`]
   }
   return [alias.name, `<:${alias.name}:${alias.id}>`]
