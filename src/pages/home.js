@@ -33,7 +33,7 @@ class HomePage extends Component {
               />
             }
             {animated &&
-              <video autoPlay loop muted playsInline className="centered ui image">
+              <video autoPlay loop muted playsInline className="centered ui image" style={{display: "block"}}>
                 <source src={`${src}.webm`} type="video/mp4"/>
               </video>
             }
@@ -97,11 +97,35 @@ class HomePage extends Component {
                   Animated Emotes Without Nitro
                 </Header>
                 <p>
-                  NQN has no command for external emotes, instead looking for :emotes: in your messages.
+                  NQN is a Discord bot which allows anyone to use emotes for free!
                   <br/>
-                  The bot then automatically replaces the emote with what you meant!
+                  It does this by looking for :emotes: in your messages and automatically replacing them with what you meant!
                   <br/>
                   By default, you can use <em>any</em> emote you and NQN share servers with.
+                </p>
+              </Grid.Column>
+            ))}
+
+            {this.renderImgColumn(false, '/recently_used', true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Use the same emotes as your friends
+                </Header>
+                <p>
+                  NQN remembers emotes that have been used recently and allows anyone to reuse them, without any further setup!
+                </p>
+              </Grid.Column>
+            ))}
+
+            {this.renderImgColumn(true, '/packs.png', false, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <Header as="h1" className="unisans">
+                  Emote packs
+                </Header>
+                <p>
+                  Search for and join emote packs to instantly gain access to their emotes!
+                  <br/>
+                  Publish your own to share your favourite set of emotes with the world!
                 </p>
               </Grid.Column>
             ))}
@@ -120,20 +144,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(true, '/packs.png', false, (
-              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
-                  Emote packs
-                </Header>
-                <p>
-                  Search for and join emote packs to instantly gain access to their emotes!
-                  <br/>
-                  Publish your own to share your favourite set of emotes with the world!
-                </p>
-              </Grid.Column>
-            ))}
-
-            {this.renderImgColumn(false, '/stickers', true, (
+            {this.renderImgColumn(true, '/stickers', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <Header as="h1" className="unisans">
                   Stickers
