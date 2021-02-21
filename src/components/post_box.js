@@ -143,6 +143,7 @@ class PostBox extends Component {
             onKeyDown={event => {
               if (event.key === "Enter" && !event.shiftKey) {
                 this.props.postMessage(
+                  this.props.guildID,
                   this.props.channelID,
                   discordRendered
                 );
@@ -195,7 +196,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postMessage: (channel, message) => dispatch(postMessage(channel, message))
+    postMessage: (guild, channel, message) => dispatch(postMessage(guild, channel, message))
   }
 };
 
