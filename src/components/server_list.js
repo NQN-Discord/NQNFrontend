@@ -1,11 +1,10 @@
 import React, {Component} from "react";
-import connect from "react-redux/es/connect/connect";
 
 import {Container, Image, Card, Button} from 'semantic-ui-react';
 
 import "./server_list.css";
 
-class GuildSelector extends Component {
+export default class GuildSelector extends Component {
   render() {
     if (Object.keys(this.props.guilds).length === 0) {
       return <div/>;
@@ -13,9 +12,9 @@ class GuildSelector extends Component {
     return (
       <Container className="server_list">
         <Card.Group>
-          {Object.entries(this.props.guilds)
-            .filter(([guildID, guild]) => guild.bot_in_guild || guild.user_permissions.includes("manage_guild"))
+          {this.props.guilds
             .map(([guildID, guild]) => {
+              const perms_needed = (this.props.bot_permissions || []).filter(p => !(guild.bot_permissions.includes(p) || guild.bot_permissions.includes("administrator")));
               return (
                 <Card
                   key={guildID}
@@ -35,9 +34,7 @@ class GuildSelector extends Component {
                   </Card.Content>
 
                   {!guild.bot_in_guild &&
-                    <Button
-                      primary
-                    >
+                    <Button primary>
                       Add NQN
                     </Button>
                   }
@@ -49,13 +46,3 @@ class GuildSelector extends Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    guilds: state.user.guilds,
-  }
-};
-export default connect(
-  mapStateToProps,
-  null
-)(GuildSelector);

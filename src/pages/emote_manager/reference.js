@@ -39,7 +39,7 @@ class ReferencePage extends Component {
     const names = new Set();
     const panels = [
       this.renderEmotes("Aliases", this.props.user_aliases, names),
-      ...this.props.packs.map(([name, {emotes, is_public}]) => this.renderEmotes(name, emotes, names)),
+      ...Object.entries(this.props.packs).map(([name, {emotes, is_public}]) => this.renderEmotes(name, emotes, names)),
       ...Object.entries(this.props.guilds).map(([id, {name}]) =>
         this.renderEmotes(name, (this.props.guild_emotes[id] || []).concat(this.props.guild_aliases[id] || []), names))
     ].filter(e => e);
@@ -61,7 +61,7 @@ class ReferencePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    packs: Object.entries(state.user.packs).filter(([pack, value]) => state.user.user_packs.includes(pack)),
+    packs: state.user.packs,
     guilds: state.user.guilds,
     guild_emotes: state.user.guild_emotes,
     guild_aliases: state.user.guild_aliases,

@@ -23,6 +23,7 @@ import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
 import PrivacyPolicy from "./pages/policy";
 import GuildCreatorPage from "./pages/guild_builder/guild_builder";
+import GuildSelectorPage from "./pages/guild_builder/guild_selector";
 import GuildStatusPage from "./pages/guild_builder/guild_status";
 import LicensePage from "./pages/licenses";
 import CommandPage from "./pages/commands";
@@ -94,6 +95,7 @@ class App extends Component {
                   <Route exact path="/login" component={LoginPage}/>
 
                   <Route exact path="/guild_builder" component={GuildCreatorPage}/>
+                  <Route exact path="/guild_builder/selector" component={GuildSelectorPage}/>
                   <Route exact path="/guild_builder/status" component={GuildStatusPage}/>
 
                   <Route exact path="/reference" component={ManagerRootPage}/>

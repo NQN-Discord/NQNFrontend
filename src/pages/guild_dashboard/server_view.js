@@ -117,6 +117,7 @@ class WebhookPage extends Component {
             { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
               <GuildSelector
                 selected={this.state.selectedGuild}
+                guilds={Object.entries(this.props.guilds).filter(([guildID, guild]) => guild.bot_in_guild || guild.user_permissions.includes("manage_guild"))}
                 onSelect={guildID => {
                   if (!guildID || this.props.guilds[guildID].bot_in_guild) {
                     this.setURL(guildID, null);
