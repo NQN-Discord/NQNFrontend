@@ -8,12 +8,13 @@ import TextareaAutosize from "react-textarea-autosize";
 
 import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
+import UserEmotes from "../components/user_emotes";
 
-import {Segment, Form} from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
 
 
 class PostBox extends Component {
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.textArea = null;
     this.state = {
@@ -60,44 +61,35 @@ class PostBox extends Component {
     if (this.state.message.length !== 0) {
       match = regex.exec(this.state.message.slice(-1)[0]);
       if (match !== null) {
-        prefix = match[1];
+        prefix = match[1].toLowerCase();
       }
     }
     return (
-      <Segment>
-        <div className="emote_picker">
-          { this.props.all_emotes.filter(emoteObj => {
-            return emoteObj.name.toLowerCase().startsWith(prefix.toLowerCase());
-          }).concat(
-            this.props.all_emotes.filter(emoteObj => {
-              return !(emoteObj.name.toLowerCase().startsWith(prefix.toLowerCase())) &&
-                (emoteObj.name.toLowerCase().includes(prefix.toLowerCase()));
-            })
-          ).map(emoteObj => {
-            const emote = new Emote(emoteObj);
-            return emote.renderImg(() => {
-              if (match !== null) {
-                const newMsg = this.state.message.slice(-1)[0].slice(0, match.index);
-                this.setState(update(this.state, {$merge: {
-                    message: this.state.message.splice(0, this.state.message.length - 1)
-                      .concat(newMsg)
-                      .concat(emote)
-                  }}));
-                this.textArea.value = this.textArea.value.slice(0,
-                  regex.exec(this.textArea.value)
-                ) + emote.renderText();
+      <UserEmotes
+        filter={(emote) => emote.name.toLowerCase().includes(prefix)}
+        onClick={(emote) => {
+          if (match !== null) {
+            const newMsg = this.state.message.slice(-1)[0].slice(0, match.index);
+            this.setState(update(this.state, {
+              $merge: {
+                message: this.state.message.splice(0, this.state.message.length - 1)
+                  .concat(newMsg)
+                  .concat(emote)
               }
-              else {
-                this.setState(update(this.state, {$merge: {
-                    message: this.state.message.concat(emote)
-                  }}));
-                this.textArea.value = this.textArea.value + emote.renderText();
+            }));
+            this.textArea.value = this.textArea.value.slice(0,
+              regex.exec(this.textArea.value)
+            ) + emote.renderText();
+          } else {
+            this.setState(update(this.state, {
+              $merge: {
+                message: this.state.message.concat(emote)
               }
-            });
-          }) }
-        </div>
-      </Segment>
-    );
+            }));
+            this.textArea.value = this.textArea.value + emote.renderText();
+          }
+        }}/>
+      );
   }
 
   renderMessage() {
