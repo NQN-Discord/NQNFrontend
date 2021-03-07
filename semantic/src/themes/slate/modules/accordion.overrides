@@ -6,10 +6,10 @@
 
 
   .title .dropdown.icon {
-    transform: rotate(-90deg);
+    transform: rotate(0deg);
   }
 
   .active.title .dropdown.icon  {
-    transform: rotate(0deg);
+    transform: rotate(90deg);
   }
 }
