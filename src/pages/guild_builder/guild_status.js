@@ -81,7 +81,7 @@ class GuildStatusPage extends Component {
           console.log({key, value});
       }
     });
-    if (done) {
+    if (done && this.state.errors.length === 0) {
       this.props.history.push("/guilds");
     } else {
       this.setState(update(this.state, {$merge: mergeState}));

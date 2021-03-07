@@ -20,17 +20,24 @@ class LoginPage extends Component {
       return
     }
 
-    if (invitedBot && !redirect.startsWith("/joined_server")) {
-      localStorage.setItem("redirect", `/joined_server?guild_id=${query.guild_id}`);
-      localStorage.setItem("refreshToken", "");
-      window.location.reload();
-      return
-    }
+    if (invitedBot) {
+      if (state === "guild_selector") {
+        localStorage.setItem("redirect", "");
+        window.location = redirect;
+        return
+      }
+      if (!redirect.startsWith("/joined_server")) {
+        localStorage.setItem("redirect", `/joined_server?guild_id=${query.guild_id}`);
+        localStorage.setItem("refreshToken", "");
+        window.location.reload();
+        return
+      }
 
-    if (invitedBot && redirect === "/joined_server" && this.props.refreshToken) {
-      localStorage.setItem("redirect", "");
-      this.props.history.push(redirect);
-      return
+      if (redirect === "/joined_server" && this.props.refreshToken) {
+        localStorage.setItem("redirect", "");
+        this.props.history.push(redirect);
+        return
+      }
     }
 
     if (this.props.refreshToken) {
