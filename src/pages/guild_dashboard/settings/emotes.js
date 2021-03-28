@@ -56,34 +56,6 @@ class EmoteSettings extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
-    const pageName = this.props.match.params.page;
-
-    const page = {
-      emotes: (
-        <EmotePreview
-          emotes={this.state.emotes}
-          setAliases={(emotes) => this.updateEmotes(emotes)}
-          changeAliases={(emotes) => this.updateEmotes(emotes)}
-          unsetAliases={(emotes) => this.unsetNames(emotes)}
-          modifiable={true}
-        />
-      ),
-      upload_emotes: (
-        <SearchComponent
-          getNewEmotes={this.getNewEmotes}
-          emoteAliases={(emotes) =>
-            <EmoteAliases
-              emotes={emotes}
-              aliases={this.state.emotes}
-              setAliases={(emotes) => this.updateEmotes(emotes)}
-              changeAliases={(emotes) => this.updateEmotes(emotes)}
-              unsetAliases={(emotes) => this.unsetNames(emotes)}
-              showButtons={true}
-            />
-          }
-        />
-      )
-    }[pageName];
 
     if (!guild.bot_permissions.includes("manage_emojis")) {
       return (
@@ -99,16 +71,6 @@ class EmoteSettings extends Component {
     return (
       <Container>
         <Menu>
-          <Menu.Item
-            name="Manage"
-            active={pageName === "emotes"}
-            onClick={() => this.props.history.push("./emotes")}
-          />
-          <Menu.Item
-            name="Search"
-            active={pageName === "upload_emotes"}
-            onClick={() => this.props.history.push("./upload_emotes")}
-          />
           <Menu.Item
             position='right'
           >
@@ -133,7 +95,13 @@ class EmoteSettings extends Component {
             </Button>
           </Menu.Item>
         </Menu>
-        {page}
+        <EmotePreview
+          emotes={this.state.emotes}
+          setAliases={(emotes) => this.updateEmotes(emotes)}
+          changeAliases={(emotes) => this.updateEmotes(emotes)}
+          unsetAliases={(emotes) => this.unsetNames(emotes)}
+          modifiable={true}
+        />
       </Container>
     );
   }
