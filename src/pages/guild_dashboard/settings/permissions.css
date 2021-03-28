@@ -1,7 +1,16 @@
 
 .permissions_table_header span {
   writing-mode: vertical-rl;
-  transform: rotate(225deg);
+  transform: rotate(220deg);
   white-space: nowrap;
   text-transform: capitalize;
+  float: right;
+  transform-origin: 0 50%;
+}
+
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
