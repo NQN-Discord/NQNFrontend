@@ -44,7 +44,7 @@ class AuditLogs extends Component {
     const logs = this.props.guilds[this.props.guildID].auditLog;
     return (
       <Feed>
-        {logs.messages.map(({channel, author, id, content}) => (
+        {logs.messages.map(({channel, id, content}) => (
           <Feed.Event key={id}>
             <Feed.Content>
               <Feed.Summary>{channel} - {this.parseSnowflake(id).toLocaleDateString(undefined, dateOptions)}</Feed.Summary>
@@ -58,7 +58,7 @@ class AuditLogs extends Component {
 
   renderNavigationButtons() {
     const guild = this.props.guilds[this.props.guildID];
-    if (!guild.logs) {
+    if (!guild.auditLog) {
       return (
         <div>
           There are no audit logs for this server
