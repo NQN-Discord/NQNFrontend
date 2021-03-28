@@ -36,7 +36,7 @@
 @cellHorizontalPadding: @relativeMini;
 @cellVerticalAlign: inherit;
 @cellTextAlign: inherit;
-@cellBorder: 1px solid @internalBorderColor;
+@cellBorder: 1.5px dashed rgb(255, 255, 255);
 
 /* Table Header */
 @headerBorder: 1px solid @internalBorderColor;
