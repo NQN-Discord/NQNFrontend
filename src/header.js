@@ -11,7 +11,7 @@ import {Menu} from 'semantic-ui-react';
 class HeaderO extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      window.gtag('config', 'UA-143037513-1', {'page_path': this.props.location.pathname});
+      window.gtag('config', 'UA-143037513-1', {'page_path': this.props.location.pathname.replaceAll(/\d+/ig, "...")});
     }
   }
 
