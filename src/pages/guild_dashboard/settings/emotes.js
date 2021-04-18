@@ -7,8 +7,6 @@ import {postGuildEmotes} from "../../../actions/guild"
 import {receiveGuildEmotes} from "../../../actions/user"
 
 import {withRouter} from "react-router-dom";
-import EmoteAliases from "../../../components/emote_aliases";
-import SearchComponent from "../../../components/emote_search";
 
 
 class EmoteSettings extends Component {
