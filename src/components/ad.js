@@ -3,7 +3,7 @@ import {adDemoMode} from '../config.js';
 
 export default class Ad extends Component {
   componentDidMount() {
-    console.log(`Creating ad for ${this.props.id}`);
+    console.log(`Creating ad for ${this.props.id}. Format: ${this.props.format}`);
     const ad = window['nitroAds'].createAd(this.props.id, {
       "demo": adDemoMode,
       "refreshLimit": 10,

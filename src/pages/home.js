@@ -90,7 +90,7 @@ class HomePage extends Component {
         <Divider hidden/>
 
         <Grid>
-          <Grid.Column width={13}>
+          <Grid.Column computer={13} mobile={16} tablet={16} >
             {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <Header as="h1" className="unisans">
@@ -157,7 +157,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} only="computer">
             <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
           </Grid.Column>
         </Grid>
