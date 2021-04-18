@@ -2,6 +2,7 @@ import axios from 'axios';
 import {api_url} from '../config.js';
 
 export const RECEIVE_GUILD_EMOTES = "RECEIVE_GUILD_EMOTES";
+export const RECEIVE_PREMIUM_USER = "RECEIVE_PREMIUM_USER";
 export const RECEIVE_EMOTES = "RECEIVE_EMOTES";
 export const ADD_ALIASES = "ADD_ALIASES";
 export const DEL_ALIASES = "DEL_ALIASES";
@@ -16,7 +17,15 @@ export function receiveEmotes(emotes) {
     user_packs: emotes.user_packs,
     guild_emotes: emotes.guild_emotes,
     guild_aliases: emotes.guild_aliases,
-    user_aliases: emotes.aliases
+    user_aliases: emotes.aliases,
+    premium_user: emotes.premium_user
+  }
+}
+
+export function receivePatreonUser(data) {
+  return {
+    type: RECEIVE_PREMIUM_USER,
+    premium_user: data.premium_user
   }
 }
 
@@ -104,6 +113,17 @@ export function fetchEmotes() {
     axios.get(`${api_url}/emotes`).then(response => {
       if (response) {
         dispatch(receiveEmotes(response.data));
+      }
+    });
+  };
+}
+
+
+export function fetchPremiumUser() {
+  return function(dispatch) {
+    axios.get(`${api_url}/patreon`).then(response => {
+      if (response) {
+        dispatch(receivePatreonUser(response.data));
       }
     });
   };

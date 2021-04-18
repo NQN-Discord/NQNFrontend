@@ -28,6 +28,7 @@ import GuildStatusPage from "./pages/guild_builder/guild_status";
 import LicensePage from "./pages/licenses";
 import CommandPage from "./pages/commands";
 import BotAddedPage from "./pages/bot_added";
+import PremiumPage from "./pages/premium";
 
 import 'fomantic-ui-less/semantic.less';
 import HomePage from "./pages/home";
@@ -107,6 +108,7 @@ class App extends Component {
                   <Route exact path="/licenses" component={LicensePage}/>
                   <Route exact path="/commands" component={CommandPage}/>
                   <Route exact path="/bot_added" component={BotAddedPage}/>
+                  <Route exact path="/premium" component={PremiumPage}/>
                 </Switch>
               }
             </div>
