@@ -45,8 +45,8 @@ class LoginPage extends Component {
       this.props.history.push(redirect || "/");
       return
     }
-    if (!code) {
-      localStorage.setItem("redirect", this.props.location.pathname === "/login"? "/": this.props.location.pathname);
+    if (!code || this.props.location.pathname !== "/login") {
+      localStorage.setItem("redirect", this.props.location.pathname === "/login"? "/": (this.props.location.pathname + this.props.location.search));
       window.location = discordURL;
       return
     }
