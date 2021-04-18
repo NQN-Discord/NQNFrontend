@@ -8,7 +8,7 @@ export default class Ad extends Component {
       "demo": adDemoMode,
       "refreshLimit": 10,
       "refreshTime": 90,
-      "renderVisibleOnly": false,
+      "renderVisibleOnly": true,
       "refreshVisibleOnly": true,
       "sizes": this.props.sizes,
       "format": this.props.format,
