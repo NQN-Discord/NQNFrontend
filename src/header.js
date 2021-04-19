@@ -9,10 +9,19 @@ import {Menu} from 'semantic-ui-react';
 
 
 class HeaderO extends Component {
+  componentDidMount() {
+    this.sendGoogleAnalytics();
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      window.gtag('config', 'UA-143037513-1', {'page_path': this.props.location.pathname.replaceAll(/\d+/ig, "...")});
+      this.sendGoogleAnalytics();
     }
+  }
+
+  sendGoogleAnalytics() {
+    const pagePath = this.props.location.pathname.replaceAll(/\d+/ig, "...");
+    window.gtag('config', 'UA-143037513-1', {'page_path': pagePath});
   }
 
   render() {
