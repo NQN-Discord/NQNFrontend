@@ -31,6 +31,6 @@ export default class Ad extends Component {
   }
 
   render() {
-    return <div id={this.props.id}/>;
+    return <div id={this.props.id} style={this.props.style || {}}/>;
   }
 }
