@@ -32,7 +32,7 @@ class ManagerRootPage extends Component {
   render() {
     return (
       <>
-        <div className="manager_root_column large_screen_ad manager_root_left_column">
+        <div className="manager_root_column manager_root_large_screen_ad manager_root_left_column">
           <Ad id="emote-manager-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
           <Ad id="emote-manager-video-ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac" style={{width: "300px", margin: "0px auto"}}/>
         </div>
@@ -50,7 +50,7 @@ class ManagerRootPage extends Component {
           </Container>
 
         </div>
-        <div className="manager_root_column large_screen_ad manager_root_right_column">
+        <div className="manager_root_column manager_root_large_screen_ad manager_root_right_column">
           <Ad id="emote-manager-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
         </div>
       </>

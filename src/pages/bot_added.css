@@ -3,10 +3,16 @@
   height: 80vh;
 }
 
+.bot_added_large_screen_ad {
+  width: 25%;
+  min-width: 300px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .bot_added_column {
   position: relative;
   display: inline-block;
-  padding: 1rem;
   vertical-align: top;
 }
 
