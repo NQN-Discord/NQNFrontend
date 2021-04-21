@@ -76,13 +76,13 @@ function BotAddedPage(props) {
   return (
     <Container fluid>
       <div className="bot_joined_background"/>
-      <div className="bot_added_column large_screen_ad bot_added_left_column">
+      <div className="bot_added_column bot_added_large_screen_ad bot_added_left_column">
         <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
       </div>
-      <div className="bot_added_column large_screen_ad bot_added_middle_column">
+      <div className="bot_added_column bot_added_middle_column">
         <BotAddedDialog {...props}/>
       </div>
-      <div className="bot_added_column large_screen_ad bot_added_right_column">
+      <div className="bot_added_column bot_added_large_screen_ad bot_added_right_column">
         <Ad id="bot-added-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
       </div>
     </Container>
