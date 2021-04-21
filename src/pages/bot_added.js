@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Divider, Button, Card, List, Grid } from "semantic-ui-react";
+import { Container, Divider, Button, Card, List } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
 import "./bot_added.css";
 import {discordURL} from "../config";
@@ -64,6 +64,9 @@ function BotAddedDialog(props) {
           Join NQN Support
         </Button>
       </Card.Content>
+      <div className="under_ad">
+        <Ad id="bot_added_video_ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac"/>
+      </div>
     </Card>
   );
 }
@@ -73,21 +76,15 @@ function BotAddedPage(props) {
   return (
     <Container fluid>
       <div className="bot_joined_background"/>
-      <Grid centered>
-        <Grid.Column width={5} only="computer">
-          <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac"/>
-        </Grid.Column>
-        <Grid.Column width={6} only="computer" style={{height: "80vh"}}>
-          <BotAddedDialog {...props}/>
-        </Grid.Column>
-        <Grid.Column width={5} only="computer">
-          <Ad id="bot-added-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
-        </Grid.Column>
-        <Grid.Column width={16} only="tablet mobile" style={{height: "80vh"}}>
-          <BotAddedDialog {...props}/>
-          <Ad id="bot-added-mobile-ad" format="anchor"/>
-        </Grid.Column>
-      </Grid>
+      <div className="bot_added_column large_screen_ad bot_added_left_column">
+        <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+      </div>
+      <div className="bot_added_column large_screen_ad bot_added_middle_column">
+        <BotAddedDialog {...props}/>
+      </div>
+      <div className="bot_added_column large_screen_ad bot_added_right_column">
+        <Ad id="bot-added-right-ad" sizes={[["300", "600"], ["160", "600"]]}/>
+      </div>
     </Container>
   )
 }

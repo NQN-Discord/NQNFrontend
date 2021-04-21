@@ -1,0 +1,38 @@
+.large_screen_ad {
+  width: 20%;
+  min-width: 300px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.manager_root_middle_column {
+  width: 60%;
+}
+
+.manager_root_column {
+  position: relative;
+  display: inline-block;
+  padding: 1rem;
+  vertical-align: top;
+}
+
+@media only screen and (max-width: 1600px) {
+  .manager_root_right_column {
+    display: none;
+  }
+
+  .manager_root_middle_column {
+    width: 69%;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+  .manager_root_left_column {
+    display: none;
+  }
+
+  .manager_root_middle_column {
+    width: 100%;
+  }
+}
