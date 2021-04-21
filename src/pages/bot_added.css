@@ -1,8 +1,33 @@
+.bot_added_middle_column {
+  width: 50%;
+  height: 80vh;
+}
+
+.bot_added_column {
+  position: relative;
+  display: inline-block;
+  padding: 1rem;
+  vertical-align: top;
+}
+
+.under_ad {
+  position: absolute;
+  top: 95%;
+  left: 0;
+  right: 0;
+  bottom: 20vh;
+}
+
+.bot_added_video_ad {
+  width: 50vh;
+  max-width: 100%;
+}
+
 .ui.card.bot_joined_modal {
   position: absolute;
-  top: 50%;
+  bottom: 35%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
 
   width: 480px;
 }
@@ -25,4 +50,29 @@
   background-position: center;
 
   z-index: -1;
+}
+
+
+@media only screen and (max-height: 710px) {
+  .ui.card.bot_joined_modal {
+    top: 10%;
+    bottom: initial;
+  }
+}
+
+@media only screen and (max-height: 630px) {
+  .under_ad {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .bot_added_right_column, .bot_added_left_column {
+    display: none;
+  }
+
+  .bot_added_middle_column {
+     width: 100%;
+     height: 80vh;
+   }
 }

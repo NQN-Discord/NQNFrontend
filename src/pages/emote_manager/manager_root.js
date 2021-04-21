@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Container, Menu, Segment, Grid} from 'semantic-ui-react';
+import {Container, Menu, Segment} from 'semantic-ui-react';
 
 import ReferencePage from './reference';
 import AliasPage from './aliases';
