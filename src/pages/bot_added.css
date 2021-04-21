@@ -15,12 +15,12 @@
   top: 95%;
   left: 0;
   right: 0;
-  bottom: 20vh;
 }
 
-.bot_added_video_ad {
+#bot_added_video_ad {
   width: 50vh;
   max-width: 100%;
+  margin: 0 auto;
 }
 
 .ui.card.bot_joined_modal {
