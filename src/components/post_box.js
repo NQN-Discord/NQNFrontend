@@ -10,7 +10,7 @@ import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
 import UserEmotes from "../components/user_emotes";
 
-import {Form, Dropdown, Header, Image} from 'semantic-ui-react';
+import {Form, Dropdown, Header} from 'semantic-ui-react';
 import "./post_box.css"
 
 
@@ -104,10 +104,13 @@ class PostBox extends Component {
   }
 
   renderPersona(username, avatarUrl) {
+    const userAvatar = this.props.user.avatar_url;
     return <span>
-      <Image
-        avatar
-        src={avatarUrl}
+      <img
+        className="ui avatar image"
+        src={avatarUrl || userAvatar}
+        onError={(e) => {e.target.onerror = null; e.target.src=userAvatar}}
+        alt=""
       />
       {username}
     </span>;
@@ -129,7 +132,7 @@ class PostBox extends Component {
     const personas = this.props.personas.map(({display_name, short_name, avatar_url}) => ({
       key: short_name,
       value: short_name,
-      text: this.renderPersona(display_name, avatar_url),
+      text: this.renderPersona(display_name || guild.username, avatar_url),
     }));
     personas.unshift({
       key: "",
