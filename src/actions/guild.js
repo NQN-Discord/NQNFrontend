@@ -15,11 +15,12 @@ export function receiveGuilds(guilds) {
   }
 }
 
-export function receiveGuildChannels(guild, channels) {
+export function receiveGuildChannels(guild, channels, username) {
   return {
     type: RECEIVE_GUILD_CHANNELS,
     guild,
-    channels
+    channels,
+    username
   }
 }
 
@@ -54,7 +55,7 @@ export function fetchChannels(guildID) {
   return function(dispatch) {
     axios.get(`${api_url}/guilds/${guildID}/channels`).then(response => {
       if (response) {
-        dispatch(receiveGuildChannels(guildID, response.data.channels));
+        dispatch(receiveGuildChannels(guildID, response.data.channels, response.data.username));
       }
     });
   };

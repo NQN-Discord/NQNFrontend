@@ -45,6 +45,8 @@ class App extends Component {
     }, (err) => {
       if (err.response && err.response.status === 403 && err.response.data.message === "Invalid login token") {
         this.props.setRefreshToken("");
+      } else {
+        throw err;
       }
     });
   }

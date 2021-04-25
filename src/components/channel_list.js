@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Menu, Button, Icon, Loader} from 'semantic-ui-react';
+import {Menu, Button, Icon, Loader, Message} from 'semantic-ui-react';
 
 import "./channel_list.css";
 import {fetchChannels} from "../actions/guild";
@@ -12,8 +12,9 @@ class ChannelSelector extends Component {
     if (!guild) {
       return <div/>
     }
+    const enableDashboardPosting = guild.dashboard_posting;
     const channelsLoaded = guild.loaded_channels;
-    if (!channelsLoaded) {
+    if (enableDashboardPosting && !channelsLoaded) {
       this.props.fetchChannels(this.props.guildID);
     }
     const channels = guild.channels;
@@ -34,18 +35,29 @@ class ChannelSelector extends Component {
               {showGear && <Icon name='setting'/>}
             </Button>
           </Menu.Item>
-          <Loader active={!channelsLoaded} inline="centered"/>
-          {showChannels && Object.entries(channels).filter(([id, {hidden}]) => !hidden).map(([id, {name}]) => {
-            return (
-              <Menu.Item
-                key={id}
-                active={this.props.selected === id}
-                onClick={() => this.props.onSelect(this.props.selected === id ? null : id)}
-              >
-                {name}
-              </Menu.Item>
-            );
-          })}
+          {enableDashboardPosting &&
+            <div>
+              <Loader active={!channelsLoaded} inline="centered"/>
+              {showChannels && Object.entries(channels).filter(([id, {hidden}]) => !hidden).map(([id, {name}]) => {
+                return (
+                  <Menu.Item
+                    key={id}
+                    active={this.props.selected === id}
+                    onClick={() => this.props.onSelect(this.props.selected === id ? null : id)}
+                  >
+                    {name}
+                  </Menu.Item>
+                );
+              })}
+            </div>
+          }
+          {!enableDashboardPosting &&
+            <Message warning>
+              <Message.Header>
+                Posting disabled
+              </Message.Header>
+            </Message>
+          }
         </Menu>
       </div>
     );

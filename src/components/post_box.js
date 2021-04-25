@@ -10,7 +10,8 @@ import postMessage from "../actions/post_message"
 import {Emote} from "../components/emote";
 import UserEmotes from "../components/user_emotes";
 
-import {Form} from 'semantic-ui-react';
+import {Form, Dropdown, Header, Image} from 'semantic-ui-react';
+import "./post_box.css"
 
 
 class PostBox extends Component {
@@ -18,7 +19,8 @@ class PostBox extends Component {
     super(props);
     this.textArea = null;
     this.state = {
-      message: []
+      message: [],
+      activePersona: ""
     };
   }
 
@@ -101,6 +103,16 @@ class PostBox extends Component {
     }, "")
   }
 
+  renderPersona(username, avatarUrl) {
+    return <span>
+      <Image
+        avatar
+        src={avatarUrl}
+      />
+      {username}
+    </span>;
+  }
+
   prerenderMessage(message) {
     const emotes = message.split(/:((?:[a-zA-Z0-9_]+-)?[a-zA-Z0-9_]+):/gm) || [message];
     return emotes.map((value, i) => {
@@ -113,12 +125,41 @@ class PostBox extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
+    console.log(guild)
+
+    const personas = this.props.personas.map(({display_name, short_name, avatar_url}) => ({
+      key: short_name,
+      value: short_name,
+      text: this.renderPersona(display_name, avatar_url),
+    }));
+    personas.unshift({
+      key: "",
+      text: this.renderPersona(guild.username, this.props.user.avatar_url),
+      value: ""
+    });
+
     const discordRendered = this.renderMessage();
     return (
       <div className="message_poster">
-        <h3>
-          {guild.name} - #{guild.channels[this.props.channelID].name}
-        </h3>
+        <div style={{"height": "2em"}}>
+          <Header as="h3" floated="left">
+            {guild.name} - #{guild.channels[this.props.channelID].name}
+          </Header>
+          {this.props.personas && guild.personas &&
+            <div className="float_right post_container">
+              Post as
+              <Dropdown
+                trigger={personas.find(({value}) => value === this.state.activePersona).text}
+                direction="left"
+                options={personas}
+                className="post_as_persona"
+                onChange={(e, {value}) => {
+                  this.setState(update(this.state, {$merge: {activePersona: value}}));
+                }}
+              />
+            </div>
+          }
+        </div>
         <hr/>
         <p>
           Rendered message:
@@ -137,7 +178,8 @@ class PostBox extends Component {
                 this.props.postMessage(
                   this.props.guildID,
                   this.props.channelID,
-                  discordRendered
+                  discordRendered,
+                  this.state.activePersona
                 );
               }
             }}
@@ -161,6 +203,8 @@ const mapStateToProps = (state) => {
   return {
     packs: state.user.packs,
     guilds: state.user.guilds,
+    personas: state.user.personas,
+    user: state.user.user,
     guild_emotes: state.user.guild_emotes,
     guild_aliases: state.user.guild_aliases,
     user_aliases: state.user.user_aliases,
@@ -188,7 +232,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postMessage: (guild, channel, message) => dispatch(postMessage(guild, channel, message))
+    postMessage: (guild, channel, message, persona) => dispatch(postMessage(guild, channel, message, persona))
   }
 };
 

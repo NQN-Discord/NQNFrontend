@@ -626,7 +626,7 @@
 @warningColor           : #F2C037;
 @warningBorderColor     : #C9BA9B;
 @warningBackgroundColor : #FFFAF3;
-@warningHeaderColor     : #794B02;
+@warningHeaderColor     : #FFFFFF;
 @warningTextColor       : #573A08;
 
 /*-------------------

@@ -18,7 +18,9 @@ export function receiveEmotes(emotes) {
     guild_emotes: emotes.guild_emotes,
     guild_aliases: emotes.guild_aliases,
     user_aliases: emotes.aliases,
-    premium_user: emotes.premium_user
+    premium_user: emotes.premium_user,
+    personas: emotes.personas,
+    user: emotes.user
   }
 }
 
