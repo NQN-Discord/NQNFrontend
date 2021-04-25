@@ -132,7 +132,7 @@ class PostBox extends Component {
     const personas = this.props.personas.map(({display_name, short_name, avatar_url}) => ({
       key: short_name,
       value: short_name,
-      text: this.renderPersona(display_name, avatar_url),
+      text: this.renderPersona(display_name || guild.username, avatar_url),
     }));
     personas.unshift({
       key: "",
