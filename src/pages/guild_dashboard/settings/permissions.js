@@ -4,6 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import {Container, Table, Icon, Label, List} from 'semantic-ui-react';
 
 import "./permissions.css";
+import {fetchChannels} from "../../../actions/guild";
 
 function humanise(name) {
   return name.replace(/_/g, " ").replace(/guild/g, "server");
@@ -12,6 +13,10 @@ function humanise(name) {
 class GuildPermissions extends Component {
   render() {
     const guild = this.props.guilds[this.props.guildID];
+
+    if (guild && !guild.loaded_channels) {
+      this.props.fetchChannels(this.props.guildID);
+    }
 
     return (
       <Container>
@@ -142,6 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchChannels: (guild) => dispatch(fetchChannels(guild))
   }
 };
 

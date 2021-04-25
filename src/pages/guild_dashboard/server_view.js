@@ -56,6 +56,7 @@ class WebhookPage extends Component {
   render() {
     const selectedGuild = this.getGuild(this.state.selectedChannel);
     const showChannels = this.state.showSettingsFor === null;
+    const enableDashboardPosting = selectedGuild && selectedGuild.dashboard_posting;
     return (
       <Container fluid>
         <Grid>
@@ -111,7 +112,7 @@ class WebhookPage extends Component {
             classNames(
               "message_container",
               {"no_channel_list": this.state.selectedGuild === null},
-              {"discount_channel_list": !showChannels}
+              {"discount_channel_list": !showChannels && enableDashboardPosting}
             )
           }>
             { this.state.selectedChannel === null && this.state.showSettingsFor === null &&
