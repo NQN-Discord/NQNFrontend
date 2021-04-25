@@ -35,7 +35,10 @@ function user(state = {
   guild_aliases: {},
   user_aliases: [],
   commands: {},
-  required_permissions: []
+  required_permissions: [],
+  premium_user: null,
+  personas: [],
+  user: null
 }, action) {
   switch (action.type) {
     case RECEIVE_GUILDS:
@@ -46,7 +49,9 @@ function user(state = {
     case RECEIVE_GUILD_CHANNELS:
       return update(state,
         {guilds: {[action.guild]: {$merge: {
-          channels: action.channels, loaded_channels: true
+          channels: action.channels,
+          loaded_channels: true,
+          username: action.username
         }}}}
       );
     case ADD_ALIASES:
@@ -86,7 +91,9 @@ function user(state = {
             guild_emotes: action.guild_emotes,
             guild_aliases: action.guild_aliases,
             user_aliases: action.user_aliases,
-            premium_user: action.premium_user
+            premium_user: action.premium_user,
+            personas: action.personas,
+            user: action.user
           }}
       );
     case RECEIVE_PREMIUM_USER:

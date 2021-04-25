@@ -1,0 +1,33 @@
+.ui.selection.dropdown .menu.post_box > .item {
+  white-space: nowrap;
+}
+
+.message_poster .post_as_persona {
+  margin-left: 10px;
+  width: 200px;
+
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #202225;
+  padding: 3px;
+  background: #2f3136;
+}
+
+.message_poster .post_container {
+  display: flex;
+  align-items: center;
+}
+
+.message_poster .post_as_persona > span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 90%;
+  display: block;
+}
+
+.message_poster .post_as_persona > i {
+  position: absolute !important;
+  right: 5px;
+  top: 11px;
+}
