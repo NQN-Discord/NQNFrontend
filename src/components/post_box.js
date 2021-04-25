@@ -125,7 +125,6 @@ class PostBox extends Component {
 
   render() {
     const guild = this.props.guilds[this.props.guildID];
-    console.log(guild)
 
     const personas = this.props.personas.map(({display_name, short_name, avatar_url}) => ({
       key: short_name,
@@ -145,7 +144,7 @@ class PostBox extends Component {
           <Header as="h3" floated="left">
             {guild.name} - #{guild.channels[this.props.channelID].name}
           </Header>
-          {this.props.personas && guild.personas &&
+          {this.props.personas.length > 1 && guild.personas &&
             <div className="float_right post_container">
               Post as
               <Dropdown
