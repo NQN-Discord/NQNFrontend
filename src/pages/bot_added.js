@@ -5,6 +5,7 @@ import "./bot_added.css";
 import {discordURL} from "../config";
 import {parse} from "query-string";
 import Ad from "../components/ad";
+import Nord from "../components/nord";
 
 
 function BotAddedDialog(props) {
@@ -66,6 +67,7 @@ function BotAddedDialog(props) {
       </Card.Content>
       <div className="under_ad">
         <Ad id="bot_added_video_ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac"/>
+        <Nord mobile_large/>
       </div>
     </Card>
   );
@@ -76,6 +78,7 @@ function BotAddedPage(props) {
   return (
     <Container fluid>
       <div className="bot_joined_background"/>
+      <Nord desktop_small/>
       <div className="bot_added_column bot_added_large_screen_ad bot_added_left_column">
         <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>
       </div>

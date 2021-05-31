@@ -23,10 +23,18 @@
   right: 0;
 }
 
+
 #bot_added_video_ad {
   width: 50vh;
   max-width: 100%;
   margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 640px) {
+  #bot_added_video_ad {
+    display: none;
+  }
 }
 
 .ui.card.bot_joined_modal {
