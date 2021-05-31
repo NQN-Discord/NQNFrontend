@@ -13,7 +13,7 @@
 }
 
 
-#nordvpn.desktop_small>div, #nordvpn.all>div {
+#nordvpn.desktop_small>a, #nordvpn.all>a {
   width: 97vw;
   height: 9vw;
 
@@ -23,7 +23,7 @@
   background-size: cover;
 }
 
-#nordvpn.mobile_large>div {
+#nordvpn.mobile_large>a {
   width: 97vw;
   height: 50.7vw;
 

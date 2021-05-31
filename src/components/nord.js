@@ -15,7 +15,7 @@ export default class Nord extends Component {
         desktop_small: this.props.desktop_small,
         mobile_large: this.props.mobile_large
       })}>
-        <div/>
+        <a href="https://go.nordvpn.net/SH3L1" target="_blank" rel="noopener"/>
       </div>
     )
   }
