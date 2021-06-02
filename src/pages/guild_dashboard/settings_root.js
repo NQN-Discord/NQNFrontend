@@ -39,11 +39,6 @@ class GuildSettingsRoot extends Component {
             active={pageName === "logs"}
             onClick={() => this.props.history.push("./logs")}
           />}
-          <Menu.Item
-            name='Custom Emotes'
-            active={["emotes", "upload_emotes"].includes(pageName)}
-            onClick={() => this.props.history.push("./emotes")}
-          />
         </Menu>
         <Segment attached='bottom'>
           {page}
@@ -52,6 +47,14 @@ class GuildSettingsRoot extends Component {
     );
   }
 }
+
+/*
+<Menu.Item
+  name='Custom Emotes'
+  active={["emotes", "upload_emotes"].includes(pageName)}
+  onClick={() => this.props.history.push("./emotes")}
+/>
+ */
 
 const mapStateToProps = (state) => {
   return {

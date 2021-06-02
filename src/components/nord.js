@@ -2,12 +2,17 @@ import React, {Component} from 'react';
 import './nord.css'
 import classNames from "classnames";
 
+import {enableNord} from "../config"
+
 export default class Nord extends Component {
   componentDidMount() {
     console.log(`Creating ad for NordVPN`);
   }
 
   render() {
+    if (!enableNord) {
+      return <></>
+    }
     console.log(this.props);
     return (
       <div id="nordvpn" className={classNames({
