@@ -1,0 +1,46 @@
+#nordvpn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  padding-bottom: 24px;
+}
+
+
+
+#nordvpn.mobile_large {
+  margin-top: 32px;
+}
+
+
+#nordvpn.desktop_small>a, #nordvpn.all>a {
+  width: 97vw;
+  height: 9vw;
+
+  max-width: 970px;
+  max-height: 90px;
+  background-image: url("/nord_small.png");
+  background-size: cover;
+}
+
+#nordvpn.mobile_large>a {
+  width: 97vw;
+  height: 50.7vw;
+
+  max-width: 1200px;
+  max-height: 26vh;
+  background-image: url("/nord_large.png");
+  background-size: cover;
+}
+
+
+@media (max-width: 640px) {
+  #nordvpn.desktop_small {
+    display: none;
+  }
+}
+@media (min-width: 640px) {
+  #nordvpn.mobile_large {
+    display: none;
+  }
+}

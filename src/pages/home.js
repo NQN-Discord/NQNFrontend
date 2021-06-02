@@ -4,6 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
 import {inviteURL} from "../config";
 import Ad from "../components/ad";
+import Nord from "../components/nord";
 
 
 // https://stackoverflow.com/a/12646864/3398583
@@ -88,6 +89,8 @@ class HomePage extends Component {
         </div>
 
         <Divider hidden/>
+
+        <Nord all/>
 
         <Grid>
           <Grid.Column computer={13} mobile={16} tablet={16} >
