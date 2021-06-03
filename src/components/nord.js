@@ -13,14 +13,13 @@ export default class Nord extends Component {
     if (!enableNord) {
       return <></>
     }
-    console.log(this.props);
     return (
       <div id="nordvpn" className={classNames({
         all: this.props.all,
         desktop_small: this.props.desktop_small,
         mobile_large: this.props.mobile_large
       })}>
-        <a href="https://go.nordvpn.net/SH3L1" target="_blank" rel="noopener"/>
+        <a href="https://go.nordvpn.net/SH3L1" target="_blank" rel="noopener noreferrer"/>
       </div>
     )
   }
