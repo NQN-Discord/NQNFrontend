@@ -20,7 +20,7 @@ class HeaderO extends Component {
   }
 
   sendGoogleAnalytics() {
-    const pagePath = this.props.location.pathname.replaceAll(/\d+/ig, "...");
+    const pagePath = this.props.location.pathname.replace(/\d+/ig, "...");
     window.gtag('config', 'UA-143037513-1', {'page_path': pagePath});
   }
 
