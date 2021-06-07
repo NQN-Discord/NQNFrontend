@@ -21,7 +21,7 @@ class HomePage extends Component {
   renderImgColumn(swap, src, animated, right) {
     return (
       <div>
-        <Grid padded doubling={true} columns={2} reversed={swap}>
+        <Grid padded doubling={true} columns={2} reversed={swap && "mobile"}>
           <Grid.Column width={2}/>
           {!swap && right}
           <Grid.Column width={9}>
