@@ -17,6 +17,12 @@ COPY . /usr/src/app
 RUN npm run build
 RUN npm run precompress -v build
 
+FROM python:3.7 as py
+
+COPY ./py /
+COPY --from=build /usr/src/app/build /
+RUN python main.py --src /build --dest /dest
+
 FROM nginx:1.15
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
+COPY --from=py /dest /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
