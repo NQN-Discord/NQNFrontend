@@ -19,7 +19,12 @@ RUN npm run precompress -v build
 
 FROM python:3.7 as py
 
+COPY ./py/requirements.txt requirements.txt
+RUN pip install -U pip wheel setuptools \
+ && pip install -r requirements.txt
+
 COPY ./py /
+
 COPY --from=build /usr/src/app/build /
 RUN python main.py --src /build --dest /dest
 
