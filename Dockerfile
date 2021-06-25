@@ -25,7 +25,7 @@ RUN pip install -U pip wheel setuptools \
 
 COPY ./py /
 
-COPY --from=build /usr/src/app/build /
+COPY --from=build /usr/src/app/build /build
 RUN python main.py --src /build --dest /dest
 
 FROM nginx:1.15
