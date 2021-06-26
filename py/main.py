@@ -2,7 +2,7 @@ import argparse
 import shutil
 import os
 from pathlib import Path
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, element
 import glob
 import time
 
@@ -31,7 +31,9 @@ for template_name in glob.glob(str(Path(__file__).parents[0] / "templates" / "*.
 
     soup = BeautifulSoup(data, features="html.parser")
     head = soup.find("head")
-    for child in template_soup.children:
+    for child in reversed(list(template_soup.children)):
+        if isinstance(child, element.NavigableString):
+            continue
         head.insert(0, child)
 
     new_file = Path(dest) / Path(template_name).name.replace(".jinja2", ".html")
