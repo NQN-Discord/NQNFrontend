@@ -1,0 +1,11 @@
+table.ui.table.privacy_policy_header {
+  background: transparent;
+}
+
+
+table.privacy_policy_header thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #7289DA;
+}

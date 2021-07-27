@@ -1,5 +1,6 @@
 import React from 'react';
-import {Container} from "semantic-ui-react";
+import {Container, Table} from "semantic-ui-react";
+import "./policy.css";
 
 
 export default function PrivacyPolicy() {
@@ -8,7 +9,6 @@ export default function PrivacyPolicy() {
       <h1>
         Privacy Policy
       </h1>
-
       <p>
         This privacy policy is split in two parts, one governing the usage of information on Discord, the other for
         this website.
@@ -22,10 +22,25 @@ export default function PrivacyPolicy() {
         policy. The Personal Information that is collected is used for providing and improving the Service. Your
         information is not shared except as described in this Privacy Policy.
       </p>
-      <hr/>
-      <h1>
-        On the Discord platform
-      </h1>
+
+      <DiscordPlatform/>
+      <Website/>
+      <AllServices/>
+    </Container>
+  );
+}
+
+
+function DiscordPlatform() {
+  return (
+    <Table className="privacy_policy_header">
+      <Table.Header>
+        <Table.HeaderCell>
+          <h1>
+            On the Discord platform
+          </h1>
+        </Table.HeaderCell>
+      </Table.Header>
       <h2>
         Information Collection and Use
       </h2>
@@ -96,11 +111,20 @@ export default function PrivacyPolicy() {
         operating system version, the configuration of the app when utilizing my Service, the time and date of your use
         of the Service, message data, and other statistics. This Log Data is uploaded to Sentry.
       </p>
+    </Table>
+  )
+}
 
-      <hr/>
-      <h1>
-        The nqn.blue website
-      </h1>
+function Website() {
+  return (
+    <Table className="privacy_policy_header">
+      <Table.Header>
+        <Table.HeaderCell>
+          <h1>
+            The nqn.blue website only
+          </h1>
+        </Table.HeaderCell>
+      </Table.Header>
       <h2>
         Information Collection and Use
       </h2>
@@ -407,11 +431,20 @@ export default function PrivacyPolicy() {
         option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you
         choose to refuse our cookies, you may not be able to use some portions of this Service.
       </p>
+    </Table>
+  )
+}
 
-      <hr/>
-      <h1>
-        All services
-      </h1>
+function AllServices() {
+  return (
+    <Table className="privacy_policy_header">
+      <Table.Header>
+        <Table.HeaderCell>
+          <h1>
+            All services
+          </h1>
+        </Table.HeaderCell>
+      </Table.Header>
       <h2>Security</h2>
       <p>
         All data used by the service is stored using encryption at rest. We only allow access to the servers we run the
@@ -452,6 +485,6 @@ export default function PrivacyPolicy() {
         at <a href="mailto:blue@nqn.blue">blue@nqn.blue</a>. I am also available in the Not Quite Nitro Discord server
         at <a href="https://discord.gg/e6pQupV">https://discord.gg/e6pQupV</a>
       </p>
-    </Container>
-  );
+    </Table>
+  )
 }
