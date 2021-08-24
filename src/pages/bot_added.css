@@ -31,12 +31,6 @@
 }
 
 
-@media only screen and (max-width: 640px) {
-  #bot_added_video_ad {
-    display: none;
-  }
-}
-
 .ui.card.bot_joined_modal {
   position: absolute;
   bottom: 35%;
