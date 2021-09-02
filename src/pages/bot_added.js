@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Container, Divider, Button, Card, List } from "semantic-ui-react";
 import connect from "react-redux/es/connect/connect";
 import "./bot_added.css";
-import {discordURL} from "../config";
+import {api_url, discordURL} from "../config";
 import {parse} from "query-string";
 import Ad from "../components/ad";
+import axios from "axios";
 
 
 function BotAddedDialog(props) {
@@ -17,6 +18,13 @@ function BotAddedDialog(props) {
   const justLanded = name? ` in ${name}!`: "!";
   const primaryButton = loggedIn? `View ${name}`: "Login";
   const url = `/guilds/${guildId}/permissions`;
+
+  useEffect(() => {
+    axios.post(`${api_url}/join_referral`, {
+      guild: guildId || null,
+      referrer: query.referrer || null
+    });
+  }, []);
 
   return (
     <Card centered className="bot_joined_modal">
@@ -66,7 +74,6 @@ function BotAddedDialog(props) {
       </Card.Content>
       <div className="under_ad">
         <Ad id="bot_added_video_ad" sizes={[["300", "600"], ["160", "600"]]} format="video-ac"/>
-        <Nord mobile_large/>
       </div>
     </Card>
   );
@@ -98,8 +105,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-  }
+  return {}
 };
 
 export default connect(
