@@ -18,7 +18,7 @@
 
 .under_ad {
   position: absolute;
-  top: 95%;
+  top: 100%;
   left: 0;
   right: 0;
 }
@@ -33,10 +33,10 @@
 
 .ui.card.bot_joined_modal {
   position: absolute;
-  bottom: 35%;
+  bottom: 50%;
   left: 50%;
   transform: translate(-50%, 0%);
-
+  top: 10%;
   width: 480px;
 }
 
@@ -62,19 +62,28 @@
 
 
 @media only screen and (max-height: 710px) {
+  /*When showing vid ad on mobile devices*/
   .ui.card.bot_joined_modal {
-    top: 10%;
+    top: 0;
     bottom: initial;
+  }
+  .ui.hidden.divider {
+    margin: 0.2rem;
+  }
+  .under_ad {
+    top: 97%
   }
 }
 
-@media only screen and (max-height: 630px) {
+@media only screen and (max-height: 500px) {
+  /*When not showing vid ad on mobile devices*/
   .under_ad {
     display: none;
   }
 }
 
 @media only screen and (max-width: 1250px) {
+  /*When not showing side ads on mobile devices*/
   .bot_added_right_column, .bot_added_left_column {
     display: none;
   }
