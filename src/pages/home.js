@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
-import {inviteURL} from "../config";
 import Ad from "../components/ad";
 
 
@@ -79,7 +78,7 @@ class HomePage extends Component {
               primary
               className="unisans nqn_add"
               onClick={() => {
-                window.open(inviteURL, "_blank");
+                this.props.history.push("/invite")
               }}
             >
               Add NQN

@@ -18,6 +18,7 @@ import {fetchGuilds} from "./actions/guild";
 import WebhookPage from "./pages/guild_dashboard/server_view";
 import ManagerRootPage from "./pages/emote_manager/manager_root";
 import LoginPage from "./pages/login";
+import InvitePage from "./pages/invite";
 import {Header, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 import UserFeedback from "./pages/feedback";
@@ -79,6 +80,7 @@ class App extends Component {
                   <Route exact path="/licenses" component={LicensePage}/>
                   <Route exact path="/commands" component={CommandPage}/>
                   <Route exact path="/bot_added" component={BotAddedPage}/>
+                  <Route exact path="/invite" component={InvitePage}/>
                   <LoginPage/>
                 </Switch>
               }
@@ -96,6 +98,7 @@ class App extends Component {
                   <Route exact path="/emote_manager/alias/search" component={ManagerRootPage}/>
 
                   <Route exact path="/login" component={LoginPage}/>
+                  <Route exact path="/invite" component={InvitePage}/>
 
                   <Route exact path="/guild_builder" component={GuildCreatorPage}/>
                   <Route exact path="/guild_builder/selector" component={GuildSelectorPage}/>

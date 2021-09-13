@@ -3,7 +3,6 @@ import connect from "react-redux/es/connect/connect";
 import {withRouter} from 'react-router-dom';
 
 import {logout} from "./actions/auth";
-import {inviteURL} from "./config";
 
 import {Menu} from 'semantic-ui-react';
 
@@ -64,7 +63,14 @@ class HeaderO extends Component {
             </Menu.Item>
           }
 
-          <Menu.Item as="a" href={inviteURL} target="_blank" rel="noopener">
+          <Menu.Item
+            as="a"
+            onClick={() => {
+              this.props.history.push("/invite")
+            }}
+            target="_blank"
+            rel="noopener"
+          >
             Invite Me
           </Menu.Item>
           { this.props.loggedIn &&

@@ -125,7 +125,7 @@ class WebhookPage extends Component {
                     this.setState(update(this.state, {$merge: {selectedGuild: guildID}}));
                   }
                   else {
-                    window.open(inviteURL + `&guild_id=${guildID}`, '_blank');
+                    this.props.history.push(`/invite?guild_id=${guildID}`)
                   }
                 }}
               />
