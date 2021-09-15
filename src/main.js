@@ -35,7 +35,9 @@ const LicensePage = lazy(() => import("./pages/licenses"));
 const CommandPage = lazy(() => import("./pages/commands"));
 const BotAddedPage = lazy(() => import("./pages/bot_added"));
 const PremiumPage = lazy(() => import("./pages/premium"));
-const HomePage = lazy(() => import("./pages/home"));
+
+// Special case front page
+const HomePage = import("./pages/home");
 
 class App extends Component {
   componentDidMount() {
