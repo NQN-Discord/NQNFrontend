@@ -3,6 +3,13 @@ import React, {Component, lazy} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
 
+import '../semantic/src/definitions/elements/image.less';
+import '../semantic/src/definitions/collections/grid.less';
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/elements/divider.less';
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/button.less';
+
 const Ad = lazy(() => import("../components/ad"));
 
 

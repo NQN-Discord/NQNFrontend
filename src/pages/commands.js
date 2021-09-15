@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
 import {Accordion, Container, Divider, Icon, Header, Label, Grid} from "semantic-ui-react";
+
+import '../semantic/src/definitions/modules/accordion.less';
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/divider.less';
+import '../semantic/src/definitions/elements/icon.less';
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/elements/label.less';
+import '../semantic/src/definitions/collections/grid.less';
+
+
 import connect from "react-redux/es/connect/connect";
 import {fetchCommands} from "../actions/commands";
 import "./commands.css";

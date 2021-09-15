@@ -10,7 +10,10 @@ import Alert from 'react-s-alert';
 
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
-import 'fomantic-ui-less/semantic.less';
+
+import './semantic/src/definitions/globals/reset.less';
+import './semantic/src/definitions/globals/site.less';
+
 
 import {readStorageState, setRefreshToken} from "./actions/auth";
 import {fetchEmotes} from "./actions/user";
@@ -24,7 +27,6 @@ const WebhookPage = lazy(() => import("./pages/guild_dashboard/server_view"));
 const ManagerRootPage = lazy(() => import("./pages/emote_manager/manager_root"));
 const LoginPage = lazy(() => import("./pages/login"));
 const InvitePage = lazy(() => import("./pages/invite"));
-const UserFeedback = lazy(() => import("./pages/feedback"));
 const PrivacyPolicy = lazy(() => import("./pages/policy"));
 const GuildCreatorPage = lazy(() => import("./pages/guild_builder/guild_builder"));
 const GuildSelectorPage = lazy(() => import("./pages/guild_builder/guild_selector"));
@@ -110,7 +112,6 @@ class App extends Component {
   
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/help" component={HelpTextPage}/>
-                    <Route exact path="/feedback" component={UserFeedback}/>
                     <Route exact path="/privacy" component={PrivacyPolicy}/>
                     <Route exact path="/licenses" component={LicensePage}/>
                     <Route exact path="/commands" component={CommandPage}/>

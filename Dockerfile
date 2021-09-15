@@ -8,7 +8,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY ./package.json /usr/src/app/package.json
 COPY ./package-lock.json /usr/src/app/package-lock.json
 COPY ./semantic.json /usr/src/app/semantic.json
-COPY ./semantic /usr/src/app/semantic
+COPY ./src/semantic /usr/src/app/src/semantic
 
 RUN npm install
 

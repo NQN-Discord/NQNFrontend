@@ -1,5 +1,13 @@
 import React, {useEffect} from "react";
+
 import { Container, Divider, Button, Card, List } from "semantic-ui-react";
+
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/divider.less';
+import '../semantic/src/definitions/elements/button.less';
+import '../semantic/src/definitions/views/card.less';
+import '../semantic/src/definitions/elements/list.less';
+
 import connect from "react-redux/es/connect/connect";
 import "./bot_added.css";
 import {api_url, discordURL} from "../config";

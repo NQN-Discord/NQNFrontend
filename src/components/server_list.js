@@ -2,6 +2,11 @@ import React, {Component} from "react";
 
 import {Container, Image, Card, Button} from 'semantic-ui-react';
 
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/image.less';
+import '../semantic/src/definitions/views/card.less';
+import '../semantic/src/definitions/elements/button.less';
+
 import "./server_list.css";
 
 export default class GuildSelector extends Component {
@@ -14,7 +19,7 @@ export default class GuildSelector extends Component {
         <Card.Group>
           {this.props.guilds
             .map(([guildID, guild]) => {
-              const perms_needed = (this.props.bot_permissions || []).filter(p => !(guild.bot_permissions.includes(p) || guild.bot_permissions.includes("administrator")));
+              //const perms_needed = (this.props.bot_permissions || []).filter(p => !(guild.bot_permissions.includes(p) || guild.bot_permissions.includes("administrator")));
               return (
                 <Card
                   key={guildID}

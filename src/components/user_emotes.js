@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 import {Accordion} from 'semantic-ui-react';
+
+import '../semantic/src/definitions/modules/accordion.less';
+
+
 import connect from "react-redux/es/connect/connect";
 import {Emote} from "./emote";
 

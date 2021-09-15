@@ -5,6 +5,12 @@ import RenderedMessage from "../../../components/rendered_message";
 
 import {Container, Header, Placeholder, Feed, Pagination, Grid} from 'semantic-ui-react';
 
+import '../../../semantic/src/definitions/elements/container.less';
+import '../../../semantic/src/definitions/elements/header.less';
+import '../../../semantic/src/definitions/elements/placeholder.less';
+import '../../../semantic/src/definitions/views/feed.less';
+import '../../../semantic/src/definitions/collections/grid.less';
+
 import {fetchGuildLogs} from "../../../actions/guild";
 import './audit_logs.css';
 

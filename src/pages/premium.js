@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Container, Button } from "semantic-ui-react";
 
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/button.less';
+
 import {parse} from "query-string";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";

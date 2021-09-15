@@ -3,6 +3,13 @@ import connect from "react-redux/es/connect/connect";
 
 import {Menu, Button, Icon, Loader, Message} from 'semantic-ui-react';
 
+import '../semantic/src/definitions/collections/menu.less';
+import '../semantic/src/definitions/elements/button.less';
+import '../semantic/src/definitions/elements/icon.less';
+import '../semantic/src/definitions/elements/loader.less';
+import '../semantic/src/definitions/collections/message.less';
+
+
 import "./channel_list.css";
 import {fetchChannels} from "../actions/guild";
 

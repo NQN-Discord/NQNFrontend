@@ -3,6 +3,11 @@ import connect from "react-redux/es/connect/connect";
 
 import {Header, Divider, Input} from 'semantic-ui-react';
 
+import '../../semantic/src/definitions/elements/header.less';
+import '../../semantic/src/definitions/elements/divider.less';
+import '../../semantic/src/definitions/elements/input.less';
+
+
 import {setAliases, unsetAliases, changeAliases} from "../../actions/user";
 import EmoteAliases from "../../components/emote_aliases";
 import update from "immutability-helper";

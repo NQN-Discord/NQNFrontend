@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Container} from "semantic-ui-react";
 
+import '../semantic/src/definitions/elements/container.less';
 
 class LicensePage extends Component {
   render() {

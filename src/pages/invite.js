@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react';
 import {inviteURL} from "../config";
 import {Container} from "semantic-ui-react";
+
+import '../semantic/src/definitions/elements/container.less';
+
 import {parse} from "query-string";
 
 

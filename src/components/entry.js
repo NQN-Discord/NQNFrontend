@@ -2,6 +2,9 @@ import {Component} from "react";
 import React from "react";
 import { Input, Form } from 'semantic-ui-react'
 
+import '../semantic/src/definitions/elements/input.less';
+import '../semantic/src/definitions/collections/form.less';
+
 
 
 class Entry extends Component {
