@@ -30,6 +30,7 @@ class HomePage extends Component {
                 centered
                 loading="lazy"
                 ui
+                alt=""
               />
             }
             {animated &&
@@ -70,6 +71,7 @@ class HomePage extends Component {
         <div className="bot_branding">
           <Image
             src="/wumpus_logo.png"
+            alt=""
           />
           <div className="nqn_title">
             <div className="unisans nqn_name">
