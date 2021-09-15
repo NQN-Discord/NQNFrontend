@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, lazy} from 'react';
 
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
-import Ad from "../components/ad";
+
+const Ad = lazy(() => import("../components/ad"));
 
 
 // https://stackoverflow.com/a/12646864/3398583
@@ -157,7 +158,9 @@ class HomePage extends Component {
             ))}
           </Grid.Column>
           <Grid.Column width={3} only="computer">
-            <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
+            {window.matchMedia('only screen and (min-width: 992px)').matches &&
+              <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
+            }
           </Grid.Column>
         </Grid>
 

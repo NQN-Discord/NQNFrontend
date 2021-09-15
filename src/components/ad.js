@@ -3,6 +3,28 @@ import {adDemoMode} from '../config.js';
 
 export default class Ad extends Component {
   componentDidMount() {
+    const hasAds = window['nitroAds'] !== undefined;
+    if (hasAds) {
+      this.createAd();
+    } else {
+      const script = document.createElement('script');
+      script.src = "https://s.nitropay.com/ads-580.js";
+      script.onload = () => {
+        window["nitroAds"] = window["nitroAds"] || {
+          createAd: function() {
+            window.nitroAds.queue.push(["createAd", arguments]);
+          },
+          queue: []
+        };
+        this.createAd();
+      };
+      script.setAttribute("async", "");
+
+      document.head.appendChild(script);
+    }
+  }
+
+  createAd() {
     console.log(`Creating ad for ${this.props.id}. Format: ${this.props.format}`);
     const ad = window['nitroAds'].createAd(this.props.id, {
       "demo": adDemoMode,
@@ -22,6 +44,7 @@ export default class Ad extends Component {
     });
     this.setState({ad});
   }
+
 
   componentWillUnmount() {
     console.log(`Unloading ad for ${this.props.id}`);
