@@ -34,7 +34,7 @@ for template_name in glob.glob(str(Path(__file__).parents[0] / "templates" / "*.
     for child in reversed(list(template_soup.children)):
         if isinstance(child, element.NavigableString):
             continue
-        head.insert(0, child)
+        head.insert(1, child)
 
     new_file = Path(dest) / Path(template_name).name.replace(".jinja2", ".html")
 
