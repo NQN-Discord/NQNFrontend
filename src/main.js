@@ -22,6 +22,8 @@ import {fetchGuilds} from "./actions/guild";
 import {Header, BottomFooter} from "./header";
 import {HelpTextPage} from "./components/helpText";
 
+// Special case front page
+import HomePage from "./pages/home";
 
 const WebhookPage = lazy(() => import("./pages/guild_dashboard/server_view"));
 const ManagerRootPage = lazy(() => import("./pages/emote_manager/manager_root"));
@@ -35,7 +37,6 @@ const LicensePage = lazy(() => import("./pages/licenses"));
 const CommandPage = lazy(() => import("./pages/commands"));
 const BotAddedPage = lazy(() => import("./pages/bot_added"));
 const PremiumPage = lazy(() => import("./pages/premium"));
-const HomePage = lazy(() => import("./pages/home"));
 
 class App extends Component {
   componentDidMount() {
