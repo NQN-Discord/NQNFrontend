@@ -2,6 +2,14 @@ import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
 import {Container, Header, Button, Divider, Menu, Icon} from 'semantic-ui-react';
+
+import '../../../semantic/src/definitions/elements/container.less';
+import '../../../semantic/src/definitions/elements/header.less';
+import '../../../semantic/src/definitions/elements/button.less';
+import '../../../semantic/src/definitions/elements/divider.less';
+import '../../../semantic/src/definitions/collections/menu.less';
+import '../../../semantic/src/definitions/elements/icon.less';
+
 import EmotePreview from "./emotes/preview";
 import {postGuildEmotes} from "../../../actions/guild"
 import {receiveGuildEmotes} from "../../../actions/user"

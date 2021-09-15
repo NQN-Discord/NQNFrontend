@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import {logout} from "./actions/auth";
 
 import {Menu} from 'semantic-ui-react';
+import './semantic/src/definitions/collections/menu.less';
 
 
 class HeaderO extends Component {

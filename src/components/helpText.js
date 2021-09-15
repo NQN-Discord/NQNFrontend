@@ -1,6 +1,10 @@
 import React from "react";
 import {Divider, Header, Image} from "semantic-ui-react";
 
+import '../semantic/src/definitions/elements/divider.less';
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/elements/image.less';
+
 import "../components/helpText.css";
 
 

@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 import {Container} from 'semantic-ui-react';
+
+import '../../semantic/src/definitions/elements/container.less';
+
+
 import UserEmotes from "../../components/user_emotes";
 import Alert from 'react-s-alert';
 

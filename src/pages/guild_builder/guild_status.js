@@ -1,5 +1,14 @@
 import React, {Component} from "react";
 import { Container, Progress, Header, Divider, Card, Message } from "semantic-ui-react";
+
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/modules/progress.less';
+import '../../semantic/src/definitions/elements/header.less';
+import '../../semantic/src/definitions/elements/divider.less';
+import '../../semantic/src/definitions/views/card.less';
+import '../../semantic/src/definitions/collections/message.less';
+
+
 import {Emote, EmoteCard} from "../../components/emote";
 import connect from "react-redux/es/connect/connect";
 import {parse} from "query-string";

@@ -11,6 +11,12 @@ import {Emote} from "../components/emote";
 import UserEmotes from "../components/user_emotes";
 
 import {Form, Dropdown, Header} from 'semantic-ui-react';
+
+import '../semantic/src/definitions/collections/form.less';
+import '../semantic/src/definitions/modules/dropdown.less';
+import '../semantic/src/definitions/elements/header.less';
+
+
 import "./post_box.css"
 
 

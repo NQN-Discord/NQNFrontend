@@ -2,6 +2,10 @@ import React, {Component} from "react";
 
 import {Header, Grid, List} from 'semantic-ui-react';
 
+import '../../../../semantic/src/definitions/elements/header.less';
+import '../../../../semantic/src/definitions/collections/grid.less';
+import '../../../../semantic/src/definitions/elements/list.less';
+
 import EmoteAliases from "../../../../components/emote_aliases";
 
 

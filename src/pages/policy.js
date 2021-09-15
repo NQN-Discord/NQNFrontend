@@ -1,5 +1,10 @@
 import React from 'react';
 import {Container, Table} from "semantic-ui-react";
+
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/collections/table.less';
+
+
 import "./policy.css";
 
 

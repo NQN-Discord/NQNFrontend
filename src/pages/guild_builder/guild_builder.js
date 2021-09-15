@@ -1,5 +1,19 @@
 import React, {Component} from "react";
 import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
+
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/views/card.less';
+import '../../semantic/src/definitions/elements/divider.less';
+import '../../semantic/src/definitions/elements/input.less';
+import '../../semantic/src/definitions/modules/checkbox.less';
+import '../../semantic/src/definitions/collections/form.less';
+import '../../semantic/src/definitions/collections/grid.less';
+import '../../semantic/src/definitions/elements/button.less';
+import '../../semantic/src/definitions/elements/label.less';
+import '../../semantic/src/definitions/modules/modal.less';
+import '../../semantic/src/definitions/collections/menu.less';
+
+
 import connect from "react-redux/es/connect/connect";
 import {EmoteCard} from "../../components/emote";
 import {discordGuildBuilderURL} from "../../config";

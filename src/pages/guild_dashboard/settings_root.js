@@ -3,6 +3,10 @@ import {withRouter} from "react-router-dom";
 
 import {Container, Menu, Segment} from 'semantic-ui-react';
 
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/collections/menu.less';
+import '../../semantic/src/definitions/elements/segment.less';
+
 import GuildSettings from './settings/guild_settings';
 import AuditLogs from './settings/audit_logs';
 import EmoteSettings from './settings/emotes';

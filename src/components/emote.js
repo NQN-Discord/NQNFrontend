@@ -1,6 +1,11 @@
 import React, {Component} from "react";
 
 import {Image, Card} from 'semantic-ui-react';
+
+import '../semantic/src/definitions/elements/image.less';
+import '../semantic/src/definitions/views/card.less';
+
+
 import classNames from "classnames";
 
 

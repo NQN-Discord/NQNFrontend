@@ -3,6 +3,12 @@ import connect from "react-redux/es/connect/connect";
 
 import {Container, Table, Icon, Label, List} from 'semantic-ui-react';
 
+import '../../../semantic/src/definitions/elements/container.less';
+import '../../../semantic/src/definitions/collections/table.less';
+import '../../../semantic/src/definitions/elements/icon.less';
+import '../../../semantic/src/definitions/elements/label.less';
+import '../../../semantic/src/definitions/elements/list.less';
+
 import "./permissions.css";
 import {fetchChannels} from "../../../actions/guild";
 

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Header, Grid, Pagination} from 'semantic-ui-react';
 
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/collections/grid.less';
+
 
 class SearchComponent extends Component {
   componentDidMount() {

@@ -3,6 +3,14 @@ import connect from "react-redux/es/connect/connect";
 
 import {Container, Header, Form, Button, Dropdown, Label, Divider} from 'semantic-ui-react';
 
+import '../../../semantic/src/definitions/elements/container.less';
+import '../../../semantic/src/definitions/elements/header.less';
+import '../../../semantic/src/definitions/collections/form.less';
+import '../../../semantic/src/definitions/elements/button.less';
+import '../../../semantic/src/definitions/modules/dropdown.less';
+import '../../../semantic/src/definitions/elements/label.less';
+import '../../../semantic/src/definitions/elements/divider.less';
+
 import {postGuildSettings} from "../../../actions/guild";
 import update from "immutability-helper";
 

@@ -4,6 +4,14 @@ import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 import {Container, Card, Divider, Button, Modal, Image, Checkbox} from "semantic-ui-react";
 
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/views/card.less';
+import '../../semantic/src/definitions/elements/divider.less';
+import '../../semantic/src/definitions/elements/button.less';
+import '../../semantic/src/definitions/modules/modal.less';
+import '../../semantic/src/definitions/elements/image.less';
+import '../../semantic/src/definitions/modules/checkbox.less';
+
 import "./guild_builder.css";
 import {parse} from "query-string";
 import {EmoteCard} from "../../components/emote";

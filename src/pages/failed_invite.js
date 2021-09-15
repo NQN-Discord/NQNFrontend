@@ -1,6 +1,9 @@
 import React from "react";
 import { Container, Header, Divider } from "semantic-ui-react";
 
+import '../semantic/src/definitions/elements/container.less';
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/elements/divider.less';
 
 export default function FailedInvite() {
   return (

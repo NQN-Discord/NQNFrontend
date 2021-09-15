@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Container } from "semantic-ui-react";
 
+import '../semantic/src/definitions/elements/container.less';
+
 import {discordURL} from "../config";
 import {parse} from "query-string";
 import {exchangeCode} from "../actions/auth";

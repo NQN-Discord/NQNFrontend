@@ -9,9 +9,11 @@ import PostBox from "../../components/post_box";
 
 import {Container, Grid} from 'semantic-ui-react';
 
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/collections/grid.less';
+
 import "./server_view.css";
 import classNames from "classnames";
-import {inviteURL} from "../../config";
 
 
 class WebhookPage extends Component {

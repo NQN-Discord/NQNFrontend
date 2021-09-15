@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 import {Container, Menu, Segment} from 'semantic-ui-react';
 
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/collections/menu.less';
+import '../../semantic/src/definitions/elements/segment.less';
+
 import ReferencePage from './reference';
 import AliasPage from './aliases';
 import AliasSearchPage from './alias_search';

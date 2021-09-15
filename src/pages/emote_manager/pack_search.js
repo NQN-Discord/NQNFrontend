@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 
 import {Container, Accordion, Button, Divider} from 'semantic-ui-react';
+
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/modules/accordion.less';
+import '../../semantic/src/definitions/elements/button.less';
+import '../../semantic/src/definitions/elements/divider.less';
+
+
 import {Emote} from "../../components/emote";
 import EmoteSearchComponent from "../../components/emote_search";
 import connect from "react-redux/es/connect/connect";

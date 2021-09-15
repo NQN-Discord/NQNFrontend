@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {Header, Divider, Grid, Pagination} from 'semantic-ui-react';
 
+import '../semantic/src/definitions/elements/header.less';
+import '../semantic/src/definitions/elements/divider.less';
+import '../semantic/src/definitions/collections/grid.less';
+
 import Entry from "./entry";
 
 
