@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sentry/react": "^6.5.1",
     "axios": "^0.18.1",
+    "browserslist": "^4.17.0",
+    "caniuse-lite": "^1.0.30001257",
     "classnames": "^2.2.6",
     "discord-markdown": "^2.3.1",
     "fomantic-ui": "^2.8.6",

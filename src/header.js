@@ -135,8 +135,14 @@ class BottomFooterO extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position='right'>
-          <Menu.Item data-ccpa-link="1" as="a" className="ccpa-style">
-          </Menu.Item>
+          { window["nitroAds"] &&
+            <Menu.Item
+              data-ccpa-link="1"
+              as="a"
+              className="ccpa-style"
+              style={{marginRight: "48px"}}
+            />
+          }
           <Menu.Item
             active={activeElement === "licenses"}
             onClick={() => {
