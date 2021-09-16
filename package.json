@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.2",
     "browserslist": "^4.17.0",
     "caniuse-lite": "^1.0.30001257",
     "classnames": "^2.2.6",
