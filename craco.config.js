@@ -13,13 +13,13 @@ module.exports = {
     alias: {
       '../../theme.config$': path,
     },
-    configure: (webpackConfig, { env, paths }) => {
+    /*configure: (webpackConfig, { env, paths }) => {
       webpackConfig.plugins.forEach(plugin => {
         if (plugin.constructor.name === "InlineChunkHtmlPlugin") {
           plugin.tests =  [ /.+[.]js/ ];
         }
       });
       return webpackConfig
-    }
+    }*/
   },
 };
