@@ -48,7 +48,7 @@ export default class Ad extends Component {
 
   componentWillUnmount() {
     console.log(`Unloading ad for ${this.props.id}`);
-    if (this.state.ad) {
+    if (this.state && this.state.ad) {
       this.state.ad.onNavigate();
     }
   }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
 
-import {Container, Header, Form, Button, Dropdown, Label, Divider} from 'semantic-ui-react';
+import {Container, Header, Form, Button, Dropdown, Label, Divider, Message} from 'semantic-ui-react';
 
 import '../../../semantic/src/definitions/elements/container.less';
 import '../../../semantic/src/definitions/elements/header.less';
@@ -47,7 +47,6 @@ class GuildSettings extends Component {
           <label>{description}</label>
           <Label pointing='left'>{helpText}</Label>
         </Form.Field>
-        <br/>
         <Dropdown button search scrolling labeled className='icon'
           icon='hashtag'
           options={[
@@ -68,6 +67,7 @@ class GuildSettings extends Component {
   render() {
     const guild = this.props.guilds[this.props.guildID];
     const packMeta = guild.pack_meta;
+    const disabledSubmit = [" ", ":", "/"].includes(this.state.prefix.charAt(0));
 
     return (
       <Container>
@@ -80,6 +80,7 @@ class GuildSettings extends Component {
           onSubmit={() => {
             this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
           }}
+          error={disabledSubmit}
         >
           <Form.Field inline>
             <Form.Input
@@ -91,9 +92,16 @@ class GuildSettings extends Component {
           <Divider hidden/>
           {this.renderDropdown("Audit Channel", auditHelp, "auditChannel")}
           <Divider/>
+          <Message
+            error
+            header="Invalid Prefix!"
+            content="Prefix can't start with a colon, a forward slash or a space"
+            inverted
+          />
           <Button
             type="submit"
             primary
+            disabled={disabledSubmit}
           >
             Save
           </Button>
