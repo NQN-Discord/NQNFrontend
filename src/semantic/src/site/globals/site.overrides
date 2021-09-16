@@ -129,4 +129,5 @@ button.ui.button.nqn_add {
   src: url('/fonts/uni-sans-heavy-italic.woff') format('woff'),
        url('/fonts/uni-sans-heavy-italic.ttf') format('truetype'),
        url('/fonts/uni-sans-heavy-italic.woff2') format('woff2');
+  font-display: swap;
 }
