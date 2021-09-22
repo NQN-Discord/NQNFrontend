@@ -103,10 +103,10 @@ class HomePage extends Component {
             {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <Header as="h1" className="unisans">
-                  Animated Emotes Without Nitro
+                  Animated Emotes Without Discord Nitro
                 </Header>
                 <p>
-                  NQN is a Discord bot which allows anyone to use emotes for free!
+                  NQN is a Discord bot which allows anyone to use emotes for free, including animated emojis!
                   <br/>
                   It does this by looking for :emotes: in your messages and automatically replacing them with what you meant!
                   <br/>
