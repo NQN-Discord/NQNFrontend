@@ -60,7 +60,7 @@ code {
 }
 
 .unisans {
-  font-family: "UniSans" !important;
+  font-family: "UniSans", 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
 }
 
 .nqn_header {
