@@ -52,6 +52,12 @@
       "--no-sandbox",
       "--disable-setuid-sandbox",
       "--disable-gpu"
+    ],
+    "include": [
+      "/",
+      "/privacy",
+      "/licenses",
+      "/bot_added"
     ]
   },
   "browserslist": [

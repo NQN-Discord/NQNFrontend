@@ -12,6 +12,7 @@ import AuditLogs from './settings/audit_logs';
 import EmoteSettings from './settings/emotes';
 import GuildPermissions from './settings/permissions';
 import connect from "react-redux/es/connect/connect";
+import {Helmet} from "react-helmet";
 
 
 class GuildSettingsRoot extends Component {
@@ -27,6 +28,9 @@ class GuildSettingsRoot extends Component {
     }[pageName];
     return (
       <Container>
+        <Helmet>
+          <title>NQN Dashboard</title>
+        </Helmet>
         <Menu attached='top' tabular>
           {guild.user_permissions.includes("manage_guild") && <Menu.Item
             name='Settings'
