@@ -51,10 +51,6 @@ class HomePage extends Component {
         <Helmet>
           <title>Not Quite Nitro - A free Discord Nitro alternative</title>
           <meta content="Not Quite Nitro - A free Discord Nitro alternative" property="og:title"/>
-          <meta content="A free Discord Nitro alternative. NQN is a Discord emojis bot which allows anyone to use emojis for free" property="og:description"/>
-          <meta content="A free Discord Nitro alternative. NQN is a Discord emojis bot which allows anyone to use emojis for free" name="description"/>
-          <meta content="https://discord.com/api/oauth2/authorize?client_id=559426966151757824&permissions=536895488&scope=bot%20applications.commands" property="og:url"/>
-          <meta content="#7289DA" name="theme-color"/>
         </Helmet>
 
         <div className="bot_branding">
