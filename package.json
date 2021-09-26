@@ -44,6 +44,7 @@
   "reactSnap": {
     "skipThirdPartyRequests": true,
     "inlineCss": true,
+    "asyncScriptTags": true,
     "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"]
   },
   "browserslist": [
