@@ -1,8 +1,6 @@
-import React, {Component, Suspense, lazy} from 'react';
+import React, {Component} from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Switch
 } from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
@@ -20,24 +18,10 @@ import {fetchEmotes} from "./actions/user";
 import {fetchGuilds} from "./actions/guild";
 
 import {Header, BottomFooter} from "./header";
-import {HelpTextPage} from "./components/helpText";
 
-// Special case front page
-import HomePage from "./pages/home";
 import {Helmet} from "react-helmet";
+import {FullRouter} from "./router";
 
-const WebhookPage = lazy(() => import("./pages/guild_dashboard/server_view"));
-const ManagerRootPage = lazy(() => import("./pages/emote_manager/manager_root"));
-const LoginPage = lazy(() => import("./pages/login"));
-const InvitePage = lazy(() => import("./pages/invite"));
-const PrivacyPolicy = lazy(() => import("./pages/policy"));
-const GuildCreatorPage = lazy(() => import("./pages/guild_builder/guild_builder"));
-const GuildSelectorPage = lazy(() => import("./pages/guild_builder/guild_selector"));
-const GuildStatusPage = lazy(() => import("./pages/guild_builder/guild_status"));
-const LicensePage = lazy(() => import("./pages/licenses"));
-const CommandPage = lazy(() => import("./pages/commands"));
-const BotAddedPage = lazy(() => import("./pages/bot_added"));
-const PremiumPage = lazy(() => import("./pages/premium"));
 
 class App extends Component {
   componentDidMount() {
@@ -70,6 +54,7 @@ class App extends Component {
         Loading...
       </div>
     }
+
     return (
       <Router>
         <div className="site_content">
@@ -86,51 +71,7 @@ class App extends Component {
           <div className="site_body">
             <Header/>
             <div className="site_container">
-              <Suspense fallback={<div>Loading...</div>}>
-                {!this.props.loggedIn &&
-                  <Switch>
-                    <Route exact path="/" component={HomePage}/>
-                    <Route exact path="/help" component={HelpTextPage}/>
-                    <Route exact path="/privacy" component={PrivacyPolicy}/>
-                    <Route exact path="/licenses" component={LicensePage}/>
-                    <Route exact path="/commands" component={CommandPage}/>
-                    <Route exact path="/bot_added" component={BotAddedPage}/>
-                    <Route exact path="/invite" component={InvitePage}/>
-                    <LoginPage/>
-                  </Switch>
-                }
-                {this.props.loggedIn &&
-                  <Switch>
-                    <Route exact path="/guilds/:guildID" component={WebhookPage}/>
-                    <Route exact path="/guilds/:guildID/channels/:channelID" component={WebhookPage}/>
-                    <Route exact path="/guilds/" component={WebhookPage}/>
-                    <Route exact path="/guilds/:guildID/:page" component={WebhookPage}/>
-  
-                    <Route exact path="/emote_manager/overview" component={ManagerRootPage}/>
-                    <Route exact path="/emote_manager/packs" component={ManagerRootPage}/>
-                    <Route exact path="/emote_manager/packs/search" component={ManagerRootPage}/>
-                    <Route exact path="/emote_manager/alias" component={ManagerRootPage}/>
-                    <Route exact path="/emote_manager/alias/search" component={ManagerRootPage}/>
-  
-                    <Route exact path="/login" component={LoginPage}/>
-                    <Route exact path="/invite" component={InvitePage}/>
-  
-                    <Route exact path="/guild_builder" component={GuildCreatorPage}/>
-                    <Route exact path="/guild_builder/selector" component={GuildSelectorPage}/>
-                    <Route exact path="/guild_builder/status" component={GuildStatusPage}/>
-  
-                    <Route exact path="/reference" component={ManagerRootPage}/>
-  
-                    <Route exact path="/" component={HomePage}/>
-                    <Route exact path="/help" component={HelpTextPage}/>
-                    <Route exact path="/privacy" component={PrivacyPolicy}/>
-                    <Route exact path="/licenses" component={LicensePage}/>
-                    <Route exact path="/commands" component={CommandPage}/>
-                    <Route exact path="/bot_added" component={BotAddedPage}/>
-                    <Route exact path="/premium" component={PremiumPage}/>
-                  </Switch>
-                }
-              </Suspense>
+              <FullRouter loggedIn={this.props.loggedIn}/>
             </div>
           </div>
           <BottomFooter/>
