@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import {Container} from "semantic-ui-react";
 
 import '../semantic/src/definitions/elements/container.less';
+import {Helmet} from "react-helmet";
 
 class LicensePage extends Component {
   render() {
     return (
       <Container>
+        <Helmet>
+          <title>License Information</title>
+          <meta content="Website License Information" property="og:title"/>
+        </Helmet>
         <h2>
           Licenses:
         </h2>

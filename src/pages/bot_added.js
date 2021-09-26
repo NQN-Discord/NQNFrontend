@@ -14,6 +14,7 @@ import {api_url, discordURL} from "../config";
 import {parse} from "query-string";
 import Ad from "../components/ad";
 import axios from "axios";
+import {Helmet} from "react-helmet";
 
 
 function BotAddedDialog(props) {
@@ -91,6 +92,11 @@ function BotAddedDialog(props) {
 function BotAddedPage(props) {
   return (
     <Container fluid>
+      <Helmet>
+        <title>NQN Added</title>
+        <meta content="NQN Join Server Landing" property="og:title"/>
+      </Helmet>
+
       <div className="bot_joined_background"/>
       <div className="bot_added_column bot_added_large_screen_ad bot_added_left_column">
         <Ad id="bot-added-left-ad" sizes={[["300", "600"], ["160", "600"]]}/>

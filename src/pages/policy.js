@@ -6,11 +6,16 @@ import '../semantic/src/definitions/collections/table.less';
 
 
 import "./policy.css";
+import {Helmet} from "react-helmet";
 
 
 export default function PrivacyPolicy() {
   return (
     <Container>
+      <Helmet>
+        <title>Privacy Policy</title>
+        <meta content="Privacy policy for bot and website" property="og:title"/>
+      </Helmet>
       <h1>
         Privacy Policy
       </h1>

@@ -13,6 +13,7 @@ import '../semantic/src/definitions/collections/grid.less';
 import connect from "react-redux/es/connect/connect";
 import {fetchCommands} from "../actions/commands";
 import "./commands.css";
+import {Helmet} from "react-helmet";
 
 const levelDeep = {
   0: "h3",
@@ -201,9 +202,12 @@ class CommandPage extends Component {
 
     return (
       <Container>
-        <h2>
+        <Helmet>
+          <title>Command List</title>
+        </Helmet>
+        <h1>
           Full Command List:
-        </h2>
+        </h1>
 
         <Accordion
           defaultActiveIndex={[sorted.findIndex(c => {
