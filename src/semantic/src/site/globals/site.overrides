@@ -16,19 +16,6 @@ code {
   z-index: 0;
   position: relative;
 
-  &::after {
-    background: url(https://discordapp.com/assets/8d2cc61d9f06d4b1fb0e3b15b36b2817.svg) repeat;
-    animation: sb 60s linear infinite;
-    content: "";
-    opacity: .2;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-  }
-
   img {
     top: 20vh;
     width: 30vw;

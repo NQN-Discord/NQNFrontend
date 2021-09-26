@@ -17,10 +17,12 @@
     "react": "^16.8.4",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.8.4",
+    "react-helmet": "^6.1.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.4.0-beta.8",
     "react-s-alert": "^1.4.1",
     "react-scripts": "2.1.8",
+    "react-snap": "^1.23.0",
     "react-textarea-autosize": "^7.1.0",
     "react-visibility-sensor": "^5.0.2",
     "react-websocket": "^2.1.0",
@@ -32,11 +34,15 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
+    "postbuild": "react-snap",
     "test": "craco test",
     "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "reactSnap": {
+    "skipThirdPartyRequests": true
   },
   "browserslist": [
     ">0.2%",
