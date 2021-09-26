@@ -1,15 +1,13 @@
 import React, {Component, lazy} from 'react';
 
 import connect from "react-redux/es/connect/connect";
-import {Image, Grid, Header, Divider, Button} from 'semantic-ui-react';
+import {Image, Grid, Divider} from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 
 import '../semantic/src/definitions/elements/image.less';
 import '../semantic/src/definitions/collections/grid.less';
-import '../semantic/src/definitions/elements/header.less';
 import '../semantic/src/definitions/elements/divider.less';
 import '../semantic/src/definitions/elements/container.less';
-import '../semantic/src/definitions/elements/button.less';
 
 const Ad = lazy(() => import("../components/ad"));
 
@@ -68,15 +66,14 @@ class HomePage extends Component {
             <div className="unisans nqn_name">
               Not Quite Nitro
             </div>
-            <Button
-              primary
+            <button
               className="unisans nqn_add"
               onClick={() => {
                 this.props.history.push("/invite")
               }}
             >
               Add NQN
-            </Button>
+            </button>
           </div>
         </div>
 
@@ -86,9 +83,9 @@ class HomePage extends Component {
           <Grid.Column computer={13} mobile={16} tablet={16} >
             {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
-                  Animated Emotes Without Discord Nitro
-                </Header>
+                <h1 className="unisans">
+                  Discord Nitro Free Alternative
+                </h1>
                 <p>
                   NQN is a Discord bot which allows anyone to use emotes for free, including animated emojis!
                   <br/>
@@ -101,9 +98,9 @@ class HomePage extends Component {
 
             {this.renderImgColumn(false, '/recently_used', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
+                <h2 className="unisans">
                   Use the same emotes as your friends
-                </Header>
+                </h2>
                 <p>
                   NQN remembers emotes that have been used recently and allows anyone to reuse them, without any further setup!
                 </p>
@@ -112,9 +109,9 @@ class HomePage extends Component {
 
             {this.renderImgColumn(true, '/packs.png', false, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
+                <h2 className="unisans">
                   Emote packs
-                </Header>
+                </h2>
                 <p>
                   Search for and join emote packs to instantly gain access to their emotes!
                   <br/>
@@ -125,9 +122,9 @@ class HomePage extends Component {
 
             {this.renderImgColumn(false, '/replies_cropped', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
+                <h2 className="unisans">
                   Quote Messages
-                </Header>
+                </h2>
                 <p>
                   Reply to your friends simply by pasting in a Discord message link.
                   <br/>
@@ -139,9 +136,9 @@ class HomePage extends Component {
 
             {this.renderImgColumn(true, '/stickers', true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <Header as="h1" className="unisans">
+                <h2 className="unisans">
                   Stickers
-                </Header>
+                </h2>
                 <p>
                   Embed full size images into your messages.
                   <br/>
