@@ -60,7 +60,7 @@ code {
 }
 
 .unisans {
-  font-family: "UniSans" !important;
+  font-family: "UniSans", 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
 }
 
 .nqn_header {
@@ -87,28 +87,34 @@ code {
   transform: translateY(calc(-6vh + 20%));
 }
 
-button.ui.button.nqn_add {
-  font-size: 3vh;
-  padding: 1vh;
-  transform: translateX(-50%);
-  left: 50%;
-  position: relative;
-}
+.nqn_add {
+    font-size: 3vh;
+    padding: 1vh;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
 
-@-webkit-keyframes sb {
-  0% {
-    background-position: 100vw 0px;
-  } to {
-    background-position: 0vw 0px;
-  }
-}
+    background-color: #7289da;
 
-@keyframes sb {
-  0% {
-    background-position: 100vw 0px;
-  } to {
-    background-position: 0vw 0px;
-  }
+    color: #fff;
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: none;
+    border: none;
+    vertical-align: initial;
+    margin: 0 .25em 0 0;
+    text-transform: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .3047619rem;
+    user-select: none;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    will-change: auto;
 }
 
 @font-face {

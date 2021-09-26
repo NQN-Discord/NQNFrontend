@@ -8,19 +8,10 @@
        Fonts
 --------------------*/
 
-@fontName          : 'Lato';
+@headerFont        : 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
-@headerFont        : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-
-@googleFontName    : @fontName;
-@importGoogleFonts : true;
-@googleFontSizes   : '400,700,400italic,700italic';
-@googleSubset      : 'latin';
-@googleFontDisplay : 'swap';
-
-@googleProtocol    : 'https://';
-@googleFontRequest : '@{googleFontName}:@{googleFontSizes}&subset=@{googleSubset}&display=@{googleFontDisplay}';
+@importGoogleFonts : false;
 
 
 @bold              : bold;
