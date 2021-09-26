@@ -13,7 +13,7 @@
 @variationButtonDisabled: true;
 @variationButtonAnimated: true;
 @variationButtonInverted: true;
-@variationButtonSocial: true;
+@variationButtonSocial: false;
 @variationButtonFloated: true;
 @variationButtonCompact: true;
 @variationButtonBasic: true;
@@ -248,8 +248,8 @@
 
 /* Menu */
 @variationMenuInverted: true;
-@variationMenuSecondary: true;
-@variationMenuPointing: true;
+@variationMenuSecondary: false;
+@variationMenuPointing: false;
 @variationMenuVertical: true;
 @variationMenuTabular: true;
 @variationMenuPagination: true;
