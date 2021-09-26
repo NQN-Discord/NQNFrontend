@@ -31,7 +31,7 @@ function BotAddedDialog(props) {
     axios.post(`${api_url}/join_referral`, {
       guild: guildId || null,
       referrer: query.referrer || null
-    });
+    }).catch(err => {});
   }, []);
 
   return (

@@ -11,7 +11,7 @@ function InvitePage(props) {
 
   useEffect(() => {
     // On Mount redirect to inviteURL
-    const query = parse(props.location.search)
+    const query = parse(props.location.search);
     if (query.guild_id) {
       window.open(inviteURL + `&guild_id=${query.guild_id}`, '_self')
     } else {
