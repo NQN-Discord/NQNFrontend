@@ -42,7 +42,9 @@
     "extends": "react-app"
   },
   "reactSnap": {
-    "skipThirdPartyRequests": true
+    "skipThirdPartyRequests": true,
+    "inlineCss": true,
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"]
   },
   "browserslist": [
     ">0.2%",
