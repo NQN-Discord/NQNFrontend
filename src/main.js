@@ -24,6 +24,7 @@ import {HelpTextPage} from "./components/helpText";
 
 // Special case front page
 import HomePage from "./pages/home";
+import {Helmet} from "react-helmet";
 
 const WebhookPage = lazy(() => import("./pages/guild_dashboard/server_view"));
 const ManagerRootPage = lazy(() => import("./pages/emote_manager/manager_root"));
@@ -72,6 +73,15 @@ class App extends Component {
     return (
       <Router>
         <div className="site_content">
+          <Helmet>
+            <title>Not Quite Nitro</title>
+            <meta content="Not Quite Nitro" property="og:title"/>
+            <meta content="A free Discord Nitro alternative. NQN is a Discord emojis bot which allows anyone to use emojis for free" property="og:description"/>
+            <meta content="A free Discord Nitro alternative. NQN is a Discord emojis bot which allows anyone to use emojis for free" name="description"/>
+            <meta content="https://discord.com/api/oauth2/authorize?client_id=559426966151757824&permissions=536895488&scope=bot%20applications.commands" property="og:url"/>
+            <meta content="#7289DA" name="theme-color"/>
+          </Helmet>
+
           <Alert stack={{limit: 3}}/>
           <div className="site_body">
             <Header/>

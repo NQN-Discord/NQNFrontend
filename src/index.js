@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate, render } from "react-dom";
 import thunkMiddleware from 'redux-thunk';
 import {applyMiddleware, compose, createStore} from "redux";
 import { Provider } from 'react-redux';
@@ -17,9 +17,16 @@ const store = createStore(
   )
 );
 
-ReactDOM.render(
+
+const rootElement = document.getElementById("root");
+const toRender = (
   <Provider store={store}>
     <App/>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
+
+if (rootElement.hasChildNodes()) {
+  hydrate(toRender, rootElement);
+} else {
+  render(toRender, rootElement);
+}
