@@ -58,22 +58,6 @@ class HomePage extends Component {
   }
 
   render() {
-    const botLists = [
-      [
-        "https://discordbots.org/api/widget/559426966151757824.svg",
-        "https://discordbots.org/bot/559426966151757824"
-      ],
-      [
-        "https://discord.boats/api/widget/559426966151757824",
-        "https://discord.boats/bot/559426966151757824"
-      ],
-      [
-        "https://botsfordiscord.com/api/bot/559426966151757824/widget?theme=dark",
-        "https://botsfordiscord.com/bots/559426966151757824"
-      ]
-    ];
-    shuffleArray(botLists);
-
     return (
       <div>
         <Helmet>
@@ -182,22 +166,6 @@ class HomePage extends Component {
             }
           </Grid.Column>
         </Grid>
-
-        <Container>
-          <Divider hidden={true}/>
-          <Grid columns={3} doubling={true} centered>
-            {botLists.map(([src, href]) => (
-              <a className="ui centered image" href={href} key={src}>
-                <img
-                  loading="lazy"
-                  src={src}
-                  alt="Bot list"
-                  style={{maxWidth: "300px"}}
-                />
-              </a>
-            ))}
-          </Grid>
-        </Container>
         <Divider hidden={true}/>
       </div>
     )}
