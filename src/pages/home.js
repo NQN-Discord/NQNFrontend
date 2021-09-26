@@ -1,7 +1,7 @@
 import React, {Component, lazy} from 'react';
 
 import connect from "react-redux/es/connect/connect";
-import {Image, Grid, Header, Divider, Container, Button} from 'semantic-ui-react';
+import {Image, Grid, Header, Divider, Button} from 'semantic-ui-react';
 import { Helmet } from 'react-helmet';
 
 import '../semantic/src/definitions/elements/image.less';
@@ -12,16 +12,6 @@ import '../semantic/src/definitions/elements/container.less';
 import '../semantic/src/definitions/elements/button.less';
 
 const Ad = lazy(() => import("../components/ad"));
-
-
-// https://stackoverflow.com/a/12646864/3398583
-// Laurens Holst
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
 
 
 class HomePage extends Component {
