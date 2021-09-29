@@ -80,7 +80,7 @@ class HomePage extends Component {
             {this.renderImgColumn(true, '/nqn-nqn_demo', "NQN Demo Video", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h1 className="bot_font">
-                  Discord Nitro Free Alternative
+                  A Discord Nitro Free Alternative
                 </h1>
                 <p>
                   NQN is a Discord bot which allows anyone to use emotes for free, including animated emojis!
@@ -98,12 +98,26 @@ class HomePage extends Component {
                   Use the same emotes as your friends
                 </h2>
                 <p>
-                  NQN remembers emotes that have been used recently and allows anyone to reuse them, without any further setup!
+                  NQN remembers emotes that have been used recently and allows anyone to reuse them for a short period without any further setup!
                 </p>
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(true, '/packs.png', "Demo showing joining emoji packs", false, (
+
+            {this.renderImgColumn(true, '/gain_access_to_emojis', "Demo showing using context menus to gain access to emojis", true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <h2 className="bot_font">
+                  Become an emote collector
+                </h2>
+                <p>
+                  NQN allows anyone to gain permanent access to any emoji posted in it's servers with just a few clicks!
+                  <br/>
+                  Expand your emote collection and use them anywhere NQN can.
+                </p>
+              </Grid.Column>
+            ))}
+
+            {this.renderImgColumn(false, '/packs.png', "Demo showing joining emoji packs", false, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Emote packs
@@ -112,6 +126,19 @@ class HomePage extends Component {
                   Search for and join emote packs to instantly gain access to their emotes!
                   <br/>
                   Publish your own to share your favourite set of emotes with the world!
+                </p>
+              </Grid.Column>
+            ))}
+
+
+            {this.renderImgColumn(true, '/upload_emote', "Demo showing uploading emojis from a message", true, (
+              <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
+                <h2 className="bot_font">
+                  Collect emotes from chat
+                </h2>
+                <p>
+                  NQN's an emote bot which allows anyone to upload emojis from chat.
+                  Simply reply to a message with the command and upload all the Discord Nitro emotes used.
                 </p>
               </Grid.Column>
             ))}
@@ -151,7 +178,6 @@ class HomePage extends Component {
             }
           </Grid.Column>
         </Grid>
-        <Divider hidden={true}/>
       </div>
     )}
   }

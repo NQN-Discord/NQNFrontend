@@ -68,6 +68,7 @@ class App extends Component {
             <meta content="https://discord.com/api/oauth2/authorize?client_id=559426966151757824&permissions=536895488&scope=bot%20applications.commands" property="og:url"/>
             <meta content="#7289DA" name="theme-color"/>
             <meta content="website" property="og:type"/>
+            <meta content="summary" property="twitter:type"/>
             <meta content="https://nqn.blue/wumpus_logo.png" property="og:image"/>
           </Helmet>
 
