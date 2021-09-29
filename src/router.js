@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react';
+import React from 'react';
 import {
   Route,
   Switch
@@ -9,32 +9,35 @@ const isBrowser = process.title === "browser";
 const dummy = () => {};
 
 
-const HomePage = isBrowser? lazy(() => import("./pages/home")): dummy;
-const HelpTextPage = isBrowser? lazy(() => import("./components/helpText")): dummy;
-const WebhookPage = isBrowser? lazy(() => import("./pages/guild_dashboard/server_view")): dummy;
-const ManagerRootPage = isBrowser? lazy(() => import("./pages/emote_manager/manager_root")): dummy;
-const LoginPage = isBrowser? lazy(() => import("./pages/login")): dummy;
-const InvitePage = isBrowser? lazy(() => import("./pages/invite")): dummy;
-const PrivacyPolicy = isBrowser? lazy(() => import("./pages/policy")): dummy;
-const GuildCreatorPage = isBrowser? lazy(() => import("./pages/guild_builder/guild_builder")): dummy;
-const GuildSelectorPage = isBrowser? lazy(() => import("./pages/guild_builder/guild_selector")): dummy;
-const GuildStatusPage = isBrowser? lazy(() => import("./pages/guild_builder/guild_status")): dummy;
-const LicensePage = isBrowser? lazy(() => import("./pages/licenses")): dummy;
-const CommandPage = isBrowser? lazy(() => import("./pages/commands")): dummy;
-const BotAddedPage = isBrowser? lazy(() => import("./pages/bot_added")): dummy;
-const PremiumPage = isBrowser? lazy(() => import("./pages/premium")): dummy;
+const prerenderedLazy = React.lazy;
 
 
-export const FullRouter = ({loggedIn}) => {
+
+const HelpTextPage = isBrowser? prerenderedLazy(() => import("./components/helpText")): dummy;
+const WebhookPage = isBrowser? prerenderedLazy(() => import("./pages/guild_dashboard/server_view")): dummy;
+const ManagerRootPage = isBrowser? prerenderedLazy(() => import("./pages/emote_manager/manager_root")): dummy;
+const LoginPage = isBrowser? prerenderedLazy(() => import("./pages/login")): dummy;
+const InvitePage = isBrowser? prerenderedLazy(() => import("./pages/invite")): dummy;
+const PrivacyPolicy = isBrowser? prerenderedLazy(() => import("./pages/policy")): dummy;
+const GuildCreatorPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_builder")): dummy;
+const GuildSelectorPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_selector")): dummy;
+const GuildStatusPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_status")): dummy;
+const LicensePage = isBrowser? prerenderedLazy(() => import("./pages/licenses")): dummy;
+const CommandPage = isBrowser? prerenderedLazy(() => import("./pages/commands")): dummy;
+const BotAddedPage = isBrowser? prerenderedLazy(() => import("./pages/bot_added")): dummy;
+const PremiumPage = isBrowser? prerenderedLazy(() => import("./pages/premium")): dummy;
+
+
+export const FullRouter = ({loggedIn, HomePage}) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {!loggedIn && <LoggedOutRouter dummyComponents={false}/>}
-      {loggedIn && <LoggedInRouter dummyComponents={false}/>}
-    </Suspense>
+    <React.Suspense fallback={<div>Loading Page...</div>}>
+      {!loggedIn && <LoggedOutRouter HomePage={HomePage}/>}
+      {loggedIn && <LoggedInRouter HomePage={HomePage}/>}
+    </React.Suspense>
   );
 };
 
-export const LoggedOutRouter = ({dummyComponents}) => {
+export const LoggedOutRouter = ({HomePage}) => {
 
   return (
     <Switch>
@@ -50,7 +53,7 @@ export const LoggedOutRouter = ({dummyComponents}) => {
   );
 };
 
-export const LoggedInRouter = ({dummyComponents}) => {
+export const LoggedInRouter = ({HomePage}) => {
   return (
     <Switch>
       <Route exact path="/guilds/:guildID" component={WebhookPage}/>
