@@ -13,7 +13,7 @@ const Ad = lazy(() => import("../components/ad"));
 
 
 class HomePage extends Component {
-  renderImgColumn(swap, src, animated, right) {
+  renderImgColumn(swap, src, alt, animated, right) {
     return (
       <div>
         <Grid padded doubling={true} columns={2} reversed={swap && "mobile"}>
@@ -26,12 +26,12 @@ class HomePage extends Component {
                 centered
                 loading="lazy"
                 ui
-                alt=""
+                alt={alt}
               />
             }
             {animated &&
               <video autoPlay loop muted playsInline className="centered ui image" style={{display: "block"}}>
-                <source src={`${src}.webm`} type="video/mp4"/>
+                <source src={`${src}.webm`} type="video/mp4" title={alt}/>
               </video>
             }
           </Grid.Column>
@@ -56,14 +56,14 @@ class HomePage extends Component {
         <div className="bot_branding">
           <Image
             src="/wumpus_logo.png"
-            alt=""
+            alt="NQN Wumpus Logo"
           />
           <div className="nqn_title">
-            <div className="unisans nqn_name">
+            <div className="bot_font nqn_name">
               Not Quite Nitro
             </div>
             <button
-              className="unisans nqn_add"
+              className="bot_font nqn_add"
               onClick={() => {
                 this.props.history.push("/invite")
               }}
@@ -75,11 +75,11 @@ class HomePage extends Component {
 
         <Divider hidden/>
 
-        <Grid>
-          <Grid.Column computer={13} mobile={16} tablet={16} >
-            {this.renderImgColumn(true, '/nqn-nqn_demo', true, (
+        <Grid padded>
+          <Grid.Column computer={13} mobile={16} tablet={16}>
+            {this.renderImgColumn(true, '/nqn-nqn_demo', "NQN Demo Video", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h1 className="unisans">
+                <h1 className="bot_font">
                   Discord Nitro Free Alternative
                 </h1>
                 <p>
@@ -92,9 +92,9 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(false, '/recently_used', true, (
+            {this.renderImgColumn(false, '/recently_used', "Demo showing recently used emojis are usable for other users", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Use the same emotes as your friends
                 </h2>
                 <p>
@@ -103,9 +103,9 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(true, '/packs.png', false, (
+            {this.renderImgColumn(true, '/packs.png', "Demo showing joining emoji packs", false, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Emote packs
                 </h2>
                 <p>
@@ -116,9 +116,9 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(false, '/replies_cropped', true, (
+            {this.renderImgColumn(false, '/replies_cropped', "Demo showing replies functionality", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Quote Messages
                 </h2>
                 <p>
@@ -130,9 +130,9 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(true, '/stickers', true, (
+            {this.renderImgColumn(true, '/stickers', "Demo showing NQN's stickers", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Stickers
                 </h2>
                 <p>

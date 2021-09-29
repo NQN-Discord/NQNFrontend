@@ -35,7 +35,7 @@ class HeaderO extends Component {
             onClick={() => {
               this.props.history.push("/");
             }}
-            className="unisans nqn_header"
+            className="bot_font nqn_header"
           >
             NQN
           </Menu.Item>
