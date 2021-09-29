@@ -59,11 +59,11 @@ class HomePage extends Component {
             alt="NQN Wumpus Logo"
           />
           <div className="nqn_title">
-            <div className="unisans nqn_name">
+            <div className="bot_font nqn_name">
               Not Quite Nitro
             </div>
             <button
-              className="unisans nqn_add"
+              className="bot_font nqn_add"
               onClick={() => {
                 this.props.history.push("/invite")
               }}
@@ -75,11 +75,11 @@ class HomePage extends Component {
 
         <Divider hidden/>
 
-        <Grid>
-          <Grid.Column computer={13} mobile={16} tablet={16} >
+        <Grid padded>
+          <Grid.Column computer={13} mobile={16} tablet={16}>
             {this.renderImgColumn(true, '/nqn-nqn_demo', "NQN Demo Video", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h1 className="unisans">
+                <h1 className="bot_font">
                   Discord Nitro Free Alternative
                 </h1>
                 <p>
@@ -94,7 +94,7 @@ class HomePage extends Component {
 
             {this.renderImgColumn(false, '/recently_used', "Demo showing recently used emojis are usable for other users", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Use the same emotes as your friends
                 </h2>
                 <p>
@@ -105,7 +105,7 @@ class HomePage extends Component {
 
             {this.renderImgColumn(true, '/packs.png', "Demo showing joining emoji packs", false, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Emote packs
                 </h2>
                 <p>
@@ -118,7 +118,7 @@ class HomePage extends Component {
 
             {this.renderImgColumn(false, '/replies_cropped', "Demo showing replies functionality", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Quote Messages
                 </h2>
                 <p>
@@ -132,7 +132,7 @@ class HomePage extends Component {
 
             {this.renderImgColumn(true, '/stickers', "Demo showing NQN's stickers", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
-                <h2 className="unisans">
+                <h2 className="bot_font">
                   Stickers
                 </h2>
                 <p>

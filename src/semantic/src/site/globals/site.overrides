@@ -59,8 +59,11 @@ code {
   margin-top: 16px !important;
 }
 
-.unisans {
-  font-family: "UniSans", 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+.bot_font {
+  font-family: Arial, sans-serif !important;
+  font-weight: 900 !important;
+  font-style: italic !important;
+  text-transform: uppercase !important;
 }
 
 .nqn_header {
@@ -80,15 +83,15 @@ code {
   font-size: 10vh;
   line-height: 10vh;
 
-  font-size: ~"min(11vh, 20vw)";
-  line-height: ~"min(11vh, 20vw)";
+  font-size: ~"min(10vh, 15vw)";
+  line-height: ~"min(10vh, 15vw)";
   text-align: center;
 
   transform: translateY(calc(-6vh + 20%));
 }
 
 .nqn_add {
-    font-size: 3vh;
+    font-size: 4vh;
     padding: 1vh;
     transform: translateX(-50%);
     left: 50%;
@@ -97,30 +100,10 @@ code {
     background-color: #7289da;
 
     color: #fff;
-
-    cursor: pointer;
-    display: inline-block;
-    min-height: 1em;
-    outline: none;
     border: none;
-    vertical-align: initial;
-    margin: 0 .25em 0 0;
-    text-transform: none;
-    font-weight: 700;
-    line-height: 1em;
-    font-style: normal;
-    text-align: center;
-    text-decoration: none;
-    border-radius: .3047619rem;
-    user-select: none;
-    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
-    will-change: auto;
+    border-radius: .5rem;
 }
 
-@font-face {
-  font-family: 'UniSans';
-  src: url('/fonts/uni-sans-heavy-italic.woff') format('woff'),
-       url('/fonts/uni-sans-heavy-italic.ttf') format('truetype'),
-       url('/fonts/uni-sans-heavy-italic.woff2') format('woff2');
-  font-display: swap;
+.home_image_grid {
+    padding-left: 0px !important;
 }
