@@ -66,26 +66,28 @@ const DiscordPlatform = () => (
       <li>
         Messages re-posted by our service on your behalf including the message content, author information and where
         it was sent to. This is to provide our ‘audit’ feature, as well as to report any content to the appropriate
-        authorities. This data is stored for up to 60 days.
+        authorities.
+        This data is stored for up to 30 days in the main database and backed up for 30 days, totalling 60 days of storage.
       </li>
       <li>
         Which commands you have executed in the past, including the user who ran it, where it was run and any
         arguments passed to the command. This is to provide developers of the service with analytical data, and to
-        help prevent abuse. This data is stored for up to 60 days.
+        help prevent abuse.
+        This data is stored for up to 30 days in the main database and backed up for 30 days, totalling 60 days of storage.
       </li>
       <li>
-        Server metadata, including the server name, metadata, channel names, topics, metadata, role names and
-        metadata. This is kept in order to provide the service and to decrease startup-time. We remove this data after
-        you stop using the service.
+        Server metadata, including the server name, premium tier, icon and join time, channel names, permissions
+        overrides, and other channel metadata, role name, permissions and other metadata.
+        This is kept in order to provide the service and to decrease startup-time times.
+        We remove this data after you stop using the service.
       </li>
       <li>
-        The name and access information of all webhooks in your server to determine which webhooks should be removed
-        if you stop using the service, and also to decrease load times.
+        The name and access information of all webhooks in your server to decrease load times when making use of the
+        service.
       </li>
       <li>
         Configuration data, such as your user settings and server settings including but not limited to the chosen
-        bot prefix, audit log channel location and user ‘alias’ data. This data is removed when you stop using the
-        service.
+        bot prefix, audit log channel location and user ‘alias’ data.
       </li>
     </ol>
 
@@ -114,9 +116,9 @@ const DiscordPlatform = () => (
     <p>
       Whenever you use the Service, in a case of an error in the application, data and information is collected
       (through third party products) called Log Data.
-      This Log Data may include information such as your device Internet Protocol (“IP”) address, device name,
-      operating system version, the configuration of the app when utilizing my Service, the time and date of your use
-      of the Service, message data, and other statistics. This Log Data is uploaded to Sentry.
+      This Log Data may include information such as your Discord information, message you sent,
+      related bot information, the time and date of your use of the Service, message data, and other statistics.
+      This Log Data is uploaded to Sentry.
     </p>
   </Table>
 );
@@ -479,7 +481,7 @@ const AllServices = () => (
     <p>
       I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for
       any changes. I will notify you of any changes by posting the new Privacy Policy on this page. This policy is
-      effective as of 2020-11-15.
+      effective as of 2021-09-29.
     </p>
 
     <h2>Contact Us</h2>
