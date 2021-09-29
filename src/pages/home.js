@@ -1,4 +1,4 @@
-import React, {Component, lazy} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Divider} from 'semantic-ui-react';
@@ -145,7 +145,9 @@ class HomePage extends Component {
           </Grid.Column>
           <Grid.Column width={3} only="computer">
             {window.matchMedia('only screen and (min-width: 992px)').matches &&
-              <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
+              <Suspense fallback={<></>}>
+                <Ad id="home-column-ad" sizes={[["160", "600"]]}/>
+              </Suspense>
             }
           </Grid.Column>
         </Grid>

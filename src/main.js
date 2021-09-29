@@ -21,6 +21,7 @@ import {Header, BottomFooter} from "./header";
 
 import {Helmet} from "react-helmet";
 import {FullRouter} from "./router";
+import HomePage from "./pages/home";
 
 
 class App extends Component {
@@ -51,9 +52,10 @@ class App extends Component {
   render() {
     if (this.props.loggedIn === null) {
       return <div>
-        Loading...
+        Loading Login Data...
       </div>
     }
+    const isHomePage = window.location.pathname === "/";
 
     return (
       <Router>
@@ -73,7 +75,8 @@ class App extends Component {
           <div className="site_body">
             <Header/>
             <div className="site_container">
-              <FullRouter loggedIn={this.props.loggedIn}/>
+              {isHomePage && <HomePage/>}
+              {!isHomePage && <FullRouter loggedIn={this.props.loggedIn}/>}
             </div>
           </div>
           <BottomFooter/>
