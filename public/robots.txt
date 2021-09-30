@@ -3,3 +3,5 @@ Allow: /
 Disallow: /login
 Disallow: /bot_added
 Disallow: /feedback
+
+Sitemap: https://nqn.blue/sitemap.xml
