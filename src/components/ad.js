@@ -1,12 +1,24 @@
 import React, {Component} from 'react';
 import {adDemoMode} from '../config.js';
 
+let adsStarted = false;
+
+
 export default class Ad extends Component {
   componentDidMount() {
     const hasAds = window['nitroAds'] !== undefined;
     if (hasAds) {
       this.createAd();
+    } else if (adsStarted) {
+      // Load has started but we've not got the script yet
+      const listener = () => {
+        document.removeEventListener("nitroAds.loaded", listener);
+        this.createAd();
+      };
+      document.addEventListener("nitroAds.loaded", listener);
     } else {
+      adsStarted = true;
+
       const script = document.createElement('script');
       script.src = "https://s.nitropay.com/ads-580.js";
       script.onload = () => {
