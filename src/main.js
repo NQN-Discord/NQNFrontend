@@ -55,7 +55,6 @@ class App extends Component {
         Loading Login Data...
       </div>
     }
-    const isHomePage = window.location.pathname === "/";
 
     return (
       <Router>
@@ -76,8 +75,7 @@ class App extends Component {
           <div className="site_body">
             <Header/>
             <div className="site_container">
-              {isHomePage && <HomePage/>}
-              {!isHomePage && <FullRouter loggedIn={this.props.loggedIn}/>}
+              <FullRouter loggedIn={this.props.loggedIn} HomePage={HomePage}/>
             </div>
           </div>
           <BottomFooter/>
