@@ -97,11 +97,17 @@ code {
     left: 50%;
     position: relative;
 
-    background-color: #7289da;
+    background-color: @blurple;
 
     color: #fff;
     border: none;
     border-radius: .5rem;
+
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(@blurple, 2%);
+    }
 }
 
 .home_image_grid {
