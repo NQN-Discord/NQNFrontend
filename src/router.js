@@ -26,6 +26,7 @@ const LicensePage = isBrowser? prerenderedLazy(() => import("./pages/licenses"))
 const CommandPage = isBrowser? prerenderedLazy(() => import("./pages/commands")): dummy;
 const BotAddedPage = isBrowser? prerenderedLazy(() => import("./pages/bot_added")): dummy;
 const PremiumPage = isBrowser? prerenderedLazy(() => import("./pages/premium")): dummy;
+const PackPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs")): dummy;
 
 
 export const FullRouter = ({loggedIn, HomePage}) => {
@@ -48,6 +49,7 @@ export const LoggedOutRouter = ({HomePage}) => {
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
       <Route exact path="/invite" component={InvitePage}/>
+      <Route exact path="/packs/:packName" component={PackPage}/>
       <LoginPage/>
     </Switch>
   );
@@ -82,6 +84,7 @@ export const LoggedInRouter = ({HomePage}) => {
       <Route exact path="/licenses" component={LicensePage}/>
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
+      <Route exact path="/packs/:packName" component={PackPage}/>
       <Route exact path="/premium" component={PremiumPage}/>
     </Switch>
   );
