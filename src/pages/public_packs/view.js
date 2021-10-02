@@ -148,6 +148,9 @@ function PublicPacks(props) {
 }
 
 function EmoteGroup({packName, emotes, title, download, fileName, emotePopup, setEmotePopup}) {
+  if (emotes.length === 0) {
+    return <></>;
+  }
   return (
     <>
       <Divider/>
