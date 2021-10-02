@@ -42,6 +42,7 @@ class EmoteSearchComponent extends Component {
           placeholder='Search...'
           onSubmit={(term) => {this.props.search(term, 0)}}
           clearOnSubmit={false}
+          term={this.props.term}
         />
         { (this.props.term !== "" || this.props.totalResults !== 0) && <div>
           <Divider hidden />

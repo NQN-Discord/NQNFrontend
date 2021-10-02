@@ -1,0 +1,8 @@
+.flex_row {
+  flex-direction: row !important;
+}
+
+.flex_row_reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
