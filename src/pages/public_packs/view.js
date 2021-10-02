@@ -1,4 +1,4 @@
-import {Container, Card, Divider, Button, Grid, Popup} from "semantic-ui-react";
+import {Container, Card, Divider, Button, Grid, Popup, Loader} from "semantic-ui-react";
 import {Helmet} from "react-helmet";
 import React, {useEffect, useState} from "react";
 import connect from "react-redux/es/connect/connect";
@@ -14,6 +14,7 @@ import '../../semantic/src/definitions/views/card.less';
 import '../../semantic/src/definitions/elements/divider.less';
 import '../../semantic/src/definitions/elements/button.less';
 import '../../semantic/src/definitions/modules/popup.less';
+import '../../semantic/src/definitions/elements/loader.less';
 
 import "../guild_builder/guild_builder.css";
 import Alert from "react-s-alert";
@@ -123,26 +124,31 @@ function PublicPacks(props) {
           </Button.Group>
         </Grid.Column>
       </Grid>
-      <Container>
-        <EmoteGroup
-          packName={packName}
-          emotes={emotes.filter(({animated}) => animated)}
-          title="Discord Nitro Emotes"
-          download="Download Nitro emojis as zip"
-          fileName={`${packName}_animated.zip`}
-          emotePopup={emotePopup}
-          setEmotePopup={setEmotePopup}
-        />
-        <EmoteGroup
-          packName={packName}
-          emotes={emotes.filter(({animated}) => !animated)}
-          title="Discord Static Emotes"
-          download="Download static emojis as zip"
-          fileName={`${packName}_static.zip`}
-          emotePopup={emotePopup}
-          setEmotePopup={setEmotePopup}
-        />
-      </Container>
+      {packExists === null && <Loader active inline="centered"/>}
+      {packExists === true && (
+        <Container>
+            <EmoteGroup
+              packName={packName}
+              emotes={emotes.filter(({animated}) => animated)}
+              title="Discord Nitro Emotes"
+              download="Download Nitro emojis as zip"
+              fileName={`${packName}_animated.zip`}
+              emotePopup={emotePopup}
+              setEmotePopup={setEmotePopup}
+              packExists={packExists}
+            />
+            <EmoteGroup
+              packName={packName}
+              emotes={emotes.filter(({animated}) => !animated)}
+              title="Discord Static Emotes"
+              download="Download static emojis as zip"
+              fileName={`${packName}_static.zip`}
+              emotePopup={emotePopup}
+              setEmotePopup={setEmotePopup}
+              packExists={packExists}
+            />
+        </Container>
+      )}
     </>
   );
 }
