@@ -31,8 +31,20 @@ code {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 599px) {
   .hidden_on_small {
+    display: none !important;
+  }
+}
+
+@media (min-width: 360px) {
+  .only_on_tiny {
+    display: none !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .hidden_on_tiny {
     display: none !important;
   }
 }

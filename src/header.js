@@ -65,6 +65,17 @@ class HeaderO extends Component {
           }
 
           <Menu.Item
+            className="hidden_on_tiny"
+            as="a"
+            onClick={() => {
+              this.props.history.push("/packs")
+            }}
+            target="_blank"
+            rel="noopener"
+          >
+            Packs
+          </Menu.Item>
+          <Menu.Item
             as="a"
             onClick={() => {
               this.props.history.push("/invite")
@@ -72,7 +83,7 @@ class HeaderO extends Component {
             target="_blank"
             rel="noopener"
           >
-            Invite Me
+            Get NQN
           </Menu.Item>
           { this.props.loggedIn &&
             <Menu.Item
@@ -94,28 +105,39 @@ class HeaderO extends Component {
           }
         </Menu.Menu>
       </Menu>
-        {this.props.loggedIn &&
         <Menu className="header only_on_small">
           <Menu.Menu position='right'>
             <Menu.Item
-              active={activeElement === "guilds"}
+              className="only_on_tiny"
+              as="a"
               onClick={() => {
-                this.props.history.push("/guilds");
+                this.props.history.push("/packs")
               }}
+              target="_blank"
+              rel="noopener"
             >
-              Dashboard
+              Packs
             </Menu.Item>
-            <Menu.Item
-              active={activeElement === "emote_manager"}
-              onClick={() => {
-                this.props.history.push("/emote_manager/overview");
-              }}
-            >
-              My Emotes
-            </Menu.Item>
+            {this.props.loggedIn && <>
+              <Menu.Item
+                active={activeElement === "guilds"}
+                onClick={() => {
+                  this.props.history.push("/guilds");
+                }}
+              >
+                Dashboard
+              </Menu.Item>
+              <Menu.Item
+                active={activeElement === "emote_manager"}
+                onClick={() => {
+                  this.props.history.push("/emote_manager/overview");
+                }}
+              >
+                My Emotes
+              </Menu.Item>
+            </>}
           </Menu.Menu>
         </Menu>
-      }
       </div>
     )
   }

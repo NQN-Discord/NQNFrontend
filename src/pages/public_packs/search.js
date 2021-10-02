@@ -52,7 +52,7 @@ function PublicPacks(props) {
                 const totalAnimated = emotes.filter(e => e.animated).length;
                 const totalStatic = totalEmotes - totalAnimated;
                 return (
-                  <List.Item key={name}>
+                  <List.Item key={name} className="pack">
                     <Card fluid className="flex_row" onClick={() => {
                       props.history.push(`/packs/${name}`);
                     }}>
