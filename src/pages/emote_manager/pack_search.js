@@ -65,7 +65,7 @@ class PackSearchPage extends Component {
   }
 
   getNewPacks(term, pageNo) {
-    axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo}}).then(response => {
+    axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo, force_public: 0}}).then(response => {
       this.setState(update(this.state,
         {$merge: {
             pageNo,

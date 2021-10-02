@@ -1,0 +1,15 @@
+.flex_row {
+  flex-direction: row !important;
+}
+
+.flex_row_reverse {
+  display: flex;
+  margin-left: auto;
+  flex-grow: initial !important;
+  flex-direction: row-reverse;
+}
+
+.pack .emote {
+  object-fit: scale-down;
+  width: 100%;
+}

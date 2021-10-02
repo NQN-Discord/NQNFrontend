@@ -19,7 +19,7 @@
 @minHeight: 0;
 @padding: 0;
 @width: 290px;
-@borderWidth: 1px;
+@borderWidth: 0px;
 @borderShadow: 0 0 0 @borderWidth @solidBorderColor;
 @boxShadow:
   @shadowBoxShadow,
@@ -148,8 +148,8 @@
 --------------------*/
 
 /* Link */
-@linkHoverBackground: @white;
-@linkHoverBorder: @border;
+@linkHoverBackground: @gray-dark;
+@linkHoverBorder: @gray-base;
 @linkHoverZIndex: 5;
 @linkHoverRaiseDistance: 3px;
 @linkHoverTransform: translateY(-@linkHoverRaiseDistance);

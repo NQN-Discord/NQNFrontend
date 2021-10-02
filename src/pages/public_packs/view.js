@@ -3,19 +3,19 @@ import {Helmet} from "react-helmet";
 import React, {useEffect, useState} from "react";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
-import {api_url} from "../config";
-import {EmoteCard, Emote} from "../components/emote";
-import {joinGroups, joinPackServer, leaveGroups} from "../actions/user";
+import {api_url} from "../../config";
+import {EmoteCard, Emote} from "../../components/emote";
+import {joinGroups, joinPackServer, leaveGroups} from "../../actions/user";
 import JSZip from "jszip";
 
 
-import '../semantic/src/definitions/elements/container.less';
-import '../semantic/src/definitions/views/card.less';
-import '../semantic/src/definitions/elements/divider.less';
-import '../semantic/src/definitions/elements/button.less';
-import '../semantic/src/definitions/modules/popup.less';
+import '../../semantic/src/definitions/elements/container.less';
+import '../../semantic/src/definitions/views/card.less';
+import '../../semantic/src/definitions/elements/divider.less';
+import '../../semantic/src/definitions/elements/button.less';
+import '../../semantic/src/definitions/modules/popup.less';
 
-import "./guild_builder/guild_builder.css";
+import "../guild_builder/guild_builder.css";
 import Alert from "react-s-alert";
 
 
@@ -96,9 +96,10 @@ function PublicPacks(props) {
             Discord Emote List for '{packName}' Pack
           </h1>
           <p>
-            {packExists === true && `View all ${emoteCount} emotes from the '${packName}' pack, and join their Discord server.`}
-            <br/>
+            {packExists === true && `View all ${emoteCount} emotes from the '${packName}' pack, and join their Discord server. `}
             NQN is an emoji bot which allows anyone to use Discord emotes without Nitro, free of charge.
+            <br/>
+            {packExists === true && "Click an emoji to download it, or copy it to the clipboard such that NQN can repost it."}
           </p>
         </Grid.Column>
         <Grid.Column width={4}>

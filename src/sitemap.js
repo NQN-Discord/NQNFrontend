@@ -8,5 +8,5 @@ const Sitemap = require("react-router-sitemap").default;
 (
   new Sitemap(router)
     .build("https://nqn.blue")
-    .save("./build/sitemap.xml")
+    .save("./build/static_sitemap.xml")
 );
