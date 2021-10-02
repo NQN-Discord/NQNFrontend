@@ -11,14 +11,10 @@ import '../../semantic/src/definitions/elements/divider.less';
 import {Emote} from "../../components/emote";
 import EmoteSearchComponent from "../../components/emote_search";
 import connect from "react-redux/es/connect/connect";
-import Alert from "react-s-alert";
 import {joinGroups, leaveGroups, joinPackServer} from "../../actions/user";
 import axios from "axios";
 import {api_url} from "../../config";
 import update from "immutability-helper";
-
-
-const regex = /^[a-zA-Z0-9_]+$/g;
 
 
 class PackSearchPage extends Component {
@@ -41,22 +37,15 @@ class PackSearchPage extends Component {
       }
       names.add(emote.name);
       return true;
-    }).map(emote => (new Emote(emote)).renderImg((e) => {
-      if (e.target.parentNode.className.includes("title")) {
-        return;
-      }
-      if (!title.match(regex)) {
-        Alert.info(`The '${title}' emote pack does not support copying to clipboard`)
-      } else {
-        Alert.success(<div>
-          {(new Emote(emote)).renderImg(undefined, undefined, {"centered": true})}
-          <p>
-            Copied :{title}-{emote.name}: to clipboard
-          </p>
-        </div>);
-        navigator.clipboard.writeText(`:${title}-${emote.name}:`);
-      }
-    }, emote.name));
+    }).map(emote => {
+      const emojiObj = new Emote(emote);
+      return emojiObj.renderImg((e) => {
+        if (e.target.parentNode.className.includes("title")) {
+          return;
+        }
+        emojiObj.copyToClipboard(title)
+      }, emote.name)
+    });
     return {
       key: title,
       title: [

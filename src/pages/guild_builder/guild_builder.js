@@ -12,6 +12,7 @@ import '../../semantic/src/definitions/elements/button.less';
 import '../../semantic/src/definitions/elements/label.less';
 import '../../semantic/src/definitions/modules/modal.less';
 import '../../semantic/src/definitions/collections/menu.less';
+import '../../semantic/src/definitions/modules/dimmer.less';
 
 
 import connect from "react-redux/es/connect/connect";
