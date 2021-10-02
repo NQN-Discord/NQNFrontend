@@ -4,6 +4,7 @@ import update from "immutability-helper";
 import {Button, Popup, List, Input} from 'semantic-ui-react';
 
 import '../semantic/src/definitions/elements/button.less';
+import '../semantic/src/definitions/elements/icon.less';
 import '../semantic/src/definitions/modules/popup.less';
 import '../semantic/src/definitions/elements/list.less';
 import '../semantic/src/definitions/elements/input.less';

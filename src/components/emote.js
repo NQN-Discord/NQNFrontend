@@ -7,6 +7,10 @@ import '../semantic/src/definitions/views/card.less';
 
 
 import classNames from "classnames";
+import Alert from "react-s-alert";
+
+
+const clipboardRegex = /^:(?:[a-zA-Z0-9_]+-)?[a-zA-Z0-9_]+:$/g;
 
 
 export class Emote {
@@ -24,13 +28,27 @@ export class Emote {
     return <Image
       key={id || this.id}
       className="emote"
-      src={`https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}?size=32`}
+      src={`${this.url()}?size=32`}
       alt={`:${this.name}:`}
       title={`:${this.name}:`}
       onClick={(e) => onClick(e)}
       loading="lazy"
       {...kwargs}
     />;
+  }
+
+  downloadName() {
+    return `${this.name}.${this.animated? "gif": "png"}`
+  }
+
+  url() {
+    return `https://cdn.discordapp.com/emojis/${this.id}.${this.animated? "gif": "png"}`
+  }
+
+  async toBlob() {
+    const resp = await fetch(this.url());
+    const blob = await resp.blob();
+    return new Blob([blob]);
   }
 
   renderEmote() {
@@ -41,6 +59,23 @@ export class Emote {
     return `:${this.name}:`;
   }
 
+  copyToClipboard(packName=null) {
+    const name = packName === null? this.renderText(): `:${packName}-${this.name}:`;
+
+    if (!name.match(clipboardRegex)) {
+      Alert.info(`The '${packName}' emote pack does not support copying to clipboard`)
+    } else {
+      Alert.success((
+        <div>
+          {this.renderImg(undefined, undefined, {"centered": true})}
+          <p>
+            Copied {name} to clipboard
+          </p>
+        </div>
+      ));
+      navigator.clipboard.writeText(name);
+    }
+  }
 }
 
 

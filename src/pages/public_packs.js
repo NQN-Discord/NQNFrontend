@@ -1,32 +1,64 @@
-import {Container, Card, Divider, Button, Grid} from "semantic-ui-react";
+import {Container, Card, Divider, Button, Grid, Popup} from "semantic-ui-react";
 import {Helmet} from "react-helmet";
 import React, {useEffect, useState} from "react";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
 import {api_url} from "../config";
-import {EmoteCard} from "../components/emote";
+import {EmoteCard, Emote} from "../components/emote";
 import {joinGroups, joinPackServer, leaveGroups} from "../actions/user";
+import JSZip from "jszip";
 
 
 import '../semantic/src/definitions/elements/container.less';
 import '../semantic/src/definitions/views/card.less';
 import '../semantic/src/definitions/elements/divider.less';
 import '../semantic/src/definitions/elements/button.less';
+import '../semantic/src/definitions/modules/popup.less';
 
 import "./guild_builder/guild_builder.css";
+import Alert from "react-s-alert";
 
 
 function sortEmotes(emotes) {
   return emotes.sort((a, b) => a.name.localeCompare(b.name))
 }
 
+function doDownload(blob, fileName) {
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(blob);
+  link.setAttribute('download', fileName,);
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+async function downloadEmotes(emotes, fileName = null) {
+  if (emotes.length === 0) {
+    Alert.info("No emotes to download")
+  } else if (fileName === null) {
+    const emote = new Emote(emotes[0]);
+    doDownload(await emote.toBlob(), emote.downloadName());
+  } else {
+    const zipFile = new JSZip();
+    await Promise.all(emotes.map(async e => {
+      const emote = new Emote(e);
+      zipFile.file(emote.downloadName(), await emote.toBlob());
+    }));
+    const blob = await zipFile.generateAsync({type:"blob"});
+    doDownload(blob, fileName);
+  }
+}
+
+
 function PublicPacks(props) {
   const packName = props.match.params.packName;
   const [emotes, setEmotes] = useState([]);
   const [packExists, setPackExists] = useState(null);
+  const [emotePopup, setEmotePopup] = useState(null);
 
   useEffect(() => {(async () => {
-    const packEmotes = await axios.get(`${api_url}/packs?pack_name=${packName}`);
+    const packEmotes = await axios.get(`${api_url}/packs?pack_name=${packName}`, {validateStatus: false});
     if (packEmotes.status === 200) {
       setPackExists(true);
       setEmotes(packEmotes.data.emojis);
@@ -66,48 +98,101 @@ function PublicPacks(props) {
           <p>
             {packExists === true && `View all ${emoteCount} emotes from the '${packName}' pack, and join their Discord server.`}
             <br/>
-            NQN is an emoji bot which allows anyone on Discord to use emotes without Nitro, free of charge.
+            NQN is an emoji bot which allows anyone to use Discord emotes without Nitro, free of charge.
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Button
-            primary
-            onClick={() => props.joinPackServer(packName)}
-          >
-            Join Discord Server
-          </Button>
-          <Divider hidden/>
-          {props.loggedIn && <>
-            {!hasJoined && <Button key="pack_join" color="green" onClick={() => props.joinGroups([packName])}>Join Pack</Button>}
-            {hasJoined && <Button key="pack_leave" color="red" onClick={() => props.leaveGroups([packName])}>Leave Pack</Button>}
-          </>}
+          <Button.Group vertical fluid>
+            <Button
+              primary
+              onClick={() => props.joinPackServer(packName)}
+            >
+              Join Discord Server
+            </Button>
+            <Button
+              secondary
+              onClick={() => downloadEmotes(emotes, `${packName}.zip`)}
+            >
+              Download all emojis as zip
+            </Button>
+            {props.loggedIn && <>
+              {!hasJoined && <Button key="pack_join" color="green" onClick={() => props.joinGroups([packName])}>Join Pack</Button>}
+              {hasJoined && <Button key="pack_leave" color="red" onClick={() => props.leaveGroups([packName])}>Leave Pack</Button>}
+            </>}
+          </Button.Group>
         </Grid.Column>
       </Grid>
       <Container>
-        <Divider/>
-        <h2>
-          Discord Nitro Emotes
-        </h2>
-        <Card.Group className="centered guild_creator">
-          {sortEmotes(emotes.filter(({animated}) => animated)).map(emote =>
-            <EmoteCard
-              key={emote.id}
-              emote={emote}
-            />
-          )}
-        </Card.Group>
-        <h2>
-          Discord Static Emotes
-        </h2>
-        <Card.Group className="centered guild_creator">
-          {sortEmotes(emotes.filter(({animated}) => !animated)).map(emote =>
-            <EmoteCard
-              key={emote.id}
-              emote={emote}
-            />
-          )}
-        </Card.Group>
+        <EmoteGroup
+          packName={packName}
+          emotes={emotes.filter(({animated}) => animated)}
+          title="Discord Nitro Emotes"
+          download="Download Nitro emojis as zip"
+          fileName={`${packName}_animated.zip`}
+          emotePopup={emotePopup}
+          setEmotePopup={setEmotePopup}
+        />
+        <EmoteGroup
+          packName={packName}
+          emotes={emotes.filter(({animated}) => !animated)}
+          title="Discord Static Emotes"
+          download="Download static emojis as zip"
+          fileName={`${packName}_static.zip`}
+          emotePopup={emotePopup}
+          setEmotePopup={setEmotePopup}
+        />
       </Container>
+    </>
+  );
+}
+
+function EmoteGroup({packName, emotes, title, download, fileName, emotePopup, setEmotePopup}) {
+  return (
+    <>
+      <Divider/>
+      <Grid>
+        <Grid.Column width={12}>
+          <h2>{title}</h2>
+        </Grid.Column>
+        <Grid.Column width={4}>
+          <Button
+            secondary
+            fluid
+            onClick={() => downloadEmotes(emotes, fileName)}
+          >
+            {download}
+          </Button>
+        </Grid.Column>
+      </Grid>
+      <Card.Group className="centered guild_creator">
+        {sortEmotes(emotes).map(emote =>
+          <Popup
+            key={emote.id}
+            position="top right"
+            trigger={<EmoteCard emote={emote} onClick={() => setEmotePopup(emote.id)}/>}
+            open={emote.id === emotePopup}
+            onClose={() => setEmotePopup(null)}
+            content={
+              <Button.Group vertical fluid>
+                <Button primary onClick={() => {
+                  downloadEmotes([emote]);
+                  setEmotePopup(null);
+                }}>
+                  Download Emoji
+                </Button>
+                <Button secondary onClick={() => {
+                  const e = new Emote(emote);
+                  e.copyToClipboard(packName);
+                  setEmotePopup(null);
+                }}>
+                  Copy to clipboard
+                </Button>
+              </Button.Group>
+            }
+          >
+          </Popup>
+        )}
+      </Card.Group>
     </>
   );
 }
