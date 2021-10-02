@@ -5,8 +5,8 @@ require("babel-register")({
 const router = require("./router").LoggedOutRouter(() => {});
 const Sitemap = require("react-router-sitemap").default;
 
-(
-  new Sitemap(router)
-    .build("https://nqn.blue")
-    .save("./build/static_sitemap.xml")
-);
+const sitemap = new Sitemap(router);
+
+sitemap.paths = [...new Set(sitemap.paths.filter(path => !path.includes(":")))];
+
+sitemap.build("https://nqn.blue").save("./build/static_sitemap.xml");
