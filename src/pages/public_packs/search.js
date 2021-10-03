@@ -1,11 +1,12 @@
 import {List, Container, Card} from "semantic-ui-react";
-import {Helmet} from "react-helmet";
 import React, {useEffect, useState} from "react";
+import {Helmet} from "react-helmet";
+import {Link} from 'react-router-dom';
 import axios from "axios";
-import {api_url} from "../../config";
 import {parse} from "query-string";
 import EmoteSearchComponent from "../../components/emote_search";
 import {Emote} from "../../components/emote";
+import {api_url} from "../../config";
 
 
 import '../../semantic/src/definitions/elements/list.less';
@@ -53,20 +54,20 @@ function PublicPacks(props) {
                 const totalStatic = totalEmotes - totalAnimated;
                 return (
                   <List.Item key={name} className="pack">
-                    <Card fluid className="flex_row" onClick={() => {
-                      props.history.push(`/packs/${name}`);
-                    }}>
-                      <Card.Content>
-                        <h3>{name}</h3>
-                        {totalEmotes} total emojis, {totalAnimated} animated and {totalStatic} static
-                      </Card.Content>
-                      <Card.Content className="flex_row_reverse">
-                        {emotes.slice(0, 5).map(emote => {
-                          const emojiObj = new Emote(emote);
-                          return emojiObj.renderImg();
-                        })}
-                      </Card.Content>
-                    </Card>
+                    <Link to={{pathname: `/packs/${name}`, state: {search: props.location.search}}}>
+                      <Card fluid className="flex_row">
+                        <Card.Content>
+                          <h3>{name}</h3>
+                          {totalEmotes} total emojis, {totalAnimated} animated and {totalStatic} static
+                        </Card.Content>
+                        <Card.Content className="flex_row_reverse">
+                          {emotes.slice(0, 5).map(emote => {
+                            const emojiObj = new Emote(emote);
+                            return emojiObj.renderImg();
+                          })}
+                        </Card.Content>
+                      </Card>
+                    </Link>
                   </List.Item>
                 );
               })}

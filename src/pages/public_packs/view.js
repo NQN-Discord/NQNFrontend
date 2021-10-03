@@ -1,12 +1,13 @@
 import {Container, Card, Divider, Button, Grid, Popup, Loader} from "semantic-ui-react";
 import {Helmet} from "react-helmet";
 import React, {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
 import connect from "react-redux/es/connect/connect";
-import axios from "axios";
-import {api_url} from "../../config";
-import {EmoteCard, Emote} from "../../components/emote";
-import {joinGroups, joinPackServer, leaveGroups} from "../../actions/user";
 import JSZip from "jszip";
+import axios from "axios";
+import {joinGroups, joinPackServer, leaveGroups} from "../../actions/user";
+import {EmoteCard, Emote} from "../../components/emote";
+import {api_url} from "../../config";
 
 
 import '../../semantic/src/definitions/elements/container.less';
@@ -57,6 +58,7 @@ function PublicPacks(props) {
   const [emotes, setEmotes] = useState([]);
   const [packExists, setPackExists] = useState(null);
   const [emotePopup, setEmotePopup] = useState(null);
+  const history = props.history;
 
   useEffect(() => {(async () => {
     const packEmotes = await axios.get(`${api_url}/packs?pack_name=${packName}`, {validateStatus: false});
@@ -102,6 +104,11 @@ function PublicPacks(props) {
             <br/>
             {packExists === true && "Click an emoji to download it, or copy it to the clipboard such that NQN can repost it."}
           </p>
+          <Link to={{pathname: `/packs`, search: history.location.state? history.location.state.search: ""}}>
+            <Button fluid secondary>
+              Return to search
+            </Button>
+          </Link>
         </Grid.Column>
         <Grid.Column width={4}>
           <Button.Group vertical fluid>
