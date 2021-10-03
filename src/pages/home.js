@@ -1,4 +1,5 @@
 import React, {Component, lazy, Suspense} from 'react';
+import {Link} from 'react-router-dom';
 
 import connect from "react-redux/es/connect/connect";
 import {Image, Grid, Divider} from 'semantic-ui-react';
@@ -8,6 +9,7 @@ import '../semantic/src/definitions/elements/image.less';
 import '../semantic/src/definitions/collections/grid.less';
 import '../semantic/src/definitions/elements/divider.less';
 import '../semantic/src/definitions/elements/container.less';
+import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
 
 const Ad = lazy(() => import("../components/ad"));
 
@@ -62,14 +64,14 @@ class HomePage extends Component {
             <div className="bot_font nqn_name">
               Not Quite Nitro
             </div>
-            <button
+            <Link
               className="bot_font nqn_add"
-              onClick={() => {
-                this.props.history.push("/invite")
-              }}
+              to={"/invite"}
+              target="_blank"
+              rel="noopener"
             >
               Add NQN
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -104,10 +104,13 @@ code {
 
 .nqn_add {
     font-size: 4vh;
-    padding: 1vh;
+    padding: 2vh;
     transform: translateX(-50%);
     left: 50%;
+    bottom: 0%;
     position: relative;
+    display: block;
+    width: max-content;
 
     background-color: @blurple;
 
@@ -116,6 +119,11 @@ code {
     border-radius: .5rem;
 
     cursor: pointer;
+
+    text-align: center;
+
+    font-size: ~"min(5vh, 7.5vw)";
+    line-height: ~"min(5vh, 7.5vw)";
 
     &:hover {
         background-color: darken(@blurple, 2%);
