@@ -84,9 +84,11 @@ function PublicPacks(props) {
 
 
 async function runSearch(term, pageNo, setPacks, setTotal) {
-  const packData = await axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo, force_public: 1}});
-  setPacks(packData.data.results);
-  setTotal(packData.data.total);
+  try {
+    const packData = await axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo, force_public: 1}});
+    setPacks(packData.data.results);
+    setTotal(packData.data.total);
+  } catch (e) {}
 }
 
 export default PublicPacks;

@@ -58,8 +58,10 @@
       "/",
       "/privacy",
       "/licenses",
-      "/bot_added"
-    ]
+      "/bot_added",
+      "/packs"
+    ],
+    "crawl": false
   },
   "browserslist": [
     ">0.2%",
