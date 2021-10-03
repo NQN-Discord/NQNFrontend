@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import {logout} from "./actions/auth";
 
@@ -32,9 +33,8 @@ class HeaderO extends Component {
         <Menu.Menu position='left'>
           <Menu.Item
             active={false}
-            onClick={() => {
-              this.props.history.push("/");
-            }}
+            as={Link}
+            to={"/"}
             className="bot_font nqn_header"
           >
             NQN
@@ -45,9 +45,8 @@ class HeaderO extends Component {
             <Menu.Item
               className="hidden_on_small"
               active={activeElement === "guilds"}
-              onClick={() => {
-                this.props.history.push("/guilds");
-              }}
+              as={Link}
+              to={"/guilds"}
             >
               Dashboard
             </Menu.Item>
@@ -56,9 +55,8 @@ class HeaderO extends Component {
             <Menu.Item
               className="hidden_on_small"
               active={activeElement === "emote_manager"}
-              onClick={() => {
-                this.props.history.push("/emote_manager/overview");
-              }}
+              as={Link}
+              to={"/emote_manager/overview"}
             >
               My Emotes
             </Menu.Item>
@@ -66,20 +64,15 @@ class HeaderO extends Component {
 
           <Menu.Item
             className="hidden_on_tiny"
-            as="a"
-            onClick={() => {
-              this.props.history.push("/packs")
-            }}
-            target="_blank"
+            as={Link}
+            to={"/packs"}
             rel="noopener"
           >
             Packs
           </Menu.Item>
           <Menu.Item
-            as="a"
-            onClick={() => {
-              this.props.history.push("/invite")
-            }}
+            as={Link}
+            to={"/invite"}
             target="_blank"
             rel="noopener"
           >
@@ -87,18 +80,15 @@ class HeaderO extends Component {
           </Menu.Item>
           { this.props.loggedIn &&
             <Menu.Item
-              onClick={() => {
-                this.props.logout();
-              }}
+              onClick={() => this.props.logout()}
             >
               Logout
             </Menu.Item>
           }
           {!this.props.loggedIn &&
             <Menu.Item
-              onClick={() => {
-                this.props.history.push("/login");
-              }}
+              as={Link}
+              to={"/login"}
             >
               Login
             </Menu.Item>
@@ -109,11 +99,8 @@ class HeaderO extends Component {
           <Menu.Menu position='right'>
             <Menu.Item
               className="only_on_tiny"
-              as="a"
-              onClick={() => {
-                this.props.history.push("/packs")
-              }}
-              target="_blank"
+              as={Link}
+              to={"/packs"}
               rel="noopener"
             >
               Packs
@@ -121,17 +108,15 @@ class HeaderO extends Component {
             {this.props.loggedIn && <>
               <Menu.Item
                 active={activeElement === "guilds"}
-                onClick={() => {
-                  this.props.history.push("/guilds");
-                }}
+                as={Link}
+                to={"/guilds"}
               >
                 Dashboard
               </Menu.Item>
               <Menu.Item
                 active={activeElement === "emote_manager"}
-                onClick={() => {
-                  this.props.history.push("/emote_manager/overview");
-                }}
+                as={Link}
+                to={"/emote_manager/overview"}
               >
                 My Emotes
               </Menu.Item>
@@ -167,17 +152,15 @@ class BottomFooterO extends Component {
           }
           <Menu.Item
             active={activeElement === "licenses"}
-            onClick={() => {
-              this.props.history.push("/licenses");
-            }}
+            as={Link}
+            to={"/licenses"}
           >
             Licenses
           </Menu.Item>
           <Menu.Item
             active={activeElement === "privacy"}
-            onClick={() => {
-              this.props.history.push("/privacy");
-            }}
+            as={Link}
+            to={"/privacy"}
           >
             Privacy
           </Menu.Item>
