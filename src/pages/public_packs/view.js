@@ -54,7 +54,7 @@ async function downloadEmotes(emotes, fileName = null) {
 
 
 function PublicPacks(props) {
-  const packName = props.match.params.packName;
+  const packName = decodeURIComponent(window.location.pathname.replace("/packs/", ""));
   const [emotes, setEmotes] = useState([]);
   const [packExists, setPackExists] = useState(null);
   const [emotePopup, setEmotePopup] = useState(null);

@@ -54,7 +54,7 @@ function PublicPacks(props) {
                 const totalStatic = totalEmotes - totalAnimated;
                 return (
                   <List.Item key={name} className="pack">
-                    <Link to={{pathname: `/packs/${name}`, state: {search: props.location.search}}}>
+                    <Link to={{pathname: `/packs/${encodeURIComponent(encodeURIComponent(name))}`, state: {search: props.location.search}}}>
                       <Card fluid className="flex_row">
                         <Card.Content>
                           <h3>{name}</h3>

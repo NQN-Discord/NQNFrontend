@@ -51,7 +51,7 @@ export const LoggedOutRouter = ({HomePage}) => {
       <Route exact path="/bot_added" component={BotAddedPage}/>
       <Route exact path="/invite" component={InvitePage}/>
       <Route exact path="/packs" component={PublicPackSearchPage}/>
-      <Route exact path="/packs/:packName" component={PublicPackPage}/>
+      <Route path="/packs/:packName" component={PublicPackPage}/>
       <LoginPage/>
     </Switch>
   );
@@ -87,8 +87,8 @@ export const LoggedInRouter = ({HomePage}) => {
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
       <Route exact path="/packs" component={PublicPackSearchPage}/>
-      <Route exact path="/packs/:packName" component={PublicPackPage}/>
       <Route exact path="/premium" component={PremiumPage}/>
+      <Route path="/packs/:packName" component={PublicPackPage}/>
     </Switch>
   );
 };
