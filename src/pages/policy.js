@@ -14,6 +14,9 @@ export default () => (
     <Helmet>
       <title>Privacy Policy</title>
       <meta content="Privacy policy for bot and website" property="og:title"/>
+
+      <meta content="TLDR: we run ads on the website but don't sell your Discord data" property="og:description"/>
+      <meta content="TLDR: we run ads on the website but don't sell your Discord data" name="description"/>
     </Helmet>
     <h1>
       Privacy Policy

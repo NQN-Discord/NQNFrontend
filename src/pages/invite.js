@@ -5,10 +5,10 @@ import {Container} from "semantic-ui-react";
 import '../semantic/src/definitions/elements/container.less';
 
 import {parse} from "query-string";
+import {Helmet} from "react-helmet";
 
 
 function InvitePage(props) {
-
   useEffect(() => {
     // On Mount redirect to inviteURL
     const query = parse(props.location.search);
@@ -19,9 +19,16 @@ function InvitePage(props) {
     }
   }, []);
 
+
   return (
     <Container>
-      <h4>Loading...</h4>
+      <Helmet>
+        <title>Invite NQN to server</title>
+        <meta content="Invite NQN to your server with default permissions" property="og:title"/>
+      </Helmet>
+      <h1>
+        Inviting NQN to your server
+      </h1>
     </Container>
   );
 }
