@@ -20,15 +20,24 @@ function PublicPacks(props) {
 
   const [packs, setPacks] = useState({});
   const [total, setTotal] = useState(0);
+  const [failure, setFailure] = useState(false);
   const [search, setSearch] = useState(query.search || "");
   const [page, setPage] = useState(parseInt(query.page) || 0);
 
-  useEffect(() => {runSearch(search, page, setPacks, setTotal)}, []);
+  useEffect(() => {runSearch(search, page, setPacks, setTotal, setFailure)}, []);
 
   return (
     <>
       <Helmet>
-        <title>{`${total} Pack${total === 1? '': 's'} Found`}</title>
+        {failure && <>
+          <title>Discord Emoji Server List</title>
+        </>}
+        {!failure && <>
+          <title>{`${total} Pack${total === 1? '': 's'} Found`}</title>
+        </>}
+        <meta content="Discord Emoji Server List" property="og:title"/>
+        <meta content="Search through hundreds of public Discord Emoji servers with NQN's public server list" property="og:description"/>
+        <meta content="Search through hundreds of public Discord Emoji servers with NQN's public server list" name="description"/>
       </Helmet>
       <Container>
         <h1>
@@ -44,7 +53,7 @@ function PublicPacks(props) {
             setPage(page);
             const newParams = new URLSearchParams({search, page});
             props.history.replace(`${window.location.pathname}?${newParams.toString()}`);
-            runSearch(search, page, setPacks, setTotal)
+            runSearch(search, page, setPacks, setTotal, setFailure)
           }}
           renderer={() =>
             <List>
@@ -83,12 +92,15 @@ function PublicPacks(props) {
 }
 
 
-async function runSearch(term, pageNo, setPacks, setTotal) {
+async function runSearch(term, pageNo, setPacks, setTotal, setFailure) {
   try {
     const packData = await axios.get(`${api_url}/packs/search`, {params: {term, page_no: pageNo, force_public: 1}});
     setPacks(packData.data.results);
     setTotal(packData.data.total);
-  } catch (e) {}
+    setFailure(false);
+  } catch (e) {
+    setFailure(true);
+  }
 }
 
 export default PublicPacks;
