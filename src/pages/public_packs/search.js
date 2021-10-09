@@ -29,12 +29,8 @@ function PublicPacks(props) {
   return (
     <>
       <Helmet>
-        {failure && <>
-          <title>Discord Emoji Server List</title>
-        </>}
-        {!failure && <>
-          <title>{`${total} Pack${total === 1? '': 's'} Found`}</title>
-        </>}
+        {failure && <title>Discord Emoji Server List</title>}
+        {!failure && <title>{`${total} Pack${total === 1? '': 's'} Found`}</title>}
         <meta content="Discord Emoji Server List" property="og:title"/>
         <meta content="Search through hundreds of public Discord Emoji servers with NQN's public server list" property="og:description"/>
         <meta content="Search through hundreds of public Discord Emoji servers with NQN's public server list" name="description"/>
@@ -57,7 +53,7 @@ function PublicPacks(props) {
           }}
           renderer={() =>
             <List>
-              {Object.entries(packs).map(([name, {emotes}]) => {
+              {packs.map(({name, emotes}) => {
                 const totalEmotes = emotes.length;
                 const totalAnimated = emotes.filter(e => e.animated).length;
                 const totalStatic = totalEmotes - totalAnimated;
