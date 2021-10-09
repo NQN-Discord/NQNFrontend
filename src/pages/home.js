@@ -9,7 +9,6 @@ import '../semantic/src/definitions/elements/image.less';
 import '../semantic/src/definitions/collections/grid.less';
 import '../semantic/src/definitions/elements/divider.less';
 import '../semantic/src/definitions/elements/container.less';
-import {Menu} from "semantic-ui-react/dist/commonjs/collections/Menu/Menu";
 
 const Ad = lazy(() => import("../components/ad"));
 

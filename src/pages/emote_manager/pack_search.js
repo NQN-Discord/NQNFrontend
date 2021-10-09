@@ -28,9 +28,8 @@ class PackSearchPage extends Component {
     this.getNewPacks("", 0);
   }
 
-  renderPack(title, pack, has_joined) {
+  renderPack(title, emotes, is_public, has_joined) {
     const names = new Set();
-    const {is_public, emotes} = pack;
     const emoteList = emotes.filter(emote => {
       if (names.has(emote.name)) {
         return false;
@@ -95,7 +94,7 @@ class PackSearchPage extends Component {
             <Accordion
               defaultActiveIndex={[]}
               panels={
-                Object.entries(this.state.packs).map(([name, pack]) => this.renderPack(name, pack, joined.has(name)))
+                this.state.packs.map(({name, emotes, is_public}) => this.renderPack(name, emotes, is_public, joined.has(name)))
               }
               exclusive={false}
               fluid
