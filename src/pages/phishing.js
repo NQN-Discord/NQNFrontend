@@ -8,7 +8,7 @@ export default function PhishingPage() {
   return (
     <Container text>
       <Header as="h1">
-        🐟 Woah there! You nearly got phished! 🎣
+        <span role="img" aria-label="Fish">🐟</span> Woah there! You nearly got phished! <span role="img" aria-label="Fishing rod">🎣</span>
       </Header>
       <Header as="h2">
         What is phishing?
