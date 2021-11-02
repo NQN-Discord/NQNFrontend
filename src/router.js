@@ -28,6 +28,7 @@ const BotAddedPage = isBrowser? prerenderedLazy(() => import("./pages/bot_added"
 const PremiumPage = isBrowser? prerenderedLazy(() => import("./pages/premium")): dummy;
 const PublicPackSearchPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/search")): dummy;
 const PublicPackPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/view")): dummy;
+const PhishingPage = isBrowser? prerenderedLazy(() => import("./pages/phishing")): dummy;
 
 
 export const FullRouter = ({loggedIn, HomePage}) => {
@@ -50,6 +51,7 @@ export const LoggedOutRouter = ({HomePage}) => {
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
       <Route exact path="/invite" component={InvitePage}/>
+      <Route exact path="/phishing" component={PhishingPage}/>
       <Route exact path="/packs" component={PublicPackSearchPage}/>
       <Route path="/packs/:packName" component={PublicPackPage}/>
       <LoginPage/>
@@ -86,8 +88,10 @@ export const LoggedInRouter = ({HomePage}) => {
       <Route exact path="/licenses" component={LicensePage}/>
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
-      <Route exact path="/packs" component={PublicPackSearchPage}/>
       <Route exact path="/premium" component={PremiumPage}/>
+      <Route exact path="/phishing" component={PhishingPage}/>
+
+      <Route exact path="/packs" component={PublicPackSearchPage}/>
       <Route path="/packs/:packName" component={PublicPackPage}/>
     </Switch>
   );

@@ -85,6 +85,12 @@ class CommandPage extends Component {
                   return <Label color="blue" key={name}>Server Only</Label>;
                 case "dm_only":
                   return <Label color="blue" key={name}>DM Only</Label>;
+                case "requires_user_content":
+                  return <Label color="blue" key={name}>User Content Enabled</Label>;
+                case "premium_only":
+                  return <Label color="blue" key={name}>Premium Only</Label>;
+                case "everyone_has_permissions":
+                  return <Label color="blue" key={name}>@everyone External Emojis</Label>;
                 case "has_permissions":
                   return <Icon color={this.getPermColour(perms, "user_permissions")} key={name} circular bordered inverted name="user"/>;
                 case "bot_has_permissions":
