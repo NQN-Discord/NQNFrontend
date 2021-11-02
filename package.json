@@ -59,6 +59,7 @@
       "/privacy",
       "/licenses",
       "/bot_added",
+      "/phishing",
       "/packs"
     ],
     "crawl": false

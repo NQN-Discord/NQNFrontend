@@ -3,10 +3,16 @@ import { Container, Header } from "semantic-ui-react";
 
 import '../semantic/src/definitions/elements/container.less';
 import '../semantic/src/definitions/elements/header.less';
+import {Helmet} from "react-helmet";
 
 export default function PhishingPage() {
   return (
     <Container text>
+      <Helmet>
+        <title>Phishing</title>
+        <meta content="About phishing on Discord" property="og:title"/>
+      </Helmet>
+
       <Header as="h1">
         <span role="img" aria-label="Fish">🐟</span> Woah there! You nearly got phished! <span role="img" aria-label="Fishing rod">🎣</span>
       </Header>
