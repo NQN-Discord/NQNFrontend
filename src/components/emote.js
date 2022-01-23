@@ -16,7 +16,6 @@ export class Emote {
     this.name = emoteObj.name;
     this.id = emoteObj.id;
     this.animated = emoteObj.animated;
-    this.source = emoteObj.source;
   }
 
   renderImg(onClick, id, kwargs={verticalAlign: 'middle'}) {
