@@ -23,20 +23,11 @@ import update from "immutability-helper";
 import "./guild_builder.css";
 
 
-const sourceList = [
-  "",
-  "user_shared",
-  "bot_shared",
-  "none"
-];
-
-
 class GuildCreatorPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       query: "",
-      filter: "none",
       emoteType: "alias",
       selected: new Set(),
       modalOpen: false,
@@ -45,15 +36,8 @@ class GuildCreatorPage extends Component {
   }
 
   filterEmotes() {
-    return this.props[this.state.emoteType].filter(({name, source}) => {
-      if (!name.toLowerCase().includes(this.state.query)) {
-        return false;
-      }
-
-      return (
-        sourceList.findIndex(i => i === this.state.filter) <=
-        sourceList.findIndex(i => i === source)
-      );
+    return this.props[this.state.emoteType].filter(({name}) => {
+      return name.toLowerCase().includes(this.state.query);
     });
   }
 
@@ -72,21 +56,6 @@ class GuildCreatorPage extends Component {
     const emoteCount = emotes.length;
 
     return Math.ceil(emoteCount / 50);
-  }
-
-  handleFilter(filter) {
-    const filterIndex = sourceList.findIndex(i => i === filter);
-    let emoteType = this.state.emoteType;
-    if (emoteType === "packs" && filterIndex > 1) {
-      emoteType = "alias";
-    }
-    if (emoteType === "mutuals" && filterIndex > 0) {
-      emoteType = "alias";
-    }
-    this.setState(update(this.state, {$merge: {
-      filter,
-      emoteType
-    }}));
   }
 
   handleEmoteMenu(emoteType) {
@@ -205,7 +174,6 @@ class GuildCreatorPage extends Component {
   }
 
   render() {
-    const currentFilterIndex = sourceList.findIndex(i => i === this.state.filter);
     const currentGuildCount = Object.keys(this.props.guilds).length;
     const guildCount = this.countGuilds();
     const tooManyGuilds = guildCount + currentGuildCount > 100;
@@ -236,49 +204,6 @@ class GuildCreatorPage extends Component {
                   }}));
               }}
             />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <Form>
-              <Form.Field>
-                Show only emotes that you couldn't otherwise use:
-              </Form.Field>
-              <Form.Field>
-                <Radio
-                  toggle
-                  label="In messages"
-                  name="emote_filter"
-                  checked={this.state.filter === "none"}
-                  onChange={() => this.handleFilter("none")}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Radio
-                  toggle
-                  label="In reactions"
-                  name="emote_filter"
-                  checked={this.state.filter === "bot_shared"}
-                  onChange={() => this.handleFilter("bot_shared")}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Radio
-                  toggle
-                  label="With Discord Nitro"
-                  name="emote_filter"
-                  checked={this.state.filter === "user_shared"}
-                  onChange={() => this.handleFilter("user_shared")}
-                />
-              </Form.Field>
-              <Form.Field>
-                <Radio
-                  toggle
-                  label="Even if they're in another server with me"
-                  name="emote_filter"
-                  checked={this.state.filter === ""}
-                  onChange={() => this.handleFilter("")}
-                />
-              </Form.Field>
-            </Form>
           </Grid.Column>
         </Grid>
 
@@ -324,29 +249,25 @@ class GuildCreatorPage extends Component {
           </Grid.Column>
         </Grid>
 
-        {currentFilterIndex <= 1 &&
-          <Grid container>
-            <Menu fluid tabular>
+        <Grid container>
+          <Menu fluid tabular>
+            <Menu.Item
+              name="Aliases"
+              active={this.state.emoteType === "alias"}
+              onClick={() => this.handleEmoteMenu("alias")}
+            />
+            <Menu.Item
+              name="Packs"
+              active={this.state.emoteType === "packs"}
+              onClick={() => this.handleEmoteMenu("packs")}
+            />
               <Menu.Item
-                name="Aliases"
-                active={this.state.emoteType === "alias"}
-                onClick={() => this.handleEmoteMenu("alias")}
+                name="Mutual Servers"
+                active={this.state.emoteType === "mutuals"}
+                onClick={() => this.handleEmoteMenu("mutuals")}
               />
-              <Menu.Item
-                name="Packs"
-                active={this.state.emoteType === "packs"}
-                onClick={() => this.handleEmoteMenu("packs")}
-              />
-              {currentFilterIndex <= 0 &&
-                <Menu.Item
-                  name="Mutual Servers"
-                  active={this.state.emoteType === "mutuals"}
-                  onClick={() => this.handleEmoteMenu("mutuals")}
-                />
-              }
-            </Menu>
-          </Grid>
-        }
+          </Menu>
+        </Grid>
         <Divider hidden/>
 
         <Container fluid>
