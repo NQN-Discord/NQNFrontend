@@ -29,6 +29,7 @@ const PremiumPage = isBrowser? prerenderedLazy(() => import("./pages/premium")):
 const PublicPackSearchPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/search")): dummy;
 const PublicPackPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/view")): dummy;
 const PhishingPage = isBrowser? prerenderedLazy(() => import("./pages/phishing")): dummy;
+const TermsPage = isBrowser? prerenderedLazy(() => import("./pages/terms")): dummy;
 
 
 export const FullRouter = ({loggedIn, HomePage}) => {
@@ -47,6 +48,7 @@ export const LoggedOutRouter = ({HomePage}) => {
       <Route exact path="/" component={HomePage}/>
       <Route exact path="/help" component={HelpTextPage}/>
       <Route exact path="/privacy" component={PrivacyPolicy}/>
+      <Route exact path="/terms" component={TermsPage}/>
       <Route exact path="/licenses" component={LicensePage}/>
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>
@@ -85,6 +87,7 @@ export const LoggedInRouter = ({HomePage}) => {
       <Route exact path="/" component={HomePage}/>
       <Route exact path="/help" component={HelpTextPage}/>
       <Route exact path="/privacy" component={PrivacyPolicy}/>
+      <Route exact path="/terms" component={TermsPage}/>
       <Route exact path="/licenses" component={LicensePage}/>
       <Route exact path="/commands" component={CommandPage}/>
       <Route exact path="/bot_added" component={BotAddedPage}/>

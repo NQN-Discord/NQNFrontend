@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Container, Card, Divider, Input, Radio, Form, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
+import { Container, Card, Divider, Input, Grid, Button, Label, Modal, Checkbox, Menu } from "semantic-ui-react";
 
 import '../../semantic/src/definitions/elements/container.less';
 import '../../semantic/src/definitions/views/card.less';

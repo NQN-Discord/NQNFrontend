@@ -158,6 +158,13 @@ class BottomFooterO extends Component {
             Licenses
           </Menu.Item>
           <Menu.Item
+            active={activeElement === "terms"}
+            as={Link}
+            to={"/terms"}
+          >
+            Terms
+          </Menu.Item>
+          <Menu.Item
             active={activeElement === "privacy"}
             as={Link}
             to={"/privacy"}
