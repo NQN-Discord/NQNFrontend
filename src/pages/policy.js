@@ -263,6 +263,80 @@ const Website = () => (
         account with us. We will only use personal information provided in a verifiable consumer request to verify the
         requestor’s identity or authority to make the request.
       </p>
+      <h2>Information We Collect</h2>
+      <p> Our websites, emails (with your consent, where required by law), and
+        other products, services and platforms collect information that identifies, relates to, describes, references,
+        is capable of being associated with, or could reasonably be linked, directly or indirectly, with a particular
+        consumer or device (“personal information”). In particular, our websites, apps, emails, and other products,
+        services and platforms may have collected the following categories of personal information from its consumers
+        within the last twelve (12) months:
+      </p>
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Collected</th>
+        </tr>
+        <tr>
+          <td>A. Identifiers</td>
+          <td>YES</td>
+        </tr>
+        <tr>
+          <td> B. Personal information categories listed in the California Customer Records
+            statute (Cal. Civ. Code § 1798.80(e))
+          </td>
+          <td>NO</td>
+        </tr>
+        <tr>
+          <td>C. Protected classification characteristics under California or federal law</td>
+          <td>NO</td>
+        </tr>
+        <tr>
+          <td>D. Commercial information.</td>
+          <td>YES</td>
+        </tr>
+        <tr>
+          <td>E. Biometric information.</td>
+          <td>NO</td>
+        </tr>
+        <tr>
+          <td>F. Internet or other similar network activity.</td>
+          <td>YES</td>
+        </tr>
+        <tr>
+          <td>G. Geolocation data.</td>
+          <td>YES</td>
+        </tr>
+        <tr>
+          <td>H. Sensory data.</td>
+          <td>NO</td>
+        </tr>
+        <tr>
+          <td>I. Professional or employment-related information.</td>
+          <td>NO</td>
+        </tr>
+        <tr>
+          <td>J. Inferences drawn from other personal information.</td>
+          <td>NO</td>
+        </tr>
+      </table>
+      <p>Personal information does not include:</p>
+      <ul>
+        <li>Publicly available information from government records.</li>
+        <li>Deidentified or aggregated consumer information.</li>
+        <li> Information excluded from the CCPA’s scope, like: <ul>
+          <li>
+            health or medical information covered by the Health Insurance Portability and
+            Accountability Act of 1996 (HIPAA) and the California Confidentiality of Medical Information Act (CMIA) or
+            clinical trial data;
+          </li>
+          <li>
+            personal information covered by certain sector-specific privacy laws, including
+            the Fair Credit Reporting Act (FRCA), the Gramm-Leach-Bliley Act (GLBA) or California Financial
+            Information Privacy Act (FIPA), and the Driver’s Privacy.
+          </li>
+        </ul>
+        </li>
+      </ul>
       <h2>Use of Personal Information</h2>
       <p>
         We may use or disclose the personal information we collect for one or more of the following business purposes:
@@ -304,6 +378,33 @@ const Website = () => (
         I will not collect additional categories of personal information or use the personal information we collected
         for materially different, unrelated, or incompatible purposes without providing you notice.
       </p>
+      <h2>Sharing Personal Information</h2>
+      <p>
+        I may disclose your personal information to a third-party for a business purpose.
+        When we disclose personal information for a business purpose, we enter a contract that describes the purpose
+        and requires the recipient to both keep that personal information confidential and not use it for any purpose
+        except performing the contract. The CCPA prohibits third parties who purchase the personal information we hold
+        from reselling it.
+      </p>
+      <p>
+        We may share your personal information with the following categories of third parties:
+      </p>
+      <ul>
+        <li>Subsidiaries and affiliates.</li>
+        <li>Contractors and service providers.</li>
+        <li>Data aggregators.</li>
+      </ul>
+      <h2>Disclosures of Personal Information for a Business Purpose</h2>
+      <p>
+        In the preceding twelve (12) months, I have disclosed the following categories of personal information for a
+        business purpose:
+      </p>
+      <ul>
+        <li>[Category A: Identifiers.]</li>
+        <li>[Category B: California Customer Records personal information categories.]</li>
+        <li>[Category F: Internet or other similar network activity.]</li>
+        <li>[Category G: Geolocation Data.]</li>
+      </ul>
     </div>
     <h2>Cookies</h2>
     <p>
