@@ -149,7 +149,6 @@ const Website = () => (
     <ul>
       <li><a href="https://sentry.io/privacy/">Sentry</a></li>
       <li><a href="https://policies.google.com/privacy">Google Analytics</a></li>
-      <li><a href="https://nitropay.com/privacy">Nitropay</a></li>
     </ul>
     <h4>Log Data</h4>
     <p>
@@ -264,80 +263,6 @@ const Website = () => (
         account with us. We will only use personal information provided in a verifiable consumer request to verify the
         requestor’s identity or authority to make the request.
       </p>
-      <h2>Information We Collect</h2>
-      <p> Our websites, emails (with your consent, where required by law), and
-        other products, services and platforms collect information that identifies, relates to, describes, references,
-        is capable of being associated with, or could reasonably be linked, directly or indirectly, with a particular
-        consumer or device (“personal information”). In particular, our websites, apps, emails, and other products,
-        services and platforms may have collected the following categories of personal information from its consumers
-        within the last twelve (12) months:
-      </p>
-      <table>
-        <tr>
-          <th>Category</th>
-          <th>Collected</th>
-        </tr>
-        <tr>
-          <td>A. Identifiers</td>
-          <td>YES</td>
-        </tr>
-        <tr>
-          <td> B. Personal information categories listed in the California Customer Records
-            statute (Cal. Civ. Code § 1798.80(e))
-          </td>
-          <td>YES</td>
-        </tr>
-        <tr>
-          <td>C. Protected classification characteristics under California or federal law</td>
-          <td>NO</td>
-        </tr>
-        <tr>
-          <td>D. Commercial information.</td>
-          <td>YES</td>
-        </tr>
-        <tr>
-          <td>E. Biometric information.</td>
-          <td>NO</td>
-        </tr>
-        <tr>
-          <td>F. Internet or other similar network activity.</td>
-          <td>YES</td>
-        </tr>
-        <tr>
-          <td>G. Geolocation data.</td>
-          <td>YES</td>
-        </tr>
-        <tr>
-          <td>H. Sensory data.</td>
-          <td>NO</td>
-        </tr>
-        <tr>
-          <td>I. Professional or employment-related information.</td>
-          <td>NO</td>
-        </tr>
-        <tr>
-          <td>J. Inferences drawn from other personal information.</td>
-          <td>YES</td>
-        </tr>
-      </table>
-      <p>Personal information does not include:</p>
-      <ul>
-        <li>Publicly available information from government records.</li>
-        <li>Deidentified or aggregated consumer information.</li>
-        <li> Information excluded from the CCPA’s scope, like: <ul>
-          <li>
-            health or medical information covered by the Health Insurance Portability and
-            Accountability Act of 1996 (HIPAA) and the California Confidentiality of Medical Information Act (CMIA) or
-            clinical trial data;
-          </li>
-          <li>
-            personal information covered by certain sector-specific privacy laws, including
-            the Fair Credit Reporting Act (FRCA), the Gramm-Leach-Bliley Act (GLBA) or California Financial
-            Information Privacy Act (FIPA), and the Driver’s Privacy.
-          </li>
-        </ul>
-        </li>
-      </ul>
       <h2>Use of Personal Information</h2>
       <p>
         We may use or disclose the personal information we collect for one or more of the following business purposes:
@@ -355,8 +280,7 @@ const Website = () => (
           investigating and addressing your concerns and monitoring and improving our responses.
         </li>
         <li>
-          To personalize your website experience and to deliver content and product and service offerings relevant to
-          your interests, including targeted offers and ads through our website.
+          To personalize your website experience and to deliver content and product and service offerings.
         </li>
         <li>
           For testing, research, analysis, and product development, including to develop and
@@ -380,58 +304,6 @@ const Website = () => (
         I will not collect additional categories of personal information or use the personal information we collected
         for materially different, unrelated, or incompatible purposes without providing you notice.
       </p>
-      <h2>Sharing Personal Information</h2>
-      <p>
-        I may disclose your personal information to a third-party for a business purpose or sell your personal
-        information, subject to your right to opt-out of those sales (see ‘Sales of Personal Information’ below).
-        When we disclose personal information for a business purpose, we enter a contract that describes the purpose
-        and requires the recipient to both keep that personal information confidential and not use it for any purpose
-        except performing the contract. The CCPA prohibits third parties who purchase the personal information we hold
-        from reselling it unless you have received explicit notice and an opportunity to opt-out of further sales
-        (see ‘Sales of Personal Information’ below).
-      </p>
-      <p>
-        We may share your personal information with the following categories of third parties:
-      </p>
-      <ul>
-        <li>Subsidiaries and affiliates.</li>
-        <li>Contractors and service providers.</li>
-        <li>Data aggregators.</li>
-        <li>Third parties with whom we partner to offer products and services to you.</li>
-      </ul>
-      <h2>Disclosures of Personal Information for a Business Purpose</h2>
-      <p>
-        In the preceding twelve (12) months, I have disclosed the following categories of personal information for a
-        business purpose:
-      </p>
-      <ul>
-        <li>[Category A: Identifiers.]</li>
-        <li>[Category B: California Customer Records personal information categories.]</li>
-        <li>[Category F: Internet or other similar network activity.]</li>
-        <li>[Category G: Geolocation Data.]</li>
-        <li>[Category K: Inferences drawn from other personal information.]</li>
-      </ul>
-      <h2>Sales of Personal Information</h2>
-      <p>
-        In the preceding twelve (12) months, I have sold the following categories of personal information
-        collected through our ad-supported services:
-      </p>
-      <ul>
-        <li>[Category A: Identifiers.]</li>
-        <li>[Category F: Internet or other similar network activity.]</li>
-        <li>[Category G: Geolocation Data.]</li>
-        <li>[Category K: Inferences drawn from other personal information.]</li>
-      </ul>
-      <p>
-        Our advertising partners and I collect the personal information identified above (such as the cookies stored
-        on your browser, the advertising identifier on your mobile device, or the IP address of your device) when you
-        visit our website. We, and our partners, use this information to tailor and deliver ads to you on our website,
-        or to help tailor ads to you when you visit others’ sites (or use others’ apps). To tailor ads that may be more
-        relevant to you, we and/or our partners may share the information we collect with third parties.
-        <span data-ccpa-link="1"/>
-      </p>
-    </div>
-
     <h2>Cookies</h2>
     <p>
       Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are
