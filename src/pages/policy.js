@@ -15,8 +15,8 @@ export default () => (
       <title>Privacy Policy</title>
       <meta content="Privacy policy for bot and website" property="og:title"/>
 
-      <meta content="TLDR: we run ads on the website but don't sell your Discord data" property="og:description"/>
-      <meta content="TLDR: we run ads on the website but don't sell your Discord data" name="description"/>
+      <meta content="TLDR: We don't sell your data" property="og:description"/>
+      <meta content="TLDR: We don't sell your data" name="description"/>
     </Helmet>
     <h1>
       Privacy Policy
@@ -120,7 +120,7 @@ const DiscordPlatform = () => (
       Whenever you use the Service, in a case of an error in the application, data and information is collected
       (through third party products) called Log Data.
       This Log Data may include information such as your Discord information, message you sent,
-      related bot information, the time and date of your use of the Service, message data, and other statistics.
+      related bot information such as permissions the bot has, the time and date of your use of the Service, and other temporary data in use.
       This Log Data is uploaded to Sentry.
     </p>
   </Table>
@@ -304,6 +304,7 @@ const Website = () => (
         I will not collect additional categories of personal information or use the personal information we collected
         for materially different, unrelated, or incompatible purposes without providing you notice.
       </p>
+    </div>
     <h2>Cookies</h2>
     <p>
       Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are
@@ -356,7 +357,7 @@ const AllServices = () => (
     <p>
       I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for
       any changes. I will notify you of any changes by posting the new Privacy Policy on this page. This policy is
-      effective as of 2021-09-29.
+      effective as of 2022-06-05.
     </p>
 
     <h2>Contact Us</h2>
