@@ -15,8 +15,8 @@ export default () => (
       <title>Privacy Policy</title>
       <meta content="Privacy policy for bot and website" property="og:title"/>
 
-      <meta content="TLDR: we run ads on the website but don't sell your Discord data" property="og:description"/>
-      <meta content="TLDR: we run ads on the website but don't sell your Discord data" name="description"/>
+      <meta content="TLDR: We don't sell your data" property="og:description"/>
+      <meta content="TLDR: We don't sell your data" name="description"/>
     </Helmet>
     <h1>
       Privacy Policy
@@ -120,7 +120,7 @@ const DiscordPlatform = () => (
       Whenever you use the Service, in a case of an error in the application, data and information is collected
       (through third party products) called Log Data.
       This Log Data may include information such as your Discord information, message you sent,
-      related bot information, the time and date of your use of the Service, message data, and other statistics.
+      related bot information such as permissions the bot has, the time and date of your use of the Service, and other temporary data in use.
       This Log Data is uploaded to Sentry.
     </p>
   </Table>
@@ -149,7 +149,6 @@ const Website = () => (
     <ul>
       <li><a href="https://sentry.io/privacy/">Sentry</a></li>
       <li><a href="https://policies.google.com/privacy">Google Analytics</a></li>
-      <li><a href="https://nitropay.com/privacy">Nitropay</a></li>
     </ul>
     <h4>Log Data</h4>
     <p>
@@ -285,7 +284,7 @@ const Website = () => (
           <td> B. Personal information categories listed in the California Customer Records
             statute (Cal. Civ. Code § 1798.80(e))
           </td>
-          <td>YES</td>
+          <td>NO</td>
         </tr>
         <tr>
           <td>C. Protected classification characteristics under California or federal law</td>
@@ -317,7 +316,7 @@ const Website = () => (
         </tr>
         <tr>
           <td>J. Inferences drawn from other personal information.</td>
-          <td>YES</td>
+          <td>NO</td>
         </tr>
       </table>
       <p>Personal information does not include:</p>
@@ -355,8 +354,7 @@ const Website = () => (
           investigating and addressing your concerns and monitoring and improving our responses.
         </li>
         <li>
-          To personalize your website experience and to deliver content and product and service offerings relevant to
-          your interests, including targeted offers and ads through our website.
+          To personalize your website experience and to deliver content and product and service offerings.
         </li>
         <li>
           For testing, research, analysis, and product development, including to develop and
@@ -382,13 +380,11 @@ const Website = () => (
       </p>
       <h2>Sharing Personal Information</h2>
       <p>
-        I may disclose your personal information to a third-party for a business purpose or sell your personal
-        information, subject to your right to opt-out of those sales (see ‘Sales of Personal Information’ below).
+        I may disclose your personal information to a third-party for a business purpose.
         When we disclose personal information for a business purpose, we enter a contract that describes the purpose
         and requires the recipient to both keep that personal information confidential and not use it for any purpose
         except performing the contract. The CCPA prohibits third parties who purchase the personal information we hold
-        from reselling it unless you have received explicit notice and an opportunity to opt-out of further sales
-        (see ‘Sales of Personal Information’ below).
+        from reselling it.
       </p>
       <p>
         We may share your personal information with the following categories of third parties:
@@ -397,7 +393,6 @@ const Website = () => (
         <li>Subsidiaries and affiliates.</li>
         <li>Contractors and service providers.</li>
         <li>Data aggregators.</li>
-        <li>Third parties with whom we partner to offer products and services to you.</li>
       </ul>
       <h2>Disclosures of Personal Information for a Business Purpose</h2>
       <p>
@@ -409,29 +404,8 @@ const Website = () => (
         <li>[Category B: California Customer Records personal information categories.]</li>
         <li>[Category F: Internet or other similar network activity.]</li>
         <li>[Category G: Geolocation Data.]</li>
-        <li>[Category K: Inferences drawn from other personal information.]</li>
       </ul>
-      <h2>Sales of Personal Information</h2>
-      <p>
-        In the preceding twelve (12) months, I have sold the following categories of personal information
-        collected through our ad-supported services:
-      </p>
-      <ul>
-        <li>[Category A: Identifiers.]</li>
-        <li>[Category F: Internet or other similar network activity.]</li>
-        <li>[Category G: Geolocation Data.]</li>
-        <li>[Category K: Inferences drawn from other personal information.]</li>
-      </ul>
-      <p>
-        Our advertising partners and I collect the personal information identified above (such as the cookies stored
-        on your browser, the advertising identifier on your mobile device, or the IP address of your device) when you
-        visit our website. We, and our partners, use this information to tailor and deliver ads to you on our website,
-        or to help tailor ads to you when you visit others’ sites (or use others’ apps). To tailor ads that may be more
-        relevant to you, we and/or our partners may share the information we collect with third parties.
-        <span data-ccpa-link="1"/>
-      </p>
     </div>
-
     <h2>Cookies</h2>
     <p>
       Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are
@@ -484,7 +458,7 @@ const AllServices = () => (
     <p>
       I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for
       any changes. I will notify you of any changes by posting the new Privacy Policy on this page. This policy is
-      effective as of 2021-09-29.
+      effective as of 2022-06-05.
     </p>
 
     <h2>Contact Us</h2>
