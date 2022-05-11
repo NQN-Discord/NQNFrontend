@@ -34,7 +34,10 @@
       gtag('config', 'UA-143037513-1', {send_page_view: false});
     </script>
     <!-- Sentry SDK -->
-    <script defer src='https://sentry.nqn.blue/js-sdk-loader/3a491e2f16af4663be43e3f25f388cfd.min.js' crossorigin="anonymous"></script>
+    <script src='https://sentry.nqn.blue/js-sdk-loader/3a491e2f16af4663be43e3f25f388cfd.min.js' crossorigin="anonymous"></script>
+    <script>
+      Sentry.onLoad(function() {Sentry.init({release: "-"})});
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
