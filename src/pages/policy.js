@@ -67,9 +67,8 @@ const DiscordPlatform = () => (
         removed as you leave servers the bot is also on.
       </li>
       <li>
-        Messages re-posted by our service on your behalf including the message content, author information and where
-        it was sent to. This is to provide our ‘audit’ feature, as well as to report any content to the appropriate
-        authorities.
+        Metadata about messages re-posted by our service on your behalf including: guild, channel, message, and author IDs.
+        This is to provide moderation commands, and to allow users to delete their own messages.
         This data is stored for up to 30 days in the main database and backed up for 30 days, totalling 60 days of storage.
       </li>
       <li>
@@ -458,7 +457,7 @@ const AllServices = () => (
     <p>
       I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for
       any changes. I will notify you of any changes by posting the new Privacy Policy on this page. This policy is
-      effective as of 2022-06-05.
+      effective as of 2022-06-11.
     </p>
 
     <h2>Contact Us</h2>
