@@ -5,7 +5,7 @@ import {applyMiddleware, compose, createStore} from "redux";
 import { Provider } from 'react-redux';
 import rootReducer from "./reducers";
 import App from "./main";
-import './nitropay.css';
+import './globals.css';
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
