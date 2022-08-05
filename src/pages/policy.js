@@ -102,25 +102,13 @@ const DiscordPlatform = () => (
         We store this data to provide an emoji search service and to determine image uniqueness.
       </li>
     </ol>
-    <h3>Third Parties</h3>
-    <p>
-      The app uses third party services that may collect information used to identify you.
-    </p>
-    <p>
-      Links to privacy policy of third party service providers used by the app:
-    </p>
-    <ul>
-      <li>
-        <a href="https://sentry.io/privacy/">Sentry</a>
-      </li>
-    </ul>
     <h4>Log Data</h4>
     <p>
       Whenever you use the Service, in a case of an error in the application, data and information is collected
       (through third party products) called Log Data.
-      This Log Data may include information such as your Discord information, message you sent,
+      This Log Data may include information such as your Discord information, contents of the message you sent,
       related bot information such as permissions the bot has, the time and date of your use of the Service, and other temporary data in use.
-      This Log Data is uploaded to Sentry.
+      This Log Data is stored internally, and is not shared with third parties.
     </p>
   </Table>
 );
@@ -146,7 +134,6 @@ const Website = () => (
       Links to privacy policy of third party service providers used by the website:
     </p>
     <ul>
-      <li><a href="https://sentry.io/privacy/">Sentry</a></li>
       <li><a href="https://policies.google.com/privacy">Google Analytics</a></li>
     </ul>
     <h4>Log Data</h4>
@@ -155,7 +142,8 @@ const Website = () => (
       (through third party products) called Log Data.
       This Log Data may include information such as your device Internet Protocol (“IP”) address, device name,
       operating system version, the configuration of the app when utilizing my Service, the time and date of your use
-      of the Service, message data, and other statistics. This Log Data is uploaded to Sentry.
+      of the Service, message data, and other statistics.
+      This Log Data is stored internally, and is not shared with third parties.
     </p>
 
     <div>
