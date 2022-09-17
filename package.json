@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.27.2",
     "browserslist": "^4.17.0",
     "caniuse-lite": "^1.0.30001257",
     "classnames": "^2.2.6",
@@ -20,11 +20,11 @@
     "react-dom": "^16.8.4",
     "react-helmet": "^6.1.0",
     "react-redux": "^6.0.1",
-    "react-router-dom": "^4.4.0-beta.8",
+    "react-router-dom": "^5.1.0",
     "react-router-sitemap": "^1.2.0",
     "react-s-alert": "^1.4.1",
-    "react-scripts": "2.1.8",
-    "react-snap": "^1.23.0",
+    "react-scripts": "^4.0.0",
+    "react-snap": "^1.13.1",
     "react-textarea-autosize": "^7.1.0",
     "react-visibility-sensor": "^5.0.2",
     "react-websocket": "^2.1.0",
@@ -34,7 +34,7 @@
     "ws": "^7.0.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco --openssl-legacy-provider start",
     "build": "craco build",
     "postbuild": "run-s prerender sitemap",
     "test": "craco test",
