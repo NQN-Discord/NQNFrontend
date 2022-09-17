@@ -18,13 +18,18 @@ import './search.css';
 function PublicPacks(props) {
   const query = parse(props.location.search);
 
-  const [packs, setPacks] = useState({});
+  const defaultSearch = query.search || "";
+  const defaultPage = parseInt(query.page) || 0;
+
+  const [packs, setPacks] = useState([]);
   const [total, setTotal] = useState(0);
   const [failure, setFailure] = useState(false);
-  const [search, setSearch] = useState(query.search || "");
-  const [page, setPage] = useState(parseInt(query.page) || 0);
+  const [search, setSearch] = useState(defaultSearch);
+  const [page, setPage] = useState(defaultPage);
 
-  useEffect(() => {runSearch(search, page, setPacks, setTotal, setFailure)}, []);
+  useEffect(() => {
+    runSearch(defaultSearch, defaultPage, setPacks, setTotal, setFailure);
+  }, [defaultSearch, defaultPage]);
 
   return (
     <>
