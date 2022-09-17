@@ -10,6 +10,16 @@ import '../semantic/src/definitions/collections/grid.less';
 import '../semantic/src/definitions/elements/divider.less';
 import '../semantic/src/definitions/elements/container.less';
 
+import logo from '../image/wumpus_logo.png'
+
+import nqn_nqn_demo from '../image/nqn-nqn_demo.webm';
+import recently_used from '../image/recently_used.webm';
+import gain_access_to_emojis from '../image/gain_access_to_emojis.webm';
+import packs from '../image/packs.png';
+import upload_emote from '../image/upload_emote.webm';
+import replies_cropped from '../image/replies_cropped.webm';
+import stickers from '../image/stickers.webm';
+
 const Ad = lazy(() => import("../components/ad"));
 
 
@@ -32,7 +42,7 @@ class HomePage extends Component {
             }
             {animated &&
               <video autoPlay loop muted playsInline className="centered ui image" style={{display: "block"}}>
-                <source src={`${src}.webm`} type="video/mp4" title={alt}/>
+                <source src={src} type="video/mp4" title={alt}/>
               </video>
             }
           </Grid.Column>
@@ -56,7 +66,7 @@ class HomePage extends Component {
 
         <div className="bot_branding">
           <Image
-            src="/wumpus_logo.png"
+            src={logo}
             alt="NQN Wumpus Logo"
           />
           <div className="nqn_title">
@@ -78,7 +88,7 @@ class HomePage extends Component {
 
         <Grid padded>
           <Grid.Column computer={13} mobile={16} tablet={16}>
-            {this.renderImgColumn(true, '/nqn-nqn_demo', "NQN Demo Video", true, (
+            {this.renderImgColumn(true, nqn_nqn_demo, "NQN Demo Video", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h1 className="bot_font">
                   A Discord Nitro Free Alternative
@@ -93,7 +103,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(false, '/recently_used', "Demo showing recently used emojis are usable for other users", true, (
+            {this.renderImgColumn(false, recently_used, "Demo showing recently used emojis are usable for other users", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Use the same emotes as your friends
@@ -105,7 +115,7 @@ class HomePage extends Component {
             ))}
 
 
-            {this.renderImgColumn(true, '/gain_access_to_emojis', "Demo showing using context menus to gain access to emojis", true, (
+            {this.renderImgColumn(true, gain_access_to_emojis, "Demo showing using context menus to gain access to emojis", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Become an emote collector
@@ -118,7 +128,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(false, '/packs.png', "Demo showing joining emoji packs", false, (
+            {this.renderImgColumn(false, packs, "Demo showing joining emoji packs", false, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Emote packs
@@ -132,7 +142,7 @@ class HomePage extends Component {
             ))}
 
 
-            {this.renderImgColumn(true, '/upload_emote', "Demo showing uploading emojis from a message", true, (
+            {this.renderImgColumn(true, upload_emote, "Demo showing uploading emojis from a message", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Collect emotes from chat
@@ -144,7 +154,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(false, '/replies_cropped', "Demo showing replies functionality", true, (
+            {this.renderImgColumn(false, replies_cropped, "Demo showing replies functionality", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Quote Messages
@@ -158,7 +168,7 @@ class HomePage extends Component {
               </Grid.Column>
             ))}
 
-            {this.renderImgColumn(true, '/stickers', "Demo showing NQN's stickers", true, (
+            {this.renderImgColumn(true, stickers, "Demo showing NQN's stickers", true, (
               <Grid.Column className="large_fonts" width={5} verticalAlign="middle">
                 <h2 className="bot_font">
                   Stickers

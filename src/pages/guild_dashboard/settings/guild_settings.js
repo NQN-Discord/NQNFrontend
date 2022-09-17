@@ -15,7 +15,6 @@ import {postGuildSettings} from "../../../actions/guild";
 import update from "immutability-helper";
 
 
-//const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
 const auditHelp = "Whenever the bot reposts a message on behalf of someone";
 
 class GuildSettings extends Component {
@@ -78,7 +77,7 @@ class GuildSettings extends Component {
         }
         <Form
           onSubmit={() => {
-            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
+            this.props.postGuildSettings(this.props.guildID, guild.name, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
           }}
           error={disabledSubmit}
         >
@@ -96,7 +95,6 @@ class GuildSettings extends Component {
             error
             header="Invalid Prefix!"
             content="Prefix can't start with a colon, a forward slash or a space"
-            inverted
           />
           <Button
             type="submit"
@@ -119,7 +117,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postGuildSettings: (guildID, prefix, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, prefix, boostChannel, auditChannel))
+    postGuildSettings: (guildID, guildName, prefix, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, guildName, prefix, boostChannel, auditChannel))
   }
 };
 
