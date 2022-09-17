@@ -37,11 +37,16 @@ class UserEmotes extends Component {
 
   render() {
     const names = new Set();
+
+    const pack_emotes = Object.entries(this.props.packs).map(([name, {emotes, is_public}]) => this.renderEmotes(name, emotes, names));
+    const guild_emotes = Object.entries(this.props.guilds).map(
+      ([id, {name}]) => this.renderEmotes(name, (this.props.guild_emotes[id] || []).concat(this.props.guild_aliases[id] || []), names)
+    );
+
     const panels = [
       this.renderEmotes("Aliases", this.props.user_aliases, names),
-      ...Object.entries(this.props.packs).map(([name, {emotes, is_public}]) => this.renderEmotes(name, emotes, names)),
-      ...Object.entries(this.props.guilds).map(([id, {name}]) =>
-        this.renderEmotes(name, (this.props.guild_emotes[id] || []).concat(this.props.guild_aliases[id] || []), names))
+      ...pack_emotes.sort((a, b) => a.key.localeCompare(b.key)),
+      ...guild_emotes.sort((a, b) => a.key.localeCompare(b.key)),
     ].filter(e => e);
     return (
       <Accordion
