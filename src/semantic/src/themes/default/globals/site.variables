@@ -603,7 +603,7 @@
 @negativeColor           : @red;
 @negativeBackgroundColor : #FFF6F6;
 @negativeBorderColor     : #E0B4B4;
-@negativeHeaderColor     : #912D2B;
+@negativeHeaderColor     : #FFFFFF;
 @negativeTextColor       : #9F3A38;
 
 /* Info */

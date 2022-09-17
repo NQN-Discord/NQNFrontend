@@ -31,6 +31,10 @@
   content: '\f0d7';
 }
 
+.ui.dropdown.visible > div[role="listbox"] {
+  display: block;
+}
+
 /* Sub Menu */
 .ui.dropdown .menu .item .dropdown.icon:before {
   content: '\f0da'/*rtl:'\f0d9'*/;

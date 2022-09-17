@@ -15,7 +15,6 @@ import {postGuildSettings} from "../../../actions/guild";
 import update from "immutability-helper";
 
 
-//const boostHelp = "Whenever someone gives extra server wide emotes by voting for the bot.";
 const auditHelp = "Whenever the bot reposts a message on behalf of someone";
 
 class GuildSettings extends Component {
@@ -96,7 +95,6 @@ class GuildSettings extends Component {
             error
             header="Invalid Prefix!"
             content="Prefix can't start with a colon, a forward slash or a space"
-            inverted
           />
           <Button
             type="submit"
