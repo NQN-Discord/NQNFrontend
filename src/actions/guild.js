@@ -1,5 +1,7 @@
 import axios from "axios";
 import {api_url, guildBuilderApiURL} from "../config";
+import Alert from "react-s-alert";
+import React from "react";
 
 export const RECEIVE_GUILDS = "RECEIVE_GUILDS";
 export const RECEIVE_GUILD_CHANNELS = "RECEIVE_GUILD_CHANNELS";
@@ -62,13 +64,23 @@ export function fetchChannels(guildID) {
 }
 
 
-export function postGuildSettings(guildID, prefix, boostChannel, auditChannel) {
+export function postGuildSettings(guildID, guildName, prefix, boostChannel, auditChannel) {
   return function(dispatch) {
     axios.put(`${api_url}/guilds/${guildID}/settings`, {
       prefix,
       audit_channel: auditChannel || 0
+    }).then(response => {
+      if (response.status === 200) {
+        dispatch(receiveGuildSettings(guildID, {prefix, boostChannel}));
+        Alert.success((
+          <div>
+            <p>
+              Saved settings for '{guildName}'.
+            </p>
+          </div>
+        ));
+      }
     });
-    dispatch(receiveGuildSettings(guildID, {prefix, boostChannel}));
   };
 }
 
@@ -76,14 +88,6 @@ export function fetchGuildLogs(guildID, page=0, author=0, channel=0) {
   return function(dispatch) {
     axios.get(`${api_url}/guilds/${guildID}/logs`, {params: {author, channel, page}}).then(response => {
       dispatch(receiveGuildLogs(guildID, response.data));
-    });
-  };
-}
-
-export function postGuildFeedback(guildID, reason, details, callback) {
-  return function(dispatch) {
-    axios.post(`${api_url}/guilds/${guildID}/feedback`, {reason, details}).then(response => {
-      callback();
     });
   };
 }

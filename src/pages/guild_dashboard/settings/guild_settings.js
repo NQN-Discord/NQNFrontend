@@ -77,7 +77,7 @@ class GuildSettings extends Component {
         }
         <Form
           onSubmit={() => {
-            this.props.postGuildSettings(this.props.guildID, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
+            this.props.postGuildSettings(this.props.guildID, guild.name, this.state.prefix, this.state.boostChannel, this.state.auditChannel);
           }}
           error={disabledSubmit}
         >
@@ -117,7 +117,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postGuildSettings: (guildID, prefix, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, prefix, boostChannel, auditChannel))
+    postGuildSettings: (guildID, guildName, prefix, boostChannel, auditChannel) => dispatch(postGuildSettings(guildID, guildName, prefix, boostChannel, auditChannel))
   }
 };
 
