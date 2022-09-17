@@ -38,7 +38,9 @@
     <script>
       try {
         Sentry.onLoad(function () {Sentry.init({release: "-"})});
-      } catch (e) {}
+      } catch (e) {
+        console.log("Sentry failed to load", e);
+      }
     </script>
   </head>
   <body>
