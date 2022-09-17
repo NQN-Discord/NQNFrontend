@@ -68,7 +68,7 @@ function PublicPacks(props) {
     } else {
       setPackExists(false);
     }
-  })()}, []);
+  })()}, [packName]);
   if (packExists === false) {
     return (
       <Container>

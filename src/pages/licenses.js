@@ -4,7 +4,7 @@ import {Container} from "semantic-ui-react";
 import '../semantic/src/definitions/elements/container.less';
 import {Helmet} from "react-helmet";
 
-export default () => (
+const licenses = () => (
   <Container>
     <Helmet>
       <title>License Information</title>
@@ -23,3 +23,6 @@ export default () => (
     </ul>
   </Container>
 );
+
+
+export default licenses;
