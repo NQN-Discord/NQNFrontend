@@ -9,7 +9,7 @@ import "./policy.css";
 import {Helmet} from "react-helmet";
 
 
-export default () => (
+const Policy = () => (
   <Container>
     <Helmet>
       <title>Privacy Policy</title>
@@ -456,3 +456,6 @@ const AllServices = () => (
     </p>
   </Table>
 );
+
+
+export default Policy;

@@ -33,7 +33,7 @@ function BotAddedDialog(props) {
       guild: guildId || null,
       referrer: query.referrer || null
     }).catch(err => {});
-  }, []);
+  }, [guildId, query.referrer]);
 
   return (
     <Card centered className="bot_joined_modal">

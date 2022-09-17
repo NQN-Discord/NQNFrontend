@@ -9,7 +9,7 @@ import "./policy.css";
 import {Helmet} from "react-helmet";
 
 
-export default () => (
+const TermsPage = () => (
   <Container>
     <Helmet>
       <title>Terms and Conditions</title>
@@ -183,3 +183,5 @@ const Terms = () => (
     at <a href="https://discord.gg/e6pQupV">https://discord.gg/e6pQupV</a>
   </div>
 );
+
+export default TermsPage;

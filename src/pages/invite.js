@@ -17,7 +17,7 @@ function InvitePage(props) {
     } else {
       window.open(inviteURL, "_self")
     }
-  }, []);
+  }, [props.location.search]);
 
 
   return (
