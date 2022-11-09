@@ -2,11 +2,25 @@ require("babel-register")({
   presets: ["es2015", "react", "stage-2"]
 });
 
-const router = require("./router").LoggedOutRouter(() => {});
-const Sitemap = require("react-router-sitemap").default;
+const LoggedOutRouter = require("./router").LoggedOutRouter;
+const Generator = require("react-router-sitemap-generator").default;
+const convertor = require("xml-js");
+const fs = require("fs");
 
-const sitemap = new Sitemap(router);
 
-sitemap.paths = [...new Set(sitemap.paths.filter(path => !path.includes(":")))];
+const generator = new Generator(
+  "https://nqn.blue",
+  LoggedOutRouter(() => {})
+);
 
-sitemap.build("https://nqn.blue").save("./build/static_sitemap.xml");
+
+const xml = generator.getXML();
+const xmljs = convertor.xml2js(xml);
+
+const getPath = (e) => e.elements.find(e => e.name === "loc").elements[0].text;
+const includePath = (path) => !path.includes("/:");
+
+const urls = xmljs.elements[0].elements.filter(e => includePath(getPath(e)));
+xmljs.elements[0].elements = urls;
+
+fs.writeFileSync("./build/static_sitemap.xml", convertor.js2xml(xmljs));
