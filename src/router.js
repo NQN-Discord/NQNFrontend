@@ -5,31 +5,27 @@ import {
 } from 'react-router-dom';
 
 
-const isBrowser = process.title === "browser";
+const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
 const dummy = () => {};
 
 
-const prerenderedLazy = React.lazy;
-
-
-
-const HelpTextPage = isBrowser? prerenderedLazy(() => import("./components/helpText")): dummy;
-const WebhookPage = isBrowser? prerenderedLazy(() => import("./pages/guild_dashboard/server_view")): dummy;
-const ManagerRootPage = isBrowser? prerenderedLazy(() => import("./pages/emote_manager/manager_root")): dummy;
-const LoginPage = isBrowser? prerenderedLazy(() => import("./pages/login")): dummy;
-const InvitePage = isBrowser? prerenderedLazy(() => import("./pages/invite")): dummy;
-const PrivacyPolicy = isBrowser? prerenderedLazy(() => import("./pages/policy")): dummy;
-const GuildCreatorPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_builder")): dummy;
-const GuildSelectorPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_selector")): dummy;
-const GuildStatusPage = isBrowser? prerenderedLazy(() => import("./pages/guild_builder/guild_status")): dummy;
-const LicensePage = isBrowser? prerenderedLazy(() => import("./pages/licenses")): dummy;
-const CommandPage = isBrowser? prerenderedLazy(() => import("./pages/commands")): dummy;
-const BotAddedPage = isBrowser? prerenderedLazy(() => import("./pages/bot_added")): dummy;
-const PremiumPage = isBrowser? prerenderedLazy(() => import("./pages/premium")): dummy;
-const PublicPackSearchPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/search")): dummy;
-const PublicPackPage = isBrowser? prerenderedLazy(() => import("./pages/public_packs/view")): dummy;
-const PhishingPage = isBrowser? prerenderedLazy(() => import("./pages/phishing")): dummy;
-const TermsPage = isBrowser? prerenderedLazy(() => import("./pages/terms")): dummy;
+const HelpTextPage = isBrowser? React.lazy(() => import("./components/helpText")): dummy;
+const WebhookPage = isBrowser? React.lazy(() => import("./pages/guild_dashboard/server_view")): dummy;
+const ManagerRootPage = isBrowser? React.lazy(() => import("./pages/emote_manager/manager_root")): dummy;
+const LoginPage = isBrowser? React.lazy(() => import("./pages/login")): dummy;
+const InvitePage = isBrowser? React.lazy(() => import("./pages/invite")): dummy;
+const PrivacyPolicy = isBrowser? React.lazy(() => import("./pages/policy")): dummy;
+const GuildCreatorPage = isBrowser? React.lazy(() => import("./pages/guild_builder/guild_builder")): dummy;
+const GuildSelectorPage = isBrowser? React.lazy(() => import("./pages/guild_builder/guild_selector")): dummy;
+const GuildStatusPage = isBrowser? React.lazy(() => import("./pages/guild_builder/guild_status")): dummy;
+const LicensePage = isBrowser? React.lazy(() => import("./pages/licenses")): dummy;
+const CommandPage = isBrowser? React.lazy(() => import("./pages/commands")): dummy;
+const BotAddedPage = isBrowser? React.lazy(() => import("./pages/bot_added")): dummy;
+const PremiumPage = isBrowser? React.lazy(() => import("./pages/premium")): dummy;
+const PublicPackSearchPage = isBrowser? React.lazy(() => import("./pages/public_packs/search")): dummy;
+const PublicPackPage = isBrowser? React.lazy(() => import("./pages/public_packs/view")): dummy;
+const PhishingPage = isBrowser? React.lazy(() => import("./pages/phishing")): dummy;
+const TermsPage = isBrowser? React.lazy(() => import("./pages/terms")): dummy;
 
 
 export const FullRouter = ({loggedIn, HomePage}) => {
