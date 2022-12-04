@@ -31,8 +31,13 @@
   content: '\f0d7';
 }
 
-.ui.dropdown.visible > div[role="listbox"] {
+div[role="listbox"].ui.dropdown.visible > div {
   display: block;
+}
+
+.ui.dropdown > .left.menu {
+    left: 0 !important;
+    right: 0 !important;
 }
 
 /* Sub Menu */

@@ -154,7 +154,7 @@ class PostBox extends Component {
             {guild.name} - #{guild.channels[this.props.channelID].name}
           </Header>
           {this.props.personas.length > 1 && guild.personas &&
-            <div className="float_right post_container">
+            <div className="post_container">
               Post as
               <Dropdown
                 trigger={personas.find(({value}) => value === this.state.activePersona).text}
