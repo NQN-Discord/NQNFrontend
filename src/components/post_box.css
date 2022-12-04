@@ -16,6 +16,8 @@
 .message_poster .post_container {
   display: flex;
   align-items: center;
+  float: right;
+  padding-right: 1em;
 }
 
 .message_poster .post_as_persona > span {
