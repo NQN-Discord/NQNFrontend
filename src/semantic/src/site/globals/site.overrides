@@ -114,9 +114,11 @@ code {
 
     background-color: @blurple;
 
-    color: #fff;
+    color: @gray-lighter;
     border: none;
     border-radius: .5rem;
+    border-style: outset;
+    border-color: darken(@blurple, 10%);
 
     cursor: pointer;
 
@@ -126,7 +128,7 @@ code {
     line-height: ~"min(5vh, 7.5vw)";
 
     &:hover {
-        background-color: darken(@blurple, 2%);
+        filter: brightness(95%);
     }
 }
 
