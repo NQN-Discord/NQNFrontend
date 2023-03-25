@@ -4,8 +4,10 @@
 @gray: #202225;
 @gray-light: #99AAB5;
 @gray-lighter: #FFFFFF;
-@blurple: #7289DA;
-@green: #43b581;
+@blurple: #5865F2;
+@green: #57F287;
+@red: #ED4245;
+@amber: #f89406;
 
 @header-primary: #fff;
 @header-secondary: #b9bbbe;
@@ -25,8 +27,8 @@
 
 @primaryColor: @blurple;
 @positiveColor: @green;
-@warningColor: #f89406;
-@negativeColor: #f04747;
+@warningColor: @amber;
+@negativeColor: @red;
 
 @pageBackground: @background-primary;
 @textColor: @text-normal;
