@@ -45,14 +45,18 @@
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143037513-1"></script>
     <!-- Sentry SDK -->
-    <script src='https://sentry.nqn.blue/js-sdk-loader/3a491e2f16af4663be43e3f25f388cfd.min.js' crossorigin="anonymous"></script>
     <script>
-      try {
-        Sentry.onLoad(function () {Sentry.init({release: "-"})});
-      } catch (e) {
-        console.log("Sentry failed to load", e);
+      function sentryInit() {
+        try {
+          Sentry.onLoad(function () {
+            Sentry.init({release: "-"})
+          });
+        } catch (e) {
+          console.log("Sentry failed to load", e);
+        }
       }
     </script>
+    <script async src='https://sentry.nqn.blue/js-sdk-loader/3a491e2f16af4663be43e3f25f388cfd.min.js' crossorigin="anonymous" onload="sentryInit()"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
