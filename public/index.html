@@ -23,27 +23,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script defer data-domain="nqn.blue" src="https://plausible.nqn.blue/js/script.manual.js"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-
-      // Default consent mode is "denied" for both ads and analytics as well as the optional types, but delay for 2 seconds until the Privacy Controls and Cookie Solution is loaded
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        analytics_storage: "denied",
-        functionality_storage: "denied",
-        personalization_storage: "denied",
-        security_storage: "denied",
-        wait_for_update: 2000 // milliseconds
-      });
-
-      gtag('js', new Date());
-
-      gtag('config', 'UA-143037513-1', {send_page_view: false});
+      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143037513-1"></script>
+
     <!-- Sentry SDK -->
     <script>
       function sentryInit() {
