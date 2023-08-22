@@ -21,7 +21,7 @@ class HeaderO extends Component {
   }
 
   sendAnalytics() {
-    const pagePath = this.props.location.pathname.replace(/\/\d+\//g, "/_ID_/");
+    const pagePath = this.props.location.pathname.replace(/\/\d+(\/?)/g, "/_ID_$1");
     const fullPath = window.location.origin + pagePath + window.location.search;
     window.plausible('pageview', { u: fullPath});
   }
