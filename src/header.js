@@ -11,18 +11,19 @@ import './semantic/src/definitions/collections/menu.less';
 
 class HeaderO extends Component {
   componentDidMount() {
-    this.sendGoogleAnalytics();
+    this.sendAnalytics();
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.sendGoogleAnalytics();
+      this.sendAnalytics();
     }
   }
 
-  sendGoogleAnalytics() {
-    const pagePath = this.props.location.pathname.replace(/\d+/ig, "...");
-    window.gtag('config', 'UA-143037513-1', {'page_path': pagePath});
+  sendAnalytics() {
+    const pagePath = this.props.location.pathname.replace(/\/\d+(\/?)/g, "/_ID_$1");
+    const fullPath = window.location.origin + pagePath + window.location.search;
+    window.plausible('pageview', { u: fullPath});
   }
 
   render() {
