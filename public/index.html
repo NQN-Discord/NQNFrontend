@@ -29,7 +29,7 @@
       window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
     </script>
     <script>
-      const useEnvVars = "${USE_ENV_VARIABLES}";
+      const useEnvVars = false;
       let api_url = "http://localhost:8888";
       let clientId = "561541673750888481";
       let guildBuilderClientId = "734388762158563359";
@@ -37,7 +37,7 @@
 
       let guildBuilderApiURL = "http://" + rawGuildBuilderUri + "/v0";
       let guildBuilderApiWS = "ws://" + rawGuildBuilderUri + "/v0";
-      if (useEnvVars === "true") {
+      if (useEnvVars) {
         api_url = "${API_URL}";
         clientId = "${CLIENT_ID}";
         guildBuilderClientId = "${GUILD_BUILDER_CLIENT_ID}";
