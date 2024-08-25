@@ -14,6 +14,7 @@ import {parse} from "query-string";
 import Ad from "../components/ad";
 import axios from "axios";
 import {Helmet} from "react-helmet";
+import {isBrowser} from "../router";
 const {api_url, discordURL} = window.env
 
 
@@ -29,10 +30,13 @@ function BotAddedDialog(props) {
   const url = `/guilds/${guildId}/permissions`;
 
   useEffect(() => {
-    axios.post(`${api_url}/join_referral`, {
-      guild: guildId || null,
-      referrer: query.referrer || null
-    }).catch(err => {});
+    if (isBrowser) {
+      axios.post(`${api_url}/join_referral`, {
+        guild: guildId || null,
+        referrer: query.referrer || null
+      }).catch(err => {
+      });
+    }
   }, [guildId, query.referrer]);
 
   return (

@@ -47,34 +47,20 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   xdg-utils \
   google-chrome-stable
 
-
-RUN useradd --create-home --user-group --shell /bin/bash app
 WORKDIR /home/app
 
 ENV PATH /home/app/node_modules/.bin:$PATH
-
 COPY ./package.json /home/app/package.json
 COPY ./package-lock.json /home/app/package-lock.json
 COPY ./semantic.json /home/app/semantic.json
 COPY ./src/semantic /home/app/src/semantic
-COPY ./public/index.html /home/app/public/index.html
-RUN sed -i -e "s/const useEnvVars = false;/const useEnvVars = true;/g" /home/app/public/index.html
-
-RUN chmod -R 777 /home/app
-
-USER app
 
 RUN npm install --legacy-peer-deps
 
 COPY . /home/app
+RUN sed -i -e "s/const useEnvVars = false;/const useEnvVars = true;/g" /home/app/public/index.html
 
 RUN npm run build
 RUN npm run precompress -v build
 
-FROM nginx:1.15
-COPY --from=builder /home/app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["bash", "/entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sleep", "100000"]
