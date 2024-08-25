@@ -3,11 +3,11 @@ import { Container } from "semantic-ui-react";
 
 import '../semantic/src/definitions/elements/container.less';
 
+import {discordURL} from "../config";
 import {parse} from "query-string";
 import {exchangeCode} from "../actions/auth";
 import FailedInvite from "./failed_invite";
 import connect from "react-redux/es/connect/connect";
-const {discordURL} = window.env
 
 class LoginPage extends Component {
   async componentDidMount() {

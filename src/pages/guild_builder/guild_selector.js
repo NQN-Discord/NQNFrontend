@@ -16,8 +16,8 @@ import "./guild_builder.css";
 import {parse} from "query-string";
 import {EmoteCard} from "../../components/emote";
 import GuildSelector from "../../components/server_list";
+import {inviteURLWithPerms, redirect_uri, generalPermissions} from "../../config";
 import update from "immutability-helper";
-const {inviteURLWithPerms, redirect_uri, generalPermissions} = window.env
 
 
 const discordEmoji = /<(?<animated>a)?:(?<name>[-_a-zA-Z0-9]+):(?<id>\d{16,18})>/;

@@ -15,7 +15,7 @@ import {parse} from "query-string";
 import {createGuild} from "../../actions/guild";
 import update from "immutability-helper";
 import Websocket from 'react-websocket';
-const {guildBuilderApiWS, inviteURLGuildBuilder} = window.env
+import {guildBuilderApiWS, inviteURLGuildBuilder} from "../../config";
 
 
 class GuildStatusPage extends Component {

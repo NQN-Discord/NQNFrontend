@@ -7,9 +7,9 @@ import '../semantic/src/definitions/elements/button.less';
 import {parse} from "query-string";
 import connect from "react-redux/es/connect/connect";
 import axios from "axios";
+import {api_url, patreonPage, patreonOauth} from "../config";
 import  {fetchPremiumUser} from "../actions/user";
 import Alert from "react-s-alert";
-const {api_url, patreonPage, patreonOauth} = window.env
 
 class PremiumPage extends Component {
   async componentDidMount() {

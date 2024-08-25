@@ -17,10 +17,10 @@ import '../../semantic/src/definitions/modules/dimmer.less';
 
 import connect from "react-redux/es/connect/connect";
 import {EmoteCard} from "../../components/emote";
+import {discordGuildBuilderURL} from "../../config";
 import update from "immutability-helper";
 
 import "./guild_builder.css";
-const {discordGuildBuilderURL} = window.env
 
 
 class GuildCreatorPage extends Component {

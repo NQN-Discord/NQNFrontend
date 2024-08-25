@@ -5,8 +5,8 @@ import {setAliases, unsetAliases, changeAliases} from "../../actions/user";
 import EmoteAliases from "../../components/emote_aliases";
 import EmoteSearchComponent from "../../components/emote_search";
 import axios from "axios";
+import {api_url} from "../../config";
 import update from "immutability-helper";
-const {api_url} = window.env
 
 
 class AliasSearchPage extends Component {

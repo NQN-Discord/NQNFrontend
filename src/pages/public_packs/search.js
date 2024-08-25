@@ -6,13 +6,13 @@ import axios from "axios";
 import {parse} from "query-string";
 import EmoteSearchComponent from "../../components/emote_search";
 import {Emote} from "../../components/emote";
+import {api_url} from "../../config";
 
 
 import '../../semantic/src/definitions/elements/list.less';
 import '../../semantic/src/definitions/views/card.less';
 
 import './search.css';
-const {api_url} = window.env
 
 
 function PublicPacks(props) {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const {api_url} = window.env;
+import {api_url} from '../config.js';
 
 export const RECEIVE_REFRESH = "RECEIVE_REFRESH";
 

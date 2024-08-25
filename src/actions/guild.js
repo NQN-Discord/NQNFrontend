@@ -1,7 +1,7 @@
 import axios from "axios";
+import {api_url, guildBuilderApiURL} from "../config";
 import Alert from "react-s-alert";
 import React from "react";
-const {api_url, guildBuilderApiURL} = window.env
 
 export const RECEIVE_GUILDS = "RECEIVE_GUILDS";
 export const RECEIVE_GUILD_CHANNELS = "RECEIVE_GUILD_CHANNELS";
