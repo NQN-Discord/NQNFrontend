@@ -8,6 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+
     <title>Not Quite Nitro</title>
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -26,6 +27,64 @@
     <script defer data-domain="nqn.blue" src="https://plausible.nqn.blue/js/script.manual.js"></script>
     <script>
       window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+    </script>
+    <script>
+      let api_url = "http://localhost:8888";
+      let clientId = "561541673750888481";
+      let guildBuilderClientId = "734388762158563359";
+      let rawGuildBuilderUri = "localhost:6005";
+
+      let guildBuilderApiURL = "http://" + rawGuildBuilderUri + "/v0";
+      let guildBuilderApiWS = "ws://" + rawGuildBuilderUri + "/v0";
+      if ("${USE_ENV_VARIABLES}" === "true") {
+        api_url = "${API_URL}";
+        clientId = "${CLIENT_ID}";
+        guildBuilderClientId = "${GUILD_BUILDER_CLIENT_ID}";
+        rawGuildBuilderUri = "${GUILD_BUILDER_API_URI}";
+
+        guildBuilderApiURL = "https://" + rawGuildBuilderUri + "/v0";
+        guildBuilderApiWS = "wss://" + rawGuildBuilderUri + "/v0";
+      }
+
+
+      const guild_builder_redirect_uri = window.location.origin + "/guild_builder/status";
+      const redirect_uri = window.location.origin + "/login";
+      const guildBuilderRedirect = window.location.origin + "/guild_builder/status";
+      const pateronRedirectURI = window.location.origin + "/premium";
+      const addBotRedirect = window.location.origin + "/bot_added";
+
+      const discordNoLoginURL = "https://discordapp.com/oauth2/authorize?client_id=" + clientId + "&redirect_uri=" + encodeURIComponent(redirect_uri) + "&response_type=code&scope=identify%20guilds";
+      const discordURL = discordNoLoginURL + "&prompt=none";
+
+      const generalPermissions = "1610968128";
+
+      function inviteURLWithPerms(perms, state, redirectURI) {
+        return "https://discordapp.com/oauth2/authorize?client_id=" + clientId + "&permissions=" + perms + "&scope=bot&state=" + state + "&response_type=code&redirect_uri=" + redirectURI;
+      }
+
+      const inviteURL = inviteURLWithPerms(generalPermissions, "web_invite", addBotRedirect);
+
+      const inviteURLGuildBuilder = "https://discordapp.com/oauth2/authorize?client_id=561541673750888481&permissions=1610968128&scope=bot&state=web_invite&response_type=code&redirect_uri=" + guildBuilderRedirect;
+
+      const discordGuildBuilderURL = "https://discord.com/api/oauth2/authorize?client_id=" + guildBuilderClientId + "&redirect_uri=" + encodeURIComponent(guild_builder_redirect_uri) + "&response_type=code&scope=guilds.join%20identify&prompt=none";
+
+      const patreonPage = "https://www.patreon.com/NQN";
+      const patreonOauth = "https://www.patreon.com/oauth2/authorize?response_type=code&client_id=r_47XahhSeLzbI2FkrFoFnF0o-D0ntGhzmseg2PSJMTAANeycktMWNxT6eDOuEYK&redirect_uri=" + pateronRedirectURI;
+
+      window.env = {
+        api_url,
+        discordURL,
+        inviteURL,
+        patreonPage,
+        patreonOauth,
+        guildBuilderApiURL,
+        discordGuildBuilderURL,
+        inviteURLWithPerms,
+        redirect_uri,
+        generalPermissions,
+        guildBuilderApiWS,
+        inviteURLGuildBuilder,
+      };
     </script>
 
     <!-- Sentry SDK -->

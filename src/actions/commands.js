@@ -1,5 +1,5 @@
 import axios from "axios";
-import {api_url} from "../config";
+const {api_url} = window.env;
 
 export const RECEIVE_COMMANDS = "RECEIVE_COMMANDS";
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {api_url} from '../config.js';
+const {api_url} = window.env
 
 export const RECEIVE_GUILD_EMOTES = "RECEIVE_GUILD_EMOTES";
 export const RECEIVE_PREMIUM_USER = "RECEIVE_PREMIUM_USER";

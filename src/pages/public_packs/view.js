@@ -7,7 +7,6 @@ import JSZip from "jszip";
 import axios from "axios";
 import {joinGroups, joinPackServer, leaveGroups} from "../../actions/user";
 import {EmoteCard, Emote} from "../../components/emote";
-import {api_url} from "../../config";
 
 
 import '../../semantic/src/definitions/elements/container.less';
@@ -19,6 +18,7 @@ import '../../semantic/src/definitions/elements/loader.less';
 
 import "../guild_builder/guild_builder.css";
 import Alert from "react-s-alert";
+const {api_url} = window.env
 
 
 function sortEmotes(emotes) {

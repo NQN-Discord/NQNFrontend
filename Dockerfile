@@ -72,3 +72,5 @@ RUN npm run precompress -v build
 FROM nginx:1.15
 COPY --from=build /home/app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+RUN ["entrypoint.sh"]

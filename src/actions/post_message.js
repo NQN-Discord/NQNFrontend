@@ -1,6 +1,6 @@
 import axios from "axios";
-import {api_url} from "../config";
 import Alert from "react-s-alert";
+const {api_url} = window.env
 
 export default function postMessage(guild, channel, message, persona) {
   return function(dispatch) {

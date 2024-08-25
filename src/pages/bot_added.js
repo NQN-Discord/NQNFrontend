@@ -10,11 +10,11 @@ import '../semantic/src/definitions/elements/list.less';
 
 import connect from "react-redux/es/connect/connect";
 import "./bot_added.css";
-import {api_url, discordURL} from "../config";
 import {parse} from "query-string";
 import Ad from "../components/ad";
 import axios from "axios";
 import {Helmet} from "react-helmet";
+const {api_url, discordURL} = window.env
 
 
 function BotAddedDialog(props) {
