@@ -58,7 +58,7 @@ COPY ./src/semantic /home/app/src/semantic
 RUN npm install --legacy-peer-deps
 
 COPY . /home/app
-RUN sed -i -e "s/const useEnvVars = false;/const useEnvVars = true;/g" /home/app/public/index.html
+RUN start="// Start cut" end="// End cut" sed -i "%$start%$end%g" /home/app/public/index.html
 
 RUN npm run build
 RUN npm run precompress -v build

@@ -29,7 +29,7 @@
       window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
     </script>
     <script>
-      const useEnvVars = false;
+      // Start cut
       let api_url = "http://localhost:8888";
       let clientId = "561541673750888481";
       let guildBuilderClientId = "734388762158563359";
@@ -37,15 +37,18 @@
 
       let guildBuilderApiURL = "http://" + rawGuildBuilderUri + "/v0";
       let guildBuilderApiWS = "ws://" + rawGuildBuilderUri + "/v0";
-      if (useEnvVars) {
-        api_url = "${API_URL}";
-        clientId = "${CLIENT_ID}";
-        guildBuilderClientId = "${GUILD_BUILDER_CLIENT_ID}";
-        rawGuildBuilderUri = "${GUILD_BUILDER_API_URI}";
+      if (false) {
+        // End cut
+        let api_url = "${API_URL}";
+        let clientId = "${CLIENT_ID}";
+        let guildBuilderClientId = "${GUILD_BUILDER_CLIENT_ID}";
+        let rawGuildBuilderUri = "${GUILD_BUILDER_API_URI}";
 
-        guildBuilderApiURL = "https://" + rawGuildBuilderUri + "/v0";
-        guildBuilderApiWS = "wss://" + rawGuildBuilderUri + "/v0";
+        let guildBuilderApiURL = "https://" + rawGuildBuilderUri + "/v0";
+        let guildBuilderApiWS = "wss://" + rawGuildBuilderUri + "/v0";
+        // Start cut
       }
+      // End cut
 
 
       const guild_builder_redirect_uri = window.location.origin + "/guild_builder/status";
