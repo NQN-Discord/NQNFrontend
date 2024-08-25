@@ -63,4 +63,10 @@ RUN sed -i -e "s/const useEnvVars = false;/const useEnvVars = true;/g" /home/app
 RUN npm run build
 RUN npm run precompress -v build
 
-CMD ["sleep", "100000"]
+FROM nginx:1.15
+COPY --from=builder /home/app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["bash", "/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

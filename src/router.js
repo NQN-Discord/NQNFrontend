@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 
-export const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
+const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
 const dummy = () => {};
 
 
