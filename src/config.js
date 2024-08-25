@@ -27,7 +27,7 @@ function inviteURLWithPerms(perms, state, redirectURI) {
 
 const inviteURL = inviteURLWithPerms(generalPermissions, "web_invite", addBotRedirect);
 
-const inviteURLGuildBuilder = `https://discordapp.com/oauth2/authorize?client_id=561541673750888481&permissions=${generalPermissions}&scope=bot&state=web_invite&response_type=code&redirect_uri=${guildBuilderRedirect}`;
+const inviteURLGuildBuilder = `https://discordapp.com/oauth2/authorize?client_id=${clientId}&permissions=${generalPermissions}&scope=bot&state=web_invite&response_type=code&redirect_uri=${guildBuilderRedirect}`;
 
 const discordGuildBuilderURL = `https://discord.com/api/oauth2/authorize?client_id=${guildBuilderClientId}&redirect_uri=${encodeURIComponent(guild_builder_redirect_uri)}&response_type=code&scope=guilds.join%20identify&prompt=none`;
 
