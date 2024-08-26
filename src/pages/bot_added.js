@@ -29,10 +29,13 @@ function BotAddedDialog(props) {
   const url = `/guilds/${guildId}/permissions`;
 
   useEffect(() => {
-    axios.post(`${api_url}/join_referral`, {
-      guild: guildId || null,
-      referrer: query.referrer || null
-    }).catch(err => {});
+    if (api_url[0] !== "$") {
+      axios.post(`${api_url}/join_referral`, {
+        guild: guildId || null,
+        referrer: query.referrer || null
+      }).catch(err => {
+      });
+    }
   }, [guildId, query.referrer]);
 
   return (

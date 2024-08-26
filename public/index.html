@@ -8,6 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+
     <title>Not Quite Nitro</title>
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -26,6 +27,33 @@
     <script defer data-domain="nqn.blue" src="https://plausible.nqn.blue/js/script.manual.js"></script>
     <script>
       window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+    </script>
+    <script>
+      // Start cut
+      let apiUrl = "http://localhost:8888";
+      let clientId = "561541673750888481";
+      let guildBuilderClientId = "734388762158563359";
+      let rawGuildBuilderUri = "localhost:6005";
+      let allowHttp = true;
+
+      if (false) {
+        // End cut
+        let apiUrl = "${API_URL}";
+        let clientId = "${CLIENT_ID}";
+        let guildBuilderClientId = "${GUILD_BUILDER_CLIENT_ID}";
+        let rawGuildBuilderUri = "${GUILD_BUILDER_API_URI}";
+        let allowHttp = false;
+        // Start cut
+      }
+      // End cut
+
+      window.env = {
+        apiUrl,
+        clientId,
+        guildBuilderClientId,
+        rawGuildBuilderUri,
+        allowHttp,
+      };
     </script>
 
     <!-- Sentry SDK -->
