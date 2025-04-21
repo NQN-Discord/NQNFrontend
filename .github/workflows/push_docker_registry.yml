@@ -1,0 +1,10 @@
+name: Push to Docker Registry
+
+on: [push]
+
+jobs:
+  push_to_docker_registry:
+    uses: NQN-Discord/docker-registry-action/.github/workflows/push_docker_registry.yml@master
+    with:
+      REPOSITORY_NAME: ${{ github.event.repository.name }}
+    secrets: inherit

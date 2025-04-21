@@ -38,7 +38,6 @@ export const FullRouter = ({loggedIn, HomePage}) => {
 };
 
 export const LoggedOutRouter = ({HomePage}) => {
-
   return (
     <Switch>
       <Route exact path="/" component={HomePage}/>

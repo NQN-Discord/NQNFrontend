@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import connect from "react-redux/es/connect/connect";
+import classNames from "classnames";
 
 import {Menu, Button, Icon, Loader, Message} from 'semantic-ui-react';
 
@@ -25,12 +26,12 @@ class ChannelSelector extends Component {
       this.props.fetchChannels(this.props.guildID);
     }
     const channels = guild.channels;
-    const perms = ["manage_guild", "manage_emojis", "view_audit_log"];
+    const perms = ["manage_guild", "manage_expressions", "view_audit_log"];
     const showGear = perms.some(perm => guild.user_permissions.includes(perm));
     const showChannels = this.props.showChannels;
 
     return (
-      <div className="channel_list">
+      <div className={classNames({"channel_list": showChannels})}>
         <Menu pointing vertical secondary>
           <Menu.Item header>
             <Button
