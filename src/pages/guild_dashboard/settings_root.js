@@ -22,8 +22,7 @@ class GuildSettingsRoot extends Component {
     const page = {
       settings: <GuildSettings guildID={this.props.guildID} showHeader={true}/>,
       logs: <AuditLogs guildID={this.props.guildID}/>,
-      emotes: <EmoteSettings guildID={this.props.guildID}/>,
-      upload_emotes: <EmoteSettings guildID={this.props.guildID}/>,
+      emojis: <EmoteSettings guild={guild} emotes={this.props.emotes[this.props.guildID] || []}/>,
       permissions: <GuildPermissions guildID={this.props.guildID}/>
     }[pageName];
     return (
@@ -47,6 +46,11 @@ class GuildSettingsRoot extends Component {
             active={pageName === "logs"}
             onClick={() => this.props.history.push("./logs")}
           />}
+          {guild.user_permissions.includes("manage_expressions") && <Menu.Item
+            name='Custom Emojis'
+            active={pageName === "emojis"}
+            onClick={() => this.props.history.push("./emojis")}
+          />}
         </Menu>
         <Segment attached='bottom'>
           {page}
@@ -56,17 +60,10 @@ class GuildSettingsRoot extends Component {
   }
 }
 
-/*
-<Menu.Item
-  name='Custom Emotes'
-  active={["emotes", "upload_emotes"].includes(pageName)}
-  onClick={() => this.props.history.push("./emotes")}
-/>
- */
-
 const mapStateToProps = (state) => {
   return {
-    guilds: state.user.guilds
+    guilds: state.user.guilds,
+    emotes: state.user.guild_emotes,
   }
 };
 
