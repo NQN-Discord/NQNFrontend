@@ -10,11 +10,15 @@
 }
 
 .no_channel_list {
-  -webkit-transform: translateX(min(230px, 30%));
-  -moz-transform: translateX(min(230px, 30%));
-  -ms-transform: translateX(min(230px, 30%));
-  -o-transform: translateX(min(230px, 30%));
-  transform: translateX(min(230px, 30%));
+  -webkit-transform: translateX(min(100px, 20%));
+  -moz-transform: translateX(min(100px, 20%));
+  -ms-transform: translateX(min(100px, 20%));
+  -o-transform: translateX(min(100px, 20%));
+  transform: translateX(min(100px, 20%));
+
+
+  width: calc(100% - 100px);
+  min-width: 80%;
 }
 
 .discount_channel_list {
